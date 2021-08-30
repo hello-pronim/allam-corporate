@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import classnames from "classnames/bind";
 import HamburgerIcon from "@components/HamburgerIcon/HamburgerIcon";
 import MobileMenu from "@components/MobileMenu/MobileMenu";
 import styles from "./Header.module.scss";
@@ -8,6 +9,7 @@ import styles from "./Header.module.scss";
 export interface IHeaderProps {}
 
 const Header = ({ ...props }: IHeaderProps) => {
+  const cx = classnames.bind(styles);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const toggleMenu = () => {
@@ -32,7 +34,9 @@ const Header = ({ ...props }: IHeaderProps) => {
         </div>
 
         <div className={styles.navMenu}>
-          <div className={styles.navMenuIcon}>
+          <div
+            className={cx("navMenuIcon", { navMenuIconOpen: showMobileMenu })}
+          >
             <HamburgerIcon isOpen={showMobileMenu} onClick={toggleMenu} />
           </div>
         </div>

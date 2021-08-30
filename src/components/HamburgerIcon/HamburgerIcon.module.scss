@@ -39,8 +39,6 @@
 
     &Open {
       span {
-        background-color: $primary;
-
         &:nth-child(1) {
           transform: rotate(45deg);
           left: rem(2);

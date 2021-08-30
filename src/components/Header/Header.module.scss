@@ -50,6 +50,12 @@
 
     &Icon {
       z-index: 1;
+
+      &Open {
+        span {
+          background-color: $primary;
+        }
+      }
     }
   }
 }
