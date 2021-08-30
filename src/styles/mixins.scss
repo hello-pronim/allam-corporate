@@ -1,0 +1,40 @@
+@mixin breakpoint($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin grid($mediumColumns: 1, $largeColumns: 2, $gridGap: rem(24)) {
+  display: grid;
+  gap: $gridGap;
+  width: 100%;
+  @include breakpoint($medium) {
+    grid-template-columns: repeat($mediumColumns, 1fr);
+  }
+  @include breakpoint($large) {
+    grid-template-columns: repeat($largeColumns, 1fr);
+  }
+  @include breakpoint($webLarge) {
+    gap: rem(48);
+  }
+}
+
+@mixin grid-container {
+  margin: 0 auto;
+  max-width: rem(1600);
+  padding-left: rem(16);
+  padding-right: rem(16);
+
+  @include breakpoint($large) {
+    padding-left: rem(24);
+    padding-right: rem(24);
+  }
+  @include breakpoint($webLarge) {
+    padding-left: rem(48);
+    padding-right: rem(48);
+  }
+}
+
+@function rem($pixels) {
+  @return #{$pixels/16}rem;
+}
