@@ -1,0 +1,14 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: rem(22) 0;
+  cursor: pointer;
+
+  p {
+    color: $white;
+  }
+}
