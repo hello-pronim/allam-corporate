@@ -1,5 +1,5 @@
-@import '../../../sass/utilities/Variables.scss';
-@import '../../../sass/utilities/Mixins.scss';
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
 
 .button {
   padding: rem(20) rem(18);
@@ -26,23 +26,23 @@
 
     &:hover {
       color: $white;
-      background-color: $dark-primary;
+      // background-color: $dark-primary;
     }
   }
 
   &.secondary {
     color: $primary;
     border: 0;
-    background-color: $yellow;
+    background-color: $primary;
 
     &:hover {
-      background-color: $light-yellow;
+      // background-color: $light-yellow;
     }
   }
 
   &.outlinePrimary {
     color: $primary;
-    border: rem(2) solid $light-primary;
+    // border: rem(2) solid $light-primary;
     background-color: $white;
 
     &:hover {
