@@ -27,6 +27,9 @@
 
   &.homeFilterButton {
     flex-direction: column;
+    @include breakpoint($webDesktop) {
+      flex-direction: row;
+    }
   }
 
   @include breakpoint($medium) {
