@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Button } from "@components/Common/Common";
+import classNames from "classnames/bind";
 import MobileMenuItem from "@components/MobileMenuItem/MobileMenuItem";
-import { menuObj } from "./constant";
+import { menuObj, stateAuObj } from "./constant";
 import styles from "./MobileMenu.module.scss";
 
 export interface IMobileMenuProps {
@@ -14,6 +14,7 @@ const MobileMenu = ({ closeMenu, ...props }: IMobileMenuProps) => {
   const router = useRouter();
   const [isSubMenu, setIsSubMenu] = useState(false);
   const [menuArray, setMenuArray] = useState(menuObj);
+  const cx = classNames.bind(styles);
 
   const onRedirectLink = (link: any) => {
     closeMenu();
@@ -67,6 +68,16 @@ const MobileMenu = ({ closeMenu, ...props }: IMobileMenuProps) => {
             </li>
           ))}
         </ul>
+        <div className={styles.mobileMenuBuildSelect}>
+          <span>Build in:</span>
+          <ul className={styles.mobileMenuBuildSelectList}>
+            {stateAuObj?.map((el, id) => (
+              <li key={id} className={cx({ selected: id === 0 })}>
+                {el.name}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
