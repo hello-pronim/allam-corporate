@@ -8,6 +8,15 @@
   top: rem(16);
   right: 0;
   z-index: 1000;
+
+  @include breakpoint($webDesktop) {
+    top: rem(24);
+    height: rem(88);
+    width: calc(100% - #{rem(24)});
+  }
+  @include breakpoint($webLarge) {
+    width: calc(100% - #{rem(48)});
+  }
 }
 
 .nav {
@@ -15,11 +24,25 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: rem(-2);
+    width: 100%;
+    height: rem(2);
+    background-color: $white;
+  }
 
   &Brand {
     height: 100%;
     width: rem(155.45);
     z-index: 1;
+    @include breakpoint($webDesktop) {
+      width: rem(285);
+    }
 
     a {
       display: inline-flex;
@@ -35,8 +58,9 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
-    @include breakpoint($medium) {
+    @include breakpoint($webDesktop) {
+      align-items: flex-end;
+      flex-direction: column;
     }
 
     &::before {
@@ -44,17 +68,51 @@
       position: absolute;
       left: rem(-20);
       width: rem(25);
-      height: rem(48);
+      height: 100%;
       background-color: $primary;
     }
 
-    &Icon {
+    &MobileIcon {
       z-index: 1;
+      @include breakpoint($webDesktop) {
+        display: none;
+      }
 
       &Open {
         span {
           background-color: $primary;
         }
+      }
+    }
+
+    &Top {
+      display: none;
+      @include breakpoint($webDesktop) {
+        display: block;
+      }
+
+      &Select {
+        display: flex;
+        align-items: center;
+
+        span {
+          display: inline-block;
+          color: $grey;
+          font-size: rem(14);
+          margin: 0 rem(4);
+
+          &:first-of-type {
+            font-weight: 700;
+            margin-right: rem(14);
+          }
+        }
+      }
+    }
+
+    &List {
+      display: none;
+      @include breakpoint($webDesktop) {
+        display: block;
       }
     }
   }

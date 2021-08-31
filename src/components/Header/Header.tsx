@@ -3,7 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import classnames from "classnames/bind";
 import HamburgerIcon from "@components/HamburgerIcon/HamburgerIcon";
+import { Button, Select } from "@components/Common/Common";
 import MobileMenu from "@components/MobileMenu/MobileMenu";
+import { menuObj, stateAuObj } from "@components/MobileMenu/constant";
 import styles from "./Header.module.scss";
 
 export interface IHeaderProps {}
@@ -25,7 +27,6 @@ const Header = ({ ...props }: IHeaderProps) => {
               <Image
                 src={"/static/logo.svg"}
                 alt="logo"
-                layout="intrinsic"
                 width={285}
                 height={88}
               />
@@ -35,9 +36,29 @@ const Header = ({ ...props }: IHeaderProps) => {
 
         <div className={styles.navMenu}>
           <div
-            className={cx("navMenuIcon", { navMenuIconOpen: showMobileMenu })}
+            className={cx("navMenuMobileIcon", {
+              navMenuMobileIconOpen: showMobileMenu,
+            })}
           >
             <HamburgerIcon isOpen={showMobileMenu} onClick={toggleMenu} />
+          </div>
+
+          <div className={styles.navMenuTop}>
+            <div className={styles.navMenuTopSelect}>
+              <span>Build in:</span>
+              {/* <select>
+                <option value="A">NSW</option>
+                <option value="B">VIC</option>
+                <option value="C">QLD</option>
+              </select> */}
+              <div className="state-select">
+                <Select options={stateAuObj} defaultValue={stateAuObj[0]} />
+              </div>
+              <span>(change)</span>
+            </div>
+          </div>
+          <div className={styles.navMenuList}>
+            <Button>Get in Touch</Button>
           </div>
         </div>
       </div>

@@ -20,6 +20,8 @@ a {
   box-sizing: border-box;
 }
 
+select,
+select option,
 button {
   font-family: "InterFace", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto;
 }
@@ -32,6 +34,51 @@ h4,
 h5 {
   font-weight: 700;
 }
+
 ul {
   list-style-type: none;
+}
+
+// Select customize
+.selector {
+  &__input {
+    color: transparent;
+  }
+}
+
+.state-select {
+  .selector {
+    width: rem(50);
+
+    &__control {
+      border: 0;
+      min-height: auto;
+      box-shadow: none;
+      cursor: pointer;
+      background-color: transparent;
+    }
+    &__indicators {
+      display: none;
+    }
+    &__value-container {
+      padding-left: 0;
+      text-transform: uppercase;
+    }
+    &__menu {
+      margin-top: rem(4);
+      background-color: $primary;
+    }
+    &__option {
+      cursor: pointer;
+      transition: all 0.2s ease-in;
+
+      &--is-selected {
+        background-color: $white;
+        color: $grey;
+      }
+      &--is-focused {
+        background-color: $grey1;
+      }
+    }
+  }
 }
