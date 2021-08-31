@@ -1,0 +1,10 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.select {
+  padding: rem(20) rem(18);
+  color: $white;
+
+  @include breakpoint($webDesktop) {
+  }
+}
