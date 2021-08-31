@@ -96,3 +96,18 @@ export const menuObj = [
     slug: "/",
   },
 ];
+
+export const stateAuObj = [
+  {
+    value: "nsw",
+    label: "nsw",
+  },
+  {
+    value: "vic",
+    label: "vic",
+  },
+  {
+    value: "qld",
+    label: "qld",
+  },
+];

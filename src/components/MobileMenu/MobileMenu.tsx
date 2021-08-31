@@ -73,7 +73,7 @@ const MobileMenu = ({ closeMenu, ...props }: IMobileMenuProps) => {
           <ul className={styles.mobileMenuBuildSelectList}>
             {stateAuObj?.map((el, id) => (
               <li key={id} className={cx({ selected: id === 0 })}>
-                {el.name}
+                {el.label}
               </li>
             ))}
           </ul>
