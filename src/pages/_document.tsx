@@ -16,7 +16,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          {/* <link
+          <link
             rel="stylesheet"
             type="text/css"
             charSet="UTF-8"
@@ -26,8 +26,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             type="text/css"
             href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-          /> */}
-
+          />
           <link rel="stylesheet" href="https://use.typekit.net/ngi4krw.css" />
         </Head>
         <body>
