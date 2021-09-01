@@ -1,0 +1,61 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.perfectEstate {
+  height: rem(770);
+  padding: rem(56) 0 rem(32);
+  // background-color: $lightest-gray;
+  background-image: url("/static/home/img-perfect-estate-bg.jpg");
+  background-size: cover;
+  background-position: center;
+
+  @include breakpoint($large) {
+    height: rem(920);
+    padding-top: rem(160);
+  }
+
+  &Wrapper {
+    @include grid-container;
+    height: 100%;
+
+    @include breakpoint($large) {
+      @include grid(1, 12);
+    }
+  }
+
+  &Content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    @include breakpoint($large) {
+      grid-column: 1 / span 4;
+      display: initial;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 2 / span 4;
+    }
+
+    &Text {
+      flex: 1;
+      @include breakpoint($large) {
+        margin-bottom: rem(24);
+        flex: initial;
+      }
+    }
+
+    h2 {
+      color: $white;
+      font-size: rem(40);
+      margin-bottom: rem(24);
+      @include breakpoint($large) {
+        font-size: rem(56);
+      }
+    }
+
+    p {
+      color: $white;
+      font-size: rem(18);
+      line-height: rem(28);
+    }
+  }
+}
