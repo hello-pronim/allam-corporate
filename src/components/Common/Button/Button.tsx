@@ -25,8 +25,8 @@ const Button = ({
 }: IButtonProps) => {
   let themeName = styles.primary;
   if (color === "secondary") themeName = styles.secondary;
-  else if (color === "dark") themeName = styles.outlinePrimary;
-  else if (color === "light") themeName = styles.outlineLight;
+  else if (color === "dark") themeName = styles.dark;
+  else if (color === "light") themeName = styles.light;
   if (!href) {
     return (
       <button

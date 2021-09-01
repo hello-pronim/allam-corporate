@@ -40,10 +40,10 @@
     }
   }
 
-  &.outlinePrimary {
+  &.dark {
     color: $primary;
     // border: rem(2) solid $light-primary;
-    background-color: $white;
+    background-color: $grey;
 
     &:hover {
       border-color: $primary;

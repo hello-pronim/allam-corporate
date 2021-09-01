@@ -46,11 +46,7 @@ const Header = ({ ...props }: IHeaderProps) => {
           <div className={styles.navMenuTop}>
             <div className={styles.navMenuTopSelect}>
               <span>Build in:</span>
-              {/* <select>
-                <option value="A">NSW</option>
-                <option value="B">VIC</option>
-                <option value="C">QLD</option>
-              </select> */}
+
               <div className="state-select">
                 <Select options={stateAuObj} defaultValue={stateAuObj[0]} />
               </div>
@@ -58,7 +54,12 @@ const Header = ({ ...props }: IHeaderProps) => {
             </div>
           </div>
           <div className={styles.navMenuList}>
-            <Button>Get in Touch</Button>
+            <ul className={styles.navMenuListItems}>
+              {menuObj?.map((el, id: number) => (
+                <li key={id}>{el.title}</li>
+              ))}
+            </ul>
+            <Button color="dark">Get in Touch</Button>
           </div>
         </div>
       </div>

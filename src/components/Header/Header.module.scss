@@ -50,14 +50,15 @@
   }
 
   &Menu {
-    position: relative;
     flex: 1;
+    position: relative;
     height: 100%;
-    background-color: $primary;
+    padding-left: rem(8);
     padding-right: rem(16);
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    background-color: $primary;
     @include breakpoint($webDesktop) {
       align-items: flex-end;
       flex-direction: column;
@@ -112,7 +113,15 @@
     &List {
       display: none;
       @include breakpoint($webDesktop) {
-        display: block;
+        width: 100%;
+        display: flex;
+      }
+
+      &Items {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
     }
   }
