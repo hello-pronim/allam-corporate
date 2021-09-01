@@ -82,3 +82,17 @@ ul {
     }
   }
 }
+
+// slider
+.trustMaker-slider {
+  .slick-list {
+    padding: 0 rem(16);
+    @include breakpoint($webDesktop) {
+      padding: 0 rem(24);
+    }
+  }
+
+  .slick-track {
+    display: flex;
+  }
+}
