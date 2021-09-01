@@ -27,12 +27,16 @@ const Button = ({
   if (color === "secondary") themeName = styles.secondary;
   else if (color === "dark") themeName = styles.dark;
   else if (color === "light") themeName = styles.light;
+  let roundedClass = rounded ? styles.rounded : "";
+  let sizeClass =
+    size === "small" ? styles.small : size === "large" ? styles.large : "";
+
   if (!href) {
     return (
       <button
         className={`${styles.button}${
           className ? ` ${className}` : ""
-        } ${themeName}`}
+        } ${themeName} ${roundedClass} ${sizeClass}`}
         {...props}
       >
         {children}
@@ -47,7 +51,7 @@ const Button = ({
         <button
           className={`${styles.button}${
             className ? ` ${className}` : ""
-          } ${themeName}`}
+          } ${themeName} ${roundedClass} ${sizeClass}`}
           {...props}
         >
           {children}
@@ -61,7 +65,7 @@ const Button = ({
       <button
         className={`${styles.button}${
           className ? ` ${className}` : ""
-        } ${themeName}`}
+        } ${themeName} ${roundedClass} ${sizeClass}`}
         {...props}
       >
         {children}

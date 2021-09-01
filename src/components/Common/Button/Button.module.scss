@@ -2,31 +2,36 @@
 @import "@styles/variables.scss";
 
 .button {
-  padding: rem(20) rem(18);
+  padding: rem(10) rem(24);
   color: $white;
   font-weight: 800;
   font-size: rem(16);
   line-height: rem(20);
   letter-spacing: rem(1);
   font-family: inherit;
-  border-radius: rem(4);
   transition: all 0.3s ease;
-  text-transform: uppercase;
   border-width: 0;
   cursor: pointer;
 
-  &:hover {
-    background-color: $white;
-    color: $primary;
-    border-color: $primary;
+  &.rounded {
+    border-radius: rem(6);
+  }
+
+  &.small {
+    padding: rem(6) rem(16);
+  }
+
+  &.large {
+    padding: rem(18) rem(36);
   }
 
   &.primary {
+    color: $grey;
     background-color: $primary;
 
     &:hover {
       color: $white;
-      // background-color: $dark-primary;
+      background-color: $grey;
     }
   }
 
@@ -42,11 +47,11 @@
 
   &.dark {
     color: $primary;
-    // border: rem(2) solid $light-primary;
     background-color: $grey;
 
     &:hover {
-      border-color: $primary;
+      color: $grey;
+      background-color: $primary;
     }
   }
 
