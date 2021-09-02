@@ -5,23 +5,16 @@ import ExternalLink from "@components/ExternalLink/ExternalLink";
 import { ImageButton } from "@components/Common/Common";
 import styles from "./Hero.module.scss";
 
-export interface IHeaderButtonProps {
-  href?: string;
-  color?: string;
-  size?: "large" | "normal" | "small";
-  className?: string;
-  rounded?: boolean;
-  onClick?: () => void;
-  children?: React.ReactNode;
-}
+export interface IHeroProps {}
 
 const Hero = () => {
   return (
     <div className={styles.hero}>
       <div className={styles.heroWrapper}>
-        <h1>Turnkey Homes under $950,000</h1>
-        <h5>Get the $15,000 HomeBuilder Grant*</h5>
-
+        <div className={styles.heroContent}>
+          <h1>Turnkey Homes under $950,000</h1>
+          <h5>Get the $15,000 HomeBuilder Grant*</h5>
+        </div>
         <div className={styles.heroFilter}>
           <p>Find your perfect home without difficulties</p>
 
