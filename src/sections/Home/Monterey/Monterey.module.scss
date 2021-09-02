@@ -1,0 +1,88 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.monterey {
+  // background-color: $lightest-gray;
+  height: rem(770);
+  padding: rem(56) 0 rem(32);
+  background-image: url("/static/home/img-monterey-bg.jpg");
+  background-size: cover;
+  background-position: center;
+
+  @include breakpoint($large) {
+    height: rem(950);
+    padding-top: rem(160);
+  }
+
+  &Wrapper {
+    @include grid-container;
+    height: 100%;
+
+    @include breakpoint($large) {
+      @include grid(1, 12);
+    }
+  }
+
+  &Content {
+    height: 100%;
+    @include breakpoint($large) {
+      grid-column: 1 / span 12;
+      @include grid(1, 12);
+      position: relative;
+    }
+
+    &Wrapper {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      @include breakpoint($large) {
+        grid-column: 1 / span 8;
+        display: initial;
+      }
+      @include breakpoint($x-large) {
+        grid-column: 1 / span 7;
+      }
+      @include breakpoint($xx-large) {
+        grid-column: 2 / span 5;
+      }
+    }
+
+    &Text {
+      flex: 1;
+      @include breakpoint($large) {
+        margin-bottom: rem(24);
+        flex: initial;
+      }
+
+      h2 {
+        color: $white;
+        font-size: rem(40);
+        margin-bottom: rem(24);
+        @include breakpoint($large) {
+          font-size: rem(56);
+        }
+      }
+
+      p {
+        color: $white;
+        font-size: rem(18);
+        line-height: rem(28);
+        margin-bottom: rem(36);
+        @include breakpoint($large) {
+          margin-bottom: rem(0);
+        }
+      }
+    }
+
+    &Logo {
+      width: rem(125.5);
+
+      @include breakpoint($large) {
+        width: rem(251);
+        position: absolute;
+        top: rem(150);
+        right: 0;
+      }
+    }
+  }
+}
