@@ -1,13 +1,17 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/Home/Hero/Hero";
+import TrustMakers from "@sections/Home/TrustMakers/TrustMakers";
+import Monterey from "@sections/Home/Monterey/Monterey";
+import PerfectEstate from "@sections/Home/PerfectEstate/PerfectEstate";
 
 const Home: NextPage = () => {
   return (
     <Layout>
       <Hero />
+      <TrustMakers />
+      <Monterey />
+      <PerfectEstate />
     </Layout>
   );
 };

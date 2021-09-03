@@ -85,14 +85,60 @@ ul {
 
 // slider
 .trustMaker-slider {
-  .slick-list {
-    padding: 0 rem(16);
-    @include breakpoint($webDesktop) {
-      padding: 0 rem(24);
-    }
-  }
+  .slick-slider {
+    position: relative;
 
-  .slick-track {
-    display: flex;
+    .slick-list {
+      margin: 0 rem(-20);
+      @include breakpoint($large) {
+        padding: 0;
+        margin: 0;
+      }
+
+      .slick-track {
+        display: flex;
+      }
+
+      .slick-slide {
+        width: 68vw;
+        padding: 0 rem(20);
+        @include breakpoint($large) {
+          padding: 0;
+          width: auto;
+        }
+      }
+    }
+
+    .slick-dots {
+      @include breakpoint($large) {
+        bottom: rem(-105);
+        text-align: right;
+      }
+
+      li {
+        margin: 0;
+        &.slick-active {
+          button {
+            &::before {
+              opacity: 1;
+              color: $primary;
+              transition: all 0.2s ease-in;
+            }
+          }
+        }
+
+        button {
+          &::before {
+            opacity: 1;
+            color: $grey;
+          }
+          &:focus::before,
+          &:hover::before {
+            color: $primary;
+            opacity: 0.5;
+          }
+        }
+      }
+    }
   }
 }
