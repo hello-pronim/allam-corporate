@@ -1,0 +1,30 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.trustMark {
+  // background-color: $lightest-gray;
+
+  @include breakpoint($medium) {
+  }
+
+  &Icon {
+    svg {
+      width: rem(56);
+      height: rem(56);
+    }
+  }
+
+  h3 {
+    color: $primary;
+    font-size: rem(48);
+    font-weight: 800;
+    margin-bottom: rem(4);
+  }
+
+  p {
+    font-weight: 700;
+    color: $light-grey;
+    font-size: rem(16);
+    line-height: rem(34);
+  }
+}
