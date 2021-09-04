@@ -42,6 +42,7 @@
     z-index: 1;
     @include breakpoint($webDesktop) {
       width: rem(285);
+      min-width: rem(285);
     }
 
     a {
@@ -62,6 +63,8 @@
     @include breakpoint($webDesktop) {
       align-items: flex-end;
       flex-direction: column;
+      padding-right: 0;
+      padding-left: rem(60);
     }
 
     &::before {
@@ -90,6 +93,7 @@
       display: none;
       @include breakpoint($webDesktop) {
         display: block;
+        padding-right: rem(36);
       }
 
       &Select {
@@ -104,7 +108,7 @@
 
           &:first-of-type {
             font-weight: 700;
-            margin-right: rem(14);
+            margin-right: rem(12);
           }
         }
       }
@@ -114,14 +118,61 @@
       display: none;
       @include breakpoint($webDesktop) {
         width: 100%;
+        flex: 1;
         display: flex;
+        align-items: stretch;
+
+        border-top: rem(1) solid $black;
       }
 
       &Items {
         flex: 1;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
+        overflow: hidden;
+
+        li {
+          height: 100%;
+          flex: none;
+
+          a {
+            height: 100%;
+            display: grid;
+            align-items: center;
+            padding: rem(10) rem(16);
+          }
+        }
+      }
+
+      &GreedyMenu {
+        min-width: rem(240);
+        position: absolute;
+        top: calc(100% + #{rem(2)});
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $white;
+      }
+
+      &GreedyIcon {
+        display: none;
+        @include breakpoint($webDesktop) {
+          display: flex;
+          align-items: center;
+          position: relative;
+        }
+
+        ul {
+          li {
+            a {
+              display: block;
+              padding: rem(18) rem(24);
+            }
+          }
+        }
+
+        &Open {
+        }
       }
     }
   }
