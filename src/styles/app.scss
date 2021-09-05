@@ -84,6 +84,73 @@ ul {
   }
 }
 
+// Hero Slider
+.hero-slider {
+  height: auto;
+
+  .slick-list,
+  .slick-track,
+  .slick-slide > div,
+  .slick-slide > div > div {
+    height: 100%;
+  }
+
+  .slick-list {
+    .slick-track {
+      display: flex;
+      align-items: stretch;
+
+      .slick-slide {
+        display: flex;
+        align-self: stretch;
+        height: unset;
+        > div {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .slick-dots {
+    @include breakpoint($large) {
+      bottom: rem(45);
+      right: rem(24);
+      text-align: right;
+    }
+    @include breakpoint($xx-large) {
+      right: calc(#{rem(48)} + #{rem(24)});
+    }
+    @include breakpoint($webXLarge) {
+      right: calc(#{rem(48)} + #{rem(24)} + (50% - #{rem(1920/2)}));
+    }
+
+    li {
+      margin: 0;
+      &.slick-active {
+        button {
+          &::before {
+            opacity: 1;
+            color: $primary;
+            transition: all 0.2s ease-in;
+          }
+        }
+      }
+
+      button {
+        &::before {
+          opacity: 1;
+          color: $white;
+        }
+        &:focus::before,
+        &:hover::before {
+          color: $primary;
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+
 // TrustMaker slider
 .trustMaker-slider {
   .slick-slider {
