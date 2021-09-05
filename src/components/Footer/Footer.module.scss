@@ -1,0 +1,167 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.footer {
+  background: linear-gradient(180deg, $grey2 0%, $white 100%);
+
+  @include breakpoint($medium) {
+  }
+
+  &Info {
+    padding: rem(48) rem(32);
+    @include breakpoint($large) {
+      padding: rem(120) 0 rem(80);
+    }
+
+    &Wrapper {
+      @include breakpoint($large) {
+        @include grid-container;
+        @include grid(1, 12);
+      }
+    }
+
+    &Contact {
+      @include breakpoint($large) {
+        grid-column: 1 / span 6;
+      }
+      @include breakpoint($xx-large) {
+        grid-column: 2 / span 5;
+      }
+
+      h3 {
+        color: $light-grey;
+        font-size: rem(32);
+        line-height: rem(56);
+        margin-bottom: rem(24);
+
+        @include breakpoint($large) {
+          font-size: rem(42);
+        }
+      }
+
+      &Buttons {
+        display: grid;
+        gap: rem(16);
+        @include breakpoint($medium) {
+          display: inline-grid;
+          grid-template-columns: auto auto;
+        }
+      }
+    }
+
+    &Testimonial {
+      margin-top: rem(45);
+      @include breakpoint($large) {
+        margin: 0;
+        grid-column: 8 / span 5;
+      }
+      @include breakpoint($xx-large) {
+        grid-column: 8 / span 4;
+      }
+
+      &Review {
+        display: flex;
+        align-items: center;
+        &Icon {
+          &:not(:last-of-type) {
+            padding-right: rem(4);
+          }
+        }
+
+        &Client {
+          margin-top: rem(34);
+        }
+      }
+
+      p {
+        font-size: rem(18);
+        line-height: rem(28);
+        columns: $grey;
+      }
+    }
+  }
+
+  &Statusbar {
+    padding: rem(20) rem(16);
+    background-color: $dark-grey;
+
+    &Wrapper {
+      @include breakpoint($large) {
+        @include grid-container;
+        @include grid(1, 12);
+      }
+    }
+
+    &Inside {
+      @include breakpoint($large) {
+        position: relative;
+        grid-column: 1 / span 12;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    &Above {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      @include breakpoint($large) {
+        margin-right: rem(32);
+      }
+
+      span {
+        font-weight: bold;
+        color: $white;
+        font-size: rem(12);
+        line-height: rem(20);
+      }
+    }
+
+    &Social {
+      display: inline-flex;
+      @include breakpoint($large) {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+
+      a {
+        display: inline-flex;
+
+        &:not(:last-of-type) {
+          margin-right: rem(16);
+        }
+
+        svg {
+          width: rem(16);
+          height: rem(16);
+        }
+      }
+    }
+
+    ul {
+      display: inline-flex;
+      align-items: center;
+      margin-top: rem(8);
+      @include breakpoint($large) {
+        margin: 0;
+      }
+
+      li {
+        &:not(:last-of-type) {
+          margin-right: rem(20);
+          @include breakpoint($large) {
+            margin-right: rem(32);
+          }
+        }
+
+        a {
+          color: $white;
+          font-size: rem(12);
+          line-height: rem(20);
+        }
+      }
+    }
+  }
+}
