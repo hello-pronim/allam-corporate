@@ -2,8 +2,6 @@
 @import "@styles/variables.scss";
 
 .sample {
-  // background-color: $lightest-gray;
-
   @include breakpoint($medium) {
   }
 }
