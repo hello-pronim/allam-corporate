@@ -35,16 +35,6 @@
     }
   }
 
-  &.secondary {
-    color: $primary;
-    border: 0;
-    background-color: $primary;
-
-    &:hover {
-      // background-color: $light-yellow;
-    }
-  }
-
   &.dark {
     color: $primary;
     background-color: $grey;
@@ -55,14 +45,24 @@
     }
   }
 
-  &.outlineLight {
-    color: $white;
-    border: rem(2) solid $white;
-    background-color: transparent;
+  .light {
+    color: $grey;
+    background-color: $white;
 
     &:hover {
-      color: $primary;
-      background-color: $white;
+      color: $white;
+      background-color: $grey;
+    }
+  }
+
+  &.outlineLight {
+    color: $grey;
+    border: rem(1) solid $grey;
+    background-color: $white;
+
+    &:hover {
+      color: $white;
+      background-color: $grey;
     }
   }
 }

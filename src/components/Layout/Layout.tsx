@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Header from "@components/Header/Header";
-// import Footer from '../Footer/Footer'
+import Footer from "@components/Footer/Footer";
 import styles from "./Layout.module.scss";
 
 export interface ILayoutProps {
@@ -20,7 +20,7 @@ const Layout = ({ title = "Allam Corp Website", children }: ILayoutProps) => {
 
       <main className={styles.main}>{children}</main>
 
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

@@ -27,11 +27,11 @@
   padding-left: rem(16);
   padding-right: rem(16);
 
-  @include breakpoint($webDesktop) {
+  @include breakpoint($large) {
     padding-left: rem(24);
     padding-right: rem(24);
   }
-  @include breakpoint($webLarge) {
+  @include breakpoint($xx-large) {
     padding-left: rem(48);
     padding-right: rem(48);
   }
