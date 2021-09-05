@@ -84,7 +84,7 @@ ul {
   }
 }
 
-// slider
+// TrustMaker slider
 .trustMaker-slider {
   .slick-slider {
     position: relative;
@@ -132,6 +132,68 @@ ul {
           &::before {
             opacity: 1;
             color: $grey;
+          }
+          &:focus::before,
+          &:hover::before {
+            color: $primary;
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Estate logo slider
+.estate-logo-slider {
+  .slick-slider {
+    position: relative;
+
+    .slick-list {
+      .slick-track {
+        display: flex;
+      }
+
+      .slick-slide {
+        width: rem(168);
+        padding-right: rem(12);
+        @include breakpoint($medium) {
+          padding-right: rem(24);
+          width: rem(360);
+        }
+      }
+    }
+
+    .slick-dots {
+      @include breakpoint($large) {
+        bottom: rem(-105);
+        right: rem(24);
+        text-align: right;
+        margin-top: rem(262);
+      }
+      @include breakpoint($xx-large) {
+        right: calc(#{rem(48)} + #{rem(24)});
+      }
+      @include breakpoint($webXLarge) {
+        right: calc(#{rem(48)} + #{rem(24)} + (50% - #{rem(1920/2)}));
+      }
+
+      li {
+        margin: 0;
+        &.slick-active {
+          button {
+            &::before {
+              opacity: 1;
+              color: $primary;
+              transition: all 0.2s ease-in;
+            }
+          }
+        }
+
+        button {
+          &::before {
+            opacity: 1;
+            color: $white;
           }
           &:focus::before,
           &:hover::before {

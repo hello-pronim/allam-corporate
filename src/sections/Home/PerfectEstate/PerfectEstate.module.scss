@@ -1,0 +1,119 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.perfectEstate {
+  min-height: rem(770);
+  padding: rem(56) 0 rem(32);
+  background: linear-gradient(
+      180deg,
+      rgba(62, 62, 62, 0.2) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    url("/static/home/img-lifestyle-bg.jpg");
+  background-position: center;
+  background-size: cover;
+  background-blend-mode: multiply, normal;
+  overflow: hidden;
+
+  @include breakpoint($large) {
+    min-height: rem(950);
+    padding: rem(160) 0 rem(95);
+  }
+
+  &Wrapper {
+    @include grid-container;
+    height: 100%;
+
+    @include breakpoint($large) {
+      @include grid(1, 12);
+    }
+  }
+
+  &Content {
+    position: relative;
+    @include breakpoint($large) {
+      grid-column: 1 / span 12;
+      @include grid(1, 12);
+    }
+
+    h2 {
+      color: $white;
+      font-size: rem(40);
+      line-height: rem(42);
+      margin-bottom: rem(24);
+      @include breakpoint($large) {
+        line-height: 1;
+        font-size: rem(56);
+        grid-column: 1 / span 5;
+        margin: 0;
+      }
+      @include breakpoint($xx-large) {
+        grid-column: 2 / span 4;
+      }
+    }
+
+    p {
+      font-size: rem(16);
+      line-height: rem(26);
+      letter-spacing: rem(0.25);
+      color: $white;
+      @include breakpoint($large) {
+        grid-column: 8 / span 5;
+        font-size: rem(20);
+        line-height: rem(38);
+      }
+      @include breakpoint($xx-large) {
+        grid-column: 8 / span 4;
+      }
+    }
+  }
+
+  &Logos {
+    margin-top: rem(212);
+    padding-left: rem(16);
+    @include breakpoint($large) {
+      padding-left: rem(24);
+      margin-top: rem(262);
+    }
+    @include breakpoint($xx-large) {
+      padding-left: calc(
+        #{rem(48)} + #{rem(24)} + (100% - #{rem(24 * 11)} - #{rem(48 * 2)}) / 12
+      );
+    }
+    @include breakpoint($webXLarge) {
+      padding-left: calc(
+        #{rem(48)} + #{rem(24)} +
+          (#{rem(1920)} - #{rem(24 * 11)} - #{rem(48 * 2)}) / 12 +
+          (50% - #{rem(1920/2)})
+      );
+    }
+
+    p {
+      font-weight: 700;
+      font-size: rem(16);
+      line-height: rem(65);
+      color: $white;
+      @include breakpoint($large) {
+        font-size: rem(18);
+        margin-bottom: rem(24);
+      }
+    }
+
+    &Slider {
+      padding-bottom: rem(50);
+      @include breakpoint($large) {
+        padding-bottom: rem(24);
+      }
+    }
+
+    &CTA {
+      button {
+        width: 100%;
+
+        @include breakpoint($medium) {
+          width: auto;
+        }
+      }
+    }
+  }
+}
