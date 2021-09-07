@@ -45,6 +45,16 @@
     }
   }
 
+  &.darkSecondary {
+    color: $white;
+    background-color: $grey;
+
+    &:hover {
+      color: $grey;
+      background-color: $white;
+    }
+  }
+
   .light {
     color: $grey;
     background-color: $white;
