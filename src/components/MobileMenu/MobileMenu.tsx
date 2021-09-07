@@ -48,7 +48,7 @@ const MobileMenu = ({ closeMenu, ...props }: IMobileMenuProps) => {
             onClick={() => onBackToParent()}
           >
             <Image
-              src="/static/icons/icon-arrow-left.svg"
+              src="/assets/icons/icon-arrow-left.svg"
               alt="arrow-left"
               width={24}
               height={24}

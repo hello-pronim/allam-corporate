@@ -32,7 +32,7 @@
 
   &Left {
     padding: rem(44) rem(16);
-    background-image: url("/static/icons/icon-panel-type-1.svg");
+    background-image: url("/assets/icons/icon-panel-type-1.svg");
     background-size: cover;
     background-position: center;
     @include breakpoint($large) {
@@ -47,7 +47,7 @@
   &Mid {
     width: 100%;
     height: rem(290);
-    background-image: url("/static/home/img-home-promotion.jpg");
+    background-image: url("/assets/home/img-home-promotion.jpg");
     background-size: cover;
     background-position: center top;
     @include breakpoint($large) {
@@ -58,7 +58,7 @@
 
   &Right {
     padding: rem(44) rem(16);
-    background-image: url("/static/icons/icon-panel-type-1.svg");
+    background-image: url("/assets/icons/icon-panel-type-1.svg");
     background-size: cover;
     background-position: left;
     @include breakpoint($large) {

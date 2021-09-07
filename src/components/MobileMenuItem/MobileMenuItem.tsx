@@ -30,7 +30,7 @@ const MobileMenuItem = ({
       {menuItem.subMenu && (
         <div className={styles.mobileMenuListItemIcon}>
           <Image
-            src="/static/icons/icon-chevron-right.svg"
+            src="/assets/icons/icon-chevron-right.svg"
             alt="chevron-right"
             width={7.5}
             height={15}

@@ -98,7 +98,7 @@ const Header = ({ ...props }: IHeaderProps) => {
           <Link href="/">
             <a>
               <Image
-                src={"/static/logo.svg"}
+                src={"/assets/logo.svg"}
                 alt="logo"
                 width={285}
                 height={88}

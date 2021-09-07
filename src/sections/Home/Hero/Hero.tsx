@@ -56,7 +56,7 @@ const Hero = () => {
 
                   <div className={styles.heroFilterOptionsSearch}>
                     <Image
-                      src={"/static/icons/icon-search.svg"}
+                      src={"/assets/icons/icon-search.svg"}
                       alt="icon-search"
                       width={33}
                       height={33}

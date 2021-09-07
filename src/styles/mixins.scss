@@ -37,6 +37,15 @@
   }
 }
 
+@mixin shape-bg {
+  background-image: url("/assets/icons/icon-panel-type-2-mobile.svg");
+  background-size: cover;
+  background-position: center;
+  @include breakpoint($medium) {
+    background-image: url("/assets/icons/icon-panel-type-2-desktop.svg");
+  }
+}
+
 @function rem($pixels) {
   @return #{math.div($pixels, 16)}rem;
 }
