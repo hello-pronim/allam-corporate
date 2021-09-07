@@ -38,12 +38,8 @@
 
     h2 {
       color: $white;
-      font-size: rem(40);
-      line-height: rem(42);
       margin-bottom: rem(24);
       @include breakpoint($large) {
-        line-height: 1;
-        font-size: rem(56);
         grid-column: 1 / span 5;
         margin: 0;
       }

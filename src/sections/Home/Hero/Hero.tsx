@@ -34,7 +34,7 @@ const Hero = () => {
               }}
             >
               <div className={styles.heroContent}>
-                <h1>{el.title}</h1>
+                <h1 className="home">{el.title}</h1>
                 <h5>{el.subtitle}</h5>
               </div>
               <div className={styles.heroFilter}>

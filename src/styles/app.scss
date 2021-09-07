@@ -1,5 +1,6 @@
-@import "./Variables.scss";
-@import "./Mixins.scss";
+@import "./variables.scss";
+@import "./mixins.scss";
+@import "./typography.scss";
 
 html,
 body {
@@ -24,15 +25,6 @@ select,
 select option,
 button {
   font-family: "InterFace", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto;
-}
-h1 {
-  font-weight: 800;
-}
-h2,
-h3,
-h4,
-h5 {
-  font-weight: 700;
 }
 
 ul {

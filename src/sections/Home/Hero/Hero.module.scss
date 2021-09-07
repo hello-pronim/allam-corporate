@@ -34,23 +34,15 @@
 
     h1 {
       color: $white;
-      font-size: rem(48);
-      line-height: rem(58);
       text-shadow: rem(2) rem(2) rem(4) rgba(0, 0, 0, 0.5);
       margin-bottom: rem(32);
       @include breakpoint($large) {
-        font-size: rem(90);
-        line-height: rem(95);
+        margin-bottom: rem(40);
       }
     }
 
     h5 {
       color: $white;
-      line-height: 1;
-      font-size: rem(24);
-      @include breakpoint($large) {
-        font-size: rem(32);
-      }
     }
   }
 

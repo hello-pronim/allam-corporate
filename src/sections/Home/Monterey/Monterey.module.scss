@@ -55,11 +55,7 @@
 
       h2 {
         color: $white;
-        font-size: rem(40);
         margin-bottom: rem(24);
-        @include breakpoint($large) {
-          font-size: rem(56);
-        }
       }
 
       p {

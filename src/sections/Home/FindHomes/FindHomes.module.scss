@@ -7,7 +7,6 @@
   background-image: url("/static/home/img-perfect-estate-bg.jpg");
   background-size: cover;
   background-position: center;
-
   @include breakpoint($large) {
     height: rem(920);
     padding-top: rem(160);
@@ -16,7 +15,6 @@
   &Wrapper {
     @include grid-container;
     height: 100%;
-
     @include breakpoint($large) {
       @include grid(1, 12);
     }
@@ -44,11 +42,7 @@
 
     h2 {
       color: $white;
-      font-size: rem(40);
       margin-bottom: rem(24);
-      @include breakpoint($large) {
-        font-size: rem(56);
-      }
     }
 
     p {
