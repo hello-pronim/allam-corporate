@@ -26,17 +26,19 @@ const Header = ({ ...props }: IHeaderProps) => {
   };
 
   useEffect(() => {
-    const checkIfClickedOutside = (e) => {
+    const checkIfClickedOutside = (e: any) => {
       // If the menu is open and the clicked target is not within the menu,
       // then close the menu
       if (showGreedyMenu && ref.current && !ref.current.contains(e.target)) {
         setShowGreedyMenu(false);
       }
     };
-    document.addEventListener("mousedown", checkIfClickedOutside);
+    if (typeof window === `undefined`) return;
+
+    window.addEventListener("mousedown", checkIfClickedOutside);
     return () => {
       // Cleanup the event listener
-      document.removeEventListener("mousedown", checkIfClickedOutside);
+      window.removeEventListener("mousedown", checkIfClickedOutside);
     };
   }, [showGreedyMenu]);
 
