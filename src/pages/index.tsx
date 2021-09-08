@@ -6,6 +6,7 @@ import PerfectEstate from "@sections/Home/PerfectEstate/PerfectEstate";
 import Monterey from "@sections/Home/Monterey/Monterey";
 import Promotion from "@sections/Home/Promotion/Promotion";
 import FindHomes from "@sections/Home/FindHomes/FindHomes";
+import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
 const Home: NextPage = () => {
   return (
@@ -16,6 +17,7 @@ const Home: NextPage = () => {
       <Monterey />
       <Promotion />
       <FindHomes />
+      <AllBenefits />
     </Layout>
   );
 };
