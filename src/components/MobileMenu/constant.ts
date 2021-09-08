@@ -1,7 +1,7 @@
 export const menuObj = [
   {
     title: "Find your estate",
-    slug: "/",
+    slug: "/find-estate/",
     subMenu: [
       {
         title: "Test 1",

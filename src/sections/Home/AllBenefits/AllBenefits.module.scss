@@ -4,6 +4,9 @@
 .allBenefits {
   padding-top: rem(50);
   background-color: $grey1;
+  @include breakpoint($large) {
+    padding-top: rem(110);
+  }
 
   &Wrapper {
     @include grid-container;

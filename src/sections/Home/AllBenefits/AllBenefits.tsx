@@ -36,7 +36,7 @@ const AllBenefits = ({}: IAllBenefitsProps) => {
             <div className={styles.allBenefitsCardContentRight}>
               <div className={styles.allBenefitsCardContentRightImage}>
                 <Image
-                  src={"/assets/home/img-easyBuy-seal-waxMain.png"}
+                  src={"/assets/images/home/img-easyBuy-seal-waxMain.png"}
                   alt="easy-buy-mark"
                   width={192}
                   height={190}
@@ -48,7 +48,7 @@ const AllBenefits = ({}: IAllBenefitsProps) => {
 
           <div className={styles.allBenefitsCardCTA}>
             <Button color="light" rounded>
-              Contact
+              Contact an Agent
             </Button>
             <div className={styles.allBenefitsCardCTAProcess}>
               <Link href="/">

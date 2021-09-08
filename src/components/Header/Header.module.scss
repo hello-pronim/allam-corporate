@@ -8,7 +8,6 @@
   top: rem(16);
   right: 0;
   z-index: 1000;
-
   @include breakpoint($webDesktop) {
     top: rem(24);
     height: rem(88);
@@ -141,6 +140,10 @@
             display: grid;
             align-items: center;
             padding: rem(10) rem(16);
+            transition: 0.25s ease-in-out;
+            &:hover {
+              text-decoration: underline;
+            }
           }
         }
       }
@@ -167,6 +170,11 @@
             a {
               display: block;
               padding: rem(18) rem(24);
+              transition: 0.25s ease-in-out;
+
+              &:hover {
+                text-decoration: underline;
+              }
             }
           }
         }

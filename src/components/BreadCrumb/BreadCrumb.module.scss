@@ -1,0 +1,46 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.breadCrumb {
+  @include breakpoint($medium) {
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+
+    & li {
+      position: relative;
+      display: flex;
+      align-items: center;
+      color: $grey;
+
+      &:not(:last-child) {
+        margin-right: rem(4);
+
+        &::after {
+          content: "/";
+          display: block;
+          margin-left: rem(4);
+          transform: rotate(180deg);
+          font-size: rem(12);
+          position: relative;
+          bottom: 0;
+          text-shadow: none;
+        }
+      }
+
+      & a {
+        color: $grey;
+        font-size: rem(12);
+        line-height: rem(28);
+        font-style: normal;
+        font-weight: 400;
+
+        &:first-letter {
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}
