@@ -33,12 +33,19 @@ h2 {
     line-height: rem(60);
   }
 }
-
 h5 {
   font-size: rem(24);
   line-height: rem(28);
   @include breakpoint($large) {
     font-size: rem(32);
     line-height: rem(42);
+  }
+}
+
+p {
+  font-size: rem(18);
+  line-height: 1.5;
+  @include breakpoint($large) {
+    font-size: rem(20);
   }
 }
