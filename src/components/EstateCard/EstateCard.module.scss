@@ -2,6 +2,60 @@
 @import "@styles/variables.scss";
 
 .estateCard {
+  display: block;
   @include breakpoint($medium) {
+  }
+
+  &Top {
+    position: relative;
+    overflow: hidden;
+    @include breakpoint($medium) {
+      border-radius: rem(6) rem(6) 0 0;
+    }
+
+    &Logo {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &Bottom {
+    padding: rem(16);
+    background: $white;
+    border: rem(1) solid $grey3;
+    @include breakpoint($medium) {
+      border-radius: 0 0 rem(6) rem(6);
+    }
+
+    p {
+      font-size: rem(16);
+      @include breakpoint($large) {
+        font-size: rem(18);
+      }
+    }
+
+    &Info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      span {
+        display: block;
+        color: rgba($grey, 0.5);
+        font-size: rem(14);
+        margin-left: rem(12);
+        @include breakpoint($webLarge) {
+          font-size: rem(16);
+        }
+      }
+
+      &Detail {
+        display: flex;
+        align-items: center;
+        margin: rem(16) 0 rem(8);
+      }
+    }
   }
 }
