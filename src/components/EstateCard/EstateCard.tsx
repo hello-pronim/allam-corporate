@@ -24,30 +24,43 @@ const EstateCard = ({}: IEstateCardProps) => {
     <div className={styles.estateCard}>
       <div className={styles.estateCardTop}>
         <Slider {...settings}>
-          <Image
-            src={"/assets/images/temp/img-temp-card-1.jpg"}
-            alt="estate-card-image"
-            width={492}
-            height={355}
-          />
-          <Image
-            src={"/assets/images/temp/img-temp-card-2.jpg"}
-            alt="estate-card-image"
-            width={492}
-            height={355}
-          />
-          <Image
-            src={"/assets/images/temp/img-temp-card-1.jpg"}
-            alt="estate-card-image"
-            width={492}
-            height={355}
-          />
-          <Image
-            src={"/assets/images/temp/img-temp-card-2.jpg"}
-            alt="estate-card-image"
-            width={492}
-            height={355}
-          />
+          <div className={styles.estateCardTopImage}>
+            <Image
+              src={"/assets/images/temp/img-temp-card-1.jpg"}
+              alt="estate-card-image"
+              width={492}
+              height={355}
+              layout="responsive"
+            />
+          </div>
+          <div className={styles.estateCardTopImage}>
+            <Image
+              src={"/assets/images/temp/img-temp-card-2.jpg"}
+              alt="estate-card-image"
+              width={492}
+              height={355}
+              layout="responsive"
+            />
+          </div>
+
+          <div className={styles.estateCardTopImage}>
+            <Image
+              src={"/assets/images/temp/img-temp-card-1.jpg"}
+              alt="estate-card-image"
+              width={492}
+              height={355}
+              layout="responsive"
+            />
+          </div>
+          <div className={styles.estateCardTopImage}>
+            <Image
+              src={"/assets/images/temp/img-temp-card-2.jpg"}
+              alt="estate-card-image"
+              width={492}
+              height={355}
+              layout="responsive"
+            />
+          </div>
         </Slider>
 
         <div className={styles.estateCardTopLogo}>

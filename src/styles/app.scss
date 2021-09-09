@@ -201,6 +201,19 @@ ul {
       }
     }
   }
+
+  &--estate {
+    .slick-slider {
+      .slick-dots {
+        @include breakpoint($large) {
+          left: 50%;
+          bottom: rem(-105);
+          transform: translateX(-50%);
+          text-align: center;
+        }
+      }
+    }
+  }
 }
 
 // Estate logo slider
@@ -259,6 +272,51 @@ ul {
             color: $primary;
             opacity: 0.5;
           }
+        }
+      }
+    }
+  }
+}
+
+// Estate Card Slider
+.estate-card-slider {
+  .slick-track {
+    display: flex;
+    .slick-slide {
+      height: inherit;
+      display: inline-flex;
+      & > div {
+        width: 100%;
+        display: inline-grid;
+      }
+    }
+  }
+  .slick-dots {
+    left: 50%;
+    bottom: rem(16);
+    transform: translateX(-50%);
+
+    li {
+      margin: 0;
+      &.slick-active {
+        button {
+          &::before {
+            opacity: 1;
+            color: $primary;
+            transition: all 0.2s ease-in;
+          }
+        }
+      }
+
+      button {
+        &::before {
+          opacity: 1;
+          color: $white;
+        }
+        &:focus::before,
+        &:hover::before {
+          color: $primary;
+          opacity: 0.5;
         }
       }
     }

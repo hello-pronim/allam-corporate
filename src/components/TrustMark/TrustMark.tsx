@@ -17,7 +17,6 @@ const TrustMark = ({ icon, title, description }: ITrustMarkProps) => {
 
       <div className={styles.trustMarkTitle}>
         <h3>{title}</h3>
-
         <p>{description}</p>
       </div>
     </div>
