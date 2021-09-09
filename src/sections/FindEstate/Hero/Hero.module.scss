@@ -1,0 +1,61 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.hero {
+  position: relative;
+  padding-top: rem(78);
+  background-color: $white;
+  @include breakpoint($large) {
+    padding-top: rem(135);
+  }
+
+  &Wrapper {
+    padding-bottom: rem(115);
+    @include grid-container;
+
+    @include breakpoint($large) {
+      @include grid(1, 12);
+      row-gap: 0;
+      padding-bottom: rem(154);
+    }
+  }
+
+  &Breadcrumb {
+    @include breakpoint($large) {
+      grid-column: 1 / span 12;
+    }
+  }
+
+  &Content {
+    margin-top: rem(44);
+    position: relative;
+    @include breakpoint($large) {
+      margin: 0;
+      align-items: center;
+      grid-column: 1 / span 12;
+      @include grid(1, 12);
+    }
+
+    h1 {
+      color: $grey;
+      margin-bottom: rem(24);
+      @include breakpoint($large) {
+        grid-column: 1 / span 5;
+        margin: 0;
+      }
+      @include breakpoint($xx-large) {
+        grid-column: 2 / span 4;
+      }
+    }
+
+    p {
+      color: $grey;
+      @include breakpoint($large) {
+        grid-column: 8 / span 5;
+      }
+      @include breakpoint($xx-large) {
+        grid-column: 8 / span 4;
+      }
+    }
+  }
+}
