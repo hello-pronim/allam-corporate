@@ -1,0 +1,50 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.easyBuyPurchase {
+  padding: rem(32);
+  background-image: url("/assets/icons/icon-panel-type-1.svg");
+  background-size: cover;
+  background-position: left;
+
+  @include breakpoint($webLarge) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &Content {
+    @include breakpoint($webLarge) {
+      flex: 1;
+    }
+
+    h2,
+    h3 {
+      color: $grey;
+    }
+    h2 {
+      margin-bottom: rem(8);
+    }
+    h3 {
+      font-size: rem(24);
+      line-height: rem(32);
+    }
+  }
+
+  &Logo {
+    position: relative;
+
+    &Image {
+      margin-left: auto;
+      width: rem(154);
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      @include breakpoint($webLarge) {
+        width: rem(204);
+      }
+    }
+
+    &Button {
+    }
+  }
+}
