@@ -15,9 +15,16 @@
 
     @include breakpoint($large) {
       @include grid(1, 12);
-      row-gap: 0;
       padding-bottom: rem(154);
     }
+  }
+
+  &FilterBar {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translateY(50%);
   }
 
   &Breadcrumb {

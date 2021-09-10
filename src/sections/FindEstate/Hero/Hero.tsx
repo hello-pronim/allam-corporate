@@ -1,5 +1,6 @@
 import React from "react";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
+import EstateFilter from "@components/EstateFilter/EstateFilter";
 import styles from "./Hero.module.scss";
 
 export interface IHeroProps {}
@@ -19,6 +20,10 @@ const Hero = () => {
             Amet, in donec quis purus. Ultrices in dui facilisis sit hac porta.
           </p>
         </div>
+      </div>
+
+      <div className={styles.heroFilterBar}>
+        <EstateFilter />
       </div>
     </div>
   );
