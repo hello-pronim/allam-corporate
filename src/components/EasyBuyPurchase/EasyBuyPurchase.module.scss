@@ -3,19 +3,14 @@
 
 .easyBuyPurchase {
   padding: rem(32);
-  background-image: url("/assets/icons/icon-panel-type-1.svg");
+  background-image: url("/assets/icons/icon-easy-buy-bg.svg");
   background-size: cover;
   background-position: left;
-
-  @include breakpoint($webLarge) {
-    display: flex;
-    flex-direction: column;
-  }
+  display: flex;
+  flex-direction: column;
 
   &Content {
-    @include breakpoint($webLarge) {
-      flex: 1;
-    }
+    flex: 1;
 
     h2,
     h3 {
@@ -39,7 +34,7 @@
       position: absolute;
       right: 0;
       bottom: 0;
-      @include breakpoint($webLarge) {
+      @include breakpoint($webXXLarge) {
         width: rem(204);
       }
     }
