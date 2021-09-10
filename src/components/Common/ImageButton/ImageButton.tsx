@@ -27,6 +27,7 @@ const ImageButton = ({
     return (
       <button
         className={`${styles.imageButton} ${className} ${filterClassName}`}
+        onClick={onClick}
         {...props}
       >
         <div className={styles.imageButtonIcon}>
