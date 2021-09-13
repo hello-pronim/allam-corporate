@@ -25,7 +25,7 @@ const Monterey = ({}: IMontereyProps) => {
 
               <div className={styles.montereyContentLogo}>
                 <Image
-                  src={"/assets/icons/img-monterey-logo.svg"}
+                  src={"/assets/icons/icon-monterey-logo.svg"}
                   alt="monterey-logo"
                   width={251}
                   height={164}
