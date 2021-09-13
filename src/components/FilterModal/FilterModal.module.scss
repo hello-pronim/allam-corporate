@@ -1,0 +1,65 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.filterModal {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: $white;
+  transition: all 1s ease;
+  z-index: 1100;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+
+  @include breakpoint($medium) {
+  }
+
+  &Top {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: rem(18) rem(16);
+    border-bottom: rem(1) solid $grey1;
+    background-color: $white;
+
+    &Icon {
+      display: flex;
+      cursor: pointer;
+    }
+
+    p {
+      font-size: rem(16);
+      line-height: rem(18);
+
+      &:last-of-type {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &List {
+    flex: 1;
+    padding: rem(36) rem(16) 0;
+  }
+
+  &Bottom {
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: rem(20) rem(16);
+    border-top: rem(1) solid $grey1;
+    background-color: $white;
+
+    button {
+      width: 100%;
+    }
+  }
+}

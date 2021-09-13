@@ -3,13 +3,12 @@ import styles from "./Icons.module.scss";
 
 export interface IIconProps {
   type: string;
-  className?: string;
   onClick?: () => void;
 }
 
-const Icon = ({ type, className, onClick, ...props }: IIconProps) => {
+const Icon = ({ type, onClick, ...props }: IIconProps) => {
   return (
-    <>
+    <div className={styles.icon} onClick={onClick}>
       {type === "easy-buy" && (
         <svg
           width="56"
@@ -354,22 +353,6 @@ const Icon = ({ type, className, onClick, ...props }: IIconProps) => {
           />
         </svg>
       )}
-      {type === "tick" && (
-        <svg
-          width="24"
-          height="25"
-          viewBox="0 0 24 25"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M9.14526 18.6042C8.61426 18.6042 8.11626 18.3972 7.74126 18.0222L3.29126 13.5722C2.90226 13.1842 2.90226 12.5562 3.29126 12.1672C3.67826 11.7802 4.30726 11.7802 4.69526 12.1672L9.14526 16.6182L19.3043 6.45822C19.6923 6.07122 20.3213 6.07122 20.7083 6.45822C21.0973 6.84722 21.0973 7.47522 20.7083 7.86322L10.5503 18.0222C10.1743 18.3972 9.67626 18.6042 9.14526 18.6042Z"
-            fill="#212121"
-          />
-        </svg>
-      )}
       {type === "chevron-down" && (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -403,7 +386,7 @@ const Icon = ({ type, className, onClick, ...props }: IIconProps) => {
       {/* {type === "" && (
 
       )} */}
-    </>
+    </div>
   );
 };
 

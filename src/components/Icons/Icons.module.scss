@@ -1,8 +1,8 @@
 @import "@styles/mixins.scss";
 @import "@styles/variables.scss";
 
-.main {
-  // background-color: $lightest-gray;
+.icon {
+  display: inline-flex;
 
   @include breakpoint($medium) {
   }
