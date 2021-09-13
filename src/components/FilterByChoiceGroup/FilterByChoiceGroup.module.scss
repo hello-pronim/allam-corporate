@@ -1,0 +1,53 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.filterByChoiceGroup {
+  @include breakpoint($medium) {
+  }
+
+  h5 {
+    font-size: rem(16);
+    line-height: rem(20);
+    color: $grey;
+    margin-bottom: rem(16);
+  }
+
+  &Options {
+    margin-bottom: rem(40);
+    &List {
+      @include grid(1, 1, rem(1));
+
+      & > div {
+        width: 100%;
+        color: $grey;
+        padding: rem(10) rem(24);
+        background-color: $grey1;
+
+        label {
+          display: block;
+          width: 100%;
+          position: relative;
+        }
+        input {
+          display: none;
+        }
+
+        input:checked + div {
+          width: rem(24);
+          height: rem(24);
+          position: absolute;
+          top: 50%;
+          right: 0;
+          background-image: url("/assets/icons/icon-tick.svg");
+          background-size: contain;
+          transform: translateY(-50%);
+        }
+      }
+    }
+  }
+}
+
+.optionDisabled {
+  color: rgba($grey, 0.2) !important;
+  user-select: none;
+}
