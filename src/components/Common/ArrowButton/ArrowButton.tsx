@@ -15,7 +15,11 @@ const ArrowButton = ({
   ...props
 }: IArrowButtonProps) => {
   return (
-    <button className={`${styles.arrowButton} ${className}`} {...props}>
+    <button
+      className={`${styles.arrowButton} ${className}`}
+      onClick={onClick}
+      {...props}
+    >
       {label}
       <div className={styles.arrowButtonIcon}>
         <Icon type="chevron-down" />

@@ -3,18 +3,21 @@
 
 .estateFilter {
   margin: 0 rem(16);
-  @include breakpoint($medium) {
+  position: relative;
+  @include breakpoint($large) {
+    text-align: center;
   }
 
   &Wrapper {
     padding: rem(24);
-    display: flex;
     background-color: $white;
-    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25), 0px 3px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px rem(1) rgba(0, 0, 0, 0.25),
+      0px rem(3) rem(4) rgba(0, 0, 0, 0.1);
     border-radius: rem(78);
 
     @include breakpoint($large) {
       padding: rem(24) rem(56);
+      display: inline-block;
     }
   }
 
@@ -31,7 +34,27 @@
   &Desktop {
     display: none;
     @include breakpoint($large) {
-      display: block;
+      display: flex;
+      align-items: center;
+    }
+
+    span {
+      font-weight: 700;
+      font-size: rem(16);
+    }
+
+    &ViewBy {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      gap: rem(24);
+      align-items: center;
+      padding-right: rem(24);
+      border-right: rem(1) solid $grey1;
+    }
+
+    &SortBy {
+      display: flex;
+      align-items: center;
     }
   }
 }

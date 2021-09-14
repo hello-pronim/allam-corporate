@@ -19,7 +19,7 @@ const FilterByChoiceGroup = ({
 }: IFilterByChoiceGroupProps) => {
   const [selectedFilter, setSelectedFilter] = useState([]);
 
-  // const handleFilter = (value) => {};
+  const handleFilter = (event) => {};
 
   return (
     <div className={styles.filterByChoiceGroup}>
@@ -31,11 +31,11 @@ const FilterByChoiceGroup = ({
             <div key={id}>
               <label>
                 <input
-                  className="RadioButton__input"
                   // defaultChecked={defaultChecked}
                   type={`${isMultiChoice ? "checkbox" : "radio"}`}
                   value={option.value}
                   name={name}
+                  // onChange={()}
                 />
                 <div></div>
                 <span>{option.label}</span>
