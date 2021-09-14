@@ -1,0 +1,18 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.filterDropdown {
+  position: relative;
+  @include breakpoint($large) {
+  }
+
+  &Menu {
+    min-width: rem(240);
+    position: absolute;
+    top: calc(100% + #{rem(2)});
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: $white;
+    z-index: 500;
+  }
+}
