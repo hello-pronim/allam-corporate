@@ -45,16 +45,19 @@
 
     &ViewBy {
       display: grid;
+      align-items: center;
       grid-template-columns: auto auto auto;
       gap: rem(24);
-      align-items: center;
       padding-right: rem(24);
       border-right: rem(1) solid $grey1;
     }
 
     &SortBy {
-      display: flex;
+      padding-left: rem(24);
+      display: grid;
       align-items: center;
+      grid-template-columns: auto auto auto;
+      gap: rem(24);
     }
   }
 }

@@ -49,6 +49,17 @@ const EstateFilter = ({ toggleFilter }: IEstateFilterProps) => {
             >
               <ArrowButton label="Location" onClick={toggleLocationMenu} />
             </FilterDropdown>
+
+            <FilterDropdown
+              options={typeObj}
+              isOpen={openTypeMenu}
+              closeDropdown={() => setOpenTypeMenu(false)}
+            >
+              <ArrowButton
+                label="Type"
+                onClick={() => setOpenTypeMenu(!openTypeMenu)}
+              />
+            </FilterDropdown>
           </div>
         </div>
       </div>

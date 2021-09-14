@@ -49,8 +49,8 @@ const FilterDropdown = ({
           transition: "all 0.3s cubic-bezier(1, 0.885, 0.72, 1)",
         }}
       >
-        <ul className={styles.navMenuListItems} id="nav-list">
-          {options?.slice(0, -1).map((el: any, id: number) => (
+        <ul className={styles.filterDropdownMenuItems}>
+          {options?.map((el: any, id: number) => (
             <li key={id}>{el.label}</li>
           ))}
         </ul>
