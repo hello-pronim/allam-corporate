@@ -10,7 +10,7 @@
   }
 
   &Wrapper {
-    padding-bottom: rem(115);
+    padding-bottom: rem(25);
     @include grid-container;
 
     @include breakpoint($large) {

@@ -46,7 +46,7 @@ const Hero = () => {
           <div className={styles.heroContentLogo}>
             <Image
               src={"/assets/images/estate/White-Logo-Ardennes.png"}
-              alt="logo-ardennes"
+              alt="hero-logo"
               layout="responsive"
               width={624}
               height={356}

@@ -1,0 +1,98 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.bannerGallery {
+  height: rem(525);
+  @include breakpoint($large) {
+    height: rem(742);
+    display: grid;
+    gap: rem(8);
+    grid-template-areas: "main side" "main side";
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 8.5fr 3.5fr;
+  }
+  @include breakpoint($xx-large) {
+    grid-template-columns: 9fr 3fr;
+  }
+
+  &Main {
+    position: relative;
+    height: 100%;
+    background: url("/assets/images/estate-detail/img-gallery-main.jpg")
+      no-repeat;
+    background-size: cover;
+    background-position: center;
+    @include breakpoint($large) {
+      grid-area: main;
+    }
+
+    &Logo {
+      width: rem(163);
+      border-radius: rem(6);
+      position: absolute;
+      top: rem(16);
+      right: rem(16);
+      overflow: hidden;
+      @include breakpoint($large) {
+        display: none;
+      }
+    }
+  }
+
+  &Side {
+    display: none;
+    @include breakpoint($large) {
+      display: grid;
+      gap: rem(8);
+      grid-template-rows: 1fr 1fr;
+      grid-area: side;
+    }
+
+    &Top {
+      @include breakpoint($large) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: url("/assets/images/estate-detail/img-gallery-top.jpg")
+          no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+    }
+
+    &Bottom {
+      @include breakpoint($large) {
+        position: relative;
+        background: url("/assets/images/estate-detail/img-gallery-bottom.jpg")
+          no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+    }
+  }
+
+  &ViewButton {
+    position: absolute;
+    left: 50%;
+    bottom: rem(34);
+    transform: translateX(-50%);
+
+    button {
+      display: inline-flex;
+      align-items: center;
+      padding-top: rem(15);
+      padding-bottom: rem(15);
+      border-radius: rem(4);
+      box-shadow: 0 0 rem(12) rgba(0, 0, 0, 0.25);
+
+      &:hover svg {
+        circle {
+          fill: $white;
+        }
+      }
+    }
+    span {
+      margin-left: rem(12);
+    }
+  }
+}

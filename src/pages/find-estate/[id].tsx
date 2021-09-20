@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/FindEstateDetail/Hero/Hero";
+import BannerGallery from "@sections/FindEstateDetail/BannerGallery/BannerGallery";
 
 const FindEstateDetail: NextPage = () => {
   const router = useRouter();
@@ -11,7 +12,7 @@ const FindEstateDetail: NextPage = () => {
   return (
     <Layout>
       <Hero />
-      {/* <AllBenefits /> */}
+      <BannerGallery />
     </Layout>
   );
 };
