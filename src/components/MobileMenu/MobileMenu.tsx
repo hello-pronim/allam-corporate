@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import classNames from "classnames/bind";
+import Icon from "@components/Icons/Icons";
 import MobileMenuItem from "@components/MobileMenuItem/MobileMenuItem";
 import { menuObj, stateAuObj } from "./constant";
 import styles from "./MobileMenu.module.scss";
@@ -47,12 +47,7 @@ const MobileMenu = ({ closeMenu, ...props }: IMobileMenuProps) => {
             className={styles.mobileMenuBack}
             onClick={() => onBackToParent()}
           >
-            <Image
-              src="/assets/icons/icon-arrow-left.svg"
-              alt="arrow-left"
-              width={24}
-              height={24}
-            />
+            <Icon type="arrow-left" />
             <p>Back</p>
           </div>
         )}

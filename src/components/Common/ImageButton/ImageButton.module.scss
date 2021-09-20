@@ -4,7 +4,7 @@
 .imageButton {
   padding: rem(12) rem(16);
   color: $grey;
-  font-weight: 700;
+  font-weight: 400;
   font-size: rem(16);
   line-height: 1;
   letter-spacing: rem(1);
@@ -50,8 +50,6 @@
 
   &Icon {
     display: inline-flex;
-    margin-right: rem(16);
-
     svg {
       width: rem(24);
       height: rem(24);
@@ -61,4 +59,15 @@
       }
     }
   }
+
+  span {
+    margin-left: rem(8);
+    b {
+      margin-right: rem(8);
+    }
+  }
+}
+
+.weightBold {
+  font-weight: 700;
 }

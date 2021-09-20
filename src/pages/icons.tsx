@@ -10,6 +10,7 @@ const Home: NextPage = () => {
       <Icon type="land-sale" />
       <Icon type="home-insurance" />
       <Icon type="estate" />
+      <Icon type="close" />
     </>
   );
 };

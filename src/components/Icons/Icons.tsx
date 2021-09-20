@@ -353,6 +353,30 @@ const Icon = ({ type, onClick, ...props }: IIconProps) => {
           />
         </svg>
       )}
+      {type === "chevron-left" && (
+        <svg
+          width="24"
+          height="25"
+          viewBox="0 0 24 25"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M20 12.009H4"
+            stroke="#212121"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M10 18.009L4 12.009L10 6.00903"
+            stroke="#212121"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      )}
       {type === "chevron-down" && (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -380,6 +404,30 @@ const Icon = ({ type, onClick, ...props }: IIconProps) => {
           <path
             d="M7.20711 6.29314C6.81658 5.90261 6.18342 5.90261 5.79289 6.29314C5.40237 6.68366 5.40237 7.31683 5.79289 7.70735L10.5858 12.5002L5.79289 17.2931C5.40237 17.6837 5.40237 18.3168 5.79289 18.7074C6.18342 19.0979 6.81658 19.0979 7.20711 18.7074L12 13.9145L16.7929 18.7074C17.1834 19.0979 17.8166 19.0979 18.2071 18.7074C18.5976 18.3168 18.5976 17.6837 18.2071 17.2931L13.4142 12.5002L18.2071 7.70735C18.5976 7.31683 18.5976 6.68366 18.2071 6.29314C17.8166 5.90261 17.1834 5.90261 16.7929 6.29314L12 11.086L7.20711 6.29314Z"
             fill="black"
+          />
+        </svg>
+      )}
+      {type === "arrow-left" && (
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M20 12H4"
+            stroke="#FFCB05"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M10 18L4 12L10 6"
+            stroke="#FFCB05"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       )}

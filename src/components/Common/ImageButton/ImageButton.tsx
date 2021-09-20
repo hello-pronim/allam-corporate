@@ -9,6 +9,7 @@ export interface IImageButtonProps {
   icon: string;
   className?: string;
   label?: string;
+  count?: number;
   homepageFilter?: boolean;
   onClick?: () => void;
 }
@@ -17,23 +18,28 @@ const ImageButton = ({
   href,
   icon,
   className = "",
+  count,
   label,
   homepageFilter = false,
   onClick,
   ...props
 }: IImageButtonProps) => {
   let filterClassName = homepageFilter ? styles.homeFilterButton : "";
+  let fontWeightClass = count ? "" : styles.weightBold;
   if (!href) {
     return (
       <button
-        className={`${styles.imageButton} ${className} ${filterClassName}`}
+        className={`${styles.imageButton} ${className} ${filterClassName} ${fontWeightClass}`}
         onClick={onClick}
         {...props}
       >
         <div className={styles.imageButtonIcon}>
           <Icon type={icon} />
         </div>
-        {label}
+        <span>
+          <b>{count}</b>
+          {label}
+        </span>
       </button>
     );
   }
@@ -43,7 +49,7 @@ const ImageButton = ({
     return (
       <ExternalLink href={href}>
         <button
-          className={`${styles.imageButton} ${className} ${filterClassName}`}
+          className={`${styles.imageButton} ${className} ${filterClassName} ${fontWeightClass}`}
           {...props}
         >
           <div className={styles.imageButtonIcon}>
@@ -58,7 +64,7 @@ const ImageButton = ({
   return (
     <Link {...{ href }} prefetch={false}>
       <button
-        className={`${styles.imageButton} ${className} ${filterClassName}`}
+        className={`${styles.imageButton} ${className} ${filterClassName} ${fontWeightClass}`}
         {...props}
       >
         <div className={styles.imageButtonIcon}>

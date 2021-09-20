@@ -35,7 +35,7 @@ const Hero = () => {
             >
               <div className={styles.heroContent}>
                 <h1 className="home">{el.title}</h1>
-                <h5>{el.subtitle}</h5>
+                <h4>{el.subtitle}</h4>
               </div>
               <div className={styles.heroFilter}>
                 <p>Find your perfect home without difficulties</p>

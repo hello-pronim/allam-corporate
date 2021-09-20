@@ -1,0 +1,23 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.actionButton {
+  color: $black;
+  font-weight: 400;
+  font-size: rem(12);
+  line-height: 1;
+  letter-spacing: rem(1);
+  font-family: inherit;
+  border-radius: rem(6);
+  transition: all 0.3s ease;
+  border-width: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &Icon {
+    display: inline-flex;
+    margin-right: rem(12);
+  }
+}
