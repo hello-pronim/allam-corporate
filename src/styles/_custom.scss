@@ -1,36 +1,3 @@
-@import "./variables.scss";
-@import "./mixins.scss";
-@import "./typography.scss";
-
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: "InterFace", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-select,
-select option,
-button {
-  font-family: "InterFace", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto;
-}
-
-ul {
-  list-style-type: none;
-}
-
 // Select customize
 .selector {
   &__input {
@@ -321,4 +288,18 @@ ul {
       }
     }
   }
+}
+
+// Modal
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 1000ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
 }
