@@ -7,7 +7,6 @@ import BannerGallery from "@sections/FindEstateDetail/BannerGallery/BannerGaller
 const FindEstateDetail: NextPage = () => {
   const router = useRouter();
   const { id } = router.query;
-  console.log(id);
 
   return (
     <Layout>

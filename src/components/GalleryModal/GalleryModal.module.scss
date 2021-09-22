@@ -1,0 +1,7 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.sample {
+  @include breakpoint($medium) {
+  }
+}

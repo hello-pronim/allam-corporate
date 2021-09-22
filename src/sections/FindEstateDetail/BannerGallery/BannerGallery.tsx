@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Icon from "@components/Icons/Icons";
 import { useMobileView } from "src/utils/useMobileView";
-import styles from "./BannerGallery.module.scss";
 import { Button } from "@components/Common/Common";
+import GalleryModal from "@components/GalleryModal/GalleryModal";
+import styles from "./BannerGallery.module.scss";
 
 export interface IBannerGalleryProps {}
 
 const BannerGallery = ({}: IBannerGalleryProps) => {
+  const [isGalleryOpen, setGalleryOpen] = useState(false);
+
   return (
     <div className={styles.bannerGallery}>
       <div className={styles.bannerGalleryMain}>
@@ -22,7 +25,12 @@ const BannerGallery = ({}: IBannerGalleryProps) => {
         </div>
 
         {useMobileView() && (
-          <div className={styles.bannerGalleryViewButton} onClick={() => {}}>
+          <div
+            className={styles.bannerGalleryViewButton}
+            onClick={() => {
+              setGalleryOpen(true);
+            }}
+          >
             <Button color="light">
               <Icon type="view-gallery" />
               <span>View Gallery</span>
@@ -38,7 +46,12 @@ const BannerGallery = ({}: IBannerGalleryProps) => {
 
         <div className={styles.bannerGallerySideBottom}>
           {!useMobileView() && (
-            <div className={styles.bannerGalleryViewButton} onClick={() => {}}>
+            <div
+              className={styles.bannerGalleryViewButton}
+              onClick={() => {
+                setGalleryOpen(true);
+              }}
+            >
               <Button color="light">
                 <Icon type="view-gallery" />
                 <span>View Gallery</span>
@@ -47,6 +60,11 @@ const BannerGallery = ({}: IBannerGalleryProps) => {
           )}
         </div>
       </div>
+
+      <GalleryModal
+        isModalOpen={isGalleryOpen}
+        closeModal={() => setGalleryOpen(false)}
+      />
     </div>
   );
 };
