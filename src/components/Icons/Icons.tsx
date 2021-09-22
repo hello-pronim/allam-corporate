@@ -393,6 +393,11 @@ const Icon = ({ type, onClick, ...props }: IIconProps) => {
           />
         </svg>
       )}
+      {type === "chevron-right" && (
+        <svg width="10" height="17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fillRule="evenodd" clipRule="evenodd" d="M9.607 8.5a2.627 2.627 0 0 0-.769-1.678L2.905.89a1.325 1.325 0 0 0-1.873 1.872L6.772 8.5l-5.74 5.739a1.325 1.325 0 0 0 1.873 1.872l5.933-5.933a2.627 2.627 0 0 0 .77-1.678Z" fill="#212121"/>
+        </svg>
+      )}      
       {type === "close" && (
         <svg
           width="24"
