@@ -11,6 +11,9 @@ export interface IImageButtonProps {
   label?: string;
   count?: number;
   homepageFilter?: boolean;
+  chevron?: boolean;
+  labelSpacingLeft?: number;
+  labelSpacingRight?: number;
   onClick?: () => void;
 }
 
@@ -21,6 +24,9 @@ const ImageButton = ({
   count,
   label,
   homepageFilter = false,
+  chevron = false,
+  labelSpacingLeft = 0,
+  labelSpacingRight = 0,
   onClick,
   ...props
 }: IImageButtonProps) => {
@@ -36,10 +42,11 @@ const ImageButton = ({
         <div className={styles.imageButtonIcon}>
           <Icon type={icon} />
         </div>
-        <span>
+        <span style={{marginLeft: labelSpacingLeft, marginRight: labelSpacingRight}}>
           <b>{count}</b>
           {label}
         </span>
+        {chevron && <Icon type="chevron-right" />}
       </button>
     );
   }
@@ -55,7 +62,8 @@ const ImageButton = ({
           <div className={styles.imageButtonIcon}>
             <Icon type={icon} />
           </div>
-          {label}
+          <span style={{marginLeft: labelSpacingLeft, marginRight: labelSpacingRight}}>{label}</span>
+          {chevron && <Icon type="chevron-right" />}
         </button>
       </ExternalLink>
     );
@@ -70,7 +78,8 @@ const ImageButton = ({
         <div className={styles.imageButtonIcon}>
           <Icon type={icon} />
         </div>
-        {label}
+        <span style={{marginLeft: labelSpacingLeft, marginRight: labelSpacingRight}}>{label}</span>
+        {chevron && <Icon type="chevron-right" />}
       </button>
     </Link>
   );
