@@ -3,6 +3,7 @@
 
 .propertyCard {
   display: block;
+  overflow: hidden;
   @include breakpoint($medium) {
   }
 
