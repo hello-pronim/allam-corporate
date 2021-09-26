@@ -1,7 +1,36 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
-.sample {
-  @include breakpoint($medium) {
+.galleryModal {
+  height: 100%;
+  @include breakpoint($large) {
+  }
+
+  &Slider {
+    &ArrowLeft {
+      position: absolute;
+      top: 50%;
+      left: 1vw;
+      transform: translateY(-50%);
+
+      svg {
+        path {
+          stroke: $white;
+        }
+      }
+    }
+
+    &ArrowRight {
+      position: absolute;
+      top: 50%;
+      right: 1vw;
+      transform: translateY(-50%) rotate(180deg);
+
+      svg {
+        path {
+          stroke: $white;
+        }
+      }
+    }
   }
 }

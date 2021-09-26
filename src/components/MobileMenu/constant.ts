@@ -41,7 +41,7 @@ export const menuObj = [
   },
   {
     title: "Retirement Living",
-    slug: "/",
+    slug: "/retirement-living",
   },
   {
     title: "Open for Inspection",
