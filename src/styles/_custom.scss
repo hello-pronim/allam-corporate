@@ -290,6 +290,26 @@
   }
 }
 
+// Gallery modal slider
+.gallery-modal-slider {
+  width: 0;
+  min-width: 100%;
+
+  .slick-list {
+    padding-left: 15vw;
+    .slick-slide {
+      height: auto;
+    }
+
+    .slick-track {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: stretch;
+    }
+  }
+}
+
 // Modal
 .ReactModal__Overlay {
   opacity: 0;

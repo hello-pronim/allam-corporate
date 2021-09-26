@@ -11,6 +11,8 @@ const Home: NextPage = () => {
       <Icon type="home-insurance" />
       <Icon type="estate" />
       <Icon type="close" />
+      <Icon type="arrow-left" />
+      <Icon type="arrow-right" />
     </>
   );
 };
