@@ -1,0 +1,79 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.homeList {
+  background-color: $grey2;
+  @include breakpoint($large) {
+  }
+
+  &Wrapper {
+    @include breakpoint($large) {
+      @include grid(1, 12);
+      @include grid-container;
+      grid-column: 1 / span 12;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 2 / span 10;
+    }
+
+    h2 {
+      padding: 0 rem(16);
+      color: $light-grey;
+      margin-bottom: rem(24);
+      @include breakpoint($large) {
+        padding: 0;
+        margin-bottom: rem(56);
+      }
+    }
+  }
+
+  &Content {
+    @include breakpoint($large) {
+      grid-column: 1 / span 12;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 2 / span 10;
+    }
+
+    &CTA {
+      text-align: center;
+      padding: 0 rem(16);
+      @include breakpoint($medium) {
+        text-align: left;
+      }
+      @include breakpoint($large) {
+        padding: 0;
+      }
+
+      button {
+        width: 100%;
+        margin-top: rem(48);
+        @include breakpoint($medium) {
+          width: initial;
+          padding-left: rem(24);
+          padding-right: rem(24);
+        }
+        @include breakpoint($large) {
+          margin-top: rem(110);
+        }
+      }
+    }
+  }
+
+  &Grid {
+    &Wrapper {
+      display: grid;
+      gap: rem(24);
+      grid-template-columns: minmax(0, 1fr);
+      grid-auto-rows: 1fr;
+      @include breakpoint($medium) {
+        column-gap: rem(16);
+        row-gap: rem(24);
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      }
+      @include breakpoint($webLarge) {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+      }
+    }
+  }
+}
