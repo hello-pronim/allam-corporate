@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import { ImageButton, Button } from "@components/Common/Common";
 import { heroObj } from "./constant";
 import styles from "./Hero.module.scss";
-import monterey from '/assets/retirement-living/monterey-logo.svg';
+import monterey from "/assets/retirement-living/monterey-logo.svg";
 
 export interface IHeroProps {}
 
@@ -39,15 +39,25 @@ const Hero = () => {
                 <h5>{el.subtitle}</h5>
               </div>
               <div className={styles.heroLogoWrapper}>
-                <Image alt="" src="/assets/images/retirement-living/monterey-logo.svg" width="251" height="164"/>
+                <Image
+                  alt=""
+                  src="/assets/images/retirement-living/monterey-logo.svg"
+                  width="251"
+                  height="164"
+                />
               </div>
-                <div className={styles.heroButtonWrapper}>
-                  <ImageButton href="#" icon="easy-buy" label="Download Brochure" chevron={true} labelSpacingLeft={8} labelSpacingRight={16}/>
-                  <Button rounded={true}>
-                    Contact Agent
-                    </Button>
-                </div>
-                </div>
+              <div className={styles.heroButtonWrapper}>
+                <ImageButton
+                  href="#"
+                  icon="download"
+                  label="Download Brochure"
+                  chevron={true}
+                  labelSpacingLeft={8}
+                  labelSpacingRight={16}
+                />
+                <Button rounded={true}>Contact Agent</Button>
+              </div>
+            </div>
           </div>
         ))}
       </Slider>
