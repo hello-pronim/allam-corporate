@@ -5,6 +5,7 @@ import Hero from "@sections/FindEstateDetail/Hero/Hero";
 import BannerGallery from "@sections/FindEstateDetail/BannerGallery/BannerGallery";
 import LeadingInfo from "@sections/FindEstateDetail/LeadingInfo/LeadingInfo";
 import HomeList from "@sections/FindEstateDetail/HomeList/HomeList";
+import MasterPlan from "@sections/FindEstateDetail/MasterPlan/MasterPlan";
 
 const FindEstateDetail: NextPage = () => {
   const router = useRouter();
@@ -16,6 +17,7 @@ const FindEstateDetail: NextPage = () => {
       <BannerGallery />
       <LeadingInfo />
       <HomeList />
+      <MasterPlan />
     </Layout>
   );
 };
