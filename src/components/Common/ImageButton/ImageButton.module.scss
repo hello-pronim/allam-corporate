@@ -33,10 +33,15 @@
 
   &.homeFilterButton {
     font-size: rem(12);
-    flex-direction: column;
     @include breakpoint($webDesktop) {
       font-size: rem(16);
-      flex-direction: row;
+    }
+
+    .imageButtonContent {
+      flex-direction: column;
+      @include breakpoint($webDesktop) {
+        flex-direction: row;
+      }
     }
 
     .imageButtonIcon {
@@ -58,6 +63,12 @@
         height: rem(30);
       }
     }
+  }
+
+  .imageButtonContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   span {

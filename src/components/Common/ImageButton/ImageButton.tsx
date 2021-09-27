@@ -39,13 +39,20 @@ const ImageButton = ({
         onClick={onClick}
         {...props}
       >
-        <div className={styles.imageButtonIcon}>
-          <Icon type={icon} />
+        <div className={styles.imageButtonContent}>
+          <div className={styles.imageButtonIcon}>
+            <Icon type={icon} />
+          </div>
+          <span
+            style={{
+              marginLeft: labelSpacingLeft,
+              marginRight: labelSpacingRight,
+            }}
+          >
+            <b>{count}</b>
+            {label}
+          </span>
         </div>
-        <span style={{marginLeft: labelSpacingLeft, marginRight: labelSpacingRight}}>
-          <b>{count}</b>
-          {label}
-        </span>
         {chevron && <Icon type="chevron-right" />}
       </button>
     );
@@ -59,10 +66,19 @@ const ImageButton = ({
           className={`${styles.imageButton} ${className} ${filterClassName} ${fontWeightClass}`}
           {...props}
         >
-          <div className={styles.imageButtonIcon}>
-            <Icon type={icon} />
+          <div className={styles.imageButtonContent}>
+            <div className={styles.imageButtonIcon}>
+              <Icon type={icon} />
+            </div>
+            <span
+              style={{
+                marginLeft: labelSpacingLeft,
+                marginRight: labelSpacingRight,
+              }}
+            >
+              {label}
+            </span>
           </div>
-          <span style={{marginLeft: labelSpacingLeft, marginRight: labelSpacingRight}}>{label}</span>
           {chevron && <Icon type="chevron-right" />}
         </button>
       </ExternalLink>
@@ -75,10 +91,19 @@ const ImageButton = ({
         className={`${styles.imageButton} ${className} ${filterClassName} ${fontWeightClass}`}
         {...props}
       >
-        <div className={styles.imageButtonIcon}>
-          <Icon type={icon} />
+        <div className={styles.imageButtonContent}>
+          <div className={styles.imageButtonIcon}>
+            <Icon type={icon} />
+          </div>
+          <span
+            style={{
+              marginLeft: labelSpacingLeft,
+              marginRight: labelSpacingRight,
+            }}
+          >
+            {label}
+          </span>
         </div>
-        <span style={{marginLeft: labelSpacingLeft, marginRight: labelSpacingRight}}>{label}</span>
         {chevron && <Icon type="chevron-right" />}
       </button>
     </Link>
