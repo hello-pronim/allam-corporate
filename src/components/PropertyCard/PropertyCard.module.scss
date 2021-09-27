@@ -3,9 +3,6 @@
 
 .propertyCard {
   display: block;
-  max-width:492px;
-  margin-top: 80px;
-  margin-bottom: 80px;
   @include breakpoint($medium) {
   }
 
@@ -30,8 +27,7 @@
       &Text {
         font-size: 14px;
         line-height: 24px;
-        color: #FFCB05;
-        ;
+        color: #ffcb05;
         &:nth-child(even) {
           text-align: right;
           font-weight: bold;
@@ -104,5 +100,5 @@
 }
 
 .superComp {
-  margin-top:-5px;
+  margin-top: -5px;
 }
