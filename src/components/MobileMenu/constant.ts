@@ -19,11 +19,11 @@ export const menuObj = [
   },
   {
     title: "Find your home",
-    slug: "/",
+    slug: "/find-home",
   },
   {
     title: "Find your land",
-    slug: "/",
+    slug: "/find-land",
     subMenu: [
       {
         title: "Test 1",

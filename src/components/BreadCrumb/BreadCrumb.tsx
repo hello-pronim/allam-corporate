@@ -16,7 +16,7 @@ const BreadCrumb = ({}: IBreadCrumbProps) => {
           </li>
           <li>
             <Link href="/">
-              <a>Find your perfect estate</a>
+              <a>Find your perfect </a>
             </Link>
           </li>
           {/* {
