@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@components/Common/Common";
 import EasyBuyPurchase from "@components/EasyBuyPurchase/EasyBuyPurchase";
-import PropertyCard from "@components/PropertyCard/PropertyCard";
+import EstateCard from "@components/EstateCard/EstateCard";
 import styles from "./LandListing.module.scss";
 
 export interface ILandListingProps {}
@@ -15,7 +15,7 @@ const LandListing = ({}: ILandListingProps) => {
             {Array(8)
               .fill("")
               .map((_, id) => (
-                <PropertyCard key={id} />
+                <EstateCard key={id} />
               ))}
             <EasyBuyPurchase />
           </div>
