@@ -6,6 +6,7 @@ import BannerGallery from "@sections/FindEstateDetail/BannerGallery/BannerGaller
 import LeadingInfo from "@sections/FindEstateDetail/LeadingInfo/LeadingInfo";
 import HomeList from "@sections/FindEstateDetail/HomeList/HomeList";
 import MasterPlan from "@sections/FindEstateDetail/MasterPlan/MasterPlan";
+import Deposit from "@sections/FindEstateDetail/Deposit/Deposit";
 
 const FindEstateDetail: NextPage = () => {
   const router = useRouter();
@@ -18,6 +19,7 @@ const FindEstateDetail: NextPage = () => {
       <LeadingInfo />
       <HomeList />
       <MasterPlan />
+      <Deposit />
     </Layout>
   );
 };

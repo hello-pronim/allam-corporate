@@ -1,0 +1,89 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.deposit {
+  padding-bottom: rem(80);
+  background-color: $grey2;
+
+  @include breakpoint($large) {
+  }
+
+  &Wrapper {
+    @include grid-container;
+    @include breakpoint($large) {
+      @include grid(1, 12);
+    }
+  }
+
+  &Card {
+    padding: rem(48) rem(24) rem(24);
+    @include shape-bg();
+    border-radius: rem(16);
+    box-shadow: 0px 0px rem(1) rgba(0, 0, 0, 0.25),
+      0px rem(3) rem(4) rgba(0, 0, 0, 0.1);
+    @include breakpoint($large) {
+      padding: rem(60) rem(60) rem(55);
+      grid-column: 1 / span 12;
+      @include grid(1, 12);
+    }
+    @include breakpoint($xx-large) {
+      padding: rem(80) rem(80) rem(75);
+      grid-column: 2 / span 10;
+      @include grid(1, 10);
+    }
+
+    &Title {
+      margin-bottom: rem(16);
+      @include breakpoint($large) {
+        grid-column: 1 / span 7;
+        margin: 0;
+      }
+      @include breakpoint($xx-large) {
+        grid-column: 1 / span 6;
+      }
+
+      h2 {
+        color: $grey;
+        margin-bottom: rem(16);
+        @include breakpoint($large) {
+          font-size: rem(80);
+          line-height: 1.05;
+          margin-bottom: rem(66);
+        }
+        @include breakpoint($xx-large) {
+          font-size: rem(100);
+        }
+      }
+      h5 {
+        color: $grey;
+      }
+    }
+
+    &Content {
+      @include breakpoint($large) {
+        grid-column: 9 / span 4;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+      @include breakpoint($xx-large) {
+        grid-column: 8 / span 4;
+      }
+
+      p {
+        margin-bottom: rem(62);
+        @include breakpoint($large) {
+          margin-bottom: rem(108);
+        }
+      }
+
+      button {
+        width: 100%;
+        @include breakpoint($medium) {
+          width: auto;
+        }
+      }
+    }
+  }
+}
