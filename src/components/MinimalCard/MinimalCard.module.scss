@@ -1,0 +1,17 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.MinimalCard {
+  display: flex;
+  height: 100%;
+  min-height: 467px;
+  max-width: 100%;
+  overflow: hidden;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: rem(40) rem(28);
+  border-radius: rem(6);
+  h5 {
+    color: #fff;
+  }
+}

@@ -3,11 +3,9 @@ import Image from "next/image";
 import Slider from "react-slick";
 import Icon from "@components/Icons/Icons";
 import styles from "./PropertyCard.module.scss";
-import {card} from './constants';
+import { card } from "./constants";
 
-export interface PropertyCardProps {
-
-}
+export interface PropertyCardProps {}
 
 const PropertyCard = ({}: PropertyCardProps) => {
   const settings = {
@@ -26,69 +24,65 @@ const PropertyCard = ({}: PropertyCardProps) => {
   return (
     <div className={styles.propertyCard}>
       <div className={styles.propertyCardTop}>
-      <div className={styles.propertyCardTopBar}>
-          <span className={styles.propertyCardTopBarText}>{card.progPercent}% Completed</span>
-          <span className={styles.propertyCardTopBarText}>Move In {card.moveIn}</span>
+        <div className={styles.propertyCardTopBar}>
+          <span className={styles.propertyCardTopBarText}>
+            {card.progPercent}% Completed
+          </span>
+          <span className={styles.propertyCardTopBarText}>
+            Move In {card.moveIn}
+          </span>
           <div className={styles.propertyCardTopBarCompletion}>
-              <span style={{height: '100%', width: `${card.progPercent}%`}}></span>
+            <span
+              style={{ height: "100%", width: `${card.progPercent}%` }}
+            ></span>
           </div>
-      </div>
+        </div>
         <Slider {...settings}>
-        {card.images.map((img) => {
-                return (
-                    <div key={img.id} className={styles.propertyCardTopImage}>
-                    <Image
-                      src={img.imageUrl}
-                      alt="property-card-image"
-                      width={img.width}
-                      height={img.height}
-                      layout="responsive"
-                    />
-                  </div>      
-                )
-            })}
+          {card.images.map((img) => {
+            return (
+              <div key={img.id} className={styles.propertyCardTopImage}>
+                <Image
+                  src={img.imageUrl}
+                  alt="property-card-image"
+                  width={img.width}
+                  height={img.height}
+                  layout="responsive"
+                />
+              </div>
+            );
+          })}
         </Slider>
       </div>
 
       <div className={styles.propertyCardBottom}>
-        <h5>
-          {card.address}
-        </h5>
+        <h5>{card.address}</h5>
 
         <div className={styles.propertyCardBottomInfo}>
           <div className={styles.propertyCardBottomInfoDetail}>
             <Icon type="bed" />
-            <span>
-              {card.bed}
-            </span>
+            <span>{card.bed}</span>
           </div>
           <div className={styles.propertyCardBottomInfoDetail}>
             <Icon type="bath" />
-            <span>
-            {card.bath}
-            </span>
+            <span>{card.bath}</span>
           </div>
           <div className={styles.propertyCardBottomInfoDetail}>
             <Icon type="car" />
-            <span>
-            {card.car}
-            </span>
+            <span>{card.car}</span>
           </div>
           <div className={styles.propertyCardBottomInfoDetail}>
-          Build size
-            <span>
-            {card.buildSize}sq
-            </span>
+            Build size
+            <span>{card.buildSize}sq</span>
           </div>
           <div className={styles.propertyCardBottomInfoDetail}>
-          Land size
+            Land size
             <span className={styles.superComp}>
-            {card.landSize}m<sup>2</sup>
+              {card.landSize}m<sup>2</sup>
             </span>
-          </div>                                
+          </div>
         </div>
         <p>
-            Home Design: <span>{card.homeDesign}</span>
+          Home Design: <span>{card.homeDesign}</span>
         </p>
       </div>
     </div>

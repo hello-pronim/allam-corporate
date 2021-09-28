@@ -1,0 +1,31 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.CardGrid {
+  position: relative;
+  @include grid-container;
+  padding-top: rem(60);
+  padding-bottom: rem(60);
+  @include breakpoint($large) {
+    @include grid(1, 12);
+    padding-top: rem(130);
+    padding-bottom: rem(78);
+  }
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(237, 242, 245, 1) 100%
+  );
+  h2 {
+    color: #393839;
+    grid-column: 2 / span 12;
+  }
+}
+
+.GridWrapper {
+  display: grid;
+  column-gap: rem(18);
+  row-gap: rem(18);
+  grid-column: 2 / span 10;
+}

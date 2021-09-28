@@ -1,0 +1,15 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.FullWidthImage {
+  height: rem(500);
+  @include breakpoint($medium) {
+    height: rem(600);
+  }
+  @include breakpoint($large) {
+    height: rem(800);
+  }
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+}
