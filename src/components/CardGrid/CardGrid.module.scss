@@ -2,21 +2,21 @@
 @import "@styles/variables";
 
 .CardGrid {
+  // TODO: For the paddings, we don't need to set them inside global component too
   position: relative;
   @include grid-container;
-  padding-top: rem(60);
   @include breakpoint($large) {
     @include grid(1, 12);
-    padding-top: rem(130);
   }
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(237, 242, 245, 1) 100%
-  );
+  // TODO: Josh please do not use this for global components, you can check the design
+  // background: rgb(255, 255, 255);
+  // background: linear-gradient(
+  //   180deg,
+  //   rgba(255, 255, 255, 1) 0%,
+  //   rgba(237, 242, 245, 1) 100%
+  // );
   h2 {
-    color: #393839;
+    color: $grey;
     grid-column: 2 / span 12;
     margin-bottom: rem(24);
     @include breakpoint($large) {

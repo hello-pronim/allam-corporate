@@ -4,7 +4,7 @@
 .MinimalCard {
   display: flex;
   height: 100%;
-  min-height: 467px;
+  min-height: rem(400);
   max-width: 100%;
   overflow: hidden;
   align-items: flex-end;
