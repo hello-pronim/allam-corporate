@@ -1,0 +1,26 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.similarEstates {
+  padding: rem(80) 0;
+  background-color: $grey2;
+  @include breakpoint($large) {
+    padding: rem(160) 0;
+  }
+
+  &Wrapper {
+    margin: 0 rem(-16);
+    @include breakpoint($large) {
+      margin: 0;
+    }
+
+    h2 {
+      margin-left: rem(16);
+      margin-right: rem(16);
+      @include breakpoint($large) {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+}

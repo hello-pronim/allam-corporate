@@ -18,10 +18,13 @@
   // );
   h2 {
     color: $grey;
-    grid-column: 2 / span 12;
     margin-bottom: rem(24);
     @include breakpoint($large) {
+      grid-column: 1 / span 12;
       margin-bottom: rem(50);
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 2 / span 10;
     }
   }
 }
@@ -30,5 +33,10 @@
   display: grid;
   column-gap: rem(18);
   row-gap: rem(18);
-  grid-column: 2 / span 10;
+  @include breakpoint($large) {
+    grid-column: 1 / span 12;
+  }
+  @include breakpoint($xx-large) {
+    grid-column: 2 / span 10;
+  }
 }
