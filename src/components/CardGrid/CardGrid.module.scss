@@ -5,11 +5,9 @@
   position: relative;
   @include grid-container;
   padding-top: rem(60);
-  padding-bottom: rem(60);
   @include breakpoint($large) {
     @include grid(1, 12);
     padding-top: rem(130);
-    padding-bottom: rem(78);
   }
   background: rgb(255, 255, 255);
   background: linear-gradient(
@@ -20,6 +18,10 @@
   h2 {
     color: #393839;
     grid-column: 2 / span 12;
+    margin-bottom: rem(24);
+    @include breakpoint($large) {
+      margin-bottom: rem(50);
+    }
   }
 }
 
