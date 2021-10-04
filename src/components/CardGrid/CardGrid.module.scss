@@ -29,3 +29,12 @@
   row-gap: rem(18);
   grid-column: 2 / span 10;
 }
+
+.buttonRow {
+  grid-column: 2 / span 10;
+  display: flex;
+  column-gap: rem(16);
+  @include breakpoint($medium) {
+    margin-top: rem(24);
+  }
+}

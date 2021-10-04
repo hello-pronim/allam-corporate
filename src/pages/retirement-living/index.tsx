@@ -22,7 +22,7 @@ const RetirementLiving: NextPage = () => {
         <PropertyCard />
         <PropertyCard />
       </CardGrid>
-      <CardGrid title="News and Events" col={[1, 2]}>
+      <CardGrid title="News and Events" col={[1, 2]} button={{label: 'View More', url: '#'}}>
         <MinimalCard />
         <MinimalCard />
       </CardGrid>
