@@ -7,6 +7,7 @@ import PropertyCard from "@components/PropertyCard/PropertyCard";
 import MinimalCard from "@components/MinimalCard/MinimalCard";
 import FullWidthImage from "@components/FullWidthImage/FullWidthImage";
 import ContentWithImage from "@components/ContentWithImage/ContentWithImage";
+import ImageWithKey from "@components/ImageWithKey/ImageWithKey";
 import RegisterModule from "@components/RegisterModule/RegisterModule";
 
 const RetirementLiving: NextPage = () => {
@@ -27,6 +28,7 @@ const RetirementLiving: NextPage = () => {
         <MinimalCard />
       </CardGrid>
       <FullWidthImage image="/assets/images/retirement-living/full-width.png" />
+      <ImageWithKey />
       <ContentWithImage />
       <RegisterModule />
     </Layout>
