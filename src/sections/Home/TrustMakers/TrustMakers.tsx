@@ -39,7 +39,7 @@ const TrustMakers = () => {
     <div className={styles.trustMakers}>
       <div className={styles.trustMakersWrapper}>
         <div className={styles.trustMakersContent}>
-          <h2>Allam’s homes are move in ready</h2>
+          <h2 className="home">Allam’s homes are move in ready</h2>
           <p>
             Our history spans 25 years and during that time we’ve helped
             thousands of customers find a new home, with homes and estates

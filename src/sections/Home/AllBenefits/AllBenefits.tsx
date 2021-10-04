@@ -13,7 +13,7 @@ const AllBenefits = ({}: IAllBenefitsProps) => {
         <div className={styles.allBenefitsCard}>
           <div className={styles.allBenefitsCardContent}>
             <div className={styles.allBenefitsCardContentLeft}>
-              <h2>
+              <h2 className="home">
                 <strong>Why choose Allam?</strong> <br /> Find out about our
                 Easy Buy process.
               </h2>
