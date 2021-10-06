@@ -7,6 +7,7 @@ import PropertyCard from "@components/PropertyCard/PropertyCard";
 import MinimalCard from "@components/MinimalCard/MinimalCard";
 import FullWidthImage from "@components/FullWidthImage/FullWidthImage";
 import ContentWithImage from "@components/ContentWithImage/ContentWithImage";
+import ImageWithKey from "@components/ImageWithKey/ImageWithKey";
 import RegisterModule from "@components/RegisterModule/RegisterModule";
 
 const RetirementLiving: NextPage = () => {
@@ -22,11 +23,12 @@ const RetirementLiving: NextPage = () => {
         <PropertyCard />
         <PropertyCard />
       </CardGrid>
-      <CardGrid title="News and Events" col={[1, 2]}>
+      <CardGrid title="News and Events" col={[1, 2]} button={{label: 'View More', url: '#'}}>
         <MinimalCard />
         <MinimalCard />
       </CardGrid>
       <FullWidthImage image="/assets/images/retirement-living/full-width.png" />
+      <ImageWithKey />
       <ContentWithImage />
       <RegisterModule />
     </Layout>

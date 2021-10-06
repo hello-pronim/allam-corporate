@@ -39,6 +39,7 @@ const Button = ({
         className={`${styles.button}${
           className ? ` ${className}` : ""
         } ${themeName} ${roundedClass} ${sizeClass}`}
+        onClick={onClick}
         {...props}
       >
         {children}

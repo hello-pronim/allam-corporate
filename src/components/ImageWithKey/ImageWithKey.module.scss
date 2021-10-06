@@ -1,0 +1,72 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.ContentWithImage {
+  position: relative;
+  background: $white;
+  @include grid-container;
+  padding-top: rem(60);
+  padding-bottom: rem(60);
+  @include breakpoint($large) {
+    @include grid(1, 12);
+    padding-top: rem(130);
+    padding-bottom: rem(78);
+  }
+}
+.TopBlock {
+  grid-column: 2 / span 5;
+  margin-bottom: rem(42);
+  h5 {
+    margin-bottom: rem(24);
+    color: #393839;
+  }
+  h2 {
+    color: #212121;
+    margin-bottom: rem(24);
+  }
+  p {
+    color: #393839;
+  }
+}
+.ContentLeft {
+  grid-column: 8 / span 11;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  ol {
+    color: #393839;
+    list-style: none;
+    counter-reset: item;
+    padding-left: 20px;
+    li {
+      counter-increment: item;
+      margin-bottom: 8px;
+      &::before {
+        margin-right: 10px;
+        content: counter(item);
+        background: $white;
+        border-radius: 100%;
+        font-size: 18px;
+        line-height: 38px;
+        color: $grey;
+        width: rem(40);
+        height: rem(40);
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center; 
+        filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.1));
+      }
+    }
+  }
+}
+.ImageWrapper {
+  grid-column: 2 / span 6;
+  .Image {
+    max-width: 732px;
+  }
+}
+.BottomBlock {
+  margin-top: rem(120);
+  grid-column: 2 / span 12;
+}

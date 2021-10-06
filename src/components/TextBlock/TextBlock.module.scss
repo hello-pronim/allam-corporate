@@ -1,0 +1,62 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.TextBlock {
+  position: relative;
+  overflow: hidden;
+  z-index: -2;
+  @include grid-container;
+  @include breakpoint($large) {
+    @include grid(1, 12);
+  }
+  h2 {
+    font-size: 22px;
+    line-height: 29px;
+    letter-spacing: 0.25px;
+    margin-bottom: 24px;
+
+    @include breakpoint($large) {
+      font-size: rem(42);
+      line-height: rem(42);
+      margin-bottom: 0;
+    }
+  }
+  > * {
+    z-index: 1;
+    grid-column: 3 / span 8;
+  }
+}
+
+.defaultBG {
+  background: #edf2f5;
+}
+
+.angledRightBG {
+  background: linear-gradient(180deg, rgba(255,255,255,1) 35%, rgba(237,242,245,1) 100%);
+  &::after {
+    content: " ";
+    position: absolute;
+    background: linear-gradient(-55deg, rgba(237,242,245,1) 100%, rgba(237,242,245,0) 100%);
+    width: 1500px;
+    height: 2000px;
+    top: -1000px;
+    left: -1250px;
+    transform: rotate(-55deg);
+    z-index: -1;
+  }
+}
+
+.angledLeftBG {
+  background: linear-gradient(180deg, rgba(255,255,255,1) 35%, rgba(237,242,245,1) 100%);
+  &::after {
+    content: " ";
+    position: absolute;
+    background: linear-gradient(45deg, rgba(237,242,245,1) 100%, rgba(237,242,245,0) 100%);
+    width: 1500px;
+    height: 2000px;
+    top: -1000px;
+    right: -1100px;
+    transform: rotate(60deg);
+    z-index: -1;
+  }
+}

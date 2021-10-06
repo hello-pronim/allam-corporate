@@ -1,0 +1,15 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.InlineImage {
+  position: relative;
+  overflow: hidden;
+  @include grid-container;
+  background-color: #edf2f5;
+  @include breakpoint($large) {
+    @include grid(1, 12);
+  }
+  > * {
+    grid-column: 3 / span 8;
+  }
+}
