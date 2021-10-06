@@ -3,6 +3,8 @@
 
 .estateCard {
   display: block;
+  max-width: 100%;
+  overflow: hidden;
   @include breakpoint($medium) {
   }
 

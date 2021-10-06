@@ -12,7 +12,7 @@ const Monterey = ({}: IMontereyProps) => {
         <div className={styles.montereyContent}>
           <div className={styles.montereyContentWrapper}>
             <div className={styles.montereyContentText}>
-              <h2>
+              <h2 className="home">
                 An exceptional way of living for over 55s. — Coming mid 2021 —
               </h2>
               <p>

@@ -31,7 +31,7 @@ const PerfectEstate = ({}: IPerfectEstateProps) => {
     <div className={styles.perfectEstate}>
       <div className={styles.perfectEstateWrapper}>
         <div className={styles.perfectEstateContent}>
-          <h2>Find the perfect estate for your lifestyle</h2>
+          <h2 className="home">Find the perfect estate for your lifestyle</h2>
           <p>
             Our history spans 25 years and during that time we’ve helped
             thousands of customers find a new home, with homes and estates

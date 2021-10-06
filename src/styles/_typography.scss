@@ -26,11 +26,19 @@ h1 {
   }
 }
 h2 {
-  font-size: rem(40);
-  line-height: rem(42);
+  font-size: rem(32);
+  line-height: 1.2;
   @include breakpoint($large) {
-    font-size: rem(56);
-    line-height: rem(60);
+    font-size: rem(48);
+  }
+
+  &.home {
+    font-size: rem(40);
+    line-height: rem(42);
+    @include breakpoint($large) {
+      font-size: rem(56);
+      line-height: rem(60);
+    }
   }
 }
 h4 {

@@ -10,7 +10,7 @@ const FindHomes = ({}: IFindHomesProps) => {
       <div className={styles.findHomesWrapper}>
         <div className={styles.findHomesContent}>
           <div className={styles.findHomesContentText}>
-            <h2>Find where we build our homes</h2>
+            <h2 className="home">Find where we build our homes</h2>
             <p>
               Our history spans 25 years and during that time we’ve helped
               thousands of customers find a new home, with homes and estates
