@@ -5,6 +5,7 @@
   padding-top: rem(95);
   background-color: $grey1;
   @include breakpoint($large) {
+    padding-top: rem(155);
   }
 
   &Wrapper {

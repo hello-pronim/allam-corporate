@@ -1,3 +1,5 @@
+@use "sass:math";
+
 // Select customize
 .selector {
   &__input {
@@ -80,7 +82,7 @@
       right: calc(#{rem(48)} + #{rem(24)});
     }
     @include breakpoint($webXLarge) {
-      right: calc(#{rem(48)} + #{rem(24)} + (50% - #{rem(1920/2)}));
+      right: calc(#{rem(48)} + #{rem(24)} + (50% - #{rem(math.div(1920, 2))}));
     }
 
     li {
@@ -119,7 +121,7 @@
 
   .slick-list {
     overflow: visible;
-    padding:0 20% 0 0 !important;
+    padding: 0 20% 0 0 !important;
     .slick-track {
       &::before {
         display: none;
@@ -243,7 +245,9 @@
         right: calc(#{rem(48)} + #{rem(24)});
       }
       @include breakpoint($webXLarge) {
-        right: calc(#{rem(48)} + #{rem(24)} + (50% - #{rem(1920/2)}));
+        right: calc(
+          #{rem(48)} + #{rem(24)} + (50% - #{rem(math.div(1920, 2))})
+        );
       }
 
       li {
