@@ -1,15 +1,13 @@
 import React from "react";
-import styles from "./RegisterModule.module.scss";
-import css from "@styled-system/css";
-import { ImageButton } from "@components/Common/Common";
-import formik, { Formik, Field, Form } from "formik";
 import { Persist } from "formik-persist";
+import formik, { Formik, Field, Form } from "formik";
+import styles from "./RegisterPanel.module.scss";
 
-export interface RegisterModuleProps {}
+export interface RegisterPanelProps {}
 
-const RegisterModule = ({}: RegisterModuleProps) => {
+const RegisterPanel = ({}: RegisterPanelProps) => {
   return (
-    <div className={styles.RegisterModule}>
+    <div className={styles.registerPanel}>
       <div className={styles.ModuleWrapper}>
         <div className={styles.ModuleLeft}>
           <h2>
@@ -68,4 +66,4 @@ const RegisterModule = ({}: RegisterModuleProps) => {
   );
 };
 
-export default RegisterModule;
+export default RegisterPanel;

@@ -1,7 +1,7 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
-.RegisterModule {
+.registerPanel {
   position: relative;
   background: #edf2f5;
   @include grid-container;
