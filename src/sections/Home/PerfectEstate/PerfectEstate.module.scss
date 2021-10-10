@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import "@styles/mixins";
 @import "@styles/variables";
 
@@ -80,7 +82,7 @@
       padding-left: calc(
         #{rem(48)} + #{rem(24)} +
           (#{rem(1920)} - #{rem(24 * 11)} - #{rem(48 * 2)}) / 12 +
-          (50% - #{rem(1920/2)})
+          (50% - #{rem(math.div(1920, 2))})
       );
     }
 

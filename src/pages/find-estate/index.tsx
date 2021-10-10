@@ -4,14 +4,16 @@ import Hero from "@sections/FindEstate/Hero/Hero";
 import EstateListing from "@sections/FindEstate/EstateListing/EstateListing";
 import TrustMakers from "@sections/FindEstate/TrustMakers/TrustMakers";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
+import Overview from "@sections/FindEstate/Overview/Overview";
 
 const FindEstate: NextPage = () => {
   return (
     <Layout>
       <Hero />
-      <EstateListing />
+      <Overview />
+      {/* <EstateListing />
       <TrustMakers />
-      <AllBenefits />
+      <AllBenefits /> */}
     </Layout>
   );
 };
