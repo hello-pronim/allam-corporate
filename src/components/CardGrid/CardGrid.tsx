@@ -2,10 +2,12 @@ import React, {useState} from "react";
 import styles from "./CardGrid.module.scss";
 import css from "@styled-system/css";
 import { Button } from "@components/Common/Common";
+import rem from "src/utils/pxRem";
 
 export interface CardGridProps {
   title?: string;
   children?: React.ReactNode;
+  padding?: number | number[];
   col?: Array<number>;
   button?: {
     label: string,
@@ -13,7 +15,7 @@ export interface CardGridProps {
   }
 }
 
-const CardGrid = ({ title, children, col = [1, 2, 3], button}: CardGridProps) => {
+const CardGrid = ({ title, children, col = [1, 2, 3], button,  padding=[]}: CardGridProps) => {
   const [showAll, setShowAll] = useState(false);
   const asArray = React.Children.toArray(children);
   const countChildren = asArray.length;
@@ -21,7 +23,7 @@ const CardGrid = ({ title, children, col = [1, 2, 3], button}: CardGridProps) =>
 
   return (
     <>
-      <div className={styles.CardGrid}>
+      <div className={styles.CardGrid} css={css({py: rem(padding)})}>
         {title && <h2>{title}</h2>}
         <div
           className={styles.GridWrapper}
