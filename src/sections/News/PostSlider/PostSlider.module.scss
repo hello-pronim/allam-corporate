@@ -1,0 +1,124 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.TimelineContainer {
+  position: relative;
+  @include grid-container;
+  overflow: hidden;
+  grid-row-gap: 0 !important;
+  @include breakpoint($large) {
+    @include grid(1, 12);
+  }
+}
+.TimelineWrapper {
+  position: relative;
+  grid-column: 2 / span infinite;
+  overflow: hidden;
+}
+
+.card {
+  overflow: hidden;
+  display: flex !important;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 100%;
+  min-width: rem(249);
+  max-width: rem(528);
+  height: rem(327) !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: rem(6);
+  background-color: #fff;
+  padding: rem(80) rem(24) rem(24);
+  h2 {
+    font-size: rem(24);
+    line-height: rem(28);
+  }
+
+  @include breakpoint($medium) {
+    padding: rem(160) rem(48) rem(48);
+    height: rem(654) !important;
+    h2 {
+      font-size: rem(48);
+      line-height: rem(56);
+    }
+  }
+  scroll-snap-align: start;
+  justify-content: space-between;
+}
+.featured {
+  justify-content: flex-start;
+  h2 {
+    margin-bottom: rem(24);
+  }
+}
+
+.yearTabs {
+  grid-column: 2 / span 12;
+  display: flex;
+  column-gap: rem(28);
+  align-items: center;
+  margin: rem(30) 0;
+  button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    line-height: 33px;
+    color: $grey;
+    font-weight: bold;
+    cursor: pointer;
+    transition: ease all 0.3s;
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+.progressBar {
+  width: 100%;
+  height: rem(8);
+  background: #fff;
+  grid-column: 2 / span 11;
+  border-radius: rem(26);
+  margin-bottom: rem(8);
+}
+
+.progressInner {
+  display: block;
+  height: 100%;
+  background-color: $primary;
+  border-radius: rem(26);
+  transition: ease all 0.5s;
+}
+
+.yearDivider {
+  position: relative;
+  display: block;
+  width: rem(4);
+  height: rem(4);
+  background-color: $grey;
+  border-radius: 100%;
+}
+.arrowWrapper {
+  position: absolute;
+  width: 100%;
+  grid-column: 1 / span 12;
+  display: flex;
+  top: 120px;
+  justify-content: space-between;
+  align-items: center;
+  div {
+    cursor: pointer;
+    svg {
+      path {
+        stroke: $grey;
+      }
+    }
+    &:hover {
+      svg {
+        path {
+          stroke: $primary;
+        }
+      }
+    }
+  }
+}

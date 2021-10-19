@@ -1,0 +1,57 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.FeaturedPost {
+  &Wrapper {
+    padding-top: rem(136);
+    padding-bottom: rem(68);
+    @include grid-container;
+    @include breakpoint($large) {
+      padding-top: rem(136);
+      padding-bottom: rem(68);
+      @include grid(1, 12);
+      &Breadcrumbs {
+        grid-column: 1 / span 4;
+        font-size: rem(12);
+        line-height: rem(28);
+        letter-spacing: rem(0.25);
+      }
+      h1 {
+        grid-column: 2 / span 6;
+      }
+      h4 {
+        margin-bottom: rem(24);
+      }
+      &Content {
+        grid-column: 2 / span 10;
+        & > * {
+          flex-grow: 0;
+        }
+        &Image {
+          background-repeat: none;
+          background-size: cover;
+          background-position: center center;
+          // background-image: url(/assets/images/retirement-living/Slide-1.png);
+          height: rem(250);
+          width: 100%;
+          border-radius: rem(16);
+          @include breakpoint($large) {
+            height: rem(560);
+          }
+        }
+        &Details {
+          padding-top: rem(24);
+          display: inline-flex;
+          column-gap: rem(40);
+          &Categories {
+            & > *:not(:last-child) {
+              &::after {
+                content: ", ",
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
