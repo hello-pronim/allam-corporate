@@ -9,6 +9,7 @@ import MasterPlan from "@sections/FindEstateDetail/MasterPlan/MasterPlan";
 import Deposit from "@sections/FindEstateDetail/Deposit/Deposit";
 import News from "@sections/FindEstateDetail/News/News";
 import SimilarEstates from "@sections/FindEstateDetail/SimilarEstates/SimilarEstates";
+import SignUpEstate from "@sections/FindEstateDetail/SignUpEstate/SignUpEstate";
 
 const FindEstateDetail: NextPage = () => {
   const router = useRouter();
@@ -24,6 +25,7 @@ const FindEstateDetail: NextPage = () => {
       <Deposit />
       <News />
       <SimilarEstates />
+      <SignUpEstate />
     </Layout>
   );
 };

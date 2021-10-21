@@ -19,8 +19,6 @@ const FilterByChoiceGroup = ({
 }: IFilterByChoiceGroupProps) => {
   const [selectedFilter, setSelectedFilter] = useState([]);
 
-  const handleFilter = (event) => {};
-
   return (
     <div className={styles.filterByChoiceGroup}>
       <h5>{label}</h5>
