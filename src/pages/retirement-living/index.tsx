@@ -15,7 +15,7 @@ const RetirementLiving: NextPage = () => {
     <Layout>
       <Hero />
       <TrustMakers />
-      <CardGrid title="Retirement homes available" col={[2, 3]}>
+      <CardGrid title="Retirement homes available" col={[2, 3]} padding={[80, 160]}>
         <PropertyCard />
         <PropertyCard />
         <PropertyCard />
