@@ -1,6 +1,6 @@
-export const API_URL = process.env.NEXT_PUBLIC_API_URL;
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, DocumentNode, InMemoryCache } from "@apollo/client";
 
+export const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export const getClient = () => {
   return new ApolloClient({
     uri: API_URL,
@@ -8,7 +8,7 @@ export const getClient = () => {
   });
 };
 
-const craftAPI = async (query: any) => {
+const craftAPI = async (query: DocumentNode) => {
   const apolloClient = getClient();
   const { data } = await apolloClient.query({
     query: query,
