@@ -108,17 +108,27 @@
   align-items: center;
   div {
     cursor: pointer;
-    svg {
-      path {
-        stroke: $grey;
-      }
-    }
     &:hover {
       svg {
         path {
           stroke: $primary;
         }
       }
+    }
+  }
+}
+
+.SliderArrow {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+}
+.RightArrow {
+  background: rgba(33, 33, 33, 0.75);
+  svg {
+    transform: rotate(180deg);
+    path {
+      stroke: $white;
     }
   }
 }
