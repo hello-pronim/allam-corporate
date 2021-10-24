@@ -15,7 +15,7 @@ const RetirementLiving: NextPage = () => {
     <Layout>
       <Hero />
       <TrustMakers />
-      <CardGrid title="Retirement homes available" col={[2, 3]} padding={[80, 160]}>
+      <CardGrid title="Retirement homes available" col={[2, 3]} padding={[80, 160]} background="linear-gradient(180deg, rgba(255,255,255,1) 21%, rgba(237,242,245,1) 91%)">
         <PropertyCard />
         <PropertyCard />
         <PropertyCard />
@@ -27,6 +27,8 @@ const RetirementLiving: NextPage = () => {
         title="News and Events"
         col={[1, 2]}
         button={{ label: "View More", url: "#" }}
+        padding={[80, 160]}
+        background="linear-gradient(180deg, rgba(255,255,255,1) 21%, rgba(237,242,245,1) 91%)"
       >
         <MinimalCard />
         <MinimalCard />

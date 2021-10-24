@@ -12,10 +12,11 @@ export interface CardGridProps {
   button?: {
     label: string,
     url: string,
-  }
+  };
+  background?: string,
 }
 
-const CardGrid = ({ title, children, col = [1, 2, 3], button,  padding=[]}: CardGridProps) => {
+const CardGrid = ({ title, children, col = [1, 2, 3], button,  padding=[], background}: CardGridProps) => {
   const [showAll, setShowAll] = useState(false);
   const asArray = React.Children.toArray(children);
   const countChildren = asArray.length;
@@ -23,7 +24,7 @@ const CardGrid = ({ title, children, col = [1, 2, 3], button,  padding=[]}: Card
 
   return (
     <>
-      <div className={styles.CardGrid} css={css({py: rem(padding)})}>
+      <div className={styles.CardGrid} css={css({py: rem(padding), background: background && background})}>
         {title && <h2>{title}</h2>}
         <div
           className={styles.GridWrapper}
