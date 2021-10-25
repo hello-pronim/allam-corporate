@@ -1,14 +1,15 @@
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
 import Slider from "react-slick";
+import type { HeroSliderModel } from "@models";
 import { ImageButton } from "@components/Common/Common";
-import { heroObj } from "./constant";
 import styles from "./Hero.module.scss";
 
-export interface IHeroProps {}
+type IHeroProps = {
+  data: HeroSliderModel[];
+};
 
-const Hero = () => {
+const Hero = ({ data }: IHeroProps) => {
   const settings = {
     className: "hero-slider",
     dots: true,
@@ -25,17 +26,17 @@ const Hero = () => {
   return (
     <div className={styles.hero}>
       <Slider {...settings}>
-        {heroObj.map((el, id: number) => (
+        {data?.map((el, id: number) => (
           <div key={id} className={styles.heroSingleSlide}>
             <div
               className={styles.heroWrapper}
               style={{
-                backgroundImage: `linear-gradient(0deg, #e3e3e3, #e3e3e3), url(${el.imageUrl})`,
+                backgroundImage: `linear-gradient(0deg, #e3e3e3, #e3e3e3), url(${el.backgroundImage?.[0].url})`,
               }}
             >
               <div className={styles.heroContent}>
-                <h1 className="home">{el.title}</h1>
-                <h4>{el.subtitle}</h4>
+                <h1 className="home">{el.heading}</h1>
+                <h4>{el.subHeading}</h4>
               </div>
               <div className={styles.heroFilter}>
                 <p>Find your perfect home without difficulties</p>

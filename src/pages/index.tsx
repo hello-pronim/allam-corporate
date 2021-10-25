@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import get from "lodash/get";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
 import Layout from "@components/Layout/Layout";
@@ -9,18 +10,20 @@ import Monterey from "@sections/Home/Monterey/Monterey";
 import Promotion from "@sections/Home/Promotion/Promotion";
 import FindHomes from "@sections/Home/FindHomes/FindHomes";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
-import { getClient } from "@libs/api";
 
 type HomePageProps = {
-  data: any;
+  pageData?: any;
+  trustMakers?: any;
 };
 
-const Home: NextPage<HomePageProps> = ({ data }) => {
-  console.log(data);
+const Home: NextPage<HomePageProps> = ({ pageData, trustMakers }) => {
+  console.log(pageData);
+  const heroSlider = get(pageData, "entry.heroSlider", []);
+  console.info(heroSlider);
 
   return (
     <Layout>
-      <Hero />
+      <Hero data={heroSlider} />
       <TrustMakers />
       <PerfectEstate />
       <Monterey />
@@ -31,7 +34,7 @@ const Home: NextPage<HomePageProps> = ({ data }) => {
   );
 };
 
-const query = gql`
+const homeQuery = gql`
   query home {
     entry(section: "homePage") {
       ... on homePage_homePage_Entry {
@@ -39,6 +42,97 @@ const query = gql`
           ... on heroSlider_BlockType {
             heading
             subHeading
+            backgroundImage {
+              url
+              title
+            }
+          }
+        }
+        globalPromos {
+          ... on globalPromos_trustMakers_BlockType {
+            heading
+            description
+          }
+        }
+        homepageLayout {
+          ... on homepageLayout_perfectEstate_BlockType {
+            heading
+            description
+            backgroundImage {
+              url
+            }
+            buttons {
+              ... on buttons_BlockType {
+                buttonLabel
+                buttonLink
+                buttonType
+              }
+            }
+          }
+          ... on homepageLayout_monterey_BlockType {
+            headingRedactor
+            description
+            backgroundImage {
+              url
+            }
+            buttons {
+              ... on buttons_BlockType {
+                buttonLabel
+                buttonLink
+                buttonType
+              }
+            }
+            icon {
+              url
+              width
+              height
+            }
+          }
+          ... on homepageLayout_promotion_BlockType {
+            leftHeading
+            leftSubHeading
+            leftLink {
+              uri
+            }
+            rightHeading
+            rightSubHeading
+            rightLink {
+              uri
+            }
+          }
+          ... on homepageLayout_findHomes_BlockType {
+            heading
+            description
+            backgroundImage {
+              url
+            }
+            buttons {
+              ... on buttons_BlockType {
+                buttonLabel
+                buttonLink
+                buttonType
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const trustQuery = gql`
+  query trustMaker {
+    globalSet(handle: "trustMakers") {
+      ... on trustMakers_GlobalSet {
+        trustFeature {
+          ... on trustFeature_feature_BlockType {
+            heading
+            subHeader
+            icon {
+              url
+              width
+              height
+            }
           }
         }
       }
@@ -47,11 +141,13 @@ const query = gql`
 `;
 
 export const getStaticProps = async function () {
-  const data = await craftAPI(query);
+  const pageData = await craftAPI(homeQuery);
+  const trustMakers = await craftAPI(trustQuery);
 
   return {
     props: {
-      data,
+      pageData,
+      trustMakers,
     },
     revalidate: 20,
   };
