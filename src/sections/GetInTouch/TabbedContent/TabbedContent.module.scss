@@ -7,9 +7,13 @@
     @include grid-container;
     padding-left: 0 !important;
 <<<<<<< HEAD
+<<<<<<< HEAD
     padding-right: 0 !important;
 =======
 >>>>>>> contact stuff
+=======
+    padding-right: 0 !important;
+>>>>>>> tabbed content prog
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -53,6 +57,7 @@
     }
   }
 
+<<<<<<< HEAD
   .dropdownWrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -61,6 +66,8 @@
     margin-bottom: rem(38);
   }
 
+=======
+>>>>>>> tabbed content prog
   .Content {
     padding-top: rem(127);
     padding-bottom: rem(163);
@@ -120,4 +127,8 @@
     margin-top: rem(24);
     margin-bottom: rem(24);
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> tabbed content prog
