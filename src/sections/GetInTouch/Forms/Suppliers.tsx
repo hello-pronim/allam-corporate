@@ -24,8 +24,8 @@ const Suppliers = () => {
         <label className={styles.checkbox}>
           <input type="checkbox" name="offers" />
           <span>
-            Would you like to receive updates and offers from Allam Property
-            Group?
+            Would you like to receive updates and offers
+            from Allam Property Group?
           </span>
         </label>
         <input type="submit" />
