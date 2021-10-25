@@ -5,7 +5,8 @@
       "@components/*": ["src/components/*"],
       "@styles/*": ["src/styles/*"],
       "@sections/*": ["src/sections/*"],
-      "@libs/*": ["src/libs/*"]
+      "@libs/*": ["src/libs/*"],
+      "@models": ["./src/models"]
     },
     "types": ["@emotion/react/types/css-prop"],
     "target": "es5",
