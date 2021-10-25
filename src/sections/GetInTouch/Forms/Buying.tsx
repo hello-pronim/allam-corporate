@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./forms.module.scss";
-import { ImageButton } from "@components/Common/Common";
-import { css } from "@styled-system/css";
 import classNames from "classnames";
 
 export interface BuyingProps {}
@@ -34,47 +32,29 @@ const Buying = () => {
       </div>
       <div className={classNames(styles.right)}>
         <select className={styles.dropdown}>
-          <option value={undefined}>
-            What type of employment do you do?
-          </option>
+          <option value={undefined}>What type of employment do you do?</option>
         </select>
         <select className={styles.dropdown}>
-          <option value={undefined}>
-            What estate are you interested in?
-          </option>
+          <option value={undefined}>What estate are you interested in?</option>
         </select>
         <select className={styles.dropdown}>
-          <option value={undefined}>
-            What type of buyer are you?
-          </option>
+          <option value={undefined}>What type of buyer are you?</option>
         </select>
         <h6>I’m looking to buy in the next?</h6>
         <div className={styles.radioButtonWrapper}>
           <label className={styles.radioButton}>
-            <input
-              type="radio"
-              name="timeFrame"
-              value="1 – 3 mths"
-            />
+            <input type="radio" name="timeFrame" value="1 – 3 mths" />
             <span className={styles.chk}>1 – 3 mths</span>
           </label>
           <label className={styles.radioButton}>
-            <input
-              type="radio"
-              name="timeFrame"
-              value="3 – 6 mths"
-            />
+            <input type="radio" name="timeFrame" value="3 – 6 mths" />
             <span>3 – 6 mths</span>
           </label>
           <label className={styles.radioButton}>
-            <input
-              type="radio"
-              name="timeFrame"
-              value="not sure"
-            />
+            <input type="radio" name="timeFrame" value="not sure" />
             <span>not sure</span>
           </label>
-        </div> 
+        </div>
       </div>
     </form>
   );

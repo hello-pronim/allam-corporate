@@ -30,7 +30,7 @@ const TabbedContent = () => {
     const storedFormIndex = localStorage.getItem("active-form-index");
     storedForm && setFormType(storedForm);
 
-    if (activeTab === 'contact') {
+    if (activeTab === "contact") {
       //@ts-ignore
       selector.current.selectedIndex = storedFormIndex;
     }
@@ -52,7 +52,7 @@ const TabbedContent = () => {
       <div
         className={styles.TabbedContentWrapper}
         css={css({
-          backgroundImage: `url("/assets/images/home/img-monterey-bg.jpg")`,
+          backgroundImage: `url("/assets/images/temp/contact-background.jpg")`,
         })}
       >
         <div className={styles.TabWrapper}>
@@ -65,7 +65,7 @@ const TabbedContent = () => {
             />
             <div className={styles.Divider}></div>
             <ImageButton
-              icon="gallery"
+              icon="map"
               label="Our Locations"
               onClick={() => setActiveTab("locations")}
             />
@@ -73,22 +73,30 @@ const TabbedContent = () => {
         </div>
         {activeTab === "contact" && (
           <div className={styles.Content}>
-            <h4>Please fill out the form and we'll get back to you shortly</h4>
-            <h6>What's the reason for your enquiry?</h6>
-            <select
-              className={styles.dropdown}
-              onChange={(e) => setActiveForm(e)}
-              ref={selector}
-            >
-              <option value="General enquiry">General enquiry</option>
-              <option value="Request an appointment">
-                Request an appointment
-              </option>
-              <option value="I'm interested in buying">
-                I'm interested in buying
-              </option>
-              <option value="Trade and Suppliers">Trade and Suppliers</option>
-            </select>
+            <div className={styles.dropdownWrapper}>
+              <div>
+                <h4>
+                  Please fill out the form and we'll get back to you shortly
+                </h4>
+                <h6>What's the reason for your enquiry?</h6>
+                <select
+                  className={styles.dropdown}
+                  onChange={(e) => setActiveForm(e)}
+                  ref={selector}
+                >
+                  <option value="General enquiry">General enquiry</option>
+                  <option value="Request an appointment">
+                    Request an appointment
+                  </option>
+                  <option value="I'm interested in buying">
+                    I'm interested in buying
+                  </option>
+                  <option value="Trade and Suppliers">
+                    Trade and Suppliers
+                  </option>
+                </select>
+              </div>
+            </div>
             {
               //@ts-ignore
               <ActiveForm />
@@ -98,27 +106,27 @@ const TabbedContent = () => {
         {activeTab === "locations" && (
           <div className={styles.locationWrapper}>
             <div className={styles.gridWrapper}>
-              <CardGrid
-                title="News and Events"
-                col={[1, 3]}
-                padding={[80, 160]}
-              >
+              <CardGrid title="Our locations" col={[1, 3]} padding={[80, 160]}>
                 <div className={styles.locationCard}>
                   <h5>Ardennes Estate</h5>
                   <p>Ardennes Avenue, Edmondson Park NSW 2174</p>
                   <div className={styles.divider} />
                   <h5>Sales Centre</h5>
                   <p>
-                    2 Moscow Road, <br/>
-                    Edmondson Park NSW <br/>
-                    <strong>Thurs to Mon</strong> 10am - 5pm <br/>
+                    2 Moscow Road, <br />
+                    Edmondson Park NSW <br />
+                    <strong>Thurs to Mon</strong> 10am - 5pm <br />
                     <strong>Phone</strong> 0405 205 048
                   </p>
                   <div className={styles.divider} />
                   <div>
-                    <Button rounded href="#">Get directions</Button>
-                    <Button color="light" rounded href="#">View estate</Button>
-                    </div>
+                    <Button rounded href="#">
+                      Get directions
+                    </Button>
+                    <Button color="light" rounded href="#">
+                      View estate
+                    </Button>
+                  </div>
                 </div>
               </CardGrid>
             </div>

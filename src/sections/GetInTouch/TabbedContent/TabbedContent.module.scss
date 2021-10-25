@@ -50,6 +50,14 @@
     }
   }
 
+  .dropdownWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: rem(48);
+    border-bottom: rem(1.16) solid $grey;
+    margin-bottom: rem(38);
+  }
+
   .Content {
     padding-top: rem(127);
     padding-bottom: rem(163);
@@ -74,10 +82,10 @@
   border-radius: rem(4);
   border: 1px solid $grey;
   padding: rem(12) rem(16);
-  width: rem(389);
+  width: 100%;
   font-size: rem(16);
   line-height: rem(24);
-  margin-bottom: rem(74);
+  margin-bottom: rem(38);
   color: $grey;
   &::before {
     content: "/";
