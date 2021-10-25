@@ -19,6 +19,7 @@
     "formik": "^2.2.9",
     "formik-persist": "^1.1.0",
     "graphql": "^15.6.1",
+    "lodash": "^4.17.21",
     "mapbox-gl": "^2.5.1",
     "next": "11.1.0",
     "react": "17.0.2",
@@ -30,6 +31,7 @@
     "sass": "^1.38.1"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.176",
     "@types/mapbox-gl": "^2.4.2",
     "@types/react": "17.0.19",
     "@types/react-modal": "^3.12.1",
