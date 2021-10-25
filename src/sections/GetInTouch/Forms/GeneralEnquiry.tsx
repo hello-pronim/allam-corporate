@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./forms.module.scss";
-import { ImageButton } from "@components/Common/Common";
-import { css } from "@styled-system/css";
 import classNames from "classnames";
 
 export interface GeneralEnquiryProps {}
@@ -16,7 +14,7 @@ const GeneralEnquiry = () => {
         <label className={styles.checkbox}>
           <input type="checkbox" name="terms" />
           <span>
-          By clicking submit you acknowledge Allam may contact you via email,
+            By clicking submit you acknowledge Allam may contact you via email,
             you also agree to their Terms and Conditions.
           </span>
         </label>

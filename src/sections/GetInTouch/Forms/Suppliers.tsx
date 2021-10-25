@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./forms.module.scss";
-import { ImageButton } from "@components/Common/Common";
-import { css } from "@styled-system/css";
 import classNames from "classnames";
 
 export interface SuppliersProps {}
@@ -46,30 +44,18 @@ const Suppliers = () => {
         <h6>How big is your company?</h6>
         <div className={styles.radioButtonWrapper}>
           <label className={styles.radioButton}>
-            <input
-              type="radio"
-              name="employees"
-              value="1-3"
-            />
+            <input type="radio" name="employees" value="1-3" />
             <span className={styles.chk}>1-3</span>
           </label>
           <label className={styles.radioButton}>
-            <input
-              type="radio"
-              name="employees"
-              value="4-8"
-            />
+            <input type="radio" name="employees" value="4-8" />
             <span>4-8</span>
           </label>
           <label className={styles.radioButton}>
-            <input
-              type="radio"
-              name="employees"
-              value="9-12"
-            />
+            <input type="radio" name="employees" value="9-12" />
             <span>9-12</span>
           </label>
-        </div> 
+        </div>
       </div>
     </form>
   );
