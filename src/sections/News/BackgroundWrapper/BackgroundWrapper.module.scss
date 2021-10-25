@@ -1,0 +1,11 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.BackgroundWrapper {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 36%,
+    rgba(237, 242, 245, 1) 80%
+  );
+}

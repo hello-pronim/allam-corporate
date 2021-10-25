@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./CardGrid.module.scss";
 import css from "@styled-system/css";
 import { Button } from "@components/Common/Common";
@@ -8,23 +8,38 @@ export interface CardGridProps {
   title?: string;
   children?: React.ReactNode;
   padding?: number | number[];
+  maxItems?: number;
   col?: Array<number>;
+  colGap?: number;
+  rowGap?: number;
   button?: {
-    label: string,
-    url: string,
-  }
+    label: string;
+    url: string;
+  };
+  smallTitle?: boolean;
 }
 
-const CardGrid = ({ title, children, col = [1, 2, 3], button,  padding=[]}: CardGridProps) => {
+const CardGrid = ({
+  title,
+  children,
+  col = [1, 2, 3],
+  button,
+  padding = [],
+  maxItems = 6,
+  colGap = 18,
+  rowGap = 18,
+  smallTitle = false,
+}: CardGridProps) => {
   const [showAll, setShowAll] = useState(false);
   const asArray = React.Children.toArray(children);
   const countChildren = asArray.length;
-  const childGate = showAll ? asArray : asArray?.slice(0, 6);
+  const childGate = showAll ? asArray : asArray?.slice(0, maxItems);
 
   return (
     <>
-      <div className={styles.CardGrid} css={css({py: rem(padding)})}>
-        {title && <h2>{title}</h2>}
+      <div className={styles.CardGrid} css={css({ py: rem(padding) })}>
+        {title  && !smallTitle && <h2>{title}</h2>}
+        {title  && smallTitle && <h4>{title}</h4>}
         <div
           className={styles.GridWrapper}
           css={css({
@@ -33,18 +48,28 @@ const CardGrid = ({ title, children, col = [1, 2, 3], button,  padding=[]}: Card
               `repeat(${col[1]}, 1fr)`,
               `repeat(${col[3]}, 1fr)`,
             ],
+            columnGap: rem(colGap),
+            rowGap: rem(rowGap),
           })}
         >
           {childGate.map((child) => (
             <>{child}</>
           ))}
         </div>
-        {(countChildren > 6 || button) && (
+        {(countChildren > maxItems || button) && (
           <div className={styles.buttonRow}>
-            {countChildren > 6 && <Button rounded={true} onClick={() => setShowAll(!showAll)}>{showAll
-              ? "Show less"
-              : `Show more (${asArray.length - 6})`}</Button>}
-            {button && <Button color="dark-secondary" rounded={true} href={button.url}>{button.label}</Button>}
+            {countChildren > maxItems && (
+              <Button rounded={true} onClick={() => setShowAll(!showAll)}>
+                {showAll
+                  ? "Show less"
+                  : `Show more (${asArray.length - maxItems})`}
+              </Button>
+            )}
+            {button && (
+              <Button color="dark-secondary" rounded={true} href={button.url}>
+                {button.label}
+              </Button>
+            )}
           </div>
         )}
       </div>
