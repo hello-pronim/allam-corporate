@@ -1,21 +1,9 @@
-import React, { useEffect, useState, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import styles from "./PostSlider.module.scss";
 import { css } from "@styled-system/css";
 import rem from "src/utils/pxRem";
-import classNames from "classnames";
 import Slider from "react-slick";
 import SliderArrow from './sliderArrow';
-import Icon from "@components/Icons/Icons";
-
-export interface CardProps {
-  featured?: boolean;
-  title: string;
-  subtitle?: string;
-  year: number;
-  background?: string;
-  textColor?: "grey" | "white";
-  index?: number;
-}
 
 export interface PostSliderProps {
   padding?: number | number[];

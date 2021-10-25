@@ -15,9 +15,8 @@ export interface featuredPostProps {
 }
 
 const FeaturedPost = ({ content }: featuredPostProps) => {
-
-  const date = (date:string) => {
-    const d= date && new Date(date);
+  const date = (date: string) => {
+    const d = date && new Date(date);
     var options = { day: "numeric", month: "long", year: "numeric" };
     //@ts-ignore
     const writtenDate = d && d.toLocaleDateString("en-AU", options);
@@ -32,10 +31,17 @@ const FeaturedPost = ({ content }: featuredPostProps) => {
         </div>
         <h1>News and Events</h1>
         <div className={styles.FeaturedPostWrapperContent}>
-          <div className={styles.FeaturedPostWrapperContentImage} css={css({backgroundImage: `url(${content.imageUrl})`})} />
+          <div
+            className={styles.FeaturedPostWrapperContentImage}
+            css={css({ backgroundImage: `url(${content.imageUrl})` })}
+          />
           <div className={styles.FeaturedPostWrapperContentDetails}>
             <span>{date(content.date)}</span>
-            <div className={styles.FeaturedPostWrapperContentDetailsCategories}>{content.categories.map((category) => {return <span key={category}>{category}</span>})}</div>
+            <div className={styles.FeaturedPostWrapperContentDetailsCategories}>
+              {content.categories.map((category) => {
+                return <span key={category}>{category}</span>;
+              })}
+            </div>
             <span>{content.estate}</span>
           </div>
           <h4>{content.title}</h4>
