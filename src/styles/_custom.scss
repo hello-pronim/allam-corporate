@@ -141,6 +141,35 @@
   }
 }
 
+.post-slider {
+  height: 100%;
+  .slick-list,
+  .slick-track {
+    height: 100%;
+  }
+
+  .slick-list {
+    overflow: visible;
+    // padding: 0 20% 0 0 !important;
+    .slick-track {
+      &::before {
+        display: none;
+      }
+      display: flex;
+      // align-items: stretch;
+      column-gap: 24px;
+      .slick-slide {
+        display: flex;
+        align-self: stretch;
+        height: unset;
+        > div {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
 // TrustMaker slider
 .trustMaker-slider {
   .slick-slider {
