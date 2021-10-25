@@ -15,8 +15,7 @@ export interface PostCardProps {
 }
 
 const PostCard = ({ content }: PostCardProps) => {
-
-  const date = (date:string) => {
+  const date = (date: string) => {
     const d = date && new Date(date);
     var options = { day: "numeric", month: "long", year: "numeric" };
     //@ts-ignore
@@ -28,10 +27,17 @@ const PostCard = ({ content }: PostCardProps) => {
     <div className={styles.PostCard}>
       <div className={styles.PostCardWrapper}>
         <div className={styles.PostCardWrapperContent}>
-          <div className={styles.PostCardWrapperContentImage} css={css({backgroundImage: `url(${content.imageUrl})`})}/>
+          <div
+            className={styles.PostCardWrapperContentImage}
+            css={css({ backgroundImage: `url(${content.imageUrl})` })}
+          />
           <div className={styles.PostCardWrapperContentDetails}>
             <span>{date(content.date)}</span>
-            <div className={styles.PostCardWrapperContentDetailsCategories}>{content.categories.map((category) => {return <span key={category}>{category}</span>})}</div>
+            <div className={styles.PostCardWrapperContentDetailsCategories}>
+              {content.categories.map((category) => {
+                return <span key={category}>{category}</span>;
+              })}
+            </div>
             <span>{content.estate}</span>
           </div>
           <h5>{content.title}</h5>

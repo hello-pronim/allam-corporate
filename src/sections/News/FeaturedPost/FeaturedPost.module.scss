@@ -46,7 +46,7 @@
           &Categories {
             & > *:not(:last-child) {
               &::after {
-                content: ", ",
+                content: ", ";
               }
             }
           }

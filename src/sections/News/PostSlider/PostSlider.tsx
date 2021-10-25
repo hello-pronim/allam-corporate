@@ -3,7 +3,7 @@ import styles from "./PostSlider.module.scss";
 import { css } from "@styled-system/css";
 import rem from "src/utils/pxRem";
 import Slider from "react-slick";
-import SliderArrow from './sliderArrow';
+import SliderArrow from "./sliderArrow";
 
 export interface PostSliderProps {
   padding?: number | number[];

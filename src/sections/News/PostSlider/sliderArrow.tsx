@@ -3,14 +3,16 @@ import React from "react";
 import styles from "./PostSlider.module.scss";
 
 export interface ArrowProps {
-    onClick: React.MouseEventHandler;
-    right?: boolean;
-  }
+  onClick: React.MouseEventHandler;
+  right?: boolean;
+}
 
-const SliderArrow = ({onClick, right=false}:ArrowProps) => {
-
+const SliderArrow = ({ onClick, right = false }: ArrowProps) => {
   return (
-    <div className={classNames(styles.SliderArrow, right && styles.RightArrow)} onClick={onClick}>
+    <div
+      className={classNames(styles.SliderArrow, right && styles.RightArrow)}
+      onClick={onClick}
+    >
       <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M66.6665 40L13.3332 40"
