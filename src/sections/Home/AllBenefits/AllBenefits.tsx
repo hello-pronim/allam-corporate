@@ -1,29 +1,24 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@components/Common/Common";
+import { Button, Redactor } from "@components/Common/Common";
 import styles from "./AllBenefits.module.scss";
 
-export interface IAllBenefitsProps {}
+type IAllBenefitsProps = {
+  data?: any;
+};
 
-const AllBenefits = ({}: IAllBenefitsProps) => {
+const AllBenefits = ({ data }: IAllBenefitsProps) => {
   return (
     <div className={styles.allBenefits}>
       <div className={styles.allBenefitsWrapper}>
         <div className={styles.allBenefitsCard}>
           <div className={styles.allBenefitsCardContent}>
             <div className={styles.allBenefitsCardContentLeft}>
-              <h2 className="home">
-                <strong>Why choose Allam?</strong> <br /> Find out about our
-                Easy Buy process.
-              </h2>
+              <Redactor>{data?.headingRedactor}</Redactor>
 
               <div className={styles.allBenefitsCardContentLeftDetail}>
-                <p>
-                  Our history spans 25 years and during that time we’ve helped
-                  thousands of customers find a new home, with homes and estates
-                  spread across many of Sydney’s most popular areas.
-                </p>
+                <Redactor>{data?.introBlurb}</Redactor>
 
                 <ul>
                   <li>One Price</li>
@@ -47,12 +42,17 @@ const AllBenefits = ({}: IAllBenefitsProps) => {
           </div>
 
           <div className={styles.allBenefitsCardCTA}>
-            <Button color="light" rounded>
-              Contact an Agent
+            <Button
+              color={data?.buttons?.[0]?.buttonType}
+              href={data?.buttons?.[0]?.buttonLink}
+              rounded
+            >
+              {data?.buttons?.[0]?.buttonLabel}
             </Button>
+
             <div className={styles.allBenefitsCardCTAProcess}>
-              <Link href="/">
-                <a>View our Process</a>
+              <Link href={data?.cta?.[0]?.link}>
+                <a>{data?.cta?.[0]?.label}</a>
               </Link>
             </div>
           </div>

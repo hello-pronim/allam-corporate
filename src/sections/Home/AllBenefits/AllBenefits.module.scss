@@ -39,6 +39,8 @@
       &Left {
         h2 {
           color: $grey;
+          font-size: rem(40);
+          line-height: rem(42);
           margin-bottom: rem(42);
           @include below($large) {
             line-height: 1;

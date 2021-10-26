@@ -42,7 +42,9 @@ const Home: NextPage<HomePageProps> = ({ pageData, trustMakers }) => {
       <FindHomes
         data={propsFind(homeLayouts, "homepageLayout_findHomes_BlockType")}
       />
-      <AllBenefits />
+      <AllBenefits
+        data={propsFind(globalPromos, "globalPromos_easybuy_BlockType")}
+      />
     </Layout>
   );
 };
