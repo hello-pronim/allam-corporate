@@ -1,5 +1,4 @@
 import * as React from "react";
-import cx from "classnames";
 
 type IRedactorProps = {
   className?: string;
@@ -11,8 +10,8 @@ const Redactor = ({ className = "", children, ...rest }: IRedactorProps) => {
 
   return (
     <div
+      className={className}
       dangerouslySetInnerHTML={{ __html: children }}
-      className={cx("redactor", className)}
       {...rest}
     />
   );
