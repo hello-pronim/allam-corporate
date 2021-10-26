@@ -8,6 +8,7 @@ export type CraftImage = {
 export type CTAModel = {
   label: string;
   link: string;
+  uri?: string;
 };
 
 export type ButtonModel = {
@@ -42,4 +43,14 @@ export type HomeLayoutModel = {
   buttons?: ButtonModel[];
   icon?: CraftImage[];
   backgroundImage?: CraftImage[];
+};
+
+export type PromotionLayout = {
+  leftHeadingRedactor?: string;
+  leftSubHeading?: string;
+  leftLink?: CTAModel[];
+  rightHeading?: string;
+  rightSubHeading?: string;
+  rightLink?: CTAModel[];
+  image?: CraftImage[];
 };

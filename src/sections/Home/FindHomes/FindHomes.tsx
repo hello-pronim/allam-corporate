@@ -1,26 +1,36 @@
 import React from "react";
-import { Button } from "@components/Common/Common";
+import { HomeLayoutModel } from "@models";
+import { Button, Redactor } from "@components/Common/Common";
 import styles from "./FindHomes.module.scss";
 
 export interface IFindHomesProps {
-  data?: any;
+  data?: HomeLayoutModel;
 }
 
 const FindHomes = ({ data }: IFindHomesProps) => {
   return (
-    <div className={styles.findHomes}>
+    <div
+      className={styles.findHomes}
+      style={{
+        backgroundImage: `url(${data?.backgroundImage?.[0]?.url})`,
+      }}
+    >
       <div className={styles.findHomesWrapper}>
         <div className={styles.findHomesContent}>
           <div className={styles.findHomesContentText}>
-            <h2 className="home">Find where we build our homes</h2>
-            <p>
-              Our history spans 25 years and during that time we’ve helped
-              thousands of customers find a new home, with homes and estates
-              spread across many of Sydney’s most popular areas.
-            </p>
+            <h2 className="home">{data?.heading}</h2>
+            <div className={styles.findHomesContentTextDescription}>
+              <Redactor>{data?.description ?? ""}</Redactor>
+            </div>
           </div>
 
-          <Button rounded>Explore where we build</Button>
+          <Button
+            color={data?.buttons?.[0]?.buttonType}
+            href={data?.buttons?.[0]?.buttonLink}
+            rounded
+          >
+            {data?.buttons?.[0]?.buttonLabel}
+          </Button>
         </div>
       </div>
     </div>

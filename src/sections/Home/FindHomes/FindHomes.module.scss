@@ -4,7 +4,6 @@
 .findHomes {
   height: rem(770);
   padding: rem(56) 0 rem(32);
-  background-image: url("/assets/images/home/img-perfect-estate-bg.jpg");
   background-size: cover;
   background-position: center;
   @include breakpoint($large) {

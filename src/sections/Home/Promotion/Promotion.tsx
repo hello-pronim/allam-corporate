@@ -1,9 +1,10 @@
 import React from "react";
-import { Button } from "@components/Common/Common";
+import { Button, Redactor } from "@components/Common/Common";
+import { PromotionLayout } from "@models";
 import styles from "./Promotion.module.scss";
 
 export interface IPromotionProps {
-  data?: any;
+  data?: PromotionLayout;
 }
 
 const Promotion = ({ data }: IPromotionProps) => {
@@ -11,21 +12,29 @@ const Promotion = ({ data }: IPromotionProps) => {
     <div className={styles.promotion}>
       <div className={styles.promotionLeft}>
         <h2 className="home">WIN A NEW HOME Promotion extended</h2>
-        <h5>Get the $15,000 HomeBuilder Grant*</h5>
-        <Button color="dark-secondary" rounded>
+        <h5>{data?.leftSubHeading}</h5>
+        <Button
+          color="dark-secondary"
+          href={data?.leftLink?.[0]?.uri ?? "/"}
+          rounded
+        >
           View more
         </Button>
       </div>
       <div
         className={styles.promotionMid}
         style={{
-          background: `url("/assets/images/home/img-home-promotion.jpg") no-repeat`,
+          backgroundImage: `url(${data?.image?.[0]?.url ?? ""})`,
         }}
       />
       <div className={styles.promotionRight}>
-        <h2 className="home">Display Homes now open</h2>
-        <h5>Explore our Trafalgar and Ardmore designs now on display.</h5>
-        <Button color="dark-secondary" rounded>
+        <h2 className="home">{data?.rightHeading}</h2>
+        <h5>{data?.rightSubHeading}</h5>
+        <Button
+          color="dark-secondary"
+          href={data?.rightLink?.[0]?.uri ?? "/"}
+          rounded
+        >
           View more
         </Button>
       </div>

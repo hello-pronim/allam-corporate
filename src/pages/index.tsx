@@ -124,7 +124,7 @@ const homeQuery = gql`
             leftHeadingRedactor
             leftSubHeading
             leftLink {
-              url
+              uri
             }
             image {
               url
@@ -132,7 +132,7 @@ const homeQuery = gql`
             rightHeading
             rightSubHeading
             rightLink {
-              url
+              uri
             }
           }
           ... on homepageLayout_findHomes_BlockType {
