@@ -7,7 +7,6 @@
   background-image: url("/assets/images/home/img-monterey-bg.jpg");
   background-size: cover;
   background-position: center;
-
   @include breakpoint($large) {
     height: rem(950);
     padding-top: rem(160);
@@ -58,13 +57,15 @@
         margin-bottom: rem(24);
       }
 
-      p {
-        color: $white;
-        font-size: rem(18);
-        line-height: rem(28);
-        margin-bottom: rem(36);
-        @include breakpoint($large) {
-          margin-bottom: rem(0);
+      &Description {
+        p {
+          color: $white;
+          font-size: rem(18);
+          line-height: rem(28);
+          margin-bottom: rem(36);
+          @include breakpoint($large) {
+            margin-bottom: rem(0);
+          }
         }
       }
     }

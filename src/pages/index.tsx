@@ -1,7 +1,9 @@
 import type { NextPage } from "next";
 import get from "lodash/get";
+import { propsFind } from "@utils/propsFind";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
+import { trustQuery } from "@libs/queries";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/Home/Hero/Hero";
 import TrustMakers from "@sections/Home/TrustMakers/TrustMakers";
@@ -19,16 +21,27 @@ type HomePageProps = {
 const Home: NextPage<HomePageProps> = ({ pageData, trustMakers }) => {
   console.log(pageData);
   const heroSlider = get(pageData, "entry.heroSlider", []);
-  console.info(heroSlider);
+  const homeLayouts = get(pageData, "entry.homepageLayout", []);
+  const globalPromos = get(pageData, "entry.globalPromos", []);
 
   return (
     <Layout>
       <Hero data={heroSlider} />
-      <TrustMakers />
-      <PerfectEstate />
-      <Monterey />
-      <Promotion />
-      <FindHomes />
+      <TrustMakers
+        data={propsFind(globalPromos, "globalPromos_trustMakers_BlockType")}
+      />
+      <PerfectEstate
+        data={propsFind(homeLayouts, "homepageLayout_perfectEstate_BlockType")}
+      />
+      <Monterey
+        data={propsFind(homeLayouts, "homepageLayout_monterey_BlockType")}
+      />
+      <Promotion
+        data={propsFind(homeLayouts, "homepageLayout_promotion_BlockType")}
+      />
+      <FindHomes
+        data={propsFind(homeLayouts, "homepageLayout_findHomes_BlockType")}
+      />
       <AllBenefits />
     </Layout>
   );
@@ -44,7 +57,6 @@ const homeQuery = gql`
             subHeading
             backgroundImage {
               url
-              title
             }
           }
         }
@@ -52,6 +64,26 @@ const homeQuery = gql`
           ... on globalPromos_trustMakers_BlockType {
             heading
             description
+            hascta
+            cta {
+              label
+              link
+            }
+          }
+          ... on globalPromos_easybuy_BlockType {
+            headingRedactor
+            introBlurb
+            buttons {
+              ... on buttons_BlockType {
+                buttonLabel
+                buttonLink
+                buttonType
+              }
+            }
+            cta {
+              label
+              link
+            }
           }
         }
         homepageLayout {
@@ -89,15 +121,18 @@ const homeQuery = gql`
             }
           }
           ... on homepageLayout_promotion_BlockType {
-            leftHeading
+            leftHeadingRedactor
             leftSubHeading
             leftLink {
-              uri
+              url
+            }
+            image {
+              url
             }
             rightHeading
             rightSubHeading
             rightLink {
-              uri
+              url
             }
           }
           ... on homepageLayout_findHomes_BlockType {
@@ -120,26 +155,6 @@ const homeQuery = gql`
   }
 `;
 
-const trustQuery = gql`
-  query trustMaker {
-    globalSet(handle: "trustMakers") {
-      ... on trustMakers_GlobalSet {
-        trustFeature {
-          ... on trustFeature_feature_BlockType {
-            heading
-            subHeader
-            icon {
-              url
-              width
-              height
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
 export const getStaticProps = async function () {
   const pageData = await craftAPI(homeQuery);
   const trustMakers = await craftAPI(trustQuery);
@@ -149,7 +164,7 @@ export const getStaticProps = async function () {
       pageData,
       trustMakers,
     },
-    revalidate: 20,
+    revalidate: 500,
   };
 };
 

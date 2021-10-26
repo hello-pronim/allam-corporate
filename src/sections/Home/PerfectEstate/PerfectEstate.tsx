@@ -1,13 +1,16 @@
 import React from "react";
 import Image from "next/image";
 import Slider from "react-slick";
+import { HomeLayoutModel } from "@models";
 import { estateObj } from "./constant";
+import { Button, Redactor } from "@components/Common/Common";
 import styles from "./PerfectEstate.module.scss";
-import { Button } from "@components/Common/Common";
 
-export interface IPerfectEstateProps {}
+export interface IPerfectEstateProps {
+  data?: HomeLayoutModel;
+}
 
-const PerfectEstate = ({}: IPerfectEstateProps) => {
+const PerfectEstate = ({ data }: IPerfectEstateProps) => {
   const settings = {
     infinite: false,
     slidesToShow: 1,
@@ -28,15 +31,22 @@ const PerfectEstate = ({}: IPerfectEstateProps) => {
   };
 
   return (
-    <div className={styles.perfectEstate}>
+    <div
+      className={styles.perfectEstate}
+      style={{
+        backgroundImage: `linear-gradient(
+          180deg,
+          rgba(62, 62, 62, 0.2) 0%,
+          rgba(255, 255, 255, 0) 100%
+        ), url(${data?.backgroundImage?.[0]?.url})`,
+      }}
+    >
       <div className={styles.perfectEstateWrapper}>
         <div className={styles.perfectEstateContent}>
-          <h2 className="home">Find the perfect estate for your lifestyle</h2>
-          <p>
-            Our history spans 25 years and during that time we’ve helped
-            thousands of customers find a new home, with homes and estates
-            spread across many of Sydney’s most popular areas.
-          </p>
+          <h2 className="home">{data?.heading}</h2>
+          <div className={styles.perfectEstateContentText}>
+            <Redactor>{data?.description ?? ""}</Redactor>
+          </div>
         </div>
       </div>
 
@@ -63,7 +73,12 @@ const PerfectEstate = ({}: IPerfectEstateProps) => {
         </div>
 
         <div className={styles.perfectEstateLogosCTA}>
-          <Button>View all Estates(10)</Button>
+          <Button
+            color={data?.buttons?.[0]?.buttonType}
+            href={data?.buttons?.[0]?.buttonLink}
+          >
+            {`${data?.buttons?.[0]?.buttonLabel} (10)`}
+          </Button>
         </div>
       </div>
     </div>

@@ -275,7 +275,7 @@
       }
       @include breakpoint($webXLarge) {
         right: calc(
-          #{rem(48)} + #{rem(24)} + (50% - #{rem(math.div(1920, 2))})
+          #{rem(48)} + #{rem(24)} + (50% - #{rem(math.div(1720, 2))})
         );
       }
 

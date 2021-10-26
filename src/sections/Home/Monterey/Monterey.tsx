@@ -1,11 +1,14 @@
 import React from "react";
 import Image from "next/image";
-import { Button } from "@components/Common/Common";
+import { Button, Redactor } from "@components/Common/Common";
+import { HomeLayoutModel } from "@models";
 import styles from "./Monterey.module.scss";
 
-export interface IMontereyProps {}
+export interface IMontereyProps {
+  data?: HomeLayoutModel;
+}
 
-const Monterey = ({}: IMontereyProps) => {
+const Monterey = ({ data }: IMontereyProps) => {
   return (
     <div className={styles.monterey}>
       <div className={styles.montereyWrapper}>
@@ -15,26 +18,33 @@ const Monterey = ({}: IMontereyProps) => {
               <h2 className="home">
                 An exceptional way of living for over 55s. — Coming mid 2021 —
               </h2>
-              <p>
-                Monterey is Land Lease living for like-minded people on the
-                mid-north coast of NSW. Providing the ultimate community for
-                active over 55s in a beautiful setting close to both the coast
-                and hinterland, Monterey is proudly brought to you by Allam
-                Property Group – successfully building homes since 1991.
-              </p>
 
-              <div className={styles.montereyContentLogo}>
-                <Image
-                  src={"/assets/icons/icon-monterey-logo.svg"}
-                  alt="monterey-logo"
-                  width={251}
-                  height={164}
-                  layout="responsive"
-                />
+              <div className={styles.montereyContentTextDescription}>
+                <Redactor>{data?.description ?? ""}</Redactor>
               </div>
+
+              {data?.icon?.[0]?.url && (
+                <div className={styles.montereyContentLogo}>
+                  <Image
+                    src={data?.icon?.[0]?.url}
+                    alt={data?.icon?.[0]?.title}
+                    width={data?.icon?.[0]?.width}
+                    height={data?.icon?.[0]?.height}
+                    layout="responsive"
+                  />
+                </div>
+              )}
             </div>
 
-            <Button rounded>Learn more</Button>
+            {data?.buttons?.[0]?.buttonLink && (
+              <Button
+                color={data?.buttons?.[0]?.buttonType}
+                href={data?.buttons?.[0]?.buttonLink}
+                rounded
+              >
+                {data?.buttons?.[0]?.buttonLabel}
+              </Button>
+            )}
           </div>
         </div>
       </div>

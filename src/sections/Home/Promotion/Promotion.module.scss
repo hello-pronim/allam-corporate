@@ -47,7 +47,6 @@
   &Mid {
     width: 100%;
     height: rem(290);
-    background-image: url("/assets/images/home/img-home-promotion.jpg");
     background-size: cover;
     background-position: center top;
     @include breakpoint($large) {

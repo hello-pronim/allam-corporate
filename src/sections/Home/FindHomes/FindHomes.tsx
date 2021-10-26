@@ -2,9 +2,11 @@ import React from "react";
 import { Button } from "@components/Common/Common";
 import styles from "./FindHomes.module.scss";
 
-export interface IFindHomesProps {}
+export interface IFindHomesProps {
+  data?: any;
+}
 
-const FindHomes = ({}: IFindHomesProps) => {
+const FindHomes = ({ data }: IFindHomesProps) => {
   return (
     <div className={styles.findHomes}>
       <div className={styles.findHomesWrapper}>

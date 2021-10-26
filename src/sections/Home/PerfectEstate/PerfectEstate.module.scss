@@ -6,12 +6,6 @@
 .perfectEstate {
   min-height: rem(770);
   padding: rem(56) 0 rem(32);
-  background: linear-gradient(
-      180deg,
-      rgba(62, 62, 62, 0.2) 0%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    url("/assets/images/home/img-lifestyle-bg.jpg");
   background-position: center;
   background-size: cover;
   background-blend-mode: multiply, normal;
@@ -50,18 +44,23 @@
       }
     }
 
-    p {
-      font-size: rem(16);
-      line-height: rem(26);
-      letter-spacing: rem(0.25);
-      color: $white;
+    &Text {
       @include breakpoint($large) {
         grid-column: 8 / span 5;
-        font-size: rem(20);
-        line-height: rem(38);
       }
       @include breakpoint($xx-large) {
         grid-column: 8 / span 4;
+      }
+
+      p {
+        font-size: rem(16);
+        line-height: rem(26);
+        letter-spacing: rem(0.25);
+        color: $white;
+        @include breakpoint($large) {
+          font-size: rem(20);
+          line-height: rem(38);
+        }
       }
     }
   }
@@ -105,6 +104,11 @@
     }
 
     &CTA {
+      padding-right: rem(16);
+      @include breakpoint($medium) {
+        padding: 0;
+      }
+
       button {
         width: 100%;
 
