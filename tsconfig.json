@@ -6,6 +6,7 @@
       "@styles/*": ["src/styles/*"],
       "@sections/*": ["src/sections/*"],
       "@libs/*": ["src/libs/*"],
+      "@utils/*": ["src/utils/*"],
       "@models": ["./src/models"]
     },
     "types": ["@emotion/react/types/css-prop"],
