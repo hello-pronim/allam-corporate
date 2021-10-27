@@ -4,15 +4,15 @@ import Slider from "react-slick";
 import Icon from "@components/Icons/Icons";
 import TrustMark from "@components/TrustMark/TrustMark";
 import { Redactor } from "@components/Common/Common";
-import { TrustMakersModel } from "@models";
-import { marksObj } from "./constant";
+import { TrustMakersModel, TrustFeature } from "@models";
 import styles from "./TrustMakers.module.scss";
 
 type ITrustMakersProps = {
   data?: TrustMakersModel;
+  features?: TrustFeature[];
 };
 
-const TrustMakers = ({ data }: ITrustMakersProps) => {
+const TrustMakers = ({ data, features }: ITrustMakersProps) => {
   const settings = {
     infinite: false,
     slidesToShow: 4,
@@ -51,12 +51,12 @@ const TrustMakers = ({ data }: ITrustMakersProps) => {
 
         <div className={`${styles.trustMakersSlider} trustMaker-slider`}>
           <Slider {...settings}>
-            {marksObj?.map((el: any, id: number) => (
+            {features?.map((feature: TrustFeature, id: number) => (
               <TrustMark
                 key={id}
-                icon={el.icon}
-                title={el.title}
-                description={el.description}
+                icon={feature?.icon?.[0]}
+                title={feature?.heading}
+                description={feature?.subHeading}
               />
             ))}
           </Slider>

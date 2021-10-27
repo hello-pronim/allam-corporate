@@ -19,15 +19,16 @@ type HomePageProps = {
 };
 
 const Home: NextPage<HomePageProps> = ({ pageData, trustMakers }) => {
-  console.log(pageData);
   const heroSlider = get(pageData, "entry.heroSlider", []);
   const homeLayouts = get(pageData, "entry.homepageLayout", []);
   const globalPromos = get(pageData, "entry.globalPromos", []);
+  const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
 
   return (
     <Layout>
       <Hero data={heroSlider} />
       <TrustMakers
+        features={trustFeatures}
         data={propsFind(globalPromos, "globalPromos_trustMakers_BlockType")}
       />
       <PerfectEstate

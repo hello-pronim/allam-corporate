@@ -51,13 +51,13 @@ const Header = ({ ...props }: IHeaderProps) => {
     let navBreakWidths: any[] = [];
     if (!navList || !hiddenList) return;
 
-    console.log(navList.childElementCount);
+    // console.log(navList.childElementCount);
     Object.values(navList?.children)?.forEach((child: any) => {
       totalSpace += child?.offsetWidth;
       navBreakWidths.push(totalSpace);
     });
 
-    console.log("relead", navBreakWidths);
+    // console.log("relead", navBreakWidths);
     const checkNav = () => {
       let availableSpace = navList?.clientWidth - 10;
       let numOfVisibleItems = navList.childElementCount;

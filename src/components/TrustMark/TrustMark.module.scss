@@ -8,9 +8,11 @@
   }
 
   &Icon {
-    svg {
-      width: rem(56);
-      height: rem(56);
+    width: rem(56);
+    height: rem(56);
+
+    @include breakpoint($medium) {
+      margin-bottom: rem(24);
     }
   }
 
@@ -19,12 +21,15 @@
     font-size: rem(48);
     font-weight: 800;
     margin-bottom: rem(4);
+    @include breakpoint($large) {
+      margin-bottom: rem(16);
+    }
   }
 
-  p {
-    font-weight: 700;
+  h5 {
     color: $light-grey;
-    font-size: rem(16);
-    line-height: rem(34);
+    @include breakpoint($medium) {
+      max-width: rem(200);
+    }
   }
 }
