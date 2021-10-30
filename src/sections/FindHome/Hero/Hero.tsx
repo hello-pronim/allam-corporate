@@ -3,12 +3,23 @@ import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
 import EstateFilter from "@components/EstateFilter/EstateFilter";
 import FilterModal from "@components/FilterModal/FilterModal";
 import FilterByChoiceGroup from "@components/FilterByChoiceGroup/FilterByChoiceGroup";
+import { Redactor } from "@components/Common/Common";
 import { locationObj, typeObj } from "./constant";
 import styles from "./Hero.module.scss";
 
-export interface IHeroProps {}
+type IHeroProps = {
+  heading?: string;
+  introBlurb?: string;
+  showMap?: boolean;
+  setShowMap: (value: boolean) => void;
+};
 
-const Hero = () => {
+const Hero = ({
+  heading,
+  introBlurb = "",
+  showMap = false,
+  setShowMap,
+}: IHeroProps) => {
   const [isOpenFilter, setOpenFilter] = useState(false);
 
   return (
@@ -18,17 +29,19 @@ const Hero = () => {
           <BreadCrumb />
         </div>
         <div className={styles.heroContent}>
-          <h1>Find your perfect home</h1>
-          <p>
-            Aliquam leo aliquam ut turpis sed mattis varius. Enim augue
-            tincidunt phasellus blandit tempor commodo, tempor ut egestas in.
-            Amet, in donec quis purus. Ultrices in dui facilisis sit hac porta.
-          </p>
+          <h1>{heading}</h1>
+          <div className={styles.heroContentText}>
+            <Redactor>{introBlurb}</Redactor>
+          </div>
         </div>
       </div>
 
       <div className={styles.heroFilterBar}>
-        <EstateFilter toggleFilter={() => setOpenFilter(!isOpenFilter)} />
+        <EstateFilter
+          showMap={showMap}
+          setShowMap={setShowMap}
+          toggleFilter={() => setOpenFilter(!isOpenFilter)}
+        />
       </div>
 
       <FilterModal
