@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import type { NextPage } from "next";
 import get from "lodash/get";
 import { gql } from "@apollo/client";
@@ -7,7 +8,7 @@ import { trustQuery } from "@libs/queries";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/FindEstate/Hero/Hero";
 import EstateListing from "@sections/FindEstate/EstateListing/EstateListing";
-import TrustMakers from "@sections/FindEstate/TrustMakers/TrustMakers";
+import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 import Overview from "@sections/FindEstate/Overview/Overview";
 
@@ -17,6 +18,7 @@ type EstatesPageProps = {
 };
 
 const FindEstate: NextPage<EstatesPageProps> = ({ pageData, trustMakers }) => {
+  const [showMap, setShowMap] = useState(false);
   const heading = get(pageData, "entry.heading", "");
   const introBlurb = get(pageData, "entry.introBlurb", "");
   const globalPromos = get(pageData, "entry.globalPromos", []);
@@ -24,11 +26,31 @@ const FindEstate: NextPage<EstatesPageProps> = ({ pageData, trustMakers }) => {
 
   return (
     <Layout>
-      <Hero heading={heading} introBlurb={introBlurb} />
-      <Overview />
-      {/* <EstateListing />
-      <TrustMakers />
-      <AllBenefits /> */}
+      <Hero
+        heading={heading}
+        introBlurb={introBlurb}
+        setShowMap={setShowMap}
+        showMap={showMap}
+      />
+      {showMap ? (
+        <Overview />
+      ) : (
+        <>
+          <EstateListing />
+          <div style={{ background: "#eef2f5" }}>
+            <LeadingTrustMakers
+              features={trustFeatures}
+              data={propsFind(
+                globalPromos,
+                "globalPromos_trustMakers_BlockType"
+              )}
+            />
+          </div>
+          <AllBenefits
+            data={propsFind(globalPromos, "globalPromos_easybuy_BlockType")}
+          />
+        </>
+      )}
     </Layout>
   );
 };

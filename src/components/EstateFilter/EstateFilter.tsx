@@ -6,16 +6,17 @@ import styles from "./EstateFilter.module.scss";
 
 export interface IEstateFilterProps {
   toggleFilter: () => void;
+  setShowMap: (value: boolean) => void;
+  showMap?: boolean;
 }
 
-const EstateFilter = ({ toggleFilter }: IEstateFilterProps) => {
-  const [viewMode, setViewMode] = useState(false);
+const EstateFilter = ({
+  showMap = false,
+  setShowMap,
+  toggleFilter,
+}: IEstateFilterProps) => {
   const [openLocationMenu, setOpenLocationMenu] = useState(false);
   const [openTypeMenu, setOpenTypeMenu] = useState(false);
-
-  const changeViewMode = () => {
-    setViewMode(!viewMode);
-  };
 
   const toggleLocationMenu = () => {
     setOpenLocationMenu(!openLocationMenu);
@@ -26,9 +27,9 @@ const EstateFilter = ({ toggleFilter }: IEstateFilterProps) => {
       <div className={styles.estateFilterWrapper}>
         <div className={styles.estateFilterMobile}>
           <ImageButton
-            onClick={changeViewMode}
-            icon={viewMode ? "grid-view" : "map"}
-            label={viewMode ? "Grid view" : "Map view"}
+            onClick={() => setShowMap(!showMap)}
+            icon={showMap ? "grid-view" : "map"}
+            label={showMap ? "Grid view" : "Map view"}
           />
           <ArrowButton label="Filter" onClick={toggleFilter} />
         </div>
@@ -36,8 +37,16 @@ const EstateFilter = ({ toggleFilter }: IEstateFilterProps) => {
         <div className={styles.estateFilterDesktop}>
           <div className={styles.estateFilterDesktopViewBy}>
             <span>View by</span>
-            <ImageButton icon="grid-view" label="Grid view" />
-            <ImageButton icon="map" label="Map view" />
+            <ImageButton
+              icon="grid-view"
+              label="Grid view"
+              onClick={() => setShowMap(false)}
+            />
+            <ImageButton
+              icon="map"
+              label="Map view"
+              onClick={() => setShowMap(true)}
+            />
           </div>
 
           <div className={styles.estateFilterDesktopSortBy}>

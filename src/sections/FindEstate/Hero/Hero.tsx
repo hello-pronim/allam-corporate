@@ -10,9 +10,16 @@ import styles from "./Hero.module.scss";
 type IHeroProps = {
   heading?: string;
   introBlurb?: string;
+  showMap?: boolean;
+  setShowMap: (value: boolean) => void;
 };
 
-const Hero = ({ heading, introBlurb = "" }: IHeroProps) => {
+const Hero = ({
+  heading,
+  introBlurb = "",
+  showMap = false,
+  setShowMap,
+}: IHeroProps) => {
   const [isOpenFilter, setOpenFilter] = useState(false);
 
   return (
@@ -30,7 +37,11 @@ const Hero = ({ heading, introBlurb = "" }: IHeroProps) => {
       </div>
 
       <div className={styles.heroFilterBar}>
-        <EstateFilter toggleFilter={() => setOpenFilter(!isOpenFilter)} />
+        <EstateFilter
+          showMap={showMap}
+          setShowMap={setShowMap}
+          toggleFilter={() => setOpenFilter(!isOpenFilter)}
+        />
       </div>
 
       <FilterModal
