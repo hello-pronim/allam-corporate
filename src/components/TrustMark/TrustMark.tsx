@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import Icon from "@components/Icons/Icons";
 import { CraftImage } from "@models";
 import styles from "./TrustMark.module.scss";
 

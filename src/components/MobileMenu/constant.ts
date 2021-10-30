@@ -49,7 +49,7 @@ export const menuObj = [
   },
   {
     title: "About us",
-    slug: "/",
+    slug: "/about-us",
     subMenu: [
       {
         title: "Test 1",
