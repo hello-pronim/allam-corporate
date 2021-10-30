@@ -54,13 +54,16 @@
       }
     }
 
-    p {
-      color: $grey;
+    &Text {
       @include breakpoint($large) {
         grid-column: 8 / span 5;
       }
       @include breakpoint($xx-large) {
         grid-column: 8 / span 4;
+      }
+
+      p {
+        color: $grey;
       }
     }
   }
