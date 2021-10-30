@@ -12,12 +12,12 @@ import Overview from "@sections/FindHome/Overview/Overview";
 import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
-type HomesPageProps = {
+type FindHomesPageProps = {
   pageData?: any;
   trustMakers?: any;
 };
 
-const FindHome: NextPage<HomesPageProps> = ({ pageData, trustMakers }) => {
+const FindHome: NextPage<FindHomesPageProps> = ({ pageData, trustMakers }) => {
   const [showMap, setShowMap] = useState(false);
   const heading = get(pageData, "entry.heading", "");
   const introBlurb = get(pageData, "entry.introBlurb", "");
@@ -56,7 +56,7 @@ const FindHome: NextPage<HomesPageProps> = ({ pageData, trustMakers }) => {
 };
 
 const findHomesQuery = gql`
-  query estatePage {
+  query findHomesPage {
     entry(section: "findHomesPage") {
       ... on findHomesPage_findHomesPage_Entry {
         heading
