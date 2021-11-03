@@ -36,9 +36,11 @@ const LeadingHomes = ({ titleData, trustFeatures }: ILeadingHomesProps) => {
           </CardGrid>
 
           <div className={styles.leadingHomesPropertyCTA}>
-            <Button color="primary" href="/" size="large" rounded>
-              Load more
-            </Button>
+            <div className={styles.leadingHomesPropertyCTAWrapper}>
+              <Button color="primary" href="/" size="large" rounded>
+                Load more
+              </Button>
+            </div>
           </div>
         </div>
       </div>
