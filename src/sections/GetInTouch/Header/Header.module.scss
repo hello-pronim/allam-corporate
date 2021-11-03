@@ -1,0 +1,16 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.header {
+  &Wrapper {
+    @include grid-container;
+    @include breakpoint($large) {
+      padding-top: rem(220);
+      padding-bottom: rem(110);
+      @include grid(1, 12);
+    }
+    h1 {
+      grid-column: 2 / span 4;
+    }
+  }
+}

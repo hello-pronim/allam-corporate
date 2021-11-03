@@ -36,6 +36,8 @@ const RetirementLiving: NextPage<PageProps> = ({ pageData, trustMakers }) => {
         title="News and Events"
         col={[1, 2]}
         button={{ label: "View More", url: "#" }}
+        padding={[80, 160]}
+        background="linear-gradient(180deg, rgba(255,255,255,1) 21%, rgba(237,242,245,1) 91%)"
       >
         <MinimalCard />
         <MinimalCard />
