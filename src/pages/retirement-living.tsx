@@ -11,19 +11,23 @@ import LeadingHomes from "@sections/Retirement/LeadingHomes/LeadingHomes";
 import CardGrid from "@components/CardGrid/CardGrid";
 import MinimalCard from "@components/MinimalCard/MinimalCard";
 import FullWidthImage from "@components/FullWidthImage/FullWidthImage";
-import ContentWithImage from "@components/ContentWithImage/ContentWithImage";
-import ImageWithKey from "@components/ImageWithKey/ImageWithKey";
+import CostAndFee from "@sections/Retirement/CostAndFee/CostAndFee";
+import MasterPlan from "@sections/Retirement/MasterPlan/MasterPlan";
 import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
 
 const RetirementLiving: NextPage<PageProps> = ({ pageData, trustMakers }) => {
-  console.log(pageData);
-
+  const pageLayout = get(pageData, "entry.retirementLayout", []);
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
+  const fullImageLayout = propsFind(
+    pageLayout,
+    "retirementLayout_fullImage_BlockType"
+  );
+  console.log(pageLayout);
 
   return (
     <Layout>
-      <Hero />
+      <Hero data={propsFind(pageLayout, "retirementLayout_hero_BlockType")} />
       <LeadingHomes
         trustFeatures={trustFeatures}
         titleData={propsFind(
@@ -42,9 +46,13 @@ const RetirementLiving: NextPage<PageProps> = ({ pageData, trustMakers }) => {
         <MinimalCard />
         <MinimalCard />
       </CardGrid>
-      <FullWidthImage image="/assets/images/retirement-living/full-width.png" />
-      <ImageWithKey />
-      <ContentWithImage />
+      <FullWidthImage image={fullImageLayout?.backgroundImage?.[0].url} />
+      <MasterPlan
+        data={propsFind(pageLayout, "retirementLayout_masterPlan_BlockType")}
+      />
+      <CostAndFee
+        data={propsFind(pageLayout, "retirementLayout_feeCovers_BlockType")}
+      />
       <RegisterPanel />
     </Layout>
   );

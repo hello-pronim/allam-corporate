@@ -1,47 +1,49 @@
 import React from "react";
 import Image from "next/image";
-import styles from "./ImageWithKey.module.scss";
 import css from "@styled-system/css";
 import { ImageButton } from "@components/Common/Common";
+import styles from "./MasterPlan.module.scss";
 
-export interface ImageWithKeyProps {}
+export interface IMasterPlanProps {
+  data?: any;
+}
 
-const ImageWithKey = ({}: ImageWithKeyProps) => {
+const MasterPlan = ({ data }: IMasterPlanProps) => {
   return (
     <div className={styles.ContentWithImage}>
       <div className={styles.TopBlock}>
-        <h2>Monterey Masterplan</h2>
+        <h2>{data?.heading}</h2>
       </div>
       <div className={styles.ImageWrapper}>
         <Image
-          alt=""
+          src="/assets/images/img-montery-masterplan.jpg"
           className={styles.ContentRightImage}
-          src="/assets/images/temp/masterplan.jpg"
+          alt="masterplan-img"
           width="866.5"
           height="748"
-        ></Image>
+        />
       </div>
       <div className={styles.ContentLeft}>
         <p>
           <ol>
             <li>Hilltop Parkland</li>
-            <li>Men’s Shed & Workshop*</li>
+            <li>Men’s Shed &amp; Workshop*</li>
             <li>Community Clubhouse & Pool*</li>
             <li>Bowling Green*</li>
             <li>BBQ Pavillion*</li>
             <li>Tennis Court*</li>
             <li>Parkland</li>
             <li>Community Garden</li>
-            <li>Caravan & Boat Parking</li>
+            <li>Caravan &amp; Boat Parking</li>
           </ol>
         </p>
       </div>
 
       <div className={styles.BottomBlock}>
         <ImageButton
-          href="#"
+          href={data?.cta?.[0]?.link}
           icon="download"
-          label="Download Masterplan"
+          label={data?.cta?.[0]?.label}
           chevron={true}
           labelSpacingLeft={8}
           labelSpacingRight={16}
@@ -52,4 +54,4 @@ const ImageWithKey = ({}: ImageWithKeyProps) => {
   );
 };
 
-export default ImageWithKey;
+export default MasterPlan;

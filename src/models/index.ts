@@ -22,10 +22,14 @@ export type ButtonModel = {
   buttonType?: string;
 };
 
-export type HeroSliderModel = {
+export type HeroModel = {
   heading?: string;
+  description?: string;
   subHeading?: string;
   backgroundImage?: CraftImage[];
+  buttons?: CTAModel[];
+  cta?: CTAModel[];
+  icon: CraftImage[];
 };
 
 export type TrustFeature = {

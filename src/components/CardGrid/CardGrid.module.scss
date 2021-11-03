@@ -37,6 +37,11 @@
       grid-column: 2 / span 10;
     }
   }
+
+  &Child {
+    max-width: 100%;
+    overflow: hidden;
+  }
 }
 
 .GridWrapper {
@@ -50,7 +55,6 @@
 }
 
 .buttonRow {
-  grid-column: 2 / span 10;
   display: flex;
   column-gap: rem(16);
   @include breakpoint($medium) {
@@ -58,5 +62,9 @@
   }
   @include breakpoint($large) {
     margin-top: rem(60);
+    grid-column: 1 / span 12;
+  }
+  @include breakpoint($xx-large) {
+    grid-column: 2 / span 10;
   }
 }

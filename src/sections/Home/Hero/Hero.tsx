@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import Slider from "react-slick";
-import type { HeroSliderModel } from "@models";
+import type { HeroModel } from "@models";
 import { ImageButton } from "@components/Common/Common";
 import styles from "./Hero.module.scss";
 
 type IHeroProps = {
-  data: HeroSliderModel[];
+  data: HeroModel[];
 };
 
 const Hero = ({ data }: IHeroProps) => {

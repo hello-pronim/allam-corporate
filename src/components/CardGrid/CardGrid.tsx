@@ -57,8 +57,10 @@ const CardGrid = ({
             rowGap: rem(rowGap),
           })}
         >
-          {childGate.map((child) => (
-            <>{child}</>
+          {childGate.map((child, id) => (
+            <div key={id} className={styles.CardGridChild}>
+              {child}
+            </div>
           ))}
         </div>
         {(countChildren > maxItems || button) && (

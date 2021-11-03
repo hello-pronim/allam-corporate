@@ -3,13 +3,13 @@
 
 .FullWidthImage {
   height: rem(500);
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
   @include breakpoint($medium) {
     height: rem(600);
   }
   @include breakpoint($large) {
     height: rem(800);
   }
-  width: 100%;
-  background-size: cover;
-  background-position: center center;
 }

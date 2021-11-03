@@ -1,0 +1,67 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.ContentWithImage {
+  position: relative;
+  background: $grey2;
+  @include grid-container;
+  padding-top: rem(60);
+  padding-bottom: rem(60);
+  @include breakpoint($large) {
+    @include grid(1, 12);
+    align-items: center;
+    padding-top: rem(130);
+    padding-bottom: rem(78);
+  }
+}
+.ContentLeft {
+  grid-column: 1 / span 6;
+  @include breakpoint($xx-large) {
+    grid-column: 2 / span 5;
+  }
+
+  h5 {
+    color: $light-grey;
+    margin-bottom: rem(24);
+  }
+  h2 {
+    color: $grey;
+    margin-bottom: rem(24);
+  }
+  p {
+    color: $light-grey;
+  }
+
+  ul {
+    list-style: disc;
+    margin-top: rem(40);
+    padding-left: rem(20);
+
+    li {
+      font-size: rem(18);
+      line-height: 1.5;
+      color: $light-grey;
+      @include breakpoint($large) {
+        font-size: rem(20);
+      }
+    }
+  }
+}
+.ContentRight {
+  grid-column: 7 / span 6;
+  @include breakpoint($xx-large) {
+    grid-column: 7 / span 5;
+  }
+
+  &Image {
+    border-radius: rem(16);
+    overflow: hidden;
+  }
+}
+.BottomBlock {
+  margin-top: rem(75);
+  grid-column: 1 / span 12;
+  @include breakpoint($xx-large) {
+    grid-column: 2 / span 10;
+  }
+}
