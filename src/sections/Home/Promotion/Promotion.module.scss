@@ -9,7 +9,13 @@
 
   h2 {
     color: $grey;
+    font-size: rem(40);
+    line-height: rem(42);
     margin-bottom: rem(24);
+    @include breakpoint($large) {
+      font-size: rem(56);
+      line-height: rem(60);
+    }
   }
   h5 {
     color: $grey;

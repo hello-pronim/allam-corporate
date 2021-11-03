@@ -9,8 +9,14 @@ export interface IMontereyProps {
 }
 
 const Monterey = ({ data }: IMontereyProps) => {
+  console.log(data);
   return (
-    <div className={styles.monterey}>
+    <div
+      className={styles.monterey}
+      style={{
+        backgroundImage: `url(${data?.backgroundImage?.[0]?.url})`,
+      }}
+    >
       <div className={styles.montereyWrapper}>
         <div className={styles.montereyContent}>
           <div className={styles.montereyContentWrapper}>

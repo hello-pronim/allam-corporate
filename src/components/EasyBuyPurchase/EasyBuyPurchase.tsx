@@ -28,7 +28,7 @@ const EasyBuyPurchase = ({}: IEasyBuyPurchaseProps) => {
         </div>
         <div className={styles.easyBuyPurchaseLogoImage}>
           <Image
-            src={"/assets/images/home/img-easyBuy-seal-waxMain.png"}
+            src={"/assets/images/img-easyBuy-seal-waxMain.png"}
             alt="easy-buy-mark"
             width={192}
             height={190}

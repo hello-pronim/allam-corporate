@@ -31,7 +31,7 @@ const AllBenefits = ({ data }: IAllBenefitsProps) => {
             <div className={styles.allBenefitsCardContentRight}>
               <div className={styles.allBenefitsCardContentRightImage}>
                 <Image
-                  src={"/assets/images/home/img-easyBuy-seal-waxMain.png"}
+                  src={"/assets/images/img-easyBuy-seal-waxMain.png"}
                   alt="easy-buy-mark"
                   width={192}
                   height={190}

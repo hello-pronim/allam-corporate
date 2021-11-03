@@ -11,7 +11,7 @@ const Promotion = ({ data }: IPromotionProps) => {
   return (
     <div className={styles.promotion}>
       <div className={styles.promotionLeft}>
-        <h2 className="home">WIN A NEW HOME Promotion extended</h2>
+        <Redactor>{data?.leftHeadingRedactor ?? ""}</Redactor>
         <h5>{data?.leftSubHeading}</h5>
         <Button
           color="dark-secondary"
