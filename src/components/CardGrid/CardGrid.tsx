@@ -38,15 +38,15 @@ const CardGrid = ({
   return (
     <>
       <div className={styles.CardGrid} css={css({ py: rem(padding) })}>
-        {title  && !smallTitle && <h2>{title}</h2>}
-        {title  && smallTitle && <h4>{title}</h4>}
+        {title && !smallTitle && <h2>{title}</h2>}
+        {title && smallTitle && <h4>{title}</h4>}
         <div
           className={styles.GridWrapper}
           css={css({
             gridTemplateColumns: [
               `repeat(${col[0]}, 1fr)`,
               `repeat(${col[1]}, 1fr)`,
-              `repeat(${col[3]}, 1fr)`,
+              `repeat(${col[2]}, 1fr)`,
             ],
             columnGap: rem(colGap),
             rowGap: rem(rowGap),

@@ -4,6 +4,7 @@
 .trustMakers {
   position: relative;
   overflow: hidden;
+  background-color: white;
 
   &::before {
     content: "";
