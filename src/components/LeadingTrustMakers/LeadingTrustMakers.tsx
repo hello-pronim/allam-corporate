@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Slider from "react-slick";
+import classnames from "classnames/bind";
 import Icon from "@components/Icons/Icons";
 import TrustMark from "@components/TrustMark/TrustMark";
 import { Redactor } from "@components/Common/Common";
@@ -8,11 +9,18 @@ import { TrustMakersModel, TrustFeature } from "@models";
 import styles from "./LeadingTrustMakers.module.scss";
 
 type ILeadingTrustMakersProps = {
+  hasBackground?: boolean;
   data?: TrustMakersModel;
   features?: TrustFeature[];
 };
 
-const LeadingTrustMakers = ({ data, features }: ILeadingTrustMakersProps) => {
+const cx = classnames.bind(styles);
+
+const LeadingTrustMakers = ({
+  hasBackground = true,
+  data,
+  features,
+}: ILeadingTrustMakersProps) => {
   const settings = {
     infinite: false,
     slidesToShow: 4,
@@ -40,7 +48,11 @@ const LeadingTrustMakers = ({ data, features }: ILeadingTrustMakersProps) => {
   };
 
   return (
-    <div className={styles.trustMakers}>
+    <div
+      className={cx("trustMakers", {
+        trustMakersWithBackground: hasBackground,
+      })}
+    >
       <div className={styles.trustMakersWrapper}>
         <div className={styles.trustMakersContent}>
           <h2 className="home">{data?.heading}</h2>

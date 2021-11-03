@@ -4,7 +4,10 @@
 .trustMakers {
   position: relative;
   overflow: hidden;
-  background-color: $grey2;
+
+  &WithBackground {
+    background-color: $grey2;
+  }
 
   &Wrapper {
     padding-top: rem(60);
@@ -33,7 +36,7 @@
         margin: 0;
       }
       @include breakpoint($xx-large) {
-        grid-column: 2 / span 4;
+        grid-column: 2 / span 5;
       }
     }
 
