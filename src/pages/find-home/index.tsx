@@ -5,6 +5,7 @@ import { gql } from "@apollo/client";
 import { propsFind } from "@utils/propsFind";
 import craftAPI from "@libs/api";
 import { trustQuery } from "@libs/queries";
+import { PageProps } from "@models";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/FindHome/Hero/Hero";
 import HomesListing from "@sections/FindHome/HomesListing/HomesListing";
@@ -12,12 +13,7 @@ import Overview from "@sections/FindHome/Overview/Overview";
 import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
-type FindHomesPageProps = {
-  pageData?: any;
-  trustMakers?: any;
-};
-
-const FindHome: NextPage<FindHomesPageProps> = ({ pageData, trustMakers }) => {
+const FindHome: NextPage<PageProps> = ({ pageData, trustMakers }) => {
   const [showMap, setShowMap] = useState(false);
   const heading = get(pageData, "entry.heading", "");
   const introBlurb = get(pageData, "entry.introBlurb", "");

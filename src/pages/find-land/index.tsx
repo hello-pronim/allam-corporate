@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import type { NextPage } from "next";
 import get from "lodash/get";
 import { gql } from "@apollo/client";
-import { propsFind } from "@utils/propsFind";
 import craftAPI from "@libs/api";
 import { trustQuery } from "@libs/queries";
+import { propsFind } from "@utils/propsFind";
+import { PageProps } from "@models";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/FindLand/Hero/Hero";
 import LandListing from "@sections/FindLand/LandListing/LandListing";
@@ -12,12 +13,7 @@ import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMaker
 import Overview from "@sections/FindLand/Overview/Overview";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
-type FindLandPageProps = {
-  pageData?: any;
-  trustMakers?: any;
-};
-
-const FindLand: NextPage<FindLandPageProps> = ({ pageData, trustMakers }) => {
+const FindLand: NextPage<PageProps> = ({ pageData, trustMakers }) => {
   const [showMap, setShowMap] = useState(false);
   const heading = get(pageData, "entry.heading", "");
   const introBlurb = get(pageData, "entry.introBlurb", "");

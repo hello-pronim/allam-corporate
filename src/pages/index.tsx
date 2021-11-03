@@ -1,9 +1,10 @@
 import type { NextPage } from "next";
 import get from "lodash/get";
-import { propsFind } from "@utils/propsFind";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
 import { trustQuery } from "@libs/queries";
+import { propsFind } from "@utils/propsFind";
+import { PageProps } from "@models";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/Home/Hero/Hero";
 import TrustMakers from "@sections/Home/TrustMakers/TrustMakers";
@@ -13,12 +14,7 @@ import Promotion from "@sections/Home/Promotion/Promotion";
 import FindHomes from "@sections/Home/FindHomes/FindHomes";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
-type HomePageProps = {
-  pageData?: any;
-  trustMakers?: any;
-};
-
-const Home: NextPage<HomePageProps> = ({ pageData, trustMakers }) => {
+const Home: NextPage<PageProps> = ({ pageData, trustMakers }) => {
   const heroSlider = get(pageData, "entry.heroSlider", []);
   const homeLayouts = get(pageData, "entry.homepageLayout", []);
   const globalPromos = get(pageData, "entry.globalPromos", []);

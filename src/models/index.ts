@@ -1,3 +1,8 @@
+export type PageProps = {
+  pageData?: any;
+  trustMakers?: any;
+};
+
 export type CraftImage = {
   height?: number;
   width?: number;
