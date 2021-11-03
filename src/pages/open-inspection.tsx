@@ -13,12 +13,13 @@ import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMaker
 import Overview from "@sections/FindLand/Overview/Overview";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
-const FindLand: NextPage<PageProps> = ({ pageData, trustMakers }) => {
+const OpenInspection: NextPage<PageProps> = ({ pageData, trustMakers }) => {
   const [showMap, setShowMap] = useState(false);
   const heading = get(pageData, "entry.heading", "");
   const introBlurb = get(pageData, "entry.introBlurb", "");
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
+  console.log(pageData);
 
   return (
     <Layout>
@@ -51,10 +52,10 @@ const FindLand: NextPage<PageProps> = ({ pageData, trustMakers }) => {
   );
 };
 
-const findLandQuery = gql`
-  query findLandPage {
-    entry(section: "findLandPage") {
-      ... on findLandPage_findLandPage_Entry {
+const pageQuery = gql`
+  query openInspection {
+    entry(section: "openForInspection") {
+      ... on openForInspection_openForInspection_Entry {
         heading
         introBlurb
         globalPromos {
@@ -89,8 +90,10 @@ const findLandQuery = gql`
 `;
 
 export const getStaticProps = async function () {
-  const pageData = await craftAPI(findLandQuery);
+  const pageData = await craftAPI(pageQuery);
   const trustMakers = await craftAPI(trustQuery);
+
+  console.log(pageData);
 
   return {
     props: {
@@ -101,4 +104,4 @@ export const getStaticProps = async function () {
   };
 };
 
-export default FindLand;
+export default OpenInspection;
