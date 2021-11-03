@@ -29,11 +29,10 @@ const TextBlock = ({
   background = "default",
   padding = [80, 160],
 }: TextBlockProps) => {
-  console.log(rem(padding));
   return (
     <div
       className={classNames(styles.TextBlock, bgVariant(background))}
-      css={css({ textAlign: alignment, py: rem(padding)})}
+      css={css({ textAlign: alignment, py: rem(padding) })}
     >
       {title && <h2>{title}</h2>}
       {paragraph && <p>{paragraph}</p>}

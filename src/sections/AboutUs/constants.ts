@@ -50,7 +50,7 @@ const TimelineCards = [
     title: "~Max Walker~ becomes the face of Allam Maxi Homes",
     subtitle: "Allam Bros Australia Py Ltd (Incorporated)",
     year: 1992,
-    textColor: 'white',
+    textColor: "white",
     background: "/assets/images/temp/temp-grey.jpg",
   },
   {
@@ -83,12 +83,4 @@ const TimelineCards = [
   },
 ];
 
-const HeroContent = {
-    imageUrl: "/assets/images/temp/about-hero.png",
-    title: "We've helped thousands of customers find a new home.",
-    subtitle: "The Allam Story",
-    videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-  };
-
-
-export { TextContent, TimelineCards, HeroContent };
+export { TextContent, TimelineCards };
