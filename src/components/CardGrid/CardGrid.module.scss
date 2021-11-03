@@ -56,4 +56,7 @@
   @include breakpoint($medium) {
     margin-top: rem(24);
   }
+  @include breakpoint($large) {
+    margin-top: rem(60);
+  }
 }

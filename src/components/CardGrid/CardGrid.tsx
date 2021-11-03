@@ -64,14 +64,19 @@ const CardGrid = ({
         {(countChildren > maxItems || button) && (
           <div className={styles.buttonRow}>
             {countChildren > maxItems && (
-              <Button rounded={true} onClick={() => setShowAll(!showAll)}>
+              <Button size="large" onClick={() => setShowAll(!showAll)} rounded>
                 {showAll
                   ? "Show less"
                   : `Show more (${asArray.length - maxItems})`}
               </Button>
             )}
             {button && (
-              <Button color="dark-secondary" rounded={true} href={button.url}>
+              <Button
+                color="dark-secondary"
+                size="large"
+                rounded={true}
+                href={button.url}
+              >
                 {button.label}
               </Button>
             )}

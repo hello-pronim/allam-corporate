@@ -101,7 +101,7 @@ const homeQuery = gql`
             }
           }
           ... on homepageLayout_monterey_BlockType {
-            headingRedactor
+            heading
             description
             backgroundImage {
               url

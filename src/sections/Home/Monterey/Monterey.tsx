@@ -9,7 +9,6 @@ export interface IMontereyProps {
 }
 
 const Monterey = ({ data }: IMontereyProps) => {
-  console.log(data);
   return (
     <div
       className={styles.monterey}
@@ -21,9 +20,7 @@ const Monterey = ({ data }: IMontereyProps) => {
         <div className={styles.montereyContent}>
           <div className={styles.montereyContentWrapper}>
             <div className={styles.montereyContentText}>
-              <h2 className="home">
-                An exceptional way of living for over 55s. — Coming mid 2021 —
-              </h2>
+              <h2 className="home">{data?.heading}</h2>
 
               <div className={styles.montereyContentTextDescription}>
                 <Redactor>{data?.description ?? ""}</Redactor>
