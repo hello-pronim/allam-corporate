@@ -1,24 +1,20 @@
 import React from "react";
 import { Persist } from "formik-persist";
 import formik, { Formik, Field, Form } from "formik";
+import { Redactor } from "@components/Common/Common";
 import styles from "./RegisterPanel.module.scss";
 
-export interface RegisterPanelProps {}
+export interface IRegisterPanelProps {
+  data?: any;
+}
 
-const RegisterPanel = ({}: RegisterPanelProps) => {
+const RegisterPanel = ({ data }: IRegisterPanelProps) => {
   return (
     <div className={styles.registerPanel}>
       <div className={styles.ModuleWrapper}>
         <div className={styles.ModuleLeft}>
-          <h2>
-            <span>Interested in the ideal lifestyle?</span>
-            <br /> Register your interest today
-          </h2>
-          <p>
-            Our history spans 25 years and during that time we’ve helped
-            thousands of customers find a new home, with homes and <br />{" "}
-            estates spread across many of Sydney’s most popular areas.
-          </p>
+          <Redactor>{data?.headingRedactor ?? ""}</Redactor>
+          <Redactor>{data?.description ?? ""}</Redactor>
         </div>
         <div className={styles.ModuleRight}>
           <Formik

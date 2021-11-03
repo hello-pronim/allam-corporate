@@ -23,7 +23,6 @@ const RetirementLiving: NextPage<PageProps> = ({ pageData, trustMakers }) => {
     pageLayout,
     "retirementLayout_fullImage_BlockType"
   );
-  console.log(pageLayout);
 
   return (
     <Layout>
@@ -35,7 +34,6 @@ const RetirementLiving: NextPage<PageProps> = ({ pageData, trustMakers }) => {
           "globalPromos_trustMakers_BlockType"
         )}
       />
-
       <CardGrid
         title="News and Events"
         col={[1, 2]}
@@ -53,7 +51,9 @@ const RetirementLiving: NextPage<PageProps> = ({ pageData, trustMakers }) => {
       <CostAndFee
         data={propsFind(pageLayout, "retirementLayout_feeCovers_BlockType")}
       />
-      <RegisterPanel />
+      <RegisterPanel
+        data={propsFind(pageLayout, "globalPromos_estateRegister_BlockType")}
+      />
     </Layout>
   );
 };
