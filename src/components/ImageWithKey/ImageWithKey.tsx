@@ -40,7 +40,7 @@ const ImageWithKey = ({}: ImageWithKeyProps) => {
       <div className={styles.BottomBlock}>
         <ImageButton
           href="#"
-          icon="easy-buy"
+          icon="download"
           label="Download Masterplan"
           chevron={true}
           labelSpacingLeft={8}

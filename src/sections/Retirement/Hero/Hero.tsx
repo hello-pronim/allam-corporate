@@ -49,7 +49,7 @@ const Hero = () => {
               <div className={styles.heroButtonWrapper}>
                 <ImageButton
                   href="#"
-                  icon="download"
+                  icon="download-yellow"
                   label="Download Brochure"
                   chevron={true}
                   labelSpacingLeft={8}

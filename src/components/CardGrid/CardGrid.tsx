@@ -16,6 +16,7 @@ export interface CardGridProps {
     label: string;
     url: string;
   };
+  background?: string;
   smallTitle?: boolean;
 }
 
@@ -29,6 +30,7 @@ const CardGrid = ({
   colGap = 18,
   rowGap = 18,
   smallTitle = false,
+  background,
 }: CardGridProps) => {
   const [showAll, setShowAll] = useState(false);
   const asArray = React.Children.toArray(children);
@@ -37,9 +39,12 @@ const CardGrid = ({
 
   return (
     <>
-      <div className={styles.CardGrid} css={css({ py: rem(padding) })}>
-        {title  && !smallTitle && <h2>{title}</h2>}
-        {title  && smallTitle && <h4>{title}</h4>}
+      <div
+        className={styles.CardGrid}
+        css={css({ py: rem(padding), background: background && background })}
+      >
+        {title && !smallTitle && <h2>{title}</h2>}
+        {title && smallTitle && <h4>{title}</h4>}
         <div
           className={styles.GridWrapper}
           css={css({
