@@ -52,7 +52,7 @@ const RetirementLiving: NextPage<PageProps> = ({ pageData, trustMakers }) => {
         data={propsFind(pageLayout, "retirementLayout_feeCovers_BlockType")}
       />
       <RegisterPanel
-        data={propsFind(pageLayout, "globalPromos_estateRegister_BlockType")}
+        data={propsFind(globalPromos, "globalPromos_estateRegister_BlockType")}
       />
     </Layout>
   );

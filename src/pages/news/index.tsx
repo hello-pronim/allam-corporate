@@ -11,7 +11,6 @@ import PostSlider from "@sections/News/PostSlider/PostSlider";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
 const News: NextPage = () => {
-  console.log(PostContent);
   return (
     <Layout>
       <BackgroundWrapper>

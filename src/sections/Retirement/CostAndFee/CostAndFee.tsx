@@ -9,8 +9,6 @@ export interface ICostAndFeeProps {
 }
 
 const CostAndFee = ({ data }: ICostAndFeeProps) => {
-  console.log(data);
-
   return (
     <div className={styles.ContentWithImage}>
       <div className={styles.ContentLeft}>

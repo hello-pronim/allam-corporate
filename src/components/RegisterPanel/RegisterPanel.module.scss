@@ -109,17 +109,17 @@
   }
   h5 {
     margin-bottom: rem(24);
-    color: #393839;
+    color: $light-grey;
   }
   h2 {
-    color: #212121;
+    color: $grey;
     margin-bottom: rem(24);
-    span {
-      color: #fff;
+    strong {
+      color: $white;
     }
   }
   p {
-    color: #393839;
+    color: $light-grey;
     max-width: rem(576);
   }
 }

@@ -19,7 +19,6 @@ const OpenInspection: NextPage<PageProps> = ({ pageData, trustMakers }) => {
   const introBlurb = get(pageData, "entry.introBlurb", "");
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
-  console.log(pageData);
 
   return (
     <Layout>
@@ -92,8 +91,6 @@ const pageQuery = gql`
 export const getStaticProps = async function () {
   const pageData = await craftAPI(pageQuery);
   const trustMakers = await craftAPI(trustQuery);
-
-  console.log(pageData);
 
   return {
     props: {

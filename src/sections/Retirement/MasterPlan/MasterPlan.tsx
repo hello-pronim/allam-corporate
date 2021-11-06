@@ -24,19 +24,17 @@ const MasterPlan = ({ data }: IMasterPlanProps) => {
         />
       </div>
       <div className={styles.ContentLeft}>
-        <p>
-          <ol>
-            <li>Hilltop Parkland</li>
-            <li>Men’s Shed &amp; Workshop*</li>
-            <li>Community Clubhouse & Pool*</li>
-            <li>Bowling Green*</li>
-            <li>BBQ Pavillion*</li>
-            <li>Tennis Court*</li>
-            <li>Parkland</li>
-            <li>Community Garden</li>
-            <li>Caravan &amp; Boat Parking</li>
-          </ol>
-        </p>
+        <ol>
+          <li>Hilltop Parkland</li>
+          <li>Men’s Shed &amp; Workshop*</li>
+          <li>Community Clubhouse &amp; Pool*</li>
+          <li>Bowling Green*</li>
+          <li>BBQ Pavillion*</li>
+          <li>Tennis Court*</li>
+          <li>Parkland</li>
+          <li>Community Garden</li>
+          <li>Caravan &amp; Boat Parking</li>
+        </ol>
       </div>
 
       <div className={styles.BottomBlock}>
