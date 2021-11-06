@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import get from "lodash/get";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { propsFind } from "@utils/propsFind";
 import { PageProps } from "@models";
 import Layout from "@components/Layout/Layout";
@@ -10,10 +11,13 @@ import FullWidthImage from "@components/FullWidthImage/FullWidthImage";
 import TextBlock from "@components/TextBlock/TextBlock";
 import LeadingTimeline from "@sections/AboutUs/LeadingTimeline/LeadingTimeline";
 import InlineImage from "@components/InlineImage/InlineImage";
+import { videoModalState } from "@states/atoms/videoModal";
+import VideoModal from "@components/VideoModal/VideoModal";
 
 const RetirementLiving: NextPage<PageProps> = ({ pageData }) => {
   const pageLayout = get(pageData, "entry.aboutLayout", []);
   console.log(pageLayout);
+  const { isOpen } = useRecoilValue(videoModalState);
 
   return (
     <Layout>
@@ -46,6 +50,7 @@ const RetirementLiving: NextPage<PageProps> = ({ pageData }) => {
         paragraph={TextContent[3].Paragraph}
         background="angled-left"
       /> */}
+      <VideoModal isModalOpen={isOpen} />
     </Layout>
   );
 };

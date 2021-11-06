@@ -1,0 +1,41 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.videoModal {
+  width: 100%;
+  height: 60vh;
+  position: relative;
+
+  @include breakpoint($medium) {
+    height: 80vh;
+  }
+
+  &Close {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: $white;
+    position: absolute;
+    top: rem(-30);
+    right: 0;
+
+    svg {
+      path {
+        fill: $white;
+      }
+    }
+
+    span {
+      font-size: rem(16);
+      text-transform: uppercase;
+    }
+  }
+
+  &Player {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: rem(10);
+    overflow: hidden;
+  }
+}
