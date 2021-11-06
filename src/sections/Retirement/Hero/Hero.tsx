@@ -11,16 +11,28 @@ export interface IHeroProps {
 
 const Hero = ({ data }: IHeroProps) => {
   return (
-    <div className={styles.hero}>
-      <div
-        className={styles.heroWrapper}
-        style={{
-          backgroundImage: `linear-gradient(0deg, #e3e3e3, #e3e3e3), url(${data?.backgroundImage?.[0]?.url})`,
-        }}
-      >
+    <div
+      className={styles.hero}
+      style={{
+        backgroundImage: `linear-gradient(270deg, rgba(0, 0, 0, 0.8) 15.12%, rgba(0, 0, 0, 0) 37.64%), url(${data?.backgroundImage?.[0]?.url})`,
+      }}
+    >
+      <div className={styles.heroWrapper}>
         <div className={styles.heroContent}>
           <h1 className="home">{data?.heading}</h1>
           <Redactor>{data?.description ?? ""}</Redactor>
+
+          <div className={styles.heroButtonWrapper}>
+            <ImageButton
+              href="#"
+              icon="download-yellow"
+              label="Download Brochure"
+              chevron={true}
+              labelSpacingLeft={8}
+              labelSpacingRight={16}
+            />
+            <Button rounded={true}>Contact Agent</Button>
+          </div>
         </div>
 
         <div className={styles.heroLogoWrapper}>
@@ -30,17 +42,6 @@ const Hero = ({ data }: IHeroProps) => {
             width="251"
             height="164"
           />
-        </div>
-        <div className={styles.heroButtonWrapper}>
-          <ImageButton
-            href="#"
-            icon="download-yellow"
-            label="Download Brochure"
-            chevron={true}
-            labelSpacingLeft={8}
-            labelSpacingRight={16}
-          />
-          <Button rounded={true}>Contact Agent</Button>
         </div>
       </div>
     </div>

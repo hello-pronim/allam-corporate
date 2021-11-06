@@ -1,41 +1,20 @@
 import React from "react";
+import { Redactor } from "@components/Common/Common";
 import styles from "./TextBlock.module.scss";
-import css from "@styled-system/css";
-import classNames from "classnames";
-import rem from "src/utils/pxRem";
 
 export interface TextBlockProps {
-  title?: string;
-  paragraph?: string;
-  alignment?: "left" | "center" | "right";
-  background?: "angled-right" | "angled-left" | "default";
-  padding?: number | number[];
+  data?: any;
 }
 
-const bgVariant = (type: string) => {
-  const variant = new Map([
-    ["default", styles.defaultBG],
-    ["angled-right", styles.angledRightBG],
-    ["angled-left", styles.angledLeftBG],
-  ]);
-
-  return variant.get(type);
-};
-
-const TextBlock = ({
-  title,
-  paragraph,
-  alignment,
-  background = "default",
-  padding = [80, 160],
-}: TextBlockProps) => {
+const TextBlock = ({ data }: TextBlockProps) => {
   return (
-    <div
-      className={classNames(styles.TextBlock, bgVariant(background))}
-      css={css({ textAlign: alignment, py: rem(padding) })}
-    >
-      {title && <h2>{title}</h2>}
-      {paragraph && <p>{paragraph}</p>}
+    <div className={styles.textBlock}>
+      <div className={styles.textBlockWrapper}>
+        <div className={styles.textBlockContent}>
+          {<h2>{data?.heading}</h2>}
+          <Redactor>{data?.description ?? ""}</Redactor>
+        </div>
+      </div>
     </div>
   );
 };

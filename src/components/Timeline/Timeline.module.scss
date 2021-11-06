@@ -4,10 +4,9 @@
 .TimelineContainer {
   position: relative;
   @include grid-container;
-  overflow: hidden;
   padding: rem(16) !important;
-  background-color: #edf2f5;
-  grid-row-gap: 0 !important;
+  row-gap: 0 !important;
+  overflow: hidden;
   @include breakpoint($large) {
     @include grid(1, 12);
   }
@@ -101,11 +100,16 @@
   background-color: $grey;
   border-radius: 100%;
 }
+
 .arrowWrapper {
-  grid-column: 2 / span 11;
-  display: flex;
-  justify-content: space-between;
+  display: none;
   align-items: center;
+  justify-content: space-between;
+  grid-column: 2 / span 11;
+  @include breakpoint($medium) {
+    display: flex;
+  }
+
   div {
     cursor: pointer;
     svg {

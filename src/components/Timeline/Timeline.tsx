@@ -8,17 +8,17 @@ import Icon from "@components/Icons/Icons";
 
 export interface CardProps {
   featured?: boolean;
-  title: string;
+  title?: string;
   subtitle?: string;
-  year: number;
+  year?: number;
   background?: string;
-  textColor?: "grey" | "white";
+  textColor?: "grey" | "white" | "";
   index?: number;
 }
 
 export interface TimelineProps {
   padding?: number | number[];
-  cards: Array<CardProps>;
+  cards?: CardProps[];
 }
 
 var accent = (str: string) => {
@@ -54,7 +54,7 @@ const FeaturedCard = (card: CardProps) => {
 const Card = (card: CardProps) => {
   return (
     <div
-      id={card.year.toString()}
+      id={card?.year?.toString()}
       className={classNames(styles.card)}
       css={css({
         backgroundImage: `url(${card.background})`,
@@ -62,7 +62,7 @@ const Card = (card: CardProps) => {
       })}
     >
       <h3>{card.year}</h3>
-      <h2 dangerouslySetInnerHTML={accent(card.title)} />
+      <h2 dangerouslySetInnerHTML={accent(card?.title ?? "")} />
     </div>
   );
 };
@@ -106,7 +106,7 @@ const Timeline = ({ cards, padding = [] }: TimelineProps) => {
     },
   };
 
-  const cardEntries = cards.map((card, index) => ({
+  const cardEntries = cards?.map((card, index) => ({
     ...card,
     index: index,
   }));
@@ -115,7 +115,12 @@ const Timeline = ({ cards, padding = [] }: TimelineProps) => {
     const getSlider = document.getElementById("timeline");
     setSliderWrapper(getSlider);
     //@ts-ignore
-    setSlideCount( slider.current && slider.current.innerSlider.state.slideCount - slider.current.props.slidesToShow);
+    setSlideCount(
+      (slider?.current &&
+        slider?.current?.innerSlider?.state?.slideCount -
+          slider?.current?.props?.slidesToShow) ??
+        0
+    );
   }, []);
 
   var scrollCompletion = (current / slideCount) * 100;
@@ -140,7 +145,7 @@ const Timeline = ({ cards, padding = [] }: TimelineProps) => {
 
   const seen = new Set();
 
-  const firstOfYear = cardEntries.filter((card) => {
+  const firstOfYear = cardEntries?.filter((card) => {
     const duplicate = seen.has(card.year);
     seen.add(card.year);
     return !duplicate;
@@ -149,13 +154,13 @@ const Timeline = ({ cards, padding = [] }: TimelineProps) => {
     <div className={styles.TimelineContainer} css={css({ py: rem(padding) })}>
       <div id="timeline" className={styles.TimelineWrapper}>
         <Slider {...settings} ref={slider}>
-          {cardEntries.map((card) => {
+          {cardEntries?.map((card) => {
             return card.featured ? FeaturedCard(card) : Card(card);
           })}
         </Slider>
       </div>
       <div className={styles.yearTabs}>
-        {firstOfYear.map((card, index) => {
+        {firstOfYear?.map((card, index) => {
           return (
             <React.Fragment key={card.year}>
               <button
@@ -166,7 +171,7 @@ const Timeline = ({ cards, padding = [] }: TimelineProps) => {
               >
                 {card.year}
               </button>
-              {index !== firstOfYear.length - 1 && (
+              {index !== firstOfYear?.length - 1 && (
                 <span className={styles.yearDivider} />
               )}
             </React.Fragment>

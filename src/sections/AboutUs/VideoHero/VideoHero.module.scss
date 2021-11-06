@@ -41,6 +41,9 @@
       h4 {
         color: $white;
         margin-left: rem(21);
+        @include below($medium) {
+          font-size: rem(26);
+        }
       }
     }
   }
@@ -68,6 +71,9 @@
         @include breakpoint($xx-large) {
           grid-column: 2 / span 5;
         }
+        @include breakpoint($webLarge) {
+          grid-column: 2 / span 4;
+        }
       }
     }
 
@@ -88,7 +94,9 @@
 
     h1 {
       color: $grey;
+      max-width: 80%;
       @include breakpoint($large) {
+        max-width: initial;
         font-size: rem(80);
       }
     }

@@ -2,20 +2,17 @@
 @import "@styles/variables.scss";
 
 .hero {
-  min-height: 100vh;
+  height: 100vh;
+  min-height: rem(700);
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply, normal;
 
   &Wrapper {
     height: 100%;
-    padding-top: rem(204);
-    padding-bottom: rem(204);
     @include grid-container;
-    background-size: cover;
-    background-position: center;
-    background-blend-mode: multiply;
     align-items: center;
     @include breakpoint($large) {
-      padding-top: rem(300);
-      padding-bottom: rem(300);
       @include grid(1, 12);
     }
   }
