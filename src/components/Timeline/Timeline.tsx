@@ -18,7 +18,7 @@ export interface CardProps {
 
 export interface TimelineProps {
   padding?: number | number[];
-  cards?: CardProps[];
+  cards?: any[];
 }
 
 var accent = (str: string) => {
@@ -154,8 +154,12 @@ const Timeline = ({ cards, padding = [] }: TimelineProps) => {
     <div className={styles.TimelineContainer} css={css({ py: rem(padding) })}>
       <div id="timeline" className={styles.TimelineWrapper}>
         <Slider {...settings} ref={slider}>
-          {cardEntries?.map((card) => {
-            return card.featured ? FeaturedCard(card) : Card(card);
+          {cardEntries?.map((card, id) => {
+            return (
+              <div key={id}>
+                {card.featured ? FeaturedCard(card) : Card(card)}
+              </div>
+            );
           })}
         </Slider>
       </div>

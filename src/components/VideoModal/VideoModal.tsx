@@ -26,7 +26,7 @@ const VideoModal = ({ isModalOpen }: IVideoModalProps) => {
       bottom: "auto",
       border: "none",
       width: "calc(100% - 100px)",
-      maxWidth: "1600px",
+      maxWidth: "1400px",
       margin: "10px auto",
       background: "transparent",
       transform: "translate(-50%, -50%)",

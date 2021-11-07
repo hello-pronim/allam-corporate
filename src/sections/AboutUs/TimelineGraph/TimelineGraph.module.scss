@@ -2,6 +2,33 @@
 @import "@styles/variables";
 
 .timeGraph {
+  background-color: $grey2;
   @include breakpoint($medium) {
+  }
+
+  &Wrapper {
+    @include grid-container;
+    @include breakpoint($large) {
+      @include grid(1, 12);
+    }
+  }
+
+  &Content {
+    position: relative;
+    @include breakpoint($large) {
+      grid-column: 2 / span 10;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 3 / span 8;
+    }
+
+    h2 {
+      color: $black;
+      letter-spacing: rem(0.25);
+      padding: rem(80) 0;
+      @include breakpoint($large) {
+        padding: rem(160) 0;
+      }
+    }
   }
 }

@@ -4,10 +4,9 @@
 .timeLine {
   position: relative;
   overflow: hidden;
-  padding: rem(80) 0;
   background-color: $grey2;
   @include breakpoint($large) {
-    padding: rem(160) 0;
+    // padding: rem(160) 0;
   }
 
   &::before {

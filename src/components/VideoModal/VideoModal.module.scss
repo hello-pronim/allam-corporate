@@ -8,6 +8,7 @@
 
   @include breakpoint($medium) {
     height: 80vh;
+    max-height: rem(800);
   }
 
   &Close {
