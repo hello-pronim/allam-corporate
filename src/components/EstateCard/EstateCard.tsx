@@ -1,12 +1,15 @@
 import React from "react";
 import Image from "next/image";
 import Slider from "react-slick";
+import { EstateModel } from "@models";
 import Icon from "@components/Icons/Icons";
 import styles from "./EstateCard.module.scss";
 
-export interface IEstateCardProps {}
+export interface IEstateCardProps {
+  estate: EstateModel;
+}
 
-const EstateCard = ({}: IEstateCardProps) => {
+const EstateCard = ({ estate }: IEstateCardProps) => {
   const settings = {
     className: "estate-card-slider",
     dots: true,
@@ -20,63 +23,41 @@ const EstateCard = ({}: IEstateCardProps) => {
     slidesToScroll: 1,
   };
 
+  const addr = `${estate.suburb} ${estate.estateState} ${estate.postcode}`;
+
   return (
     <div className={styles.estateCard}>
       <div className={styles.estateCardTop}>
         <Slider {...settings}>
-          <div className={styles.estateCardTopImage}>
-            <Image
-              src={"/assets/images/temp/img-temp-card-1.jpg"}
-              alt="estate-card-image"
-              width={492}
-              height={355}
-              layout="responsive"
-            />
-          </div>
-          <div className={styles.estateCardTopImage}>
-            <Image
-              src={"/assets/images/temp/img-temp-card-2.jpg"}
-              alt="estate-card-image"
-              width={492}
-              height={355}
-              layout="responsive"
-            />
-          </div>
-
-          <div className={styles.estateCardTopImage}>
-            <Image
-              src={"/assets/images/temp/img-temp-card-1.jpg"}
-              alt="estate-card-image"
-              width={492}
-              height={355}
-              layout="responsive"
-            />
-          </div>
-          <div className={styles.estateCardTopImage}>
-            <Image
-              src={"/assets/images/temp/img-temp-card-2.jpg"}
-              alt="estate-card-image"
-              width={492}
-              height={355}
-              layout="responsive"
-            />
-          </div>
+          {estate?.galleryImages?.map((image, id) => (
+            <div className={styles.estateCardTopImage} key={id}>
+              <Image
+                src={image.url}
+                alt={image.title}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center"
+              />
+            </div>
+          ))}
         </Slider>
 
-        <div className={styles.estateCardTopLogo}>
-          <Image
-            src={"/assets/images/estate/Logo-Ardennes.png"}
-            alt="estate-card-image"
-            width={156}
-            height={110}
-            objectFit={"cover"}
-          />
-        </div>
+        {estate.logo?.[0]?.url && (
+          <div className={styles.estateCardTopLogo}>
+            <Image
+              src={estate.logo?.[0]?.url}
+              alt={estate.logo?.[0]?.title}
+              width={156}
+              height={110}
+              objectFit={"contain"}
+            />
+          </div>
+        )}
       </div>
 
       <div className={styles.estateCardBottom}>
         <p>
-          <b>Ardennes Avenue, Edmondson Park NSW 2174</b>
+          <b>{addr}</b>
         </p>
 
         <div className={styles.estateCardBottomInfo}>

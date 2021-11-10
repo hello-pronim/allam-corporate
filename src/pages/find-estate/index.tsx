@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import get from "lodash/get";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
-import { PageProps } from "@models";
+import { EstatesPageProps } from "@models";
 import { trustQuery } from "@libs/queries";
 import { propsFind } from "@utils/propsFind";
 import Layout from "@components/Layout/Layout";
@@ -13,7 +13,11 @@ import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMaker
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 import Overview from "@sections/FindEstate/Overview/Overview";
 
-const FindEstate: NextPage<PageProps> = ({ pageData, trustMakers }) => {
+const FindEstate: NextPage<EstatesPageProps> = ({
+  pageData,
+  trustMakers,
+  estatesData,
+}) => {
   const [showMap, setShowMap] = useState(false);
   const heading = get(pageData, "entry.heading", "");
   const introBlurb = get(pageData, "entry.introBlurb", "");
@@ -32,7 +36,7 @@ const FindEstate: NextPage<PageProps> = ({ pageData, trustMakers }) => {
         <Overview />
       ) : (
         <>
-          <EstateListing />
+          <EstateListing estateList={get(estatesData, "entries", [])} />
           <div style={{ background: "#eef2f5" }}>
             <LeadingTrustMakers
               features={trustFeatures}
@@ -51,7 +55,7 @@ const FindEstate: NextPage<PageProps> = ({ pageData, trustMakers }) => {
   );
 };
 
-const estateQuery = gql`
+const pageQuery = gql`
   query estatePage {
     entry(section: "findEstatePage") {
       ... on findEstatePage_findEstatePage_Entry {
@@ -88,14 +92,65 @@ const estateQuery = gql`
   }
 `;
 
+const estatesQuery = gql`
+  query estatesQuery {
+    entries(section: "estates") {
+      ... on estates_default_Entry {
+        title
+        introText
+        estateState(label: true)
+        estateStatus
+        retirementLiving
+        logo {
+          title
+          url
+          width
+          height
+        }
+        postcode
+        suburb
+        latitude
+        longitude
+        geojson
+        downloadableBrochure {
+          url
+        }
+        masterPlanImage {
+          url
+        }
+        galleryImages {
+          title
+          url
+          width
+          height
+        }
+        offersLink {
+          ... on offersLink_BlockType {
+            internalOffer {
+              ... on promotions_default_Entry {
+                title
+                shortDescription
+                introBlurb
+                description
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const getStaticProps = async function () {
-  const pageData = await craftAPI(estateQuery);
+  const pageData = await craftAPI(pageQuery);
   const trustMakers = await craftAPI(trustQuery);
+  const estatesData = await craftAPI(estatesQuery);
 
   return {
     props: {
       pageData,
       trustMakers,
+      estatesData,
     },
     revalidate: 500,
   };

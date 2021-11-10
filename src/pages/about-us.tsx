@@ -15,7 +15,6 @@ import VideoModal from "@components/VideoModal/VideoModal";
 
 const RetirementLiving: NextPage<PageProps> = ({ pageData }) => {
   const pageLayout = get(pageData, "entry.aboutLayout", []);
-  console.log(pageLayout);
   const { isOpen } = useRecoilValue(videoModalState);
 
   return (
