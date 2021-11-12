@@ -54,21 +54,18 @@ const EstateFilter = ({
             <FilterDropdown
               options={locationObj}
               isOpen={openLocationMenu}
+              placeholderLabel="Location"
               closeDropdown={() => setOpenLocationMenu(false)}
-            >
-              <ArrowButton label="Location" onClick={toggleLocationMenu} />
-            </FilterDropdown>
+              toggleDropdown={toggleLocationMenu}
+            />
 
             <FilterDropdown
               options={typeObj}
               isOpen={openTypeMenu}
+              placeholderLabel="Type"
               closeDropdown={() => setOpenTypeMenu(false)}
-            >
-              <ArrowButton
-                label="Type"
-                onClick={() => setOpenTypeMenu(!openTypeMenu)}
-              />
-            </FilterDropdown>
+              toggleDropdown={() => setOpenTypeMenu(!openTypeMenu)}
+            />
           </div>
         </div>
       </div>

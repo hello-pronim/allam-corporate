@@ -1,19 +1,25 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import Icon from "@components/Icons/Icons";
 import styles from "./FilterDropdown.module.scss";
 
 export interface IFilterDropdownProps {
   isOpen: boolean;
   options: any[];
+  placeholderLabel?: string;
   closeDropdown: () => void;
-  children: React.ReactNode;
+  toggleDropdown: () => void;
+  setFilterValue: (val: any) => void;
 }
 
 const FilterDropdown = ({
   isOpen,
   closeDropdown,
+  placeholderLabel,
   options,
-  children,
+  toggleDropdown,
+  setFilterValue,
 }: IFilterDropdownProps) => {
+  const [selectedOption, setSelectedOption] = useState(options[0]);
   const dropdownRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
@@ -37,9 +43,25 @@ const FilterDropdown = ({
     };
   }, [isOpen, closeDropdown]);
 
+  const setOption = (id: any) => {
+    setSelectedOption(options[id]);
+    if (placeholderLabel === "Type") {
+      setFilterValue({
+        type: id === 0 ? "All" : options[id],
+      });
+    }
+    closeDropdown();
+  };
+
   return (
     <div className={styles.filterDropdown} ref={dropdownRef}>
-      {children}
+      <div className={styles.filterDropdownButton} onClick={toggleDropdown}>
+        <span>{placeholderLabel}</span>
+        <p>{selectedOption}</p>
+        <div className={styles.filterDropdownButtonIcon}>
+          <Icon type="chevron-down" />
+        </div>
+      </div>
       <div
         className={styles.filterDropdownMenu}
         style={{
@@ -51,7 +73,13 @@ const FilterDropdown = ({
       >
         <ul className={styles.filterDropdownMenuItems}>
           {options?.map((el: any, id: number) => (
-            <li key={id}>{el.label}</li>
+            <li
+              key={id}
+              onClick={() => setOption(id)}
+              className={`${selectedOption === el && styles.active}`}
+            >
+              {el}
+            </li>
           ))}
         </ul>
       </div>

@@ -6,6 +6,54 @@
   @include breakpoint($large) {
   }
 
+  &Button {
+    padding: rem(12) rem(16);
+    color: $grey;
+    font-weight: 700;
+    font-size: rem(16);
+    line-height: 1;
+    letter-spacing: rem(1);
+    font-family: inherit;
+    border-radius: rem(6);
+    transition: all 0.3s ease;
+    background-color: $grey1;
+    border-width: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: rem(48);
+    @include breakpoint($medium) {
+      height: rem(56);
+      font-size: rem(16);
+      line-height: rem(20);
+    }
+
+    &:hover {
+      background-color: $grey2;
+    }
+    &:focus {
+      background-color: $primary;
+    }
+
+    span {
+      margin-right: rem(12);
+    }
+
+    p {
+      color: $grey;
+      text-align: left;
+      font-size: rem(14);
+      line-height: rem(20);
+      font-weight: 300;
+    }
+
+    &Icon {
+      display: inline-flex;
+      margin-left: rem(12);
+    }
+  }
+
   &Menu {
     width: 100%;
     max-width: rem(180);
@@ -23,12 +71,13 @@
 
     ul {
       li {
-        padding: rem(18) rem(24);
         color: $grey;
+        text-align: left;
         font-size: rem(14);
         line-height: rem(20);
-        cursor: pointer;
+        padding: rem(18) rem(24);
         transition: all 0.3s ease-in;
+        cursor: pointer;
 
         &:hover {
           background-color: $white;
@@ -36,4 +85,8 @@
       }
     }
   }
+}
+
+.active {
+  background-color: $white;
 }
