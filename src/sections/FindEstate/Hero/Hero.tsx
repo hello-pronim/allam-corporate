@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
-import EstateFilter from "@components/EstateFilter/EstateFilter";
 import FilterModal from "@components/FilterModal/FilterModal";
 import { Redactor } from "@components/Common/Common";
+import EstateFilter from "@sections/FindEstate/EstateFilter/EstateFilter";
 import FilterByChoiceGroup from "@components/FilterByChoiceGroup/FilterByChoiceGroup";
 import { locationObj, typeObj } from "./constant";
 import styles from "./Hero.module.scss";
@@ -11,6 +11,7 @@ type IHeroProps = {
   heading?: string;
   introBlurb?: string;
   showMap?: boolean;
+  suburbList?: string[];
   setShowMap: (value: boolean) => void;
 };
 
@@ -18,6 +19,7 @@ const Hero = ({
   heading,
   introBlurb = "",
   showMap = false,
+  suburbList,
   setShowMap,
 }: IHeroProps) => {
   const [isOpenFilter, setOpenFilter] = useState(false);
@@ -40,6 +42,7 @@ const Hero = ({
         <EstateFilter
           showMap={showMap}
           setShowMap={setShowMap}
+          suburbList={suburbList}
           toggleFilter={() => setOpenFilter(!isOpenFilter)}
         />
       </div>

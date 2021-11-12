@@ -1,22 +1,23 @@
 import React from "react";
+import { useRecoilValue } from "recoil";
+import { filteredEstates } from "@states/atoms/estates";
+import { EstateModel } from "@models";
 import { Button } from "@components/Common/Common";
 import EasyBuyPurchase from "@components/EasyBuyPurchase/EasyBuyPurchase";
-import { EstateModel } from "@models";
 import EstateCard from "@components/EstateCard/EstateCard";
 import styles from "./EstateListing.module.scss";
 
-export interface IEstateListingProps {
-  estateList: EstateModel[];
-}
+export interface IEstateListingProps {}
 
-const EstateListing = ({ estateList }: IEstateListingProps) => {
-  console.log(estateList);
+const EstateListing = () => {
+  const estatesList = useRecoilValue(filteredEstates);
+
   return (
     <div className={styles.estateListing}>
       <div className={styles.estateListingWrapper}>
         <div className={styles.estateListingView}>
           <div className={styles.estateListingCards}>
-            {estateList?.map((estate, id) => (
+            {estatesList?.map((estate, id) => (
               <EstateCard key={id} estate={estate} />
             ))}
             <EasyBuyPurchase />

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import type { NextPage } from "next";
-import get from "lodash/get";
+import { get, map, sortBy } from "lodash";
+import { useSetRecoilState } from "recoil";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
 import { EstatesPageProps } from "@models";
 import { trustQuery } from "@libs/queries";
 import { propsFind } from "@utils/propsFind";
+import { allEstateState } from "@states/atoms/estates";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/FindEstate/Hero/Hero";
 import EstateListing from "@sections/FindEstate/EstateListing/EstateListing";
@@ -23,6 +25,10 @@ const FindEstate: NextPage<EstatesPageProps> = ({
   const introBlurb = get(pageData, "entry.introBlurb", "");
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
+  const estateList = get(estatesData, "entries", []);
+  const suburbList = sortBy(map(estateList, "suburb"));
+  const setEstates = useSetRecoilState(allEstateState);
+  setEstates(estateList);
 
   return (
     <Layout>
@@ -31,12 +37,13 @@ const FindEstate: NextPage<EstatesPageProps> = ({
         introBlurb={introBlurb}
         setShowMap={setShowMap}
         showMap={showMap}
+        suburbList={suburbList}
       />
       {showMap ? (
         <Overview />
       ) : (
         <>
-          <EstateListing estateList={get(estatesData, "entries", [])} />
+          <EstateListing />
           <div style={{ background: "#eef2f5" }}>
             <LeadingTrustMakers
               features={trustFeatures}
