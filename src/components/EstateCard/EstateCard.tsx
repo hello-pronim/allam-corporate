@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Slider from "react-slick";
 import { EstateModel } from "@models";
+import { shimmer, toBase64 } from "@utils/blobImage";
 import Icon from "@components/Icons/Icons";
 import styles from "./EstateCard.module.scss";
 
@@ -37,6 +38,10 @@ const EstateCard = ({ estate }: IEstateCardProps) => {
                 layout="fill"
                 objectFit="cover"
                 objectPosition="center"
+                blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                  shimmer(700, 475)
+                )}`}
+                placeholder="blur"
               />
             </div>
           ))}
