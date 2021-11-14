@@ -67,7 +67,7 @@ export const menuObj = [
   },
   {
     title: "Easy Buy",
-    slug: "/",
+    slug: "/easy-buy",
   },
   {
     title: "Our Videos",
@@ -75,7 +75,7 @@ export const menuObj = [
   },
   {
     title: "Allam Advantages",
-    slug: "/",
+    slug: "/allam-advantages",
     subMenu: [
       {
         title: "Test 1",

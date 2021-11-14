@@ -4,6 +4,13 @@ export type EstatesPageProps = {
   estatesData?: any;
 };
 
+export type AllamAdvPageProps = {
+  advPageData?: any;
+  easyBuyPageData?: any;
+  advantages?: any;
+  easyBuy?: any;
+};
+
 export type NormalPageProps = {
   pageData?: any;
   trustMakers?: any;

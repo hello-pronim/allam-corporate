@@ -19,3 +19,90 @@ export const trustQuery = gql`
     }
   }
 `;
+
+export const allamAdvQuery = gql`
+  query advantages {
+    globalSet(handle: "allamAdvantages") {
+      ... on allamAdvantages_GlobalSet {
+        advantages {
+          ... on advantages_advantage_BlockType {
+            label
+            description
+            icon {
+              url
+              title
+              width
+              height
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const easyBuyPurchaseQuery = gql`
+  query easybuyPurchase {
+    globalSet(handle: "easybuyPurchase") {
+      ... on easybuyPurchase_GlobalSet {
+        storyVideo {
+          ... on storyVideo_easybuyStory_BlockType {
+            titleImage {
+              url
+              title
+              width
+              height
+            }
+            videoLink
+          }
+        }
+        easybuyPurchase {
+          ... on easybuyPurchase_easybuyPurchase_BlockType {
+            heading
+            description
+          }
+        }
+        easybuySteps {
+          ... on easybuySteps_easybuyStep_BlockType {
+            heading
+            description
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const allamAdvPageQuery = gql`
+  query allamAdvantage {
+    entry(section: "allamAdvantage") {
+      ... on allamAdvantage_allamAdvantage_Entry {
+        heading
+        description
+        globalPromos {
+          ... on globalPromos_estateRegister_BlockType {
+            headingRedactor
+            description
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const easyBuyPageQuery = gql`
+  query easyBuyPage {
+    entry(section: "easybuyPage") {
+      ... on easybuyPage_easybuyPage_Entry {
+        heading
+        description
+        globalPromos {
+          ... on globalPromos_estateRegister_BlockType {
+            headingRedactor
+            description
+          }
+        }
+      }
+    }
+  }
+`;
