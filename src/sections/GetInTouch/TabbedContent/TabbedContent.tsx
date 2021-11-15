@@ -34,12 +34,12 @@ const TabbedContent = () => {
       //@ts-ignore
       selector.current.selectedIndex = storedFormIndex;
     }
-  }, []);
+  }, [activeTab]);
 
   useEffect(() => {
     localStorage.setItem("active-form", formType);
     localStorage.setItem("active-form-index", "" + formTypeIndex);
-  }, [formType]);
+  }, [formType, formTypeIndex]);
 
   const setActiveForm = (entry: any) => {
     setFormType(entry.target.value);
