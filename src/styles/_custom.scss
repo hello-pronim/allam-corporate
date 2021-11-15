@@ -372,6 +372,34 @@
   }
 }
 
+// Advantages Slider
+.advantage-slider {
+  .slick-slider {
+    position: relative;
+
+    .slick-list {
+      margin: 0 rem(-20);
+      @include breakpoint($large) {
+        padding: 0;
+        margin: 0;
+      }
+
+      .slick-track {
+        display: flex;
+      }
+
+      .slick-slide {
+        width: 80vw;
+        padding: 0 rem(20);
+        @include breakpoint($large) {
+          padding: 0;
+          width: auto;
+        }
+      }
+    }
+  }
+}
+
 // Modal
 .ReactModal__Overlay {
   opacity: 0;

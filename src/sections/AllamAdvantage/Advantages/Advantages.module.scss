@@ -1,0 +1,36 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.advantages {
+  &Wrapper {
+    @include grid-container;
+    @include breakpoint($large) {
+      @include grid(1, 12, 0);
+    }
+  }
+
+  h2 {
+    font-size: rem(24);
+    line-height: 1.5;
+    color: $grey;
+    margin-bottom: rem(24);
+    @include breakpoint($large) {
+      font-size: rem(48);
+      line-height: 1.2;
+      margin-bottom: rem(64);
+      grid-column: 1 / span 12;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 2 / span 10;
+    }
+  }
+
+  &List {
+    @include breakpoint($large) {
+      grid-column: 1 / span 12;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 2 / span 10;
+    }
+  }
+}

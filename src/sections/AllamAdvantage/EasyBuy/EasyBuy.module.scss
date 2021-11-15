@@ -1,0 +1,23 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.easyBuy {
+  @include breakpoint($medium) {
+  }
+
+  &Wrapper {
+    @include grid-container;
+    @include breakpoint($large) {
+      @include grid(1, 12, 0);
+    }
+  }
+
+  &Inner {
+    @include breakpoint($large) {
+      grid-column: 1 / span 12;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 2 / span 10;
+    }
+  }
+}

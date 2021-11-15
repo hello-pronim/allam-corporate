@@ -1,4 +1,4 @@
-@use 'sass:math';
+@use "sass:math";
 
 @mixin breakpoint($breakpoint) {
   @media (min-width: $breakpoint) {
@@ -6,7 +6,7 @@
   }
 }
 @mixin below($breakpoint) {
-  @media (max-width: $breakpoint - 1) {
+  @media (max-width: ($breakpoint - 1)) {
     @content;
   }
 }
@@ -22,7 +22,7 @@
     grid-template-columns: repeat($largeColumns, 1fr);
   }
   @include breakpoint($webLarge) {
-    gap: rem(48);
+    gap: #{calc($gridGap * 2)};
   }
 }
 
