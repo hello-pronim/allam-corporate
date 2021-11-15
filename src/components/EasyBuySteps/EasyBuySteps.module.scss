@@ -1,0 +1,58 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.easyBuySteps {
+  @include breakpoint($medium) {
+  }
+
+  h4 {
+    color: $grey;
+    font-size: rem(22);
+    line-height: 1.5;
+    margin-bottom: rem(4);
+    @include breakpoint($large) {
+      font-size: rem(48);
+      line-height: 1.1;
+    }
+  }
+}
+
+.singleStep {
+  display: flex;
+  align-items: flex-start;
+  padding: rem(24) 0;
+  @include breakpoint($large) {
+    align-items: center;
+    padding: rem(54) 0;
+  }
+
+  &:not(:last-of-type) {
+    border-bottom: rem(1) solid $primary;
+  }
+
+  &Number {
+    color: $primary;
+    line-height: 1.5;
+    font-weight: 700;
+    font-size: rem(48);
+    @include breakpoint($large) {
+      font-size: rem(48);
+      line-height: 1.1;
+    }
+  }
+  &Content {
+    margin-left: rem(16);
+    @include breakpoint($large) {
+      margin-left: rem(50);
+      display: grid;
+      grid-template-columns: minmax(rem(262), rem(262)) 1fr;
+      align-items: center;
+    }
+    h4 {
+      @include breakpoint($large) {
+        margin: 0;
+        margin-right: rem(50);
+      }
+    }
+  }
+}
