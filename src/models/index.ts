@@ -5,10 +5,8 @@ export type EstatesPageProps = {
 };
 
 export type AllamAdvPageProps = {
-  advPageData?: any;
-  easyBuyPageData?: any;
-  advantages?: any;
   easyBuy?: any;
+  allamAdvantages?: any;
 };
 
 export type NormalPageProps = {
@@ -17,6 +15,17 @@ export type NormalPageProps = {
 };
 
 export type PageProps = NormalPageProps | EstatesPageProps;
+
+export type AdvantageModel = {
+  label: string;
+  description: string;
+  icon: CraftImage[];
+};
+
+export type EasyBuyStepModel = {
+  heading: string;
+  description: string;
+};
 
 export type CraftImage = {
   height?: number;
