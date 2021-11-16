@@ -1,12 +1,12 @@
-@import "@styles/mixins";
-@import "@styles/variables";
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
 
-.easyBuy {
+.advantages {
   position: relative;
+  padding: rem(40) 0 rem(140);
   background: $grey2;
-  padding: rem(80) 0;
-  @include breakpoint($medium) {
-    padding: rem(600) 0 rem(120);
+  @include breakpoint($large) {
+    padding: rem(130) 0 rem(210);
   }
 
   &::before {
@@ -15,7 +15,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 80%;
     background: linear-gradient(
       179.44deg,
       #ffffff 61.01%,
@@ -42,27 +42,32 @@
 
   &Content {
     &Heading {
+      margin-bottom: rem(56);
       @include breakpoint($x-large) {
-        max-width: 50%;
+        max-width: 55%;
+        margin-bottom: rem(140);
       }
-    }
-    h3 {
-      font-size: rem(24);
-      line-height: 1.5;
-      margin-bottom: rem(24);
-      @include breakpoint($large) {
-        font-size: rem(64);
-        line-height: 1.1;
-      }
-    }
 
-    h4 {
-      margin-top: rem(56);
-      @include breakpoint($large) {
-        margin-top: rem(80);
-        padding-bottom: rem(80);
-        border-bottom: rem(1) solid $primary;
+      h2 {
+        margin-bottom: rem(24);
       }
+    }
+  }
+
+  h4 {
+    color: $grey;
+    margin-bottom: rem(36);
+    @include breakpoint($large) {
+      margin-bottom: rem(84);
+    }
+  }
+
+  &List {
+    @include breakpoint($large) {
+      grid-column: 1 / span 12;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 2 / span 10;
     }
   }
 }

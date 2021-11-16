@@ -7,7 +7,6 @@ import { allamAdvQuery, easyBuyPurchaseQuery } from "@libs/queries";
 import { AllamAdvPageProps } from "@models";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/AllamAdvantage/Hero/Hero";
-import StoryVideo from "@components/StoryVideo/StoryVideo";
 import Advantages from "@sections/AllamAdvantage/Advantages/Advantages";
 import EasyBuy from "@sections/AllamAdvantage/EasyBuy/EasyBuy";
 import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
@@ -19,8 +18,6 @@ const AllamAdvantages: NextPage<AllamAdvPageProps> = ({
   allamAdvantages,
 }) => {
   const { isOpen } = useRecoilValue(videoModalState);
-  console.log("allamAdvantages", allamAdvantages);
-  console.log("easyBuy", easyBuy);
   const globalPromos = get(
     allamAdvantages,
     "globalSet.allamAdvantage[0].globalPromos",

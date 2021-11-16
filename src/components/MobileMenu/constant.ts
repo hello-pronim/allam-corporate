@@ -76,20 +76,6 @@ export const menuObj = [
   {
     title: "Allam Advantages",
     slug: "/allam-advantages",
-    subMenu: [
-      {
-        title: "Test 1",
-        slug: "/",
-      },
-      {
-        title: "Test 2",
-        slug: "/",
-      },
-      {
-        title: "Test 3",
-        slug: "/",
-      },
-    ],
   },
   {
     title: "Get in Touch",

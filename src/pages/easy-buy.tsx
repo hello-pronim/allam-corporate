@@ -1,78 +1,87 @@
 import type { NextPage } from "next";
 import get from "lodash/get";
-import { gql } from "@apollo/client";
+import { useRecoilValue } from "recoil";
 import craftAPI from "@libs/api";
-import { allamAdvQuery, easyBuyQuery } from "@libs/queries";
 import { propsFind } from "@utils/propsFind";
-import { PageProps } from "@models";
+import { allamAdvQuery, easyBuyPurchaseQuery } from "@libs/queries";
+import { AllamAdvPageProps } from "@models";
 import Layout from "@components/Layout/Layout";
-import Hero from "@sections/Home/Hero/Hero";
+import Hero from "@sections/AllamAdvantage/Hero/Hero";
+import Advantages from "@sections/EasyBuy/Advantages/Advantages";
+import EasySteps from "@sections/EasyBuy/EasySteps/EasySteps";
+import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
+import { videoModalState } from "@states/atoms/videoModal";
+import VideoModal from "@components/VideoModal/VideoModal";
 
-const EasyBuyPage: NextPage<PageProps> = ({
-  pageData,
-  advantages,
+const AllamAdvantages: NextPage<AllamAdvPageProps> = ({
   easyBuy,
+  allamAdvantages,
 }) => {
-  const heroSlider = get(pageData, "entry.heroSlider", []);
-  const homeLayouts = get(pageData, "entry.homepageLayout", []);
-  const globalPromos = get(pageData, "entry.globalPromos", []);
+  const { isOpen } = useRecoilValue(videoModalState);
+  console.log("allamAdvantages", allamAdvantages);
+  console.log("easyBuy", easyBuy);
+  const globalPromos = get(
+    allamAdvantages,
+    "globalSet.allamAdvantage[0].globalPromos",
+    ""
+  );
 
   return (
     <Layout>
-      {/* <Hero data={heroSlider} />
-      <TrustMakers
-        features={trustFeatures}
-        data={propsFind(globalPromos, "globalPromos_trustMakers_BlockType")}
+      <Hero
+        heading={get(easyBuy, "globalSet.easybuyPurchase[0].heading", "")}
+        introBlurb={get(
+          easyBuy,
+          "globalSet.easybuyPurchase[0].description",
+          ""
+        )}
       />
-      <PerfectEstate
-        data={propsFind(homeLayouts, "homepageLayout_perfectEstate_BlockType")}
+      <EasySteps
+        steps={get(easyBuy, "globalSet.easybuySteps", [])}
+        videoData={get(easyBuy, "globalSet.storyVideo[0]")}
       />
-      <Monterey
-        data={propsFind(homeLayouts, "homepageLayout_monterey_BlockType")}
+      <Advantages
+        heading={get(
+          allamAdvantages,
+          "globalSet.allamAdvantage[0].heading",
+          ""
+        )}
+        introBlurb={get(
+          allamAdvantages,
+          "globalSet.allamAdvantage[0].description",
+          ""
+        )}
+        subheading={get(
+          allamAdvantages,
+          "globalSet.allamAdvantage[0].subHeading",
+          ""
+        )}
+        advantageList={get(
+          allamAdvantages,
+          "globalSet.allamAdvantage[0].advantages",
+          []
+        )}
       />
-      <Promotion
-        data={propsFind(homeLayouts, "homepageLayout_promotion_BlockType")}
+
+      <RegisterPanel
+        data={propsFind(globalPromos, "globalPromos_estateRegister_BlockType")}
       />
-      <FindHomes
-        data={propsFind(homeLayouts, "homepageLayout_findHomes_BlockType")}
-      />
-      <AllBenefits
-        data={propsFind(globalPromos, "globalPromos_easybuy_BlockType")}
-      /> */}
+      <VideoModal isModalOpen={isOpen} />
     </Layout>
   );
 };
 
-const pageQuery = gql`
-  query easyBuyPage {
-    entry(section: "easybuyPage") {
-      ... on easybuyPage_easybuyPage_Entry {
-        heading
-        description
-        globalPromos {
-          ... on globalPromos_estateRegister_BlockType {
-            headingRedactor
-            description
-          }
-        }
-      }
-    }
-  }
-`;
-
 export const getStaticProps = async function () {
-  const pageData = await craftAPI(pageQuery);
-  const advantages = await craftAPI(allamAdvQuery);
-  const easyBuy = await craftAPI(easyBuyQuery);
+  const allamAdvantages = await craftAPI(allamAdvQuery);
+  const easyBuy = await craftAPI(easyBuyPurchaseQuery);
 
   return {
     props: {
-      pageData,
-      advantages,
+      allamAdvantages,
       easyBuy,
     },
     revalidate: 500,
   };
 };
 
-export default EasyBuyPage;
+export default AllamAdvantages;

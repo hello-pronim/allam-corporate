@@ -4,23 +4,34 @@
 .easyBuy {
   position: relative;
   background: $grey2;
-  padding: rem(80) 0;
+  padding: rem(40) 0 rem(80);
   @include breakpoint($medium) {
-    padding: rem(600) 0 rem(120);
+    padding: rem(100) 0 rem(120);
   }
 
   &::before {
     content: "";
     position: absolute;
-    top: 0;
+    top: -3%;
     left: 0;
     width: 100%;
     height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
     background: linear-gradient(
-      179.44deg,
-      #ffffff 61.01%,
-      rgba(255, 255, 255, 0) 103.32%
+      180.02deg,
+      $white 33.84%,
+      rgba(255, 255, 255, 0) 91.13%
     );
+    clip-path: polygon(85% 0, 100% 0, 100% 100%, 5% 100%);
+
+    @include breakpoint($medium) {
+      top: -3%;
+      clip-path: polygon(75% 0, 100% 0, 100% 100%, 5% 100%);
+    }
+    @include breakpoint($large) {
+      clip-path: polygon(65% 0, 100% 0, 100% 100%, 20% 100%);
+    }
   }
 
   &Wrapper {
@@ -41,21 +52,6 @@
   }
 
   &Content {
-    &Heading {
-      @include breakpoint($x-large) {
-        max-width: 50%;
-      }
-    }
-    h3 {
-      font-size: rem(24);
-      line-height: 1.5;
-      margin-bottom: rem(24);
-      @include breakpoint($large) {
-        font-size: rem(64);
-        line-height: 1.1;
-      }
-    }
-
     h4 {
       margin-top: rem(56);
       @include breakpoint($large) {
@@ -63,6 +59,13 @@
         padding-bottom: rem(80);
         border-bottom: rem(1) solid $primary;
       }
+    }
+  }
+
+  &Video {
+    margin-bottom: rem(140);
+    @include breakpoint($large) {
+      margin-bottom: rem(200);
     }
   }
 }
