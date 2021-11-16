@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import get from "lodash/get";
 import { useRecoilValue } from "recoil";
 import craftAPI from "@libs/api";
+import { propsFind } from "@utils/propsFind";
 import { allamAdvQuery, easyBuyPurchaseQuery } from "@libs/queries";
 import { AllamAdvPageProps } from "@models";
 import Layout from "@components/Layout/Layout";
@@ -9,6 +10,7 @@ import Hero from "@sections/AllamAdvantage/Hero/Hero";
 import StoryVideo from "@components/StoryVideo/StoryVideo";
 import Advantages from "@sections/AllamAdvantage/Advantages/Advantages";
 import EasyBuy from "@sections/AllamAdvantage/EasyBuy/EasyBuy";
+import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
 import { videoModalState } from "@states/atoms/videoModal";
 import VideoModal from "@components/VideoModal/VideoModal";
 
@@ -19,6 +21,11 @@ const AllamAdvantages: NextPage<AllamAdvPageProps> = ({
   const { isOpen } = useRecoilValue(videoModalState);
   console.log("allamAdvantages", allamAdvantages);
   console.log("easyBuy", easyBuy);
+  const globalPromos = get(
+    allamAdvantages,
+    "globalSet.allamAdvantage[0].globalPromos",
+    ""
+  );
 
   return (
     <Layout>
@@ -34,7 +41,6 @@ const AllamAdvantages: NextPage<AllamAdvPageProps> = ({
           ""
         )}
       />
-      <StoryVideo data={get(easyBuy, "globalSet.storyVideo[0]")} />
       <Advantages
         subheading={get(
           allamAdvantages,
@@ -46,6 +52,7 @@ const AllamAdvantages: NextPage<AllamAdvPageProps> = ({
           "globalSet.allamAdvantage[0].advantages",
           []
         )}
+        videoData={get(easyBuy, "globalSet.storyVideo[0]")}
       />
       <EasyBuy
         heading={get(easyBuy, "globalSet.easybuyPurchase[0].heading", "")}
@@ -55,6 +62,9 @@ const AllamAdvantages: NextPage<AllamAdvPageProps> = ({
           ""
         )}
         steps={get(easyBuy, "globalSet.easybuySteps", [])}
+      />
+      <RegisterPanel
+        data={propsFind(globalPromos, "globalPromos_estateRegister_BlockType")}
       />
       <VideoModal isModalOpen={isOpen} />
     </Layout>

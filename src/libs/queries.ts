@@ -41,6 +41,12 @@ export const allamAdvQuery = gql`
                 }
               }
             }
+            globalPromos {
+              ... on globalPromos_estateRegister_BlockType {
+                headingRedactor
+                description
+              }
+            }
           }
         }
       }

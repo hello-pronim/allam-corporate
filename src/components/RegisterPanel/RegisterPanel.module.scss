@@ -3,7 +3,7 @@
 
 .registerPanel {
   position: relative;
-  background: #edf2f5;
+  background: $grey2;
   @include grid-container;
   @include breakpoint($large) {
     @include grid(1, 12);
@@ -11,6 +11,7 @@
   form {
     & > *:not(:last-child) {
       margin-bottom: 16px;
+      align-items: center;
     }
     input {
       width: 100%;
@@ -35,7 +36,7 @@
   cursor: pointer;
   position: relative;
   align-items: flex-start;
-  justify-content: flex-end;
+
   span {
     padding: 0 0.5rem;
     font-size: 10px;
@@ -76,12 +77,11 @@
 }
 .ModuleWrapper {
   position: relative;
-  display: flex;
   padding: rem(80);
   column-gap: rem(80);
   margin-bottom: rem(42);
   border-radius: rem(16);
-  background-color: $primary;
+  // background-color: $primary;
   background: linear-gradient(
     99.2deg,
     #ffcd07 41.93%,
@@ -90,11 +90,14 @@
   );
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25), 0px 3px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  grid-column: 1 / span 12;
-
+  @include breakpoint($large) {
+    grid-column: 1 / span 12;
+    display: flex;
+  }
   @include breakpoint($xx-large) {
     grid-column: 2 / span 10;
   }
+
   &::after {
     content: " ";
     position: absolute;
@@ -124,10 +127,16 @@
   }
 }
 .ModuleLeft {
+  position: relative;
   z-index: 1;
 }
 .ModuleRight {
-  z-index: 1;
-  max-width: rem(380);
   width: 100%;
+  position: relative;
+  z-index: 1;
+  margin-top: rem(40);
+  @include breakpoint($large) {
+    margin: 0;
+    max-width: rem(380);
+  }
 }

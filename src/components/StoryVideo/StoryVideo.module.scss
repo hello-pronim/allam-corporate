@@ -3,11 +3,11 @@
 
 .storyVideo {
   &Wrapper {
-    overflow: hidden;
     @include grid-container;
   }
 
   &Inner {
+    position: relative;
     @include breakpoint($large) {
       max-width: rem(1200);
       margin: 0 auto;
@@ -22,6 +22,9 @@
     background-position: center;
     border-radius: rem(4);
     overflow: hidden;
+    @include breakpoint($medium) {
+      height: rem(400);
+    }
     @include breakpoint($large) {
       height: rem(675);
       border-radius: rem(6);
@@ -74,19 +77,21 @@
   }
 
   &LogoImage {
-    width: rem(123);
-    height: rem(123);
-    margin-left: auto;
-    transform: translateY(-50%);
-    @include breakpoint($large) {
+    width: rem(120);
+    height: rem(120);
+    position: absolute;
+    right: 0;
+    bottom: rem(-60);
+    @include breakpoint($medium) {
       width: rem(240);
       height: rem(240);
-      transform: translateX(40%) translateY(-50%);
+      bottom: rem(-120);
     }
     @include breakpoint($webXLarge) {
       width: rem(420);
       height: rem(420);
-      transform: translateX(40%) translateY(-50%);
+      right: rem(-180);
+      bottom: rem(-210);
     }
   }
 }
