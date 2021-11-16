@@ -15,6 +15,10 @@ const TabbedContent = () => {
   const [formType, setFormType] = useState("General enquiry");
   const [formTypeIndex, setFormTypeIndex] = useState(0);
   const [activeTab, setActiveTab] = useState("contact");
+  const [windowDimensions, setWindowDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
 
   let FormKey = new Map([
     ["General enquiry", GeneralEnquiry],
@@ -24,6 +28,20 @@ const TabbedContent = () => {
   ]);
 
   const ActiveForm = FormKey.get(formType);
+
+  const getWindowDimensions = () => {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height,
+    };
+  };
+
+  const setActiveForm = (entry: any) => {
+    setFormType(entry.target.value);
+    selector.current?.selectedIndex &&
+      setFormTypeIndex(selector.current?.selectedIndex);
+  };
 
   useEffect(() => {
     const storedForm = localStorage.getItem("active-form");
@@ -41,11 +59,16 @@ const TabbedContent = () => {
     localStorage.setItem("active-form-index", "" + formTypeIndex);
   }, [formType, formTypeIndex]);
 
-  const setActiveForm = (entry: any) => {
-    setFormType(entry.target.value);
-    selector.current?.selectedIndex &&
-      setFormTypeIndex(selector.current?.selectedIndex);
-  };
+  useEffect(() => {
+    getWindowDimensions();
+
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className={styles.TabbedContent}>
@@ -59,14 +82,14 @@ const TabbedContent = () => {
           <div className={styles.TabContainer}>
             <ImageButton
               icon="grid-view"
-              label="Contact Us"
+              label={`Contact${windowDimensions.width > 768 ? " Us" : ""} `}
               css={css({ bg: "#ffca04" })}
               onClick={() => setActiveTab("contact")}
             />
             <div className={styles.Divider}></div>
             <ImageButton
               icon="map"
-              label="Our Locations"
+              label={`${windowDimensions.width > 768 ? "Our " : ""}Locations`}
               onClick={() => setActiveTab("locations")}
             />
           </div>
