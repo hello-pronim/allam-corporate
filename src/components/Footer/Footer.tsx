@@ -15,7 +15,7 @@ const Footer = ({}: IFooterProps) => {
             <h3>How can we help?</h3>
             <div className={styles.footerInfoContactButtons}>
               <Button size="large" rounded>
-                Contact an Agent today
+                Contact an Agent
               </Button>
               <Button size="large" color="outline-light" rounded>
                 View our locations

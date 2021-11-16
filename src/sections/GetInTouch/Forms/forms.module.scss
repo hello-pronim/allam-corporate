@@ -2,9 +2,17 @@
 @import "@styles/variables.scss";
 
 .Form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: rem(48);
+  display: flex;
+  flex-direction: column;
+  @include below($medium) {
+    .formRowReverse {
+      grid-template-columns: 1fr;
+      transform: scale(-1);
+      .formCol {
+        transform: scale(-1);
+      }
+    }
+  }
   input {
     border-radius: rem(4);
     border: 1px solid $grey;
@@ -24,6 +32,7 @@
     font-size: rem(16);
     line-height: rem(24);
     color: $grey;
+    width: 100%;
     height: rem(110);
     min-height: rem(110);
     resize: vertical;
@@ -36,16 +45,24 @@
     color: $primary;
     font-weight: bold;
     background-color: $grey;
+    margin-top: 1.5rem;
   }
-  .left {
+  .formRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 3rem;
+    @include below($medium) {
+      grid-template-columns: 1fr;
+    }
+  }
+  .formControl {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .radioGroup {
     display: flex;
     flex-direction: column;
-    grid-row-gap: rem(14);
-  }
-  .right {
-    display: flex;
-    flex-direction: column;
-    grid-row-gap: rem(14);
+    gap: 1rem;
   }
 }
 
@@ -54,7 +71,7 @@
   cursor: pointer;
   position: relative;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: flex-start;
   span {
     padding: 0 0.5rem;
     font-size: rem(16);

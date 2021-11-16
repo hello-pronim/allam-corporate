@@ -93,7 +93,7 @@ export const menuObj = [
   },
   {
     title: "Get in Touch",
-    slug: "/",
+    slug: "/get-in-touch",
   },
 ];
 
