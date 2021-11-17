@@ -22,6 +22,8 @@ export type AdvantageModel = {
   icon: CraftImage[];
 };
 
+export type LocationOptionModel = { label: any; selected: boolean };
+
 export type EasyBuyStepModel = {
   heading: string;
   description: string;
@@ -108,4 +110,9 @@ export type EstateModel = {
   offersLink: any[];
   masterPlanImage: CraftImage[];
   downloadableBrochure: Asset[];
+};
+
+export type EstateFilterModel = {
+  locations: string[];
+  type: string;
 };

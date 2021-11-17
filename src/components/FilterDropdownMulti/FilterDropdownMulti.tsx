@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Icon from "@components/Icons/Icons";
+import { LocationOptionModel } from "@models";
 import styles from "./FilterDropdownMulti.module.scss";
 
 export interface IFilterDropdownMultiProps {
@@ -9,6 +10,7 @@ export interface IFilterDropdownMultiProps {
   closeDropdown: () => void;
   toggleDropdown: () => void;
   setFilterValue: (val: any) => void;
+  filterStateValue: any;
 }
 
 const FilterDropdownMulti = ({
@@ -18,10 +20,11 @@ const FilterDropdownMulti = ({
   options,
   toggleDropdown,
   setFilterValue,
+  filterStateValue,
 }: IFilterDropdownMultiProps) => {
   const ALL_SUBURBS_LABEL = "All Suburbs";
-  const [isAllSelected, setIsAllSelected] = useState<boolean>(false);
-  const [selectedOptions, setSelectedOptions] = useState(
+  const [isAllSelected, setIsAllSelected] = useState<boolean>(true);
+  const [selectedOptions, setSelectedOptions] = useState<LocationOptionModel[]>(
     options.map((option) => {
       return {
         label: option,
@@ -53,10 +56,19 @@ const FilterDropdownMulti = ({
   }, [isOpen, closeDropdown]);
 
   useEffect(() => {
-    setIsAllSelected(
-      selectedOptions.filter((option) => option.selected === true).length ==
-        selectedOptions.length
-    );
+    const isLengthSame =
+      selectedOptions.filter((option) => option.selected === true).length ===
+      selectedOptions.length;
+    setIsAllSelected(isLengthSame);
+
+    setFilterValue({
+      ...filterStateValue,
+      locations: isLengthSame
+        ? ["All"]
+        : selectedOptions
+            .filter((option) => option.selected === true)
+            .map((el) => el.label),
+    });
   }, [selectedOptions]);
 
   const setOption = (optionLabel: any) => {
@@ -68,11 +80,17 @@ const FilterDropdownMulti = ({
           }
         : option
     );
+
     setSelectedOptions(newOptions);
   };
 
   const selectAll = () => {
     const allSelected = !isAllSelected;
+    setFilterValue({
+      ...filterStateValue,
+      locations: allSelected ? ["All"] : [],
+    });
+
     const newOptions = selectedOptions.map((option) => {
       return { selected: allSelected, label: option.label };
     });

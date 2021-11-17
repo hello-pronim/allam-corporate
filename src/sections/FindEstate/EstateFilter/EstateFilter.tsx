@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSetRecoilState } from "recoil";
+import { useSetRecoilState, useRecoilState } from "recoil";
 import { estateFilterState } from "@states/atoms/estates";
 import { ArrowButton, ImageButton } from "@components/Common/Common";
 import FilterDropdown from "@components/FilterDropdown/FilterDropdown";
@@ -21,7 +21,7 @@ const EstateFilter = ({
   setShowMap,
   toggleFilter,
 }: IEstateFilterProps) => {
-  const setEstateFilters = useSetRecoilState(estateFilterState);
+  const [estateFilter, setEstateFilters] = useRecoilState(estateFilterState);
   const [openLocationMenu, setOpenLocationMenu] = useState(false);
   const [openTypeMenu, setOpenTypeMenu] = useState(false);
 
@@ -61,6 +61,7 @@ const EstateFilter = ({
               closeDropdown={() => setOpenLocationMenu(false)}
               toggleDropdown={() => setOpenLocationMenu(!openLocationMenu)}
               setFilterValue={setEstateFilters}
+              filterStateValue={estateFilter}
             />
 
             <FilterDropdown
@@ -70,6 +71,7 @@ const EstateFilter = ({
               closeDropdown={() => setOpenTypeMenu(false)}
               toggleDropdown={() => setOpenTypeMenu(!openTypeMenu)}
               setFilterValue={setEstateFilters}
+              filterStateValue={estateFilter}
             />
           </div>
         </div>

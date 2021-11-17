@@ -1,15 +1,15 @@
 import { atom, selector } from "recoil";
-import { EstateModel } from "@models";
+import { EstateModel, EstateFilterModel } from "@models";
 
 export const allEstateState = atom<EstateModel[]>({
   key: "allEstateState",
   default: [],
 });
 
-export const estateFilterState = atom({
+export const estateFilterState = atom<EstateFilterModel>({
   key: "estateFilterState",
   default: {
-    locations: [],
+    locations: ["All"],
     type: "All",
   },
 });
@@ -26,13 +26,15 @@ export const filteredEstates = selector({
       filters.type === "All"
         ? estates
         : estates.filter(
-            (estate) =>
-              filters.type === "All" ||
-              estate.retirementLiving === isRetirementLiving
+            (estate) => estate.retirementLiving === isRetirementLiving
           );
-    return filterType;
-    // return players.filter(
-    //   (player) => filters.length === 0 || filters.includes(player.position),
-    // );
+
+    const filterLocation =
+      filters.locations?.[0] === "All"
+        ? filterType
+        : filterType?.filter((estate) =>
+            filters?.locations?.some((location) => location === estate.suburb)
+          );
+    return filterLocation;
   },
 });
