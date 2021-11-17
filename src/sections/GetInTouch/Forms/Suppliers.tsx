@@ -1,89 +1,122 @@
 import React from "react";
-import styles from "./forms.module.scss";
 import classNames from "classnames";
+import Button, {
+  buttonTypeEnum,
+  buttonColorEnum,
+} from "@components/Button/Button";
+import Checkbox from "@components/Checkbox/Checkbox";
+import Input from "@components/Input/Input";
+import RadioButtons from "@components/RadioButtons/RadioButtons";
+import Select from "@components/Select/Select";
+import Textarea from "@components/Textarea/Textarea";
+
+import styles from "./forms.module.scss";
 
 export interface SuppliersProps {}
 
 const Suppliers = () => {
+  const radioButtonsData = [
+    {
+      value: "1 – 3",
+      text: "1 – 3",
+    },
+    {
+      value: "4 - 8",
+      text: "4 - 8",
+    },
+    {
+      value: "9 - 12",
+      text: "9 - 12",
+    },
+  ];
+  const serviceTypes: any = [];
+  const workingAreas: any = [];
+
   return (
     <form className={classNames(styles.Form)}>
       <div className={styles.formRow}>
         <div className={styles.formCol}>
-          <input
+          <Input
             type="text"
+            name="firstName"
             className={styles.formControl}
             placeholder="First Name"
-          ></input>
-          <input
+          />
+          <Input
             type="text"
+            name="lastName"
             className={styles.formControl}
             placeholder="Last Name"
-          ></input>
-          <input
+          />
+          <Input
             type="email"
+            name="email"
             className={styles.formControl}
             placeholder="Email"
-          ></input>
-          <input
+          />
+          <Input
             type="text"
+            name="contactNumber"
             className={styles.formControl}
             placeholder="Contact Number"
-          ></input>
-          <input
+          />
+          <Input
             type="text"
+            name="postcode"
             className={styles.formControl}
             placeholder="Postcode"
-          ></input>
-          <textarea
+          />
+          <Textarea
+            rows={3}
             className={styles.formControl}
+            name="comment"
             placeholder="Comment"
-          ></textarea>
+          />
         </div>
         <div className={styles.formCol}>
-          <select className={`${styles.formControl} ${styles.dropdown}`}>
-            <option value={undefined}>
-              What type of services do you provide?
-            </option>
-          </select>
-          <select className={`${styles.formControl} ${styles.dropdown}`}>
-            <option value={undefined}>
-              What area are you interested in working from?
-            </option>
-          </select>
-          <h6>How big is your company?</h6>
-          <div className={`${styles.formControl} ${styles.radioButtonWrapper}`}>
-            <label className={styles.radioButton}>
-              <input type="radio" name="employees" value="1-3" />
-              <span className={styles.chk}>1-3</span>
-            </label>
-            <label className={styles.radioButton}>
-              <input type="radio" name="employees" value="4-8" />
-              <span>4-8</span>
-            </label>
-            <label className={styles.radioButton}>
-              <input type="radio" name="employees" value="9-12" />
-              <span>9-12</span>
-            </label>
+          <div>
+            <Select
+              className={styles.formControl}
+              name="serviceType"
+              placeholder="What type of services do you provide?"
+              options={serviceTypes}
+            />
+            <Select
+              className={styles.formControl}
+              name="workingArea"
+              placeholder="What area are you interested in working from?"
+              options={workingAreas}
+            />
+          </div>
+          <div>
+            <h6>How big is your company?</h6>
+            <RadioButtons
+              className={styles.formControl}
+              name="employees"
+              data={radioButtonsData}
+            />
           </div>
         </div>
       </div>
       <div className={styles.formRow}>
         <div className={styles.formCol}>
-          <label className={`${styles.formControl} ${styles.checkbox}`}>
-            <input type="checkbox" name="terms" />
-            <span>
-              By clicking submit you acknowledge Allam may contact you via
-              email, you also agree to their Terms and Conditions.
-            </span>
-          </label>
-          <label className={`${styles.formControl} ${styles.checkbox}`}>
-            <input type="checkbox" name="offers" />
-            <span>
-              Would you like to receive updates and offers from Allam Property
-              Group?
-            </span>
-          </label>
-          <input type="submit" />
+          <Checkbox
+            className={styles.formControl}
+            name="terms"
+            text="By clicking submit you acknowledge Allam may contact you via
+              email, you also agree to their Terms and Conditions."
+          />
+          <Checkbox
+            className={styles.formControl}
+            name="offers"
+            text="Would you like to receive updates and offers from Allam Property
+              Group?"
+          />
+          <Button
+            type={buttonTypeEnum.submit}
+            color={buttonColorEnum.secondary}
+            text="Submit"
+          />
         </div>
       </div>
     </form>
