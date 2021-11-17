@@ -9,6 +9,7 @@ export interface IFilterDropdownProps {
   closeDropdown: () => void;
   toggleDropdown: () => void;
   setFilterValue: (val: any) => void;
+  filterStateValue: any;
 }
 
 const FilterDropdown = ({
@@ -18,6 +19,7 @@ const FilterDropdown = ({
   options,
   toggleDropdown,
   setFilterValue,
+  filterStateValue,
 }: IFilterDropdownProps) => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const dropdownRef = useRef<HTMLHeadingElement>(null);
@@ -47,6 +49,7 @@ const FilterDropdown = ({
     setSelectedOption(options[id]);
     if (placeholderLabel === "Type") {
       setFilterValue({
+        ...filterStateValue,
         type: id === 0 ? "All" : options[id],
       });
     }

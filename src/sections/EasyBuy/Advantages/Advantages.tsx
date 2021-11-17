@@ -24,7 +24,7 @@ const Advantages = ({
         <div className={styles.advantagesInner}>
           <div className={styles.advantagesContent}>
             <div className={styles.advantagesContentHeading}>
-              <h2>{heading}</h2>
+              <h3>{heading}</h3>
               <Redactor>{introBlurb ?? ""}</Redactor>
             </div>
             <h4>{subheading}</h4>

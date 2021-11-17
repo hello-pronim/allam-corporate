@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import type { NextPage } from "next";
 import { get, map, sortBy } from "lodash";
 import { useSetRecoilState } from "recoil";
@@ -28,7 +28,10 @@ const FindEstate: NextPage<EstatesPageProps> = ({
   const estateList = get(estatesData, "entries", []);
   const suburbList = sortBy(map(estateList, "suburb"));
   const setEstates = useSetRecoilState(allEstateState);
-  setEstates(estateList);
+
+  useEffect(() => {
+    setEstates(estateList);
+  }, [estateList]);
 
   return (
     <Layout>

@@ -1,4 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import Icon from "@components/Icons/Icons";
+import { LocationOptionModel } from "@models";
 import styles from "./FilterDropdownMulti.module.scss";
 
 export interface IFilterDropdownMultiProps {
@@ -6,7 +8,9 @@ export interface IFilterDropdownMultiProps {
   options: any[];
   placeholderLabel?: string;
   closeDropdown: () => void;
-  children: React.ReactNode;
+  toggleDropdown: () => void;
+  setFilterValue: (val: any) => void;
+  filterStateValue: any;
 }
 
 const FilterDropdownMulti = ({
@@ -14,8 +18,20 @@ const FilterDropdownMulti = ({
   closeDropdown,
   placeholderLabel,
   options,
-  children,
+  toggleDropdown,
+  setFilterValue,
+  filterStateValue,
 }: IFilterDropdownMultiProps) => {
+  const ALL_SUBURBS_LABEL = "All Suburbs";
+  const [isAllSelected, setIsAllSelected] = useState<boolean>(true);
+  const [selectedOptions, setSelectedOptions] = useState<LocationOptionModel[]>(
+    options.map((option) => {
+      return {
+        label: option,
+        selected: true,
+      };
+    })
+  );
   const dropdownRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
@@ -39,22 +55,100 @@ const FilterDropdownMulti = ({
     };
   }, [isOpen, closeDropdown]);
 
+  useEffect(() => {
+    const isLengthSame =
+      selectedOptions.filter((option) => option.selected === true).length ===
+      selectedOptions.length;
+    setIsAllSelected(isLengthSame);
+
+    setFilterValue({
+      ...filterStateValue,
+      locations: isLengthSame
+        ? ["All"]
+        : selectedOptions
+            .filter((option) => option.selected === true)
+            .map((el) => el.label),
+    });
+  }, [selectedOptions]);
+
+  const setOption = (optionLabel: any) => {
+    const newOptions = selectedOptions.map((option) =>
+      optionLabel == option.label
+        ? {
+            label: option.label,
+            selected: !option.selected,
+          }
+        : option
+    );
+
+    setSelectedOptions(newOptions);
+  };
+
+  const selectAll = () => {
+    const allSelected = !isAllSelected;
+    setFilterValue({
+      ...filterStateValue,
+      locations: allSelected ? ["All"] : [],
+    });
+
+    const newOptions = selectedOptions.map((option) => {
+      return { selected: allSelected, label: option.label };
+    });
+    setSelectedOptions(newOptions);
+  };
+
   return (
     <div className={styles.filterDropdown} ref={dropdownRef}>
-      {children}
-      <div className={styles.filterDropdownMain}>{placeholderLabel}</div>
+      <div className={styles.filterDropdownButton} onClick={toggleDropdown}>
+        <span>{placeholderLabel}</span>
+        <p>
+          {`${
+            selectedOptions.filter((option) => option.selected === true).length
+          } selected`}
+        </p>
+        <div className={styles.filterDropdownButtonIcon}>
+          <Icon type="chevron-down" />
+        </div>
+      </div>
       <div
         className={styles.filterDropdownMenu}
         style={{
           visibility: `${isOpen ? "visible" : "hidden"}`,
           opacity: `${isOpen ? "1" : "0"}`,
-          transitionDelay: "0.2s",
           transition: "all 0.3s cubic-bezier(1, 0.885, 0.72, 1)",
         }}
       >
         <ul className={styles.filterDropdownMenuItems}>
-          {options?.map((el: any, id: number) => (
-            <li key={id}>{el.label}</li>
+          <li onClick={selectAll}>
+            {ALL_SUBURBS_LABEL}
+            <div
+              className={styles.filterDropdownMenuItemCheck}
+              style={{
+                visibility: `${isAllSelected ? "visible" : "hidden"}`,
+                opacity: `${isAllSelected ? "1" : "0"}`,
+                transition: "all 0.2s cubic-bezier(1, 0.885, 0.72, 1)",
+              }}
+            >
+              <Icon type="check" />
+            </div>
+          </li>
+
+          {selectedOptions?.map((option: any, id: number) => (
+            <li key={id} onClick={() => setOption(option.label)}>
+              {option.label}
+              <div
+                className={styles.filterDropdownMenuItemCheck}
+                style={{
+                  visibility: `${
+                    option.selected === true ? "visible" : "hidden"
+                  }`,
+                  opacity: `${option.selected === true ? "1" : "0"}`,
+                  transition: "all 0.2s cubic-bezier(1, 0.885, 0.72, 1)",
+                }}
+              >
+                <Icon type="check" />
+              </div>
+            </li>
           ))}
         </ul>
       </div>
