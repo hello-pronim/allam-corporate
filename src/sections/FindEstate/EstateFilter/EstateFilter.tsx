@@ -3,6 +3,7 @@ import { useSetRecoilState } from "recoil";
 import { estateFilterState } from "@states/atoms/estates";
 import { ArrowButton, ImageButton } from "@components/Common/Common";
 import FilterDropdown from "@components/FilterDropdown/FilterDropdown";
+import FilterDropdownMulti from "@components/FilterDropdownMulti/FilterDropdownMulti";
 import styles from "./EstateFilter.module.scss";
 
 export interface IEstateFilterProps {
@@ -23,11 +24,6 @@ const EstateFilter = ({
   const setEstateFilters = useSetRecoilState(estateFilterState);
   const [openLocationMenu, setOpenLocationMenu] = useState(false);
   const [openTypeMenu, setOpenTypeMenu] = useState(false);
-  const suburbs = ["All Suburbs", ...suburbList];
-
-  const toggleLocationMenu = () => {
-    setOpenLocationMenu(!openLocationMenu);
-  };
 
   return (
     <div className={styles.estateFilter}>
@@ -58,12 +54,12 @@ const EstateFilter = ({
 
           <div className={styles.estateFilterDesktopSortBy}>
             <span>Sort by</span>
-            <FilterDropdown
-              options={suburbs}
+            <FilterDropdownMulti
+              options={suburbList}
               isOpen={openLocationMenu}
               placeholderLabel="Location"
               closeDropdown={() => setOpenLocationMenu(false)}
-              toggleDropdown={toggleLocationMenu}
+              toggleDropdown={() => setOpenLocationMenu(!openLocationMenu)}
               setFilterValue={setEstateFilters}
             />
 
