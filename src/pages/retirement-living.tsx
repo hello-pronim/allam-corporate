@@ -24,7 +24,7 @@ const RetirementLiving: NextPage<PageProps> = ({ pageData, trustMakers }) => {
     "retirementLayout_fullImage_BlockType"
   );
 
-  return (
+  return pageData ? (
     <Layout>
       <Hero data={propsFind(pageLayout, "retirementLayout_hero_BlockType")} />
       <LeadingHomes
@@ -55,7 +55,7 @@ const RetirementLiving: NextPage<PageProps> = ({ pageData, trustMakers }) => {
         data={propsFind(globalPromos, "globalPromos_estateRegister_BlockType")}
       />
     </Layout>
-  );
+  ) : null;
 };
 
 const pageQuery = gql`

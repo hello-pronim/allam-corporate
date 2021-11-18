@@ -2,17 +2,37 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@styles/*": ["src/styles/*"],
-      "@sections/*": ["src/sections/*"],
-      "@libs/*": ["src/libs/*"],
-      "@utils/*": ["src/utils/*"],
-      "@models": ["src/models"],
-      "@states/*": ["src/states/*"]
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+      "@sections/*": [
+        "src/sections/*"
+      ],
+      "@libs/*": [
+        "src/libs/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@models": [
+        "src/models"
+      ],
+      "@states/*": [
+        "src/states/*"
+      ]
     },
-    "types": ["@emotion/react/types/css-prop"],
+    "types": [
+      "@emotion/react/types/css-prop"
+    ],
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -24,8 +44,15 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
