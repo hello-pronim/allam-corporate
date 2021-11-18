@@ -47,7 +47,7 @@
   }
 
   &Filter {
-    margin-top: rem(100);
+    padding-top: rem(100);
     padding-bottom: rem(68);
     @include breakpoint($large) {
       grid-column: 1 / span 12;
