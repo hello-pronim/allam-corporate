@@ -11,8 +11,6 @@ export interface ITimelineGraphProps {
 }
 
 const TimelineGraph = ({ data }: ITimelineGraphProps) => {
-  console.log(data);
-
   return (
     <div className={styles.timeGraph}>
       <div className={styles.timeGraphWrapper}>
