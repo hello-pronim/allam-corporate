@@ -5,6 +5,7 @@ import styles from "./Button.module.scss";
 
 export interface IButtonProps {
   href?: string;
+  type?: "button" | "submit";
   color?: string;
   size?: "large" | "normal" | "small";
   className?: string;
@@ -15,6 +16,7 @@ export interface IButtonProps {
 
 const Button = ({
   href,
+  type = "button",
   color = "primary",
   className = "",
   size = "normal",
@@ -30,12 +32,13 @@ const Button = ({
   else if (color === "light") themeName = styles.light;
   else if (color === "outline-light") themeName = styles.outlineLight;
   let roundedClass = rounded ? styles.rounded : "";
-  let sizeClass =
+  const sizeClass =
     size === "small" ? styles.small : size === "large" ? styles.large : "";
 
   if (!href) {
     return (
       <button
+        type={type}
         className={`${styles.button}${
           className ? ` ${className}` : ""
         } ${themeName} ${roundedClass} ${sizeClass}`}
