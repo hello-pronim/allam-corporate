@@ -32,13 +32,21 @@
 
       & a {
         color: $grey;
+        font-weight: 400;
         font-size: rem(12);
         line-height: rem(28);
-        font-style: normal;
-        font-weight: 400;
+        transition: all 0.25s cubic-bezier(1, 0.885, 0.72, 1);
+        @include breakpoint($medium) {
+          font-size: rem(14);
+        }
 
         &:first-letter {
           text-transform: uppercase;
+        }
+
+        &:hover {
+          opacity: 0.75;
+          text-decoration: underline;
         }
       }
     }
