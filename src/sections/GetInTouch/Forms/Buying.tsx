@@ -1,14 +1,11 @@
 import React from "react";
 import classNames from "classnames";
-import Button, {
-  buttonTypeEnum,
-  buttonColorEnum,
-} from "@components/Button/Button";
-import Checkbox from "@components/Checkbox/Checkbox";
-import Input from "@components/Input/Input";
-import RadioButtons from "@components/RadioButtons/RadioButtons";
-import Select from "@components/Select/Select";
-import Textarea from "@components/Textarea/Textarea";
+import Button from "@components/Common/Button/Button";
+import Checkbox from "@components/Common/Checkbox/Checkbox";
+import Input from "@components/Common/Input/Input";
+import RadioButtons from "@components/Common/RadioButtons/RadioButtons";
+import Select from "@components/Common/FormSelect/FormSelect";
+import Textarea from "@components/Common/Textarea/Textarea";
 
 import styles from "./forms.module.scss";
 
@@ -119,11 +116,9 @@ const Buying = () => {
             text="Would you like to receive updates and offers from Allam Property
               Group?"
           />
-          <Button
-            type={buttonTypeEnum.submit}
-            color={buttonColorEnum.secondary}
-            text="Submit"
-          />
+          <Button className={styles.formControl} color="dark">
+            Submit
+          </Button>
         </div>
       </div>
     </form>
