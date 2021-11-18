@@ -43,6 +43,10 @@ const TabbedContent = () => {
       setFormTypeIndex(selector.current?.selectedIndex);
   };
 
+  const handleOnSubmit = (values: any) => {
+    console.log(values);
+  };
+
   useEffect(() => {
     const storedForm = localStorage.getItem("active-form");
     const storedFormIndex = localStorage.getItem("active-form-index");
@@ -99,9 +103,9 @@ const TabbedContent = () => {
             <div className={styles.dropdownWrapper}>
               <div>
                 <h4>
-                  Please fill out the form and we'll get back to you shortly
+                  Please fill out the form and we&#39;ll get back to you shortly
                 </h4>
-                <h6>What's the reason for your enquiry?</h6>
+                <h6>What&#39;s the reason for your enquiry?</h6>
                 <select
                   className={styles.dropdown}
                   onChange={(e) => setActiveForm(e)}
@@ -112,7 +116,7 @@ const TabbedContent = () => {
                     Request an appointment
                   </option>
                   <option value="I'm interested in buying">
-                    I'm interested in buying
+                    I&#39;m interested in buying
                   </option>
                   <option value="Trade and Suppliers">
                     Trade and Suppliers
@@ -122,7 +126,7 @@ const TabbedContent = () => {
             </div>
             {
               //@ts-ignore
-              <ActiveForm />
+              <ActiveForm handleOnSubmit={handleOnSubmit} />
             }
           </div>
         )}
