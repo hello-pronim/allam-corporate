@@ -1,13 +1,15 @@
 import type { NextPage } from "next";
 import Layout from "@components/Layout/Layout";
-import Header from "@sections/GetInTouch/Header/Header";
+import Hero from "@sections/GetInTouch/Hero/Hero";
 import TabbedContent from "@sections/GetInTouch/TabbedContent/TabbedContent";
+
+import data from "./constants";
 
 const GetInTouch: NextPage = () => {
   return (
     <Layout>
-      <Header />
-      <TabbedContent/>
+      <Hero heading={data.heading} introBlurb={data.introBlurb} />
+      <TabbedContent />
     </Layout>
   );
 };
