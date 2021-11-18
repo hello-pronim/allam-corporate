@@ -18,8 +18,6 @@ const AllamAdvantages: NextPage<AllamAdvPageProps> = ({
   allamAdvantages,
 }) => {
   const { isOpen } = useRecoilValue(videoModalState);
-  console.log("allamAdvantages", allamAdvantages);
-  console.log("easyBuy", easyBuy);
   const globalPromos = get(
     allamAdvantages,
     "globalSet.allamAdvantage[0].globalPromos",

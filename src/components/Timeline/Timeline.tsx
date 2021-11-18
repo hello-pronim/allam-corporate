@@ -115,13 +115,8 @@ const Timeline = ({ cards, padding = [] }: TimelineProps) => {
     const getSlider = document.getElementById("timeline");
     setSliderWrapper(getSlider);
     //@ts-ignore
-    setSlideCount(
-      (slider?.current &&
-        slider?.current?.innerSlider?.state?.slideCount -
-          slider?.current?.props?.slidesToShow) ??
-        0
-    );
-  }, []);
+    setSlideCount(cards?.length);
+  }, [cards]);
 
   var scrollCompletion = (current / slideCount) * 100;
 

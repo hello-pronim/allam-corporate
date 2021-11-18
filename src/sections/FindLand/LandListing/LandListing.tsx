@@ -12,11 +12,11 @@ const LandListing = ({}: ILandListingProps) => {
       <div className={styles.landListingWrapper}>
         <div className={styles.landListingView}>
           <div className={styles.landListingCards}>
-            {Array(8)
+            {/* {Array(8)
               .fill("")
               .map((_, id) => (
                 <EstateCard key={id} />
-              ))}
+              ))} */}
             <EasyBuyPurchase />
           </div>
 

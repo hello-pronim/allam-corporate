@@ -10,8 +10,8 @@ const SimilarEstates = ({}: ISimilarEstatesProps) => {
     <div className={styles.similarEstates}>
       <div className={styles.similarEstatesWrapper}>
         <CardGrid title="You might also like these Estates" col={[1, 2]}>
-          <EstateCard />
-          <EstateCard />
+          {/* <EstateCard /> */}
+          {/* <EstateCard /> */}
         </CardGrid>
       </div>
     </div>

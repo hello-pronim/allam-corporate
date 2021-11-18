@@ -31,6 +31,7 @@ const FindEstate: NextPage<EstatesPageProps> = ({
 
   useEffect(() => {
     setEstates(estateList);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [estateList]);
 
   return (

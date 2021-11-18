@@ -13,7 +13,7 @@ import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 const News: NextPage = () => {
   return (
     <Layout>
-      <BackgroundWrapper>
+      {/* <BackgroundWrapper>
         <FeaturedPost content={featuredContent} />
         <PostSlider>
           {PostContent.map((post, index) => {
@@ -35,7 +35,7 @@ const News: NextPage = () => {
           })}
         </CardGrid>
         <AllBenefits />
-      </BackgroundWrapper>
+      </BackgroundWrapper> */}
     </Layout>
   );
 };

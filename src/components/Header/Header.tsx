@@ -168,8 +168,8 @@ const Header = ({ ...props }: IHeaderProps) => {
                 <ul id="hidden-list"></ul>
               </div>
             </div>
-            <Button color="dark">
-              <Link href="/get-in-touch">Get in Touch</Link>
+            <Button color="dark" href="/get-in-touch">
+              Get in Touch
             </Button>
           </div>
         </div>

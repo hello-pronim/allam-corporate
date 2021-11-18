@@ -69,6 +69,7 @@ const FilterDropdownMulti = ({
             .filter((option) => option.selected === true)
             .map((el) => el.label),
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedOptions]);
 
   const setOption = (optionLabel: any) => {

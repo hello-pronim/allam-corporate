@@ -42,17 +42,24 @@ const Hero = ({ data }: IHeroProps) => {
                 <p>Find your perfect home without difficulties</p>
 
                 <div className={styles.heroFilterOptions}>
-                  <ImageButton icon="estate" label="Estates" homepageFilter />
+                  <ImageButton
+                    icon="estate"
+                    label="Estates"
+                    homepageFilter
+                    href="/find-estate"
+                  />
                   <span>or by</span>
                   <ImageButton
                     icon="home-insurance"
                     label="Homes for Sale"
                     homepageFilter
+                    href="/find-home"
                   />
                   <ImageButton
                     icon="land-sale"
                     label="Land for Sale"
                     homepageFilter
+                    href="/find-land"
                   />
 
                   <div className={styles.heroFilterOptionsSearch}>
