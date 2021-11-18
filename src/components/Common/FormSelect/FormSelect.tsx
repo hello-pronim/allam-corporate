@@ -1,29 +1,29 @@
 import React from "react";
 
-import styles from "./Select.module.scss";
+import styles from "./FormSelect.module.scss";
 
-export interface SelectOptionProps {
+export interface FormSelectOptionProps {
   value: string;
   text: string;
 }
 
-export interface SelectProps {
+export interface FormSelectProps {
   className?: string;
   placeholder?: string;
   name?: string;
-  options: Array<SelectOptionProps>;
+  options: Array<FormSelectOptionProps>;
   value?: string;
   onChange?: () => void;
 }
 
-const Select = ({
+const FormSelect = ({
   className,
   placeholder,
   name,
   options,
   value,
   onChange,
-}: SelectProps) => {
+}: FormSelectProps) => {
   return (
     <select
       name={name}
@@ -33,11 +33,11 @@ const Select = ({
       <option value="" disabled>
         {placeholder}
       </option>
-      {options?.map((option: SelectOptionProps) => {
+      {options?.map((option: FormSelectOptionProps) => {
         <option value={option.value}>{option.text}</option>;
       })}
     </select>
   );
 };
 
-export default Select;
+export default FormSelect;
