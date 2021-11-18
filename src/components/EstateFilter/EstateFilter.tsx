@@ -51,7 +51,7 @@ const EstateFilter = ({
 
           <div className={styles.estateFilterDesktopSortBy}>
             <span>Sort by</span>
-            <FilterDropdown
+            {/* <FilterDropdown
               options={locationObj}
               isOpen={openLocationMenu}
               placeholderLabel="Location"
@@ -65,7 +65,7 @@ const EstateFilter = ({
               placeholderLabel="Type"
               closeDropdown={() => setOpenTypeMenu(false)}
               toggleDropdown={() => setOpenTypeMenu(!openTypeMenu)}
-            />
+            /> */}
           </div>
         </div>
       </div>
