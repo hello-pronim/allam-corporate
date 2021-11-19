@@ -7,7 +7,7 @@ import { propsFind } from "@utils/propsFind";
 import { trustQuery } from "@libs/queries";
 import { useSetRecoilState } from "recoil";
 import { allHomesState } from "@states/atoms/homes";
-import { OverViewPageProps } from "@models";
+import { HomeModel, OverViewPageProps } from "@models";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/FindHome/Hero/Hero";
 import HomesListing from "@sections/FindHome/HomesListing/HomesListing";
@@ -30,7 +30,7 @@ const FindHome: NextPage<OverViewPageProps> = ({
   const setHomes = useSetRecoilState(allHomesState);
 
   useEffect(() => {
-    setHomes(homesList);
+    setHomes(homesList?.filter((el: HomeModel) => el.landOnly === false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [homesList]);
   console.log(listingData);

@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
+import dayjs from "dayjs";
 import Slider from "react-slick";
 import { HomeModel } from "@models";
 import { shimmer, toBase64 } from "@utils/blobImage";
 import Icon from "@components/Icons/Icons";
-import { card } from "./constants";
 import styles from "./PropertyCard.module.scss";
 
 export interface PropertyCardProps {
@@ -12,7 +12,6 @@ export interface PropertyCardProps {
 }
 
 const PropertyCard = ({ homeData }: PropertyCardProps) => {
-  console.log(homeData);
   const settings = {
     className: "estate-card-slider",
     dots: true,
@@ -35,9 +34,11 @@ const PropertyCard = ({ homeData }: PropertyCardProps) => {
           <span className={styles.propertyCardTopBarText}>
             {homeData.percentageComplete}% Completed
           </span>
-          <span className={styles.propertyCardTopBarText}>
-            Move In {card.moveIn}
-          </span>
+          {homeData.completionDate && (
+            <span className={styles.propertyCardTopBarText}>
+              Move In {dayjs(homeData.completionDate).format("MMM YYYY")}
+            </span>
+          )}
           <div className={styles.propertyCardTopBarCompletion}>
             <span
               style={{
@@ -94,7 +95,8 @@ const PropertyCard = ({ homeData }: PropertyCardProps) => {
           </div>
         </div>
         <p>
-          <b>Home Design:</b> <span>{card.homeDesign}</span>
+          <b>Home Design:</b>
+          {/* <span>{card.homeDesign}</span> */}
         </p>
       </div>
     </div>
