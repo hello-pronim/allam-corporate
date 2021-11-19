@@ -1,4 +1,6 @@
 import React from "react";
+import { useRecoilValue } from "recoil";
+import { filteredHomes } from "@states/atoms/homes";
 import { Button } from "@components/Common/Common";
 import EasyBuyPurchase from "@components/EasyBuyPurchase/EasyBuyPurchase";
 import PropertyCard from "@components/PropertyCard/PropertyCard";
@@ -7,16 +9,16 @@ import styles from "./HomesListing.module.scss";
 export interface IHomesListingProps {}
 
 const HomesListing = ({}: IHomesListingProps) => {
+  const homesList = useRecoilValue(filteredHomes);
+
   return (
     <div className={styles.homesListing}>
       <div className={styles.homesListingWrapper}>
         <div className={styles.homesListingView}>
           <div className={styles.homesListingCards}>
-            {Array(8)
-              .fill("")
-              .map((_, id) => (
-                <PropertyCard key={id} />
-              ))}
+            {homesList?.map((home, id) => (
+              <PropertyCard key={id} homeData={home} />
+            ))}
             <EasyBuyPurchase />
           </div>
 

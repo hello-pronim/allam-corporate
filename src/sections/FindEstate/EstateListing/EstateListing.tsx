@@ -1,7 +1,6 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { filteredEstates } from "@states/atoms/estates";
-import { EstateModel } from "@models";
 import { Button } from "@components/Common/Common";
 import EasyBuyPurchase from "@components/EasyBuyPurchase/EasyBuyPurchase";
 import EstateCard from "@components/EstateCard/EstateCard";

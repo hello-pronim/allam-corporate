@@ -22,7 +22,7 @@ const LeadingHomes = ({ titleData, trustFeatures }: ILeadingHomesProps) => {
         />
 
         <div className={styles.leadingHomesProperty}>
-          <CardGrid
+          {/* <CardGrid
             title="Retirement homes available"
             col={[1, 2, 3]}
             padding={0}
@@ -33,7 +33,7 @@ const LeadingHomes = ({ titleData, trustFeatures }: ILeadingHomesProps) => {
             <PropertyCard />
             <PropertyCard />
             <PropertyCard />
-          </CardGrid>
+          </CardGrid> */}
 
           <div className={styles.leadingHomesPropertyCTA}>
             <div className={styles.leadingHomesPropertyCTAWrapper}>

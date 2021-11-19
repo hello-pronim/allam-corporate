@@ -4,7 +4,7 @@ import { get, map, sortBy } from "lodash";
 import { useSetRecoilState } from "recoil";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
-import { EstatesPageProps } from "@models";
+import { OverViewPageProps } from "@models";
 import { trustQuery } from "@libs/queries";
 import { propsFind } from "@utils/propsFind";
 import { allEstateState } from "@states/atoms/estates";
@@ -15,17 +15,17 @@ import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMaker
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 import Overview from "@sections/FindEstate/Overview/Overview";
 
-const FindEstate: NextPage<EstatesPageProps> = ({
+const FindEstate: NextPage<OverViewPageProps> = ({
   pageData,
   trustMakers,
-  estatesData,
+  listingData,
 }) => {
   const [showMap, setShowMap] = useState(false);
   const heading = get(pageData, "entry.heading", "");
   const introBlurb = get(pageData, "entry.introBlurb", "");
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
-  const estateList = get(estatesData, "entries", []);
+  const estateList = get(listingData, "entries", []);
   const suburbList = sortBy(map(estateList, "suburb"));
   const setEstates = useSetRecoilState(allEstateState);
 
@@ -155,13 +155,13 @@ const estatesQuery = gql`
 export const getStaticProps = async function () {
   const pageData = await craftAPI(pageQuery);
   const trustMakers = await craftAPI(trustQuery);
-  const estatesData = await craftAPI(estatesQuery);
+  const listingData = await craftAPI(estatesQuery);
 
   return {
     props: {
       pageData,
       trustMakers,
-      estatesData,
+      listingData,
     },
     revalidate: 500,
   };

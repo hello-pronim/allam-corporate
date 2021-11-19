@@ -22,7 +22,7 @@ const EasyBuyPurchase = ({}: IEasyBuyPurchaseProps) => {
 
       <div className={styles.easyBuyPurchaseLogo}>
         <div className={styles.easyBuyPurchaseLogoButton}>
-          <Button color="light" rounded>
+          <Button color="light" href="/get-in-touch" rounded>
             Get in Touch
           </Button>
         </div>
