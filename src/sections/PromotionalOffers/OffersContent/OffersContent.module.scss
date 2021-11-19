@@ -1,0 +1,37 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.offersContainer {
+  display: grid;
+  padding-top: rem(84);
+  padding-bottom: rem(36);
+  background-color: $grey1;
+  @include breakpoint($large) {
+    @include grid(1, 12);
+  }
+  @include below($medium) {
+    @include grid-container;
+  }
+
+  .offersWrapper {
+    grid-column: 2 / span 10;
+    .row {
+      display: flex;
+      gap: rem(48);
+      width: 100%;
+      &:not(:last-child) {
+        margin-bottom: rem(56);
+      }
+      &.recommendedOffer {
+        @include below($medium) {
+          display: none;
+        }
+      }
+      &.offersList {
+        @include below($medium) {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}
