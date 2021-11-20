@@ -1,24 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import type { NextPage } from "next";
-import get from "lodash/get";
 import { gql } from "@apollo/client";
+import { get, map, sortBy } from "lodash";
 import craftAPI from "@libs/api";
-import { trustQuery } from "@libs/queries";
 import { propsFind } from "@utils/propsFind";
-import { PageProps } from "@models";
+import { trustQuery } from "@libs/queries";
+import { useSetRecoilState } from "recoil";
+import { allLandsState } from "@states/atoms/lands";
+import { HomeModel, OverViewPageProps } from "@models";
 import Layout from "@components/Layout/Layout";
-import Hero from "@sections/FindLand/Hero/Hero";
+import Hero from "@sections/FindHome/Hero/Hero";
 import LandListing from "@sections/FindLand/LandListing/LandListing";
+import Overview from "@sections/FindHome/Overview/Overview";
 import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
-import Overview from "@sections/FindLand/Overview/Overview";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
-const FindLand: NextPage<PageProps> = ({ pageData, trustMakers }) => {
+const FindLand: NextPage<OverViewPageProps> = ({
+  pageData,
+  trustMakers,
+  listingData,
+}) => {
   const [showMap, setShowMap] = useState(false);
   const heading = get(pageData, "entry.heading", "");
   const introBlurb = get(pageData, "entry.introBlurb", "");
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
+  const homesList = get(listingData, "entries", []);
+  const suburbList = sortBy(map(homesList, "suburb"));
+  const setLands = useSetRecoilState(allLandsState);
+
+  useEffect(() => {
+    setLands(homesList?.filter((el: HomeModel) => el.landOnly === true));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [homesList]);
+  console.log(listingData);
 
   return (
     <Layout>
@@ -88,14 +103,49 @@ const findLandQuery = gql`
   }
 `;
 
+const landsQuery = gql`
+  query landsQuery {
+    entries(section: "homesAndLand") {
+      ... on homesAndLand_default_Entry {
+        title
+        landOnly
+        lotNumber
+        address
+        suburb
+        estate {
+          ... on estates_default_Entry {
+            title
+          }
+        }
+        openForInspection
+        buildingSize
+        landSize
+        percentageComplete
+        completionDate
+        bedrooms
+        bathrooms
+        car
+        images {
+          url
+          title
+          width
+          height
+        }
+      }
+    }
+  }
+`;
+
 export const getStaticProps = async function () {
   const pageData = await craftAPI(findLandQuery);
   const trustMakers = await craftAPI(trustQuery);
+  const listingData = await craftAPI(landsQuery);
 
   return {
     props: {
       pageData,
       trustMakers,
+      listingData,
     },
     revalidate: 500,
   };

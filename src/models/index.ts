@@ -148,3 +148,25 @@ export type HomeFilterModel = {
   baths: string | number;
   blockSize: string | number;
 };
+
+export type LandModel = {
+  title: string;
+  landOnly: boolean;
+  lotNumber?: string;
+  address: string;
+  suburb: string;
+  buildingSize?: number;
+  landSize?: number;
+  latitude?: string;
+  longitude?: string;
+  introBlurb?: string;
+  features?: string;
+  gallery3dUrl?: string;
+  images?: CraftImage[];
+  downloadableBrochure?: CraftImage[];
+};
+
+export type LandFilterModel = {
+  locations: string[];
+  blockSize: string | number;
+};

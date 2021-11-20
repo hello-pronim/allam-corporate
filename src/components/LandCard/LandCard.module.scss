@@ -1,0 +1,84 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.propertyCard {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  @include breakpoint($medium) {
+  }
+
+  &Top {
+    position: relative;
+    overflow: hidden;
+    border-radius: rem(6) rem(6) 0 0;
+
+    &Image {
+      position: relative;
+      width: 100%;
+      height: rem(300);
+      @include breakpoint($large) {
+        height: rem(350);
+      }
+    }
+  }
+
+  &Bottom {
+    padding: rem(16);
+    background: $white;
+    border: rem(1) solid $grey3;
+    @include breakpoint($medium) {
+      border-radius: 0 0 rem(6) rem(6);
+    }
+
+    h5 {
+      font-size: rem(16);
+      font-weight: bold;
+      @include breakpoint($large) {
+        font-size: rem(18);
+      }
+    }
+
+    &Info {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      span {
+        display: block;
+        color: $grey;
+        font-weight: bold;
+        font-size: rem(14);
+        margin-left: rem(5);
+        @include breakpoint($webLarge) {
+          font-size: rem(16);
+        }
+      }
+
+      &Detail {
+        display: flex;
+        align-items: center;
+        margin: rem(6) 0;
+        line-height: rem(20);
+
+        &:not(:last-of-type) {
+          margin-right: rem(18);
+        }
+      }
+    }
+    p {
+      font-size: rem(16);
+      line-height: rem(24);
+      span {
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+.superComp {
+  margin-top: rem(-5);
+  sup {
+    font-size: rem(10);
+  }
+}

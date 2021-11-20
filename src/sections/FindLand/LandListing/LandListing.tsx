@@ -1,22 +1,24 @@
 import React from "react";
 import { Button } from "@components/Common/Common";
+import { useRecoilValue } from "recoil";
+import { filteredLands } from "@states/atoms/lands";
+import LandCard from "@components/LandCard/LandCard";
 import EasyBuyPurchase from "@components/EasyBuyPurchase/EasyBuyPurchase";
-import EstateCard from "@components/EstateCard/EstateCard";
 import styles from "./LandListing.module.scss";
 
 export interface ILandListingProps {}
 
 const LandListing = ({}: ILandListingProps) => {
+  const landsList = useRecoilValue(filteredLands);
+
   return (
     <div className={styles.landListing}>
       <div className={styles.landListingWrapper}>
         <div className={styles.landListingView}>
           <div className={styles.landListingCards}>
-            {/* {Array(8)
-              .fill("")
-              .map((_, id) => (
-                <EstateCard key={id} />
-              ))} */}
+            {landsList?.map((land, id) => (
+              <LandCard landData={land} key={id} />
+            ))}
             <EasyBuyPurchase />
           </div>
 
