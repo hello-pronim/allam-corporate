@@ -1,8 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
-import EstateFilter from "@components/EstateFilter/EstateFilter";
-import FilterModal from "@components/FilterModal/FilterModal";
-import FilterByChoiceGroup from "@components/FilterByChoiceGroup/FilterByChoiceGroup";
 import { Redactor } from "@components/Common/Common";
 import styles from "./Hero.module.scss";
 
