@@ -54,7 +54,6 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
   ];
 
   const handleFormSubmit = (values: any) => {
-    console.log("AAAAAAAAAAAA");
     console.log(values);
   };
 
