@@ -13,11 +13,11 @@ const HomeList = ({}: IHomeListProps) => {
           <h2>Find your perfect home or land in Ardennes</h2>
           <div className={styles.homeListGrid}>
             <div className={styles.homeListGridWrapper}>
-              {Array(6)
+              {/* {Array(6)
                 .fill("")
                 .map((_, id) => (
                   <PropertyCard key={id} />
-                ))}
+                ))} */}
             </div>
           </div>
           <div className={styles.homeListContentCTA}>

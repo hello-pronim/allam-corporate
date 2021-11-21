@@ -1,13 +1,17 @@
 import React from "react";
 import Image from "next/image";
+import dayjs from "dayjs";
 import Slider from "react-slick";
+import { HomeModel } from "@models";
+import { shimmer, toBase64 } from "@utils/blobImage";
 import Icon from "@components/Icons/Icons";
 import styles from "./PropertyCard.module.scss";
-import { card } from "./constants";
 
-export interface PropertyCardProps {}
+export interface PropertyCardProps {
+  homeData: HomeModel;
+}
 
-const PropertyCard = ({}: PropertyCardProps) => {
+const PropertyCard = ({ homeData }: PropertyCardProps) => {
   const settings = {
     className: "estate-card-slider",
     dots: true,
@@ -21,68 +25,78 @@ const PropertyCard = ({}: PropertyCardProps) => {
     slidesToScroll: 1,
   };
 
+  const address = `${homeData.lotNumber}, ${homeData.address}`;
+
   return (
     <div className={styles.propertyCard}>
       <div className={styles.propertyCardTop}>
         <div className={styles.propertyCardTopBar}>
           <span className={styles.propertyCardTopBarText}>
-            {card.progPercent}% Completed
+            {homeData.percentageComplete}% Completed
           </span>
-          <span className={styles.propertyCardTopBarText}>
-            Move In {card.moveIn}
-          </span>
+          {homeData.completionDate && (
+            <span className={styles.propertyCardTopBarText}>
+              Move In {dayjs(homeData.completionDate).format("MMM YYYY")}
+            </span>
+          )}
           <div className={styles.propertyCardTopBarCompletion}>
             <span
-              style={{ height: "100%", width: `${card.progPercent}%` }}
-            ></span>
+              style={{
+                height: "100%",
+                width: `${homeData.percentageComplete}%`,
+              }}
+            />
           </div>
         </div>
         <Slider {...settings}>
-          {card.images.map((img) => {
-            return (
-              <div key={img.id} className={styles.propertyCardTopImage}>
-                <Image
-                  src={img.imageUrl}
-                  alt="property-card-image"
-                  width={img.width}
-                  height={img.height}
-                  layout="responsive"
-                />
-              </div>
-            );
-          })}
+          {homeData?.images?.map((image, id) => (
+            <div key={id} className={styles.propertyCardTopImage}>
+              <Image
+                src={image.url}
+                alt={image.title}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center"
+                blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                  shimmer(700, 475)
+                )}`}
+                placeholder="blur"
+              />
+            </div>
+          ))}
         </Slider>
       </div>
 
       <div className={styles.propertyCardBottom}>
-        <h5>{card.address}</h5>
+        <h5>{address}</h5>
 
         <div className={styles.propertyCardBottomInfo}>
           <div className={styles.propertyCardBottomInfoDetail}>
             <Icon type="bed" />
-            <span>{card.bed}</span>
+            <span>{homeData.bedrooms}</span>
           </div>
           <div className={styles.propertyCardBottomInfoDetail}>
             <Icon type="bath" />
-            <span>{card.bath}</span>
+            <span>{homeData.bathrooms}</span>
           </div>
           <div className={styles.propertyCardBottomInfoDetail}>
             <Icon type="car" />
-            <span>{card.car}</span>
+            <span>{homeData.car}</span>
           </div>
           <div className={styles.propertyCardBottomInfoDetail}>
-            Build size
-            <span>{card.buildSize}sq</span>
+            <p>Build size</p>
+            <span>{homeData.buildingSize}sq</span>
           </div>
           <div className={styles.propertyCardBottomInfoDetail}>
-            Land size
+            <p>Land size</p>
             <span className={styles.superComp}>
-              {card.landSize}m<sup>2</sup>
+              {homeData.landSize}m<sup>2</sup>
             </span>
           </div>
         </div>
         <p>
-          Home Design: <span>{card.homeDesign}</span>
+          <b>Home Design:</b>
+          {/* <span>{card.homeDesign}</span> */}
         </p>
       </div>
     </div>

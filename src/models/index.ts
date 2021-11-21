@@ -1,7 +1,7 @@
-export type EstatesPageProps = {
+export type OverViewPageProps = {
   pageData?: any;
   trustMakers?: any;
-  estatesData?: any;
+  listingData?: any;
 };
 
 export type AllamAdvPageProps = {
@@ -14,7 +14,7 @@ export type NormalPageProps = {
   trustMakers?: any;
 };
 
-export type PageProps = NormalPageProps | EstatesPageProps;
+export type PageProps = NormalPageProps | OverViewPageProps;
 
 export type AdvantageModel = {
   label: string;
@@ -115,4 +115,58 @@ export type EstateModel = {
 export type EstateFilterModel = {
   locations: string[];
   type: string;
+};
+
+export type HomeModel = {
+  title: string;
+  landOnly: boolean;
+  lotNumber?: string;
+  address: string;
+  suburb: string;
+  openForInspection?: boolean;
+  inspectionTimes?: any[];
+  buildingSize?: number;
+  percentageComplete?: number;
+  completionDate?: string;
+  bedrooms?: number;
+  bathrooms?: number;
+  car?: number;
+  landSize?: number;
+  latitude?: string;
+  longitude?: string;
+  introBlurb?: string;
+  features?: string;
+  gallery3dUrl?: string;
+  images?: CraftImage[];
+  downloadableBrochure?: CraftImage[];
+};
+
+export type HomeFilterModel = {
+  locations: string[];
+  storeys: string | number;
+  beds: string | number;
+  baths: string | number;
+  blockSize: string | number;
+};
+
+export type LandModel = {
+  title: string;
+  landOnly: boolean;
+  lotNumber?: string;
+  address: string;
+  suburb: string;
+  buildingSize?: number;
+  landSize?: number;
+  latitude?: string;
+  longitude?: string;
+  introBlurb?: string;
+  features?: string;
+  gallery3dUrl?: string;
+  images?: CraftImage[];
+  downloadableBrochure?: CraftImage[];
+};
+
+export type LandFilterModel = {
+  locations: string[];
+  blockSize: string | number;
 };
