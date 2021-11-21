@@ -94,7 +94,22 @@ export type PromotionLayout = {
   image?: CraftImage[];
 };
 
+export type LocationModel = {
+  title: string;
+  officeName: string;
+  linkedEstates?: EstateModel[];
+  streetAddress?: string;
+  suburb: string;
+  locationState?: string;
+  postcode?: string;
+  daysOpen?: string;
+  hoursOpen?: string;
+  phoneNumber?: string;
+  directionsLink?: string;
+};
+
 export type EstateModel = {
+  slug?: string;
   title: string;
   introText: string;
   estateState: string;

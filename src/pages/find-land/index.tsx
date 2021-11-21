@@ -33,7 +33,6 @@ const FindLand: NextPage<OverViewPageProps> = ({
     setLands(homesList?.filter((el: HomeModel) => el.landOnly === true));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [homesList]);
-  console.log(listingData);
 
   return (
     <Layout>

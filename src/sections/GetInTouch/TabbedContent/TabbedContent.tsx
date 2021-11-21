@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
-import styles from "./TabbedContent.module.scss";
-import { ImageButton, Button } from "@components/Common/Common";
 import { css } from "@styled-system/css";
-import GeneralEnquiry from "../Forms/GeneralEnquiry";
-import Appointment from "../Forms/Appointment";
-import Suppliers from "../Forms/Suppliers";
 import Buying from "../Forms/Buying";
+import Suppliers from "../Forms/Suppliers";
+import GeneralEnquiry from "../Forms/GeneralEnquiry";
+import { LocationModel } from "@models";
 import CardGrid from "@components/CardGrid/CardGrid";
+import { ImageButton, Button } from "@components/Common/Common";
+import Appointment from "../Forms/Appointment";
+import styles from "./TabbedContent.module.scss";
 
-export interface TabbedContentProps {}
+export interface TabbedContentProps {
+  locations: LocationModel[];
+}
 
-const TabbedContent = () => {
+const TabbedContent = ({ locations }: TabbedContentProps) => {
   const selector = React.useRef<HTMLSelectElement>(null);
   const [formType, setFormType] = useState("General enquiry");
   const [formTypeIndex, setFormTypeIndex] = useState(0);
@@ -133,28 +136,47 @@ const TabbedContent = () => {
         {activeTab === "locations" && (
           <div className={styles.locationWrapper}>
             <div className={styles.gridWrapper}>
-              <CardGrid title="Our locations" col={[1, 3]} padding={[80, 160]}>
-                <div className={styles.locationCard}>
-                  <h5>Ardennes Estate</h5>
-                  <p>Ardennes Avenue, Edmondson Park NSW 2174</p>
-                  <div className={styles.divider} />
-                  <h5>Sales Centre</h5>
-                  <p>
-                    2 Moscow Road, <br />
-                    Edmondson Park NSW <br />
-                    <strong>Thurs to Mon</strong> 10am - 5pm <br />
-                    <strong>Phone</strong> 0405 205 048
-                  </p>
-                  <div className={styles.divider} />
-                  <div>
-                    <Button rounded href="#">
-                      Get directions
-                    </Button>
-                    <Button color="light" rounded href="#">
-                      View estate
-                    </Button>
+              <CardGrid
+                title="Our locations"
+                col={[1, 2, 3]}
+                padding={[80, 160]}
+              >
+                {locations?.map((location, id) => (
+                  <div className={styles.locationCard} key={id}>
+                    <h5>{location?.linkedEstates?.[0]?.title} Estate</h5>
+                    <p>Ardennes Avenue, Edmondson Park NSW 2174</p>
+                    <div className={styles.divider} />
+                    <h5>{location.officeName}</h5>
+                    <p>
+                      {`${location.streetAddress},`}
+                      <br />
+                      {`${location.suburb} ${location.locationState} ${location.postcode}`}
+                    </p>
+                    <p>
+                      <strong>{location.daysOpen}</strong>
+                      {` ${location.hoursOpen}`}
+                      <br />
+                      {location.phoneNumber && (
+                        <>
+                          <strong>Phone</strong> {location.phoneNumber}
+                        </>
+                      )}
+                    </p>
+                    <div className={styles.divider} />
+                    <div className={styles.locationCardCTAs}>
+                      <Button rounded href={location.directionsLink}>
+                        Get directions
+                      </Button>
+                      <Button
+                        color="light"
+                        rounded
+                        href={`/find-estate/${location?.linkedEstates?.[0]?.slug}`}
+                      >
+                        View estate
+                      </Button>
+                    </div>
                   </div>
-                </div>
+                ))}
               </CardGrid>
             </div>
           </div>
