@@ -9,9 +9,13 @@ import styles from "./PropertyCard.module.scss";
 
 export interface PropertyCardProps {
   homeData: HomeModel;
+  isOpenInspection?: boolean;
 }
 
-const PropertyCard = ({ homeData }: PropertyCardProps) => {
+const PropertyCard = ({
+  homeData,
+  isOpenInspection = false,
+}: PropertyCardProps) => {
   const settings = {
     className: "estate-card-slider",
     dots: true,
