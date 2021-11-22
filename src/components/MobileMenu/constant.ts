@@ -2,20 +2,20 @@ export const menuObj = [
   {
     title: "Find your estate",
     slug: "/find-estate/",
-    subMenu: [
-      {
-        title: "Test 1",
-        slug: "/",
-      },
-      {
-        title: "Test 2",
-        slug: "/",
-      },
-      {
-        title: "Test 3",
-        slug: "/",
-      },
-    ],
+    // subMenu: [
+    //   {
+    //     title: "Test 1",
+    //     slug: "/",
+    //   },
+    //   {
+    //     title: "Test 2",
+    //     slug: "/",
+    //   },
+    //   {
+    //     title: "Test 3",
+    //     slug: "/",
+    //   },
+    // ],
   },
   {
     title: "Find your home",
@@ -24,20 +24,20 @@ export const menuObj = [
   {
     title: "Find your land",
     slug: "/find-land",
-    subMenu: [
-      {
-        title: "Test 1",
-        slug: "/",
-      },
-      {
-        title: "Test 2",
-        slug: "/",
-      },
-      {
-        title: "Test 3",
-        slug: "/",
-      },
-    ],
+    // subMenu: [
+    //   {
+    //     title: "Test 1",
+    //     slug: "/",
+    //   },
+    //   {
+    //     title: "Test 2",
+    //     slug: "/",
+    //   },
+    //   {
+    //     title: "Test 3",
+    //     slug: "/",
+    //   },
+    // ],
   },
   {
     title: "Retirement Living",
@@ -50,20 +50,20 @@ export const menuObj = [
   {
     title: "About us",
     slug: "/about-us",
-    subMenu: [
-      {
-        title: "Test 1",
-        slug: "/",
-      },
-      {
-        title: "Test 2",
-        slug: "/",
-      },
-      {
-        title: "Test 3",
-        slug: "/",
-      },
-    ],
+    // subMenu: [
+    //   {
+    //     title: "Test 1",
+    //     slug: "/",
+    //   },
+    //   {
+    //     title: "Test 2",
+    //     slug: "/",
+    //   },
+    //   {
+    //     title: "Test 3",
+    //     slug: "/",
+    //   },
+    // ],
   },
   {
     title: "Easy Buy",

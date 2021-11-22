@@ -164,16 +164,20 @@ const TabbedContent = ({ locations }: TabbedContentProps) => {
                     </p>
                     <div className={styles.divider} />
                     <div className={styles.locationCardCTAs}>
-                      <Button rounded href={location.directionsLink}>
-                        Get directions
-                      </Button>
-                      <Button
-                        color="light"
-                        rounded
-                        href={`/find-estate/${location?.linkedEstates?.[0]?.slug}`}
-                      >
-                        View estate
-                      </Button>
+                      {location.directionsLink && (
+                        <Button rounded href={location.directionsLink}>
+                          Get directions
+                        </Button>
+                      )}
+                      {location?.linkedEstates?.[0] && (
+                        <Button
+                          color="light"
+                          rounded
+                          href={`/find-estate/${location?.linkedEstates?.[0]?.slug}`}
+                        >
+                          View estate
+                        </Button>
+                      )}
                     </div>
                   </div>
                 ))}
