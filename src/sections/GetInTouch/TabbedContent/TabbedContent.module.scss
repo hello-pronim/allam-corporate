@@ -16,6 +16,7 @@
   }
   .TabWrapper {
     position: absolute;
+    z-index: 100;
     display: flex;
     top: rem(-52.5);
     width: 100%;
