@@ -23,6 +23,12 @@ export const filteredHomes = selector({
     const homes = get(allHomesState);
     const filters = get(homesFilterState);
 
-    return homes;
+    const filterLocation =
+      filters.locations?.[0] === "All"
+        ? homes
+        : homes?.filter((home) =>
+            filters?.locations?.some((location) => location === home.suburb)
+          );
+    return filterLocation;
   },
 });

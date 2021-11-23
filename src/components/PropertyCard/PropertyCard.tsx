@@ -34,24 +34,26 @@ const PropertyCard = ({
   return (
     <div className={styles.propertyCard}>
       <div className={styles.propertyCardTop}>
-        <div className={styles.propertyCardTopBar}>
-          <span className={styles.propertyCardTopBarText}>
-            {homeData.percentageComplete}% Completed
-          </span>
-          {homeData.completionDate && (
+        {!isOpenInspection && (
+          <div className={styles.propertyCardTopBar}>
             <span className={styles.propertyCardTopBarText}>
-              Move In {dayjs(homeData.completionDate).format("MMM YYYY")}
+              {homeData.percentageComplete}% Completed
             </span>
-          )}
-          <div className={styles.propertyCardTopBarCompletion}>
-            <span
-              style={{
-                height: "100%",
-                width: `${homeData.percentageComplete}%`,
-              }}
-            />
+            {homeData.completionDate && (
+              <span className={styles.propertyCardTopBarText}>
+                Move In {dayjs(homeData.completionDate).format("MMM YYYY")}
+              </span>
+            )}
+            <div className={styles.propertyCardTopBarCompletion}>
+              <span
+                style={{
+                  height: "100%",
+                  width: `${homeData.percentageComplete}%`,
+                }}
+              />
+            </div>
           </div>
-        </div>
+        )}
         <Slider {...settings}>
           {homeData?.images?.map((image, id) => (
             <div key={id} className={styles.propertyCardTopImage}>
@@ -72,8 +74,17 @@ const PropertyCard = ({
       </div>
 
       <div className={styles.propertyCardBottom}>
-        <h5>{address}</h5>
+        {isOpenInspection && (
+          <div className={styles.propertyCardBottomInspection}>
+            <p>
+              {homeData.inspectionTimes?.[0]?.days
+                ? `Open for Inspection: ${homeData.inspectionTimes?.[0]?.days}`
+                : "FOR SALE"}
+            </p>
+          </div>
+        )}
 
+        <h5>{address}</h5>
         <div className={styles.propertyCardBottomInfo}>
           <div className={styles.propertyCardBottomInfoDetail}>
             <Icon type="bed" />
@@ -98,10 +109,12 @@ const PropertyCard = ({
             </span>
           </div>
         </div>
-        <p>
-          <b>Home Design:</b>
-          {/* <span>{card.homeDesign}</span> */}
-        </p>
+        {!isOpenInspection && (
+          <p>
+            <b>Home Design:</b>
+            {/* <span>{card.homeDesign}</span> */}
+          </p>
+        )}
       </div>
     </div>
   );

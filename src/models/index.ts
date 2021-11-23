@@ -94,6 +94,11 @@ export type PromotionLayout = {
   image?: CraftImage[];
 };
 
+export type InspectionTimeModel = {
+  days?: string;
+  time?: string;
+};
+
 export type LocationModel = {
   title: string;
   officeName: string;
@@ -140,7 +145,7 @@ export type HomeModel = {
   address: string;
   suburb: string;
   openForInspection?: boolean;
-  inspectionTimes?: any[];
+  inspectionTimes?: InspectionTimeModel[];
   buildingSize?: number;
   percentageComplete?: number;
   completionDate?: string;

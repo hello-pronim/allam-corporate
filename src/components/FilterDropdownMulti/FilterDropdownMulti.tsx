@@ -25,14 +25,20 @@ const FilterDropdownMulti = ({
   const ALL_SUBURBS_LABEL = "All Suburbs";
   const [isAllSelected, setIsAllSelected] = useState<boolean>(true);
   const [selectedOptions, setSelectedOptions] = useState<LocationOptionModel[]>(
-    options.map((option) => {
-      return {
-        label: option,
-        selected: true,
-      };
-    })
+    []
   );
   const dropdownRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    setSelectedOptions(
+      options.map((option) => {
+        return {
+          label: option,
+          selected: true,
+        };
+      })
+    );
+  }, [options]);
 
   useEffect(() => {
     const checkIfClickedOutside = (e: any) => {

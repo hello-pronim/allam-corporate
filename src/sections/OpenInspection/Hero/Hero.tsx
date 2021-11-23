@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
 import FilterModal from "@components/FilterModal/FilterModal";
 import { Redactor } from "@components/Common/Common";
-import EstateFilter from "@sections/FindEstate/EstateFilter/EstateFilter";
+import HomeFilter from "@sections/OpenInspection/HomeFilter/HomeFilter";
 import FilterByChoiceGroup from "@components/FilterByChoiceGroup/FilterByChoiceGroup";
 import { locationObj, typeObj } from "./constant";
 import styles from "./Hero.module.scss";
@@ -11,6 +11,7 @@ type IHeroProps = {
   heading?: string;
   introBlurb?: string;
   showMap?: boolean;
+  suburbList?: string[];
   setShowMap: (value: boolean) => void;
 };
 
@@ -18,6 +19,7 @@ const Hero = ({
   heading,
   introBlurb = "",
   showMap = false,
+  suburbList,
   setShowMap,
 }: IHeroProps) => {
   const [isOpenFilter, setOpenFilter] = useState(false);
@@ -37,9 +39,10 @@ const Hero = ({
       </div>
 
       <div className={styles.heroFilterBar}>
-        <EstateFilter
+        <HomeFilter
           showMap={showMap}
           setShowMap={setShowMap}
+          suburbList={suburbList}
           toggleFilter={() => setOpenFilter(!isOpenFilter)}
         />
       </div>
@@ -58,6 +61,11 @@ const Hero = ({
           name="location"
           options={locationObj}
           isMultiChoice
+        />
+        <FilterByChoiceGroup
+          label="Filter by type:"
+          name="type"
+          options={typeObj}
         />
       </FilterModal>
     </div>
