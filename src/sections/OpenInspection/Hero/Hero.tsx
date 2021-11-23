@@ -11,7 +11,6 @@ type IHeroProps = {
   heading?: string;
   introBlurb?: string;
   showMap?: boolean;
-  suburbList?: string[];
   setShowMap: (value: boolean) => void;
 };
 
@@ -19,7 +18,6 @@ const Hero = ({
   heading,
   introBlurb = "",
   showMap = false,
-  suburbList,
   setShowMap,
 }: IHeroProps) => {
   const [isOpenFilter, setOpenFilter] = useState(false);
@@ -42,7 +40,6 @@ const Hero = ({
         <HomeFilter
           showMap={showMap}
           setShowMap={setShowMap}
-          suburbList={suburbList}
           toggleFilter={() => setOpenFilter(!isOpenFilter)}
         />
       </div>
@@ -61,11 +58,6 @@ const Hero = ({
           name="location"
           options={locationObj}
           isMultiChoice
-        />
-        <FilterByChoiceGroup
-          label="Filter by type:"
-          name="type"
-          options={typeObj}
         />
       </FilterModal>
     </div>
