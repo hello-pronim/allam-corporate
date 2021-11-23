@@ -45,7 +45,7 @@ export const menuObj = [
   },
   {
     title: "Open for Inspection",
-    slug: "/open-inspection",
+    slug: "/open-for-inspection",
   },
   {
     title: "About us",

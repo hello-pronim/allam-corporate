@@ -17,7 +17,7 @@ const InspectionList = ({}: IInspectionListProps) => {
         <div className={styles.homesListingView}>
           <div className={styles.homesListingCards}>
             {homesList?.map((home, id) => (
-              <PropertyCard key={id} homeData={home} />
+              <PropertyCard key={id} homeData={home} isOpenInspection />
             ))}
             <EasyBuyPurchase />
           </div>
