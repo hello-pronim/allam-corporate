@@ -109,6 +109,7 @@ const estatesQuery = gql`
       ... on estates_default_Entry {
         title
         introText
+        streetAddress
         estateState(label: true)
         estateStatus
         retirementLiving

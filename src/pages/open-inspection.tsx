@@ -1,24 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import type { NextPage } from "next";
-import get from "lodash/get";
 import { gql } from "@apollo/client";
+import { get, map, sortBy } from "lodash";
 import craftAPI from "@libs/api";
-import { trustQuery } from "@libs/queries";
-import { PageProps } from "@models";
 import { propsFind } from "@utils/propsFind";
+import { trustQuery } from "@libs/queries";
+import { useSetRecoilState } from "recoil";
+import { allHomesState } from "@states/atoms/homes";
+import { HomeModel, OverViewPageProps } from "@models";
 import Layout from "@components/Layout/Layout";
-import Hero from "@sections/FindLand/Hero/Hero";
-import LandListing from "@sections/FindLand/LandListing/LandListing";
+import Hero from "@sections/FindHome/Hero/Hero";
+import HomesListing from "@sections/FindHome/HomesListing/HomesListing";
+import Overview from "@sections/FindHome/Overview/Overview";
 import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
-import Overview from "@sections/FindLand/Overview/Overview";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
-const OpenInspection: NextPage<PageProps> = ({ pageData, trustMakers }) => {
+const OpenInspection: NextPage<OverViewPageProps> = ({
+  pageData,
+  trustMakers,
+  listingData,
+}) => {
   const [showMap, setShowMap] = useState(false);
   const heading = get(pageData, "entry.heading", "");
   const introBlurb = get(pageData, "entry.introBlurb", "");
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
+  const homesList = get(listingData, "entries", []);
+  const suburbList = sortBy(map(homesList, "suburb"));
+  const setHomes = useSetRecoilState(allHomesState);
+
+  useEffect(() => {
+    setHomes(
+      homesList?.filter(
+        (el: HomeModel) =>
+          el.landOnly === false && el.openForInspection === true
+      )
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [homesList]);
 
   return (
     <Layout>
@@ -32,7 +51,7 @@ const OpenInspection: NextPage<PageProps> = ({ pageData, trustMakers }) => {
         <Overview />
       ) : (
         <>
-          <LandListing />
+          <HomesListing />
           <div style={{ background: "#eef2f5" }}>
             <LeadingTrustMakers
               features={trustFeatures}

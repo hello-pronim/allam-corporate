@@ -29,7 +29,8 @@ const locationsQuery = gql`
           ... on estates_default_Entry {
             slug
             title
-            estateState
+            streetAddress
+            estateState(label: true)
             suburb
             postcode
           }

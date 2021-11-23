@@ -144,8 +144,11 @@ const TabbedContent = ({ locations }: TabbedContentProps) => {
                 {locations?.map((location, id) => (
                   <div className={styles.locationCard} key={id}>
                     <h5>{location?.linkedEstates?.[0]?.title} Estate</h5>
-                    <p>Ardennes Avenue, Edmondson Park NSW 2174</p>
+                    <p>{`${location?.linkedEstates?.[0]?.streetAddress},`}</p>
+                    <p>{`${location?.linkedEstates?.[0]?.suburb} ${location?.linkedEstates?.[0]?.estateState} ${location?.linkedEstates?.[0]?.postcode}`}</p>
+
                     <div className={styles.divider} />
+
                     <h5>{location.officeName}</h5>
                     <p>
                       {`${location.streetAddress},`}

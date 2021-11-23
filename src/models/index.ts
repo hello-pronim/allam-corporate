@@ -113,6 +113,7 @@ export type EstateModel = {
   title: string;
   introText: string;
   estateState: string;
+  streetAddress: string;
   stateStatus: "completed" | "";
   retirementLiving: "yes" | "no";
   logo: CraftImage[];
