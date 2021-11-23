@@ -8,7 +8,7 @@ import data from "./constants";
 const PromotionalOffers: NextPage = () => {
   return (
     <Layout>
-      <Hero heading={data.heading} introBlurb={data.introBlurb} />
+      <Hero heading={"Promotional Offers"} introBlurb={data.introBlurb} />
       <OffersContent />
     </Layout>
   );
