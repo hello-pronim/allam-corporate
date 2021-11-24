@@ -53,7 +53,7 @@ const Hero = ({
         }}
         closeModal={() => setOpenFilter(false)}
       >
-        <FilterByChoiceGroup
+        {/* <FilterByChoiceGroup
           label="Filter by Locations:"
           name="location"
           options={locationObj}
@@ -63,7 +63,7 @@ const Hero = ({
           label="Filter by type:"
           name="type"
           options={typeObj}
-        />
+        /> */}
       </FilterModal>
     </div>
   );

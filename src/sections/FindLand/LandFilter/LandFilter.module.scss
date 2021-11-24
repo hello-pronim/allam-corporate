@@ -1,0 +1,79 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.landFilter {
+  margin: 0 rem(16);
+  position: relative;
+  @include breakpoint($large) {
+    text-align: center;
+  }
+
+  &Wrapper {
+    padding: rem(24);
+    background-color: $white;
+    box-shadow: 0px 0px rem(1) rgba(0, 0, 0, 0.25),
+      0px rem(3) rem(4) rgba(0, 0, 0, 0.1);
+    border-radius: rem(78);
+
+    @include breakpoint($large) {
+      max-width: 80%;
+      margin: 0 auto;
+      padding: rem(16) rem(42);
+    }
+    @include breakpoint($x-large) {
+      margin: 0;
+      max-width: initial;
+      display: inline-block;
+      padding: rem(20) rem(50);
+    }
+  }
+
+  &Mobile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: rem(16);
+    justify-content: center;
+    @include breakpoint($large) {
+      display: none;
+    }
+  }
+
+  &Desktop {
+    display: none;
+    @include breakpoint($large) {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+    @include breakpoint($x-large) {
+      flex-direction: row;
+    }
+
+    span {
+      font-weight: 700;
+      font-size: rem(16);
+    }
+
+    &ViewBy {
+      display: grid;
+      align-items: center;
+      grid-template-columns: auto auto auto;
+      gap: rem(24);
+      padding-bottom: rem(16);
+
+      @include breakpoint($x-large) {
+        padding: 0;
+        padding-right: rem(24);
+        border-right: rem(1) solid $grey1;
+      }
+    }
+
+    &SortBy {
+      padding-left: rem(24);
+      display: grid;
+      align-items: center;
+      grid-template-columns: auto auto auto;
+      gap: rem(24);
+    }
+  }
+}

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
 import FilterModal from "@components/FilterModal/FilterModal";
 import { Redactor } from "@components/Common/Common";
 import EstateFilter from "@sections/FindEstate/EstateFilter/EstateFilter";
 import FilterByChoiceGroup from "@components/FilterByChoiceGroup/FilterByChoiceGroup";
-import { locationObj, typeObj } from "./constant";
+import { ChoiceModel } from "@models";
+import { estateTypeList } from "@libs/constants";
+import { transformLocations } from "@utils/transformLocations";
 import styles from "./Hero.module.scss";
 
 type IHeroProps = {
@@ -23,6 +25,11 @@ const Hero = ({
   setShowMap,
 }: IHeroProps) => {
   const [isOpenFilter, setOpenFilter] = useState(false);
+  const [newSuburbList, setNewSuburbList] = useState<ChoiceModel[]>([]);
+
+  useEffect(() => {
+    setNewSuburbList(transformLocations(suburbList ?? []));
+  }, [suburbList]);
 
   return (
     <div className={styles.hero}>
@@ -59,13 +66,13 @@ const Hero = ({
         <FilterByChoiceGroup
           label="Filter by Locations:"
           name="location"
-          options={locationObj}
+          options={newSuburbList}
           isMultiChoice
         />
         <FilterByChoiceGroup
           label="Filter by type:"
           name="type"
-          options={typeObj}
+          options={estateTypeList}
         />
       </FilterModal>
     </div>

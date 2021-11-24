@@ -191,3 +191,8 @@ export type LandFilterModel = {
   locations: string[];
   blockSize: string | number;
 };
+
+export type ChoiceModel = {
+  label: string;
+  value: string | number;
+};

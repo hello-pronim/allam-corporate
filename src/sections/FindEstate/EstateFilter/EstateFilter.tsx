@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useSetRecoilState, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { estateFilterState } from "@states/atoms/estates";
 import { ArrowButton, ImageButton } from "@components/Common/Common";
 import FilterDropdown from "@components/FilterDropdown/FilterDropdown";
 import FilterDropdownMulti from "@components/FilterDropdownMulti/FilterDropdownMulti";
+import { estateTypeList } from "@libs/constants";
 import styles from "./EstateFilter.module.scss";
 
 export interface IEstateFilterProps {
@@ -12,8 +13,6 @@ export interface IEstateFilterProps {
   showMap?: boolean;
   suburbList?: string[];
 }
-
-const typeList = ["All / Both", "House & Land", "Retirement Living"];
 
 const EstateFilter = ({
   showMap = false,
@@ -65,7 +64,7 @@ const EstateFilter = ({
             />
 
             <FilterDropdown
-              options={typeList}
+              options={estateTypeList}
               isOpen={openTypeMenu}
               placeholderLabel="Type"
               closeDropdown={() => setOpenTypeMenu(false)}

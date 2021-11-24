@@ -50,7 +50,7 @@ const FilterDropdown = ({
     if (placeholderLabel === "Type") {
       setFilterValue({
         ...filterStateValue,
-        type: id === 0 ? "All" : options[id],
+        type: options[id]?.value,
       });
     }
     closeDropdown();
@@ -60,7 +60,7 @@ const FilterDropdown = ({
     <div className={styles.filterDropdown} ref={dropdownRef}>
       <div className={styles.filterDropdownButton} onClick={toggleDropdown}>
         <span>{placeholderLabel}</span>
-        <p>{selectedOption}</p>
+        <p>{selectedOption?.label}</p>
         <div className={styles.filterDropdownButtonIcon}>
           <Icon type="chevron-down" />
         </div>
@@ -81,7 +81,7 @@ const FilterDropdown = ({
               onClick={() => setOption(id)}
               className={`${selectedOption === el && styles.active}`}
             >
-              {el}
+              {el?.label}
             </li>
           ))}
         </ul>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import classnames from "classnames/bind";
 import styles from "./FilterByChoiceGroup.module.scss";
 
 export interface IFilterByChoiceGroupProps {
@@ -8,8 +7,6 @@ export interface IFilterByChoiceGroupProps {
   options?: any[];
   isMultiChoice?: boolean;
 }
-
-const cx = classnames.bind(styles);
 
 const FilterByChoiceGroup = ({
   label,
@@ -31,12 +28,12 @@ const FilterByChoiceGroup = ({
                 <input
                   // defaultChecked={defaultChecked}
                   type={`${isMultiChoice ? "checkbox" : "radio"}`}
-                  value={option.value}
+                  value={option?.value || ""}
                   name={name}
                   // onChange={()}
                 />
                 <div></div>
-                <span>{option.label}</span>
+                <span>{option?.label || ""}</span>
               </label>
             </div>
           ))}

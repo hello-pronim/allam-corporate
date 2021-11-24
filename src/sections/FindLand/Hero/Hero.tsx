@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
-import EstateFilter from "@components/EstateFilter/EstateFilter";
+import LandFilter from "@sections/FindLand/LandFilter/LandFilter";
 import FilterModal from "@components/FilterModal/FilterModal";
 import FilterByChoiceGroup from "@components/FilterByChoiceGroup/FilterByChoiceGroup";
 import { Redactor } from "@components/Common/Common";
@@ -37,7 +37,7 @@ const Hero = ({
       </div>
 
       <div className={styles.heroFilterBar}>
-        <EstateFilter
+        <LandFilter
           showMap={showMap}
           setShowMap={setShowMap}
           toggleFilter={() => setOpenFilter(!isOpenFilter)}
@@ -53,7 +53,7 @@ const Hero = ({
         }}
         closeModal={() => setOpenFilter(false)}
       >
-        <FilterByChoiceGroup
+        {/* <FilterByChoiceGroup
           label="Filter by Locations:"
           name="location"
           options={locationObj}
@@ -63,7 +63,7 @@ const Hero = ({
           label="Filter by type:"
           name="type"
           options={typeObj}
-        />
+        /> */}
       </FilterModal>
     </div>
   );

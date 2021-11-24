@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { map, sortBy } from "lodash";
+import { useRecoilValue } from "recoil";
+import { allHomesState } from "@states/atoms/homes";
+import { Redactor } from "@components/Common/Common";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
 import FilterModal from "@components/FilterModal/FilterModal";
-import { Redactor } from "@components/Common/Common";
 import HomeFilter from "@sections/OpenInspection/HomeFilter/HomeFilter";
 import FilterByChoiceGroup from "@components/FilterByChoiceGroup/FilterByChoiceGroup";
-import { locationObj, typeObj } from "./constant";
+import { ChoiceModel } from "@models";
+import { transformLocations } from "@utils/transformLocations";
 import styles from "./Hero.module.scss";
 
 type IHeroProps = {
@@ -21,6 +25,17 @@ const Hero = ({
   setShowMap,
 }: IHeroProps) => {
   const [isOpenFilter, setOpenFilter] = useState(false);
+  const [suburbList, setSuburbList] = useState<string[]>([]);
+  const [newSuburbList, setNewSuburbList] = useState<ChoiceModel[]>([]);
+  const homesList = useRecoilValue(allHomesState);
+
+  useEffect(() => {
+    setSuburbList(sortBy(map(homesList, "suburb")));
+  }, [homesList]);
+
+  useEffect(() => {
+    setNewSuburbList(transformLocations(suburbList ?? []));
+  }, [suburbList]);
 
   return (
     <div className={styles.hero}>
@@ -40,6 +55,7 @@ const Hero = ({
         <HomeFilter
           showMap={showMap}
           setShowMap={setShowMap}
+          suburbList={suburbList}
           toggleFilter={() => setOpenFilter(!isOpenFilter)}
         />
       </div>
@@ -56,7 +72,7 @@ const Hero = ({
         <FilterByChoiceGroup
           label="Filter by Locations:"
           name="location"
-          options={locationObj}
+          options={newSuburbList}
           isMultiChoice
         />
       </FilterModal>

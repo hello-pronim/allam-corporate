@@ -1,30 +1,34 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
-import { homesFilterState } from "@states/atoms/homes";
+import { landsFilterState } from "@states/atoms/lands";
 import { ArrowButton, ImageButton } from "@components/Common/Common";
+import FilterDropdown from "@components/FilterDropdown/FilterDropdown";
 import FilterDropdownMulti from "@components/FilterDropdownMulti/FilterDropdownMulti";
-import styles from "./HomeFilter.module.scss";
+import styles from "./LandFilter.module.scss";
 
-export interface IHomeFilterProps {
+export interface ILandFilterProps {
   toggleFilter: () => void;
   setShowMap: (value: boolean) => void;
   showMap?: boolean;
-  suburbList: string[];
+  suburbList?: string[];
 }
 
-const HomeFilter = ({
+const typeList = ["All / Both", "House & Land", "Retirement Living"];
+
+const LandFilter = ({
   showMap = false,
+  suburbList = [],
   setShowMap,
   toggleFilter,
-  suburbList,
-}: IHomeFilterProps) => {
+}: ILandFilterProps) => {
+  const [LandFilter, setLandFilters] = useRecoilState(landsFilterState);
   const [openLocationMenu, setOpenLocationMenu] = useState(false);
-  const [homeFilter, setHomeFilters] = useRecoilState(homesFilterState);
+  const [openTypeMenu, setOpenTypeMenu] = useState(false);
 
   return (
-    <div className={styles.estateFilter}>
-      <div className={styles.estateFilterWrapper}>
-        <div className={styles.estateFilterMobile}>
+    <div className={styles.landFilter}>
+      <div className={styles.landFilterWrapper}>
+        <div className={styles.landFilterMobile}>
           <ImageButton
             onClick={() => setShowMap(!showMap)}
             icon={showMap ? "grid-view" : "map"}
@@ -33,8 +37,8 @@ const HomeFilter = ({
           <ArrowButton label="Filter" onClick={toggleFilter} />
         </div>
 
-        <div className={styles.estateFilterDesktop}>
-          <div className={styles.estateFilterDesktopViewBy}>
+        <div className={styles.landFilterDesktop}>
+          <div className={styles.landFilterDesktopViewBy}>
             <span>View by</span>
             <ImageButton
               icon="grid-view"
@@ -48,16 +52,26 @@ const HomeFilter = ({
             />
           </div>
 
-          <div className={styles.estateFilterDesktopSortBy}>
-            <span>Filter by</span>
+          <div className={styles.landFilterDesktopSortBy}>
+            <span>Filter</span>
             <FilterDropdownMulti
               options={suburbList}
               isOpen={openLocationMenu}
               placeholderLabel="Location"
               closeDropdown={() => setOpenLocationMenu(false)}
               toggleDropdown={() => setOpenLocationMenu(!openLocationMenu)}
-              setFilterValue={setHomeFilters}
-              filterStateValue={homeFilter}
+              setFilterValue={setLandFilters}
+              filterStateValue={LandFilter}
+            />
+
+            <FilterDropdown
+              options={typeList}
+              isOpen={openTypeMenu}
+              placeholderLabel="Block Size"
+              closeDropdown={() => setOpenTypeMenu(false)}
+              toggleDropdown={() => setOpenTypeMenu(!openTypeMenu)}
+              setFilterValue={setLandFilters}
+              filterStateValue={LandFilter}
             />
           </div>
         </div>
@@ -66,4 +80,4 @@ const HomeFilter = ({
   );
 };
 
-export default HomeFilter;
+export default LandFilter;
