@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Layout from "@components/Layout/Layout";
-import Hero from "@sections/PromotionalOffers/Hero/Hero";
-import OffersContent from "@sections/PromotionalOffers/OffersContent/OffersContent";
+import Hero from "@sections/Offers/Hero/Hero";
+import OffersContent from "@sections/Offers/OffersContent/OffersContent";
 
 const PromotionalOffers: NextPage = () => {
   return (
