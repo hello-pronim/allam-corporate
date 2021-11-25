@@ -136,6 +136,7 @@ export type EstateModel = {
 export type EstateFilterModel = {
   locations: string[];
   type: string;
+  reset: boolean;
 };
 
 export type HomeModel = {

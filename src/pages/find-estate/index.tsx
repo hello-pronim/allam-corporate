@@ -26,14 +26,13 @@ const FindEstate: NextPage<OverViewPageProps> = ({
   const introBlurb = get(pageData, "entry.introBlurb", "");
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
-  const estateList = get(listingData, "entries", []);
   const setEstates = useSetRecoilState(allEstateState);
 
   useEffect(() => {
+    const estateList = get(listingData, "entries", []);
     setEstates(estateList);
     setSuburbList(sortBy(map(estateList, "suburb")));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [estateList]);
+  }, [listingData, setEstates]);
 
   return (
     <Layout>
