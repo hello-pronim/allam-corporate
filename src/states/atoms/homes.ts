@@ -14,6 +14,7 @@ export const homesFilterState = atom<HomeFilterModel>({
     beds: "All",
     baths: "All",
     blockSize: "All",
+    reset: false,
   },
 });
 
