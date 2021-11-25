@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
 import { Button, ActionButton, ImageButton } from "@components/Common/Common";
 import styles from "./Hero.module.scss";
+import { CraftImage } from "@models";
 
-export interface IHeroProps {}
+type IHeroProps = {
+  title: string;
+  address: string;
+  logo: CraftImage[];
+};
 
-const Hero = () => {
+const Hero = ({ title, address, logo }: IHeroProps) => {
   const router = useRouter();
 
   return (
@@ -26,8 +31,8 @@ const Hero = () => {
           </div>
 
           <div className={styles.heroContentText}>
-            <h1>Ardennes Avenue</h1>
-            <h5>Edmondson Park, NSW 2174</h5>
+            <h1>{title}</h1>
+            <h5>{address}</h5>
 
             <div className={styles.heroContentButtons}>
               <ImageButton
@@ -38,20 +43,24 @@ const Hero = () => {
               <ImageButton icon="land-sale" label="Land for Sale" count={12} />
 
               <div className={styles.heroContentButtonsCondition}>
-                <Button rounded>Contact Agent</Button>
+                <Button href="/get-in-touch" rounded>
+                  Contact Agent
+                </Button>
               </div>
             </div>
           </div>
 
-          <div className={styles.heroContentLogo}>
-            <Image
-              src={"/assets/images/estate/White-Logo-Ardennes.png"}
-              alt="hero-logo"
-              layout="responsive"
-              width={624}
-              height={356}
-            />
-          </div>
+          {logo?.[0]?.url && (
+            <div className={styles.heroContentLogo}>
+              <Image
+                src={logo?.[0]?.url}
+                alt={logo?.[0]?.title}
+                layout="responsive"
+                width={logo?.[0]?.width}
+                height={logo?.[0]?.height}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>

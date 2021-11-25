@@ -107,6 +107,7 @@ const estatesQuery = gql`
   query estatesQuery {
     entries(section: "estates") {
       ... on estates_default_Entry {
+        slug
         title
         introText
         streetAddress
