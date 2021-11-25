@@ -39,7 +39,6 @@ export const filteredEstates = selector({
             )
         : [];
 
-    console.log(filters);
     return filterLocation;
   },
 });

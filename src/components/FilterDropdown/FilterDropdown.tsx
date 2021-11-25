@@ -57,6 +57,11 @@ const FilterDropdown = ({
         ...filterStateValue,
         type: options[id]?.value ?? "All",
       });
+    } else if (placeholderLabel === "Block Size") {
+      setFilterValue({
+        ...filterStateValue,
+        blockSize: options[id]?.value ?? "All",
+      });
     }
     closeDropdown();
   };

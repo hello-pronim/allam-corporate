@@ -71,6 +71,11 @@ const FilterByChoiceGroup = ({
         ...filterStateValue,
         type: selectedFilter?.value ?? "All",
       });
+    } else if (name === "block") {
+      setFilterValue({
+        ...filterStateValue,
+        blockSize: selectedFilter?.value ?? "All",
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFilter]);

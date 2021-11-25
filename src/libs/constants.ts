@@ -12,3 +12,26 @@ export const estateTypeList = [
     value: "Retirement Living",
   },
 ];
+
+export const landBlockSizes = [
+  {
+    label: "All",
+    value: "All",
+  },
+  {
+    label: "300 - 400",
+    value: "300,400",
+  },
+  {
+    label: "400 - 500",
+    value: "400,500",
+  },
+  {
+    label: "500 - 600",
+    value: "500,600",
+  },
+  {
+    label: "700+",
+    value: "700",
+  },
+];

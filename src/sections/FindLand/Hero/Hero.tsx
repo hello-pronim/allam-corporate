@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { map, sortBy } from "lodash";
+import { useRecoilValue, useRecoilState } from "recoil";
+import {
+  allLandsState,
+  landsFilterState,
+  filteredLands,
+} from "@states/atoms/lands";
+import { Redactor } from "@components/Common/Common";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
 import LandFilter from "@sections/FindLand/LandFilter/LandFilter";
 import FilterModal from "@components/FilterModal/FilterModal";
 import FilterByChoiceGroup from "@components/FilterByChoiceGroup/FilterByChoiceGroup";
-import { Redactor } from "@components/Common/Common";
-import { locationObj, typeObj } from "./constant";
+import { ChoiceModel } from "@models";
+import { transformLocations } from "@utils/transformLocations";
+import { landBlockSizes } from "@libs/constants";
 import styles from "./Hero.module.scss";
 
 type IHeroProps = {
@@ -20,7 +29,28 @@ const Hero = ({
   showMap = false,
   setShowMap,
 }: IHeroProps) => {
+  const landsList = useRecoilValue(allLandsState);
+  const filteredLandList = useRecoilValue(filteredLands);
   const [isOpenFilter, setOpenFilter] = useState(false);
+  const [suburbList, setSuburbList] = useState<string[]>([]);
+  const [newSuburbList, setNewSuburbList] = useState<ChoiceModel[]>([]);
+  const [landFilter, setLandFilters] = useRecoilState(landsFilterState);
+
+  useEffect(() => {
+    setSuburbList(sortBy(map(landsList, "suburb")));
+  }, [landsList]);
+
+  useEffect(() => {
+    setNewSuburbList(transformLocations(suburbList ?? []));
+  }, [suburbList]);
+
+  const resetEstateFilter = () => {
+    setLandFilters({
+      locations: ["All"],
+      blockSize: "All",
+      reset: false,
+    });
+  };
 
   return (
     <div className={styles.hero}>
@@ -40,6 +70,7 @@ const Hero = ({
         <LandFilter
           showMap={showMap}
           setShowMap={setShowMap}
+          suburbList={suburbList}
           toggleFilter={() => setOpenFilter(!isOpenFilter)}
         />
       </div>
@@ -51,20 +82,51 @@ const Hero = ({
           transitionDelay: "0.2s",
           transition: "all 0.3s cubic-bezier(1, 0.885, 0.72, 1)",
         }}
+        resultCount={filteredLandList.length}
+        setFilterValue={setLandFilters}
+        filterStateValue={landFilter}
         closeModal={() => setOpenFilter(false)}
       >
-        {/* <FilterByChoiceGroup
+        <FilterByChoiceGroup
           label="Filter by Locations:"
           name="location"
-          options={locationObj}
+          options={newSuburbList}
+          setFilterValue={setLandFilters}
+          filterStateValue={landFilter}
+          resetEstateFilter={resetEstateFilter}
+          isMultiChoice
+        />
+        <FilterByChoiceGroup
+          label="Filter by Block Size:"
+          name="block"
+          options={landBlockSizes}
+          setFilterValue={setLandFilters}
+          filterStateValue={landFilter}
+          resetEstateFilter={resetEstateFilter}
+        />
+      </FilterModal>
+
+      {/* <FilterModal
+        style={{
+          visibility: `${isOpenFilter ? "visible" : "hidden"}`,
+          opacity: `${isOpenFilter ? "1" : "0"}`,
+          transitionDelay: "0.2s",
+          transition: "all 0.3s cubic-bezier(1, 0.885, 0.72, 1)",
+        }}
+        closeModal={() => setOpenFilter(false)}
+      >
+        <FilterByChoiceGroup
+          label="Filter by Locations:"
+          name="location"
+          options={newSuburbList}
           isMultiChoice
         />
         <FilterByChoiceGroup
           label="Filter by type:"
           name="type"
           options={typeObj}
-        /> */}
-      </FilterModal>
+        />
+      </FilterModal> */}
     </div>
   );
 };
