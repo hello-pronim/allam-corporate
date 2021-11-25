@@ -52,7 +52,7 @@ const EstateFilter = ({
           </div>
 
           <div className={styles.estateFilterDesktopSortBy}>
-            <span>Sort by</span>
+            <span>Filter by</span>
             <FilterDropdownMulti
               options={suburbList}
               isOpen={openLocationMenu}

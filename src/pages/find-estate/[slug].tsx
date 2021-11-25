@@ -13,7 +13,7 @@ import SignUpEstate from "@sections/FindEstateDetail/SignUpEstate/SignUpEstate";
 
 const FindEstateDetail: NextPage = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { slug } = router.query;
 
   return (
     <Layout>
@@ -28,6 +28,13 @@ const FindEstateDetail: NextPage = () => {
       <SignUpEstate />
     </Layout>
   );
+};
+
+export const getStaticProps = async function () {
+  return {
+    props: {},
+    revalidate: 500,
+  };
 };
 
 export default FindEstateDetail;

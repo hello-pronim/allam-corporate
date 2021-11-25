@@ -187,10 +187,11 @@ export type EstateFilterModel = {
 };
 export type HomeFilterModel = {
   locations: string[];
-  storeys: string | number;
-  beds: string | number;
-  baths: string | number;
-  blockSize: string;
+  storeys?: string | number;
+  beds?: string | number;
+  baths?: string | number;
+  blockSize?: string;
+  reset: boolean;
 };
 export type LandFilterModel = {
   locations: string[];
