@@ -133,11 +133,6 @@ export type EstateModel = {
   downloadableBrochure: Asset[];
 };
 
-export type EstateFilterModel = {
-  locations: string[];
-  type: string;
-};
-
 export type HomeModel = {
   title: string;
   landOnly: boolean;
@@ -162,14 +157,6 @@ export type HomeModel = {
   downloadableBrochure?: CraftImage[];
 };
 
-export type HomeFilterModel = {
-  locations: string[];
-  storeys: string | number;
-  beds: string | number;
-  baths: string | number;
-  blockSize: string | number;
-};
-
 export type LandModel = {
   title: string;
   landOnly: boolean;
@@ -177,9 +164,9 @@ export type LandModel = {
   address: string;
   suburb: string;
   buildingSize?: number;
-  landSize?: number;
-  latitude?: string;
-  longitude?: string;
+  landSize: number;
+  latitude: string;
+  longitude: string;
   introBlurb?: string;
   features?: string;
   gallery3dUrl?: string;
@@ -187,12 +174,27 @@ export type LandModel = {
   downloadableBrochure?: CraftImage[];
 };
 
-export type LandFilterModel = {
-  locations: string[];
-  blockSize: string | number;
-};
-
 export type ChoiceModel = {
   label: string;
-  value: string | number;
+  value: string;
+};
+
+// Filter Models
+export type EstateFilterModel = {
+  locations: string[];
+  type: string;
+  reset: boolean;
+};
+export type HomeFilterModel = {
+  locations: string[];
+  storeys?: string | number;
+  beds?: string | number;
+  baths?: string | number;
+  blockSize?: string;
+  reset: boolean;
+};
+export type LandFilterModel = {
+  locations: string[];
+  blockSize: string;
+  reset: boolean;
 };

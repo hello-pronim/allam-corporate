@@ -62,18 +62,13 @@ const FilterDropdownMulti = ({
   }, [isOpen, closeDropdown]);
 
   useEffect(() => {
-    const isLengthSame =
-      selectedOptions.filter((option) => option.selected === true).length ===
-      selectedOptions.length;
+    let newArray = selectedOptions.filter((option) => option.selected === true);
+    const isLengthSame = newArray.length === selectedOptions.length;
     setIsAllSelected(isLengthSame);
 
     setFilterValue({
       ...filterStateValue,
-      locations: isLengthSame
-        ? ["All"]
-        : selectedOptions
-            .filter((option) => option.selected === true)
-            .map((el) => el.label),
+      locations: isLengthSame ? ["All"] : newArray.map((el) => el.label),
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedOptions]);

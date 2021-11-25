@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
+import { ChoiceModel } from "@models";
 import Icon from "@components/Icons/Icons";
 import styles from "./FilterDropdown.module.scss";
 
 export interface IFilterDropdownProps {
   isOpen: boolean;
-  options: any[];
+  options: ChoiceModel[];
   placeholderLabel?: string;
   closeDropdown: () => void;
   toggleDropdown: () => void;
@@ -21,8 +22,12 @@ const FilterDropdown = ({
   setFilterValue,
   filterStateValue,
 }: IFilterDropdownProps) => {
-  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [selectedOption, setSelectedOption] = useState<ChoiceModel>();
   const dropdownRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    setSelectedOption(options[0]);
+  }, [options]);
 
   useEffect(() => {
     const checkIfClickedOutside = (e: any) => {
@@ -50,7 +55,12 @@ const FilterDropdown = ({
     if (placeholderLabel === "Type") {
       setFilterValue({
         ...filterStateValue,
-        type: options[id]?.value,
+        type: options[id]?.value ?? "All",
+      });
+    } else if (placeholderLabel === "Block Size") {
+      setFilterValue({
+        ...filterStateValue,
+        blockSize: options[id]?.value ?? "All",
       });
     }
     closeDropdown();

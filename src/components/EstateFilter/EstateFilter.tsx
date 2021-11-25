@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { ArrowButton, ImageButton } from "@components/Common/Common";
 import FilterDropdown from "@components/FilterDropdown/FilterDropdown";
-import { locationObj, typeObj } from "@sections/FindEstate/Hero/constant";
 import styles from "./EstateFilter.module.scss";
 
 export interface IEstateFilterProps {

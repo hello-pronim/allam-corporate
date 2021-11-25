@@ -16,6 +16,7 @@
     border-radius: rem(78);
 
     @include breakpoint($large) {
+      display: inline-block;
       max-width: 80%;
       margin: 0 auto;
       padding: rem(16) rem(42);
@@ -54,22 +55,7 @@
       font-size: rem(16);
     }
 
-    &ViewBy {
-      display: grid;
-      align-items: center;
-      grid-template-columns: auto auto auto;
-      gap: rem(24);
-      padding-bottom: rem(16);
-
-      @include breakpoint($x-large) {
-        padding: 0;
-        padding-right: rem(24);
-        border-right: rem(1) solid $grey1;
-      }
-    }
-
     &SortBy {
-      padding-left: rem(24);
       display: grid;
       align-items: center;
       grid-template-columns: auto auto auto;

@@ -11,6 +11,7 @@ export const estateFilterState = atom<EstateFilterModel>({
   default: {
     locations: ["All"],
     type: "All",
+    reset: false,
   },
 });
 
@@ -30,11 +31,14 @@ export const filteredEstates = selector({
           );
 
     const filterLocation =
-      filters.locations?.[0] === "All"
-        ? filterType
-        : filterType?.filter((estate) =>
-            filters?.locations?.some((location) => location === estate.suburb)
-          );
+      filters.locations.length > 0
+        ? filters.locations?.[0] === "All"
+          ? filterType
+          : filterType?.filter((estate) =>
+              filters?.locations?.some((location) => location === estate.suburb)
+            )
+        : [];
+
     return filterLocation;
   },
 });

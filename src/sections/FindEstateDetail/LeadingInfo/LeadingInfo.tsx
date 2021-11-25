@@ -1,15 +1,19 @@
 import React from "react";
 import Link from "next/link";
+import { Redactor } from "@components/Common/Common";
 import styles from "./LeadingInfo.module.scss";
 
-export interface ILeadingInfoProps {}
+type ILeadingInfoProps = {
+  introText: string;
+};
 
-const LeadingInfo = ({}: ILeadingInfoProps) => {
+const LeadingInfo = ({ introText }: ILeadingInfoProps) => {
   return (
     <div className={styles.leadingInfo}>
       <div className={styles.leadingInfoWrapper}>
         <div className={styles.leadingInfoLeft}>
-          <h2>
+          <Redactor>{introText ?? ""}</Redactor>
+          {/* <h2>
             Ardennes has easy access to a wide range of existing facilities.
           </h2>
 
@@ -32,7 +36,7 @@ const LeadingInfo = ({}: ILeadingInfoProps) => {
                 <a>View more</a>
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className={styles.leadingInfoRight}>

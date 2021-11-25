@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { useRecoilValue } from "recoil";
 import { filteredEstates } from "@states/atoms/estates";
 import { Button } from "@components/Common/Common";
@@ -17,7 +18,11 @@ const EstateListing = () => {
         <div className={styles.estateListingView}>
           <div className={styles.estateListingCards}>
             {estatesList?.map((estate, id) => (
-              <EstateCard key={id} estate={estate} />
+              <Link href={`/find-estate/${estate.slug}`} key={id}>
+                <a>
+                  <EstateCard estate={estate} />
+                </a>
+              </Link>
             ))}
             <EasyBuyPurchase />
           </div>

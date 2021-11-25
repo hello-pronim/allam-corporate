@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { map, sortBy } from "lodash";
-import { useRecoilValue } from "recoil";
-import { allHomesState } from "@states/atoms/homes";
+import { useRecoilValue, useRecoilState } from "recoil";
+import {
+  allHomesState,
+  filteredHomes,
+  homesFilterState,
+} from "@states/atoms/homes";
 import { Redactor } from "@components/Common/Common";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
 import FilterModal from "@components/FilterModal/FilterModal";
@@ -25,9 +29,12 @@ const Hero = ({
   setShowMap,
 }: IHeroProps) => {
   const [isOpenFilter, setOpenFilter] = useState(false);
+  const filteredHomesList = useRecoilValue(filteredHomes);
+
   const [suburbList, setSuburbList] = useState<string[]>([]);
   const [newSuburbList, setNewSuburbList] = useState<ChoiceModel[]>([]);
   const homesList = useRecoilValue(allHomesState);
+  const [homesFilter, setHomesFilters] = useRecoilState(homesFilterState);
 
   useEffect(() => {
     setSuburbList(sortBy(map(homesList, "suburb")));
@@ -36,6 +43,13 @@ const Hero = ({
   useEffect(() => {
     setNewSuburbList(transformLocations(suburbList ?? []));
   }, [suburbList]);
+
+  const resetEstateFilter = () => {
+    setHomesFilters({
+      locations: ["All"],
+      reset: false,
+    });
+  };
 
   return (
     <div className={styles.hero}>
@@ -67,12 +81,18 @@ const Hero = ({
           transitionDelay: "0.2s",
           transition: "all 0.3s cubic-bezier(1, 0.885, 0.72, 1)",
         }}
+        resultCount={filteredHomesList.length}
+        setFilterValue={setHomesFilters}
+        filterStateValue={homesFilter}
         closeModal={() => setOpenFilter(false)}
       >
         <FilterByChoiceGroup
           label="Filter by Locations:"
           name="location"
           options={newSuburbList}
+          setFilterValue={setHomesFilters}
+          filterStateValue={homesFilter}
+          resetEstateFilter={resetEstateFilter}
           isMultiChoice
         />
       </FilterModal>
