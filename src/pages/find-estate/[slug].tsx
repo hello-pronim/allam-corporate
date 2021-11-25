@@ -30,11 +30,11 @@ const FindEstateDetail: NextPage = () => {
   );
 };
 
-export const getStaticProps = async function () {
-  return {
-    props: {},
-    revalidate: 500,
-  };
-};
+// export const getStaticProps = async function () {
+//   return {
+//     props: {},
+//     revalidate: 500,
+//   };
+// };
 
 export default FindEstateDetail;
