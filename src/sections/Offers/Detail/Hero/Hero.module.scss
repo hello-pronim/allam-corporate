@@ -1,0 +1,193 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.defaultHero {
+  position: relative;
+  padding-top: rem(78);
+  background-image: url("/assets/icons/icon-panel-type-2-desktop.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  @include breakpoint($large) {
+    padding-top: rem(135);
+  }
+  &:before {
+    background: linear-gradient(
+      180.02deg,
+      #ffffff 33.84%,
+      rgba(255, 255, 255, 0) 91.13%
+    );
+  }
+
+  .heroWrapper {
+    padding-bottom: rem(25);
+    @include grid-container;
+
+    @include breakpoint($large) {
+      padding-bottom: rem(125);
+    }
+    @include below($medium) {
+      padding-bottom: rem(125);
+    }
+  }
+
+  .heroBreadcrumb {
+    @include breakpoint($large) {
+      grid-column: 1 / span 12;
+    }
+  }
+
+  .heroContent {
+    position: relative;
+    h1 {
+      font-size: rem(104);
+      line-height: 1;
+    }
+
+    h3 {
+      font-size: rem(48);
+      line-height: rem(56);
+    }
+
+    &Top {
+      color: $grey;
+      @include breakpoint($large) {
+        margin: 0;
+        align-items: center;
+        grid-gap: rem(32) !important;
+        @include grid(1, 12);
+      }
+      &Title {
+        @include breakpoint($large) {
+          grid-column: 2 / span 5;
+          margin: 0;
+        }
+      }
+      &Image {
+        @include breakpoint($xx-large) {
+          grid-column: 7 / span 3;
+        }
+      }
+      &Action {
+        @include breakpoint($xx-large) {
+          grid-column: 10 / span 2;
+        }
+        &Buttons {
+          display: flex;
+          flex-direction: column;
+          gap: rem(24);
+        }
+      }
+    }
+
+    &Bottom {
+      color: $grey;
+      @include breakpoint($large) {
+        margin: 0;
+        align-items: center;
+        grid-column: 1 / span 12;
+        @include grid(1, 12);
+      }
+      &Text {
+        @include breakpoint($large) {
+          grid-column: 2 / span 5;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+.bgHero {
+  position: relative;
+  padding-top: rem(78);
+  background-repeat: no-repeat;
+  background-size: cover;
+  @include breakpoint($large) {
+    padding-top: rem(135);
+  }
+  &:before {
+    background: linear-gradient(
+      180.02deg,
+      #ffffff 33.84%,
+      rgba(255, 255, 255, 0) 91.13%
+    );
+  }
+
+  .heroWrapper {
+    padding-bottom: rem(25);
+    @include grid-container;
+
+    @include breakpoint($large) {
+      padding-bottom: rem(125);
+    }
+    @include below($medium) {
+      padding-bottom: rem(125);
+    }
+  }
+
+  .heroBreadcrumb {
+    color: $white;
+    @include breakpoint($large) {
+      grid-column: 1 / span 12;
+    }
+  }
+
+  .heroContent {
+    position: relative;
+    h1 {
+      color: $white;
+      font-size: rem(104);
+      line-height: 1;
+    }
+
+    h3 {
+      color: $white;
+      font-size: rem(48);
+      line-height: rem(56);
+    }
+
+    &Top {
+      color: $grey;
+      margin-top: rem(80);
+      margin-bottom: rem(80);
+      @include breakpoint($large) {
+        align-items: center;
+        grid-gap: rem(32) !important;
+        @include grid(1, 12);
+      }
+      &Title {
+        @include breakpoint($large) {
+          grid-column: 2 / span 5;
+          margin: 0;
+        }
+      }
+    }
+
+    &Bottom {
+      color: $grey;
+      @include breakpoint($large) {
+        margin: 0;
+        align-items: center;
+        grid-column: 1 / span 12;
+        @include grid(1, 12);
+      }
+      &Text {
+        @include breakpoint($large) {
+          grid-column: 2 / span 5;
+          margin: 0;
+        }
+      }
+      &Action {
+        @include breakpoint($large) {
+          grid-column: 2 / span 5;
+          margin: 0;
+        }
+        &Buttons {
+          display: flex;
+          align-items: center;
+          gap: rem(16);
+        }
+      }
+    }
+  }
+}
