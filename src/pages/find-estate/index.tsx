@@ -8,12 +8,12 @@ import { OverViewPageProps } from "@models";
 import { trustQuery } from "@libs/queries";
 import { propsFind } from "@utils/propsFind";
 import { allEstateState } from "@states/atoms/estates";
-import Layout from "@components/Layout/Layout";
 import Hero from "@sections/FindEstate/Hero/Hero";
-import EstateListing from "@sections/FindEstate/EstateListing/EstateListing";
-import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
-import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 import Overview from "@sections/FindEstate/Overview/Overview";
+import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
+import EstateListing from "@sections/FindEstate/EstateListing/EstateListing";
+import Layout from "@components/Layout/Layout";
+import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
 
 const FindEstate: NextPage<OverViewPageProps> = ({
   pageData,
@@ -32,7 +32,8 @@ const FindEstate: NextPage<OverViewPageProps> = ({
     const estateList = get(listingData, "entries", []);
     setEstates(estateList);
     setSuburbList(sortBy(map(estateList, "suburb")));
-  }, [listingData, setEstates]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [listingData]);
 
   return (
     <Layout>
