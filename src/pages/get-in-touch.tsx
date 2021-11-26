@@ -3,17 +3,19 @@ import { get } from "lodash";
 import type { NextPage } from "next";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
+import { layoutQuery } from "@libs/queries";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/GetInTouch/Hero/Hero";
 import TabbedContent from "@sections/GetInTouch/TabbedContent/TabbedContent";
 
 type PageProps = {
   locationData: any;
+  layoutData: any;
 };
 
-const GetInTouch: NextPage<PageProps> = ({ locationData }) => {
+const GetInTouch: NextPage<PageProps> = ({ locationData, layoutData }) => {
   return (
-    <Layout>
+    <Layout layoutData={layoutData}>
       <Hero heading="Get in Touch" />
       <TabbedContent locations={get(locationData, "entries", [])} />
     </Layout>
@@ -51,10 +53,12 @@ const locationsQuery = gql`
 
 export const getStaticProps = async function () {
   const locationData = await craftAPI(locationsQuery);
+  const layoutData = await craftAPI(layoutQuery);
 
   return {
     props: {
       locationData,
+      layoutData,
     },
     revalidate: 500,
   };

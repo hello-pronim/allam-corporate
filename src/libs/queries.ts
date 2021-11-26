@@ -88,7 +88,7 @@ export const easyBuyPurchaseQuery = gql`
 
 export const layoutQuery = gql`
   query layout {
-    navigtaion: globalSet(handle: "mainNavigation") {
+    navigation: globalSet(handle: "mainNavigation") {
       ... on mainNavigation_GlobalSet {
         menuItems {
           ... on menuItems_BlockType {

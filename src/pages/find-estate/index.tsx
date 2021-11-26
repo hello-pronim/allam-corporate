@@ -5,7 +5,7 @@ import { useSetRecoilState } from "recoil";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
 import { OverViewPageProps } from "@models";
-import { trustQuery } from "@libs/queries";
+import { layoutQuery, trustQuery } from "@libs/queries";
 import { propsFind } from "@utils/propsFind";
 import { allEstateState } from "@states/atoms/estates";
 import Hero from "@sections/FindEstate/Hero/Hero";
@@ -19,6 +19,7 @@ const FindEstate: NextPage<OverViewPageProps> = ({
   pageData,
   trustMakers,
   listingData,
+  layoutData,
 }) => {
   const [showMap, setShowMap] = useState(false);
   const [suburbList, setSuburbList] = useState<string[]>([]);
@@ -36,7 +37,7 @@ const FindEstate: NextPage<OverViewPageProps> = ({
   }, [listingData]);
 
   return (
-    <Layout>
+    <Layout layoutData={layoutData}>
       <Hero
         heading={heading}
         introBlurb={introBlurb}
@@ -159,12 +160,14 @@ export const getStaticProps = async function () {
   const pageData = await craftAPI(pageQuery);
   const trustMakers = await craftAPI(trustQuery);
   const listingData = await craftAPI(estatesQuery);
+  const layoutData = await craftAPI(layoutQuery);
 
   return {
     props: {
       pageData,
       trustMakers,
       listingData,
+      layoutData,
     },
     revalidate: 500,
   };

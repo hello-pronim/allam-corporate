@@ -1,9 +1,10 @@
 import type { NextPage } from "next";
 import get from "lodash/get";
+import { GetStaticProps, GetStaticPaths } from "next";
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
-import { trustQuery } from "@libs/queries";
+import { trustQuery, layoutQuery } from "@libs/queries";
 import { propsFind } from "@utils/propsFind";
 import { PageProps } from "@models";
 import Layout from "@components/Layout/Layout";
@@ -99,17 +100,26 @@ const PromotionalOfferDetail: NextPage<PageProps> = ({
   );
 };
 
-// export const getStaticProps = async function () {
-//   const pageData = await craftAPI(pageQuery);
-//   const trustMakers = await craftAPI(trustQuery);
+export const getStaticProps = async function () {
+  // const pageData = await craftAPI(pageQuery);
+  // const trustMakers = await craftAPI(trustQuery);
+  const layoutData = await craftAPI(layoutQuery);
 
-//   return {
-//     props: {
-//       pageData,
-//       trustMakers,
-//     },
-//     revalidate: 500,
-//   };
-// };
+  return {
+    props: {
+      // pageData,
+      // trustMakers,
+      layoutData,
+    },
+    revalidate: 500,
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
+};
 
 export default PromotionalOfferDetail;

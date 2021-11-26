@@ -2,20 +2,24 @@ import type { NextPage } from "next";
 import get from "lodash/get";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
-import { trustQuery } from "@libs/queries";
-import { propsFind } from "@utils/propsFind";
 import { PageProps } from "@models";
+import { propsFind } from "@utils/propsFind";
+import { layoutQuery, trustQuery } from "@libs/queries";
 import Layout from "@components/Layout/Layout";
-import Hero from "@sections/Retirement/Hero/Hero";
-import LeadingHomes from "@sections/Retirement/LeadingHomes/LeadingHomes";
 import CardGrid from "@components/CardGrid/CardGrid";
 import MinimalCard from "@components/MinimalCard/MinimalCard";
 import FullWidthImage from "@components/FullWidthImage/FullWidthImage";
+import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
+import Hero from "@sections/Retirement/Hero/Hero";
+import LeadingHomes from "@sections/Retirement/LeadingHomes/LeadingHomes";
 import CostAndFee from "@sections/Retirement/CostAndFee/CostAndFee";
 import MasterPlan from "@sections/Retirement/MasterPlan/MasterPlan";
-import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
 
-const RetirementLiving: NextPage<PageProps> = ({ pageData, trustMakers }) => {
+const RetirementLiving: NextPage<PageProps> = ({
+  pageData,
+  trustMakers,
+  layoutData,
+}) => {
   const pageLayout = get(pageData, "entry.retirementLayout", []);
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
@@ -25,7 +29,7 @@ const RetirementLiving: NextPage<PageProps> = ({ pageData, trustMakers }) => {
   );
 
   return pageData ? (
-    <Layout>
+    <Layout layoutData={layoutData}>
       <Hero data={propsFind(pageLayout, "retirementLayout_hero_BlockType")} />
       <LeadingHomes
         trustFeatures={trustFeatures}
@@ -133,11 +137,13 @@ const pageQuery = gql`
 export const getStaticProps = async function () {
   const pageData = await craftAPI(pageQuery);
   const trustMakers = await craftAPI(trustQuery);
+  const layoutData = await craftAPI(layoutQuery);
 
   return {
     props: {
       pageData,
       trustMakers,
+      layoutData,
     },
     revalidate: 500,
   };
