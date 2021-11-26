@@ -16,6 +16,7 @@ import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
 const PromotionalOfferDetail: NextPage<PageProps> = ({
   pageData,
   trustMakers,
+  layoutData,
 }) => {
   const router = useRouter();
   const { id } = router.query;
@@ -86,7 +87,7 @@ const PromotionalOfferDetail: NextPage<PageProps> = ({
   ];
 
   return (
-    <Layout>
+    <Layout layoutData={layoutData}>
       <Hero offer={offers[0]} />
       {/* <Hero offer={offers[1]} background={backgrounds[0]} /> */}
       {/* <Hero offer={offers[1]} background={backgrounds[1]} /> */}
