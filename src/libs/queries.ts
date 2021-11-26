@@ -86,9 +86,9 @@ export const easyBuyPurchaseQuery = gql`
   }
 `;
 
-export const navigationQuery = gql`
-  query navigation {
-    globalSet(handle: "mainNavigation") {
+export const layoutQuery = gql`
+  query layout {
+    navigtaion: globalSet(handle: "mainNavigation") {
       ... on mainNavigation_GlobalSet {
         menuItems {
           ... on menuItems_BlockType {
@@ -98,12 +98,7 @@ export const navigationQuery = gql`
         }
       }
     }
-  }
-`;
-
-export const footerQuery = gql`
-  query footer {
-    globalSet(handle: "footer") {
+    footer: globalSet(handle: "footer") {
       ... on footer_GlobalSet {
         heading
         buttons {

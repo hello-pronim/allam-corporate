@@ -30,7 +30,7 @@ const Button = ({
   else if (color === "dark") themeName = styles.dark;
   else if (color === "dark-secondary") themeName = styles.darkSecondary;
   else if (color === "light") themeName = styles.light;
-  else if (color === "outline-light") themeName = styles.outlineLight;
+  else if (color === "outlineLight") themeName = styles.outlineLight;
   let roundedClass = rounded ? styles.rounded : "";
   const sizeClass =
     size === "small" ? styles.small : size === "large" ? styles.large : "";
