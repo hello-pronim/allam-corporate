@@ -18,7 +18,8 @@ const Input = ({
   placeholder,
   value,
   onChange,
-}: InputProps) => {
+  ...props
+}: any) => {
   return (
     <input
       type={type}
@@ -27,6 +28,7 @@ const Input = ({
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      {...props}
     />
   );
 };

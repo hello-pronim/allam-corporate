@@ -16,7 +16,7 @@ const GeneralEnquiry = () => {
         <div className={styles.formCol}>
           <Input
             type="text"
-            name="firstName"
+            name="firstname"
             className={styles.formControl}
             placeholder="First Name"
           />
@@ -24,7 +24,7 @@ const GeneralEnquiry = () => {
         <div className={styles.formCol}>
           <Input
             type="text"
-            name="lastName"
+            name="lastname"
             className={styles.formControl}
             placeholder="Last Name"
           />
@@ -42,7 +42,7 @@ const GeneralEnquiry = () => {
         <div className={styles.formCol}>
           <Input
             type="text"
-            name="contactNumber"
+            name="phone"
             className={styles.formControl}
             placeholder="Contact Number"
           />
