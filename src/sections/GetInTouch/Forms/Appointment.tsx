@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Field, Form } from "react-final-form";
+import { useForm } from "react-hook-form";
 import Button from "@components/Common/Button/Button";
 import Checkbox from "@components/Common/Checkbox/Checkbox";
 import Input from "@components/Common/Input/Input";
@@ -44,6 +45,12 @@ const validate = (values: any) => {
 };
 
 const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const checkboxButtonsData1 = [
     { value: "Week day", text: "Week day" },
     { value: "Weekend", text: "Weekend" },
@@ -74,6 +81,7 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
                 name="firstName"
                 className={styles.formControl}
                 placeholder="First Name"
+                register={register}
               />
             </div>
             <div className={styles.formCol}>
@@ -82,6 +90,7 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
                 name="lastName"
                 className={styles.formControl}
                 placeholder="Last Name"
+                register={register}
               />
             </div>
           </div>
@@ -92,6 +101,7 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
                 name="email"
                 className={styles.formControl}
                 placeholder="Email"
+                register={register}
               />
             </div>
             <div className={styles.formCol}>
@@ -100,6 +110,7 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
                 name="contactNumber"
                 className={styles.formControl}
                 placeholder="Contact Number"
+                register={register}
               />
             </div>
           </div>
@@ -109,6 +120,7 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
                 type="text"
                 className={styles.formControl}
                 placeholder="Postcode"
+                register={register}
               />
               <div>
                 <h6>Choose a preferred time</h6>
