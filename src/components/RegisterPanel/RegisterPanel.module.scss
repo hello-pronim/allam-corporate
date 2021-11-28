@@ -13,21 +13,18 @@
       margin-bottom: 16px;
       align-items: center;
     }
-    input {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1px solid #212121;
-      border-radius: rem(4);
-      color: #212121;
-    }
+    // input {
+    //   width: 100%;
+    //   padding: 12px 16px;
+    //   border: 1px solid #212121;
+    //   border-radius: rem(4);
+    //   color: #212121;
+    // }
     button {
-      padding: 11px 100px;
-      border: none;
-      background-color: #212121;
-      color: #ffcb05;
-      font-weight: bold;
-      font-size: 18px;
-      line-height: 34px;
+      width: 100%;
+      @include breakpoint($large) {
+        width: rem(200);
+      }
     }
   }
 }
@@ -39,8 +36,8 @@
 
   span {
     padding: 0 0.5rem;
-    font-size: 10px;
-    line-height: 15px;
+    font-size: rem(10);
+    line-height: rem(15);
     letter-spacing: 0.01em;
   }
   input[type="checkbox"] {
