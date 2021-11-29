@@ -21,7 +21,9 @@ export type PageProps = NormalPageProps | OverViewPageProps;
 
 export type NavItemModel = {
   linkName: string;
-  hyperlink: string;
+  hyperlink: {
+    slug: string;
+  };
 };
 
 export type AdvantageModel = {

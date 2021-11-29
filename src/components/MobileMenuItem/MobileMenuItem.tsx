@@ -20,7 +20,7 @@ const MobileMenuItem = ({
     if (item.subMenu) {
       onShowSubMenu(item);
     } else {
-      onRedirectLink(item.slug);
+      onRedirectLink(item.hyperlink.slug);
     }
   };
 

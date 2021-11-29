@@ -93,7 +93,9 @@ export const layoutQuery = gql`
         menuItems {
           ... on menuItems_BlockType {
             linkName
-            hyperlink
+            hyperlink {
+              slug
+            }
           }
         }
       }
