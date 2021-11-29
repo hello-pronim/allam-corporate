@@ -50,7 +50,7 @@ export const getStaticProps = async function () {
     props: {
       layoutData,
     },
-    revalidate: 500,
+    revalidate: 60,
   };
 };
 

@@ -85,7 +85,7 @@ export const getStaticProps = async function () {
       easyBuy,
       layoutData,
     },
-    revalidate: 500,
+    revalidate: 60,
   };
 };
 

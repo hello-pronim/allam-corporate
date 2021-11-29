@@ -60,7 +60,7 @@ export const getStaticProps = async function () {
       locationData,
       layoutData,
     },
-    revalidate: 500,
+    revalidate: 60,
   };
 };
 

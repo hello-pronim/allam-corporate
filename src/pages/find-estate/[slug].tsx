@@ -102,7 +102,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
       estate,
       layoutData,
     },
-    revalidate: 500,
+    revalidate: 60,
   };
 };
 

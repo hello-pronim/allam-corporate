@@ -145,7 +145,7 @@ export const getStaticProps = async function () {
       trustMakers,
       layoutData,
     },
-    revalidate: 500,
+    revalidate: 60,
   };
 };
 

@@ -148,7 +148,7 @@ export const getStaticProps = async function () {
       listingData,
       layoutData,
     },
-    revalidate: 500,
+    revalidate: 60,
   };
 };
 
