@@ -1,6 +1,6 @@
 import { NextApiHandler } from "next";
 
-const handler: NextApiHandler = async (req, res) => {
+const handler: NextApiHandler = async (req: any, res: any) => {
   const { token, uri } = req.query;
 
   if (Array.isArray(token)) {

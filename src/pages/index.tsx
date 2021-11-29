@@ -154,10 +154,14 @@ const homeQuery = gql`
   }
 `;
 
-export const getStaticProps: GetStaticProps = async function (context) {
-  const previewToken: any = context.preview
-    ? context?.previewData?.token
-    : undefined;
+export const getStaticProps: GetStaticProps = async function ({
+  preview,
+  previewData,
+}: {
+  preview?: any;
+  previewData?: any;
+}) {
+  const previewToken: any = preview ? previewData?.token : undefined;
   const pageData = await craftAPI(homeQuery, previewToken);
   const layoutData = await craftAPI(layoutQuery, previewToken);
   const trustMakers = await craftAPI(trustQuery, previewToken);
