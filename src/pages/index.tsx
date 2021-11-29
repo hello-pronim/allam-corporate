@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import get from "lodash/get";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
@@ -154,10 +154,13 @@ const homeQuery = gql`
   }
 `;
 
-export const getStaticProps = async function () {
-  const pageData = await craftAPI(homeQuery);
-  const layoutData = await craftAPI(layoutQuery);
-  const trustMakers = await craftAPI(trustQuery);
+export const getStaticProps: GetStaticProps = async function (context) {
+  const previewToken: any = context.preview
+    ? context?.previewData?.token
+    : undefined;
+  const pageData = await craftAPI(homeQuery, previewToken);
+  const layoutData = await craftAPI(layoutQuery, previewToken);
+  const trustMakers = await craftAPI(trustQuery, previewToken);
 
   return {
     props: {

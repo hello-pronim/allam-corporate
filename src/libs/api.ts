@@ -1,15 +1,15 @@
 import { ApolloClient, DocumentNode, InMemoryCache } from "@apollo/client";
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL;
-export const getClient = () => {
+export const getClient = (previewToken: string) => {
   return new ApolloClient({
-    uri: API_URL,
+    uri: `${API_URL}${previewToken ? `?token=${previewToken}` : ""}`,
     cache: new InMemoryCache(),
   });
 };
 
-const craftAPI = async (query: DocumentNode) => {
-  const apolloClient = getClient();
+const craftAPI = async (query: DocumentNode, previewToken: any = undefined) => {
+  const apolloClient = getClient(previewToken);
   const { data } = await apolloClient.query({
     query: query,
   });
