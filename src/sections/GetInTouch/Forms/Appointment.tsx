@@ -1,8 +1,6 @@
 import React from "react";
 import classNames from "classnames";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
 import Button from "@components/Common/Button/Button";
 import Checkbox from "@components/Common/Checkbox/Checkbox";
 import Input from "@components/Common/Input/Input";
@@ -16,6 +14,12 @@ export interface GeneralEnquiryProps {
 }
 
 const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const checkboxButtonsData1 = [
     { value: "Week day", text: "Week day" },
     { value: "Weekend", text: "Weekend" },
@@ -24,19 +28,6 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
     { value: "Morning", text: "Morning" },
     { value: "Afternoon", text: "Afternoon" },
   ];
-
-  const validationSchema = Yup.object().shape({
-    firstname: Yup.string().required("First Name is required"),
-    lastname: Yup.string().required("Last name is required"),
-    email: Yup.string().required("Email is required").email("Email is invalid"),
-    phone: Yup.string().required("Phone number is required"),
-    terms: Yup.bool().oneOf([true], "Please accept the terms"),
-  });
-  const formOptions = { resolver: yupResolver(validationSchema) };
-
-  // get functions to build form with useForm() hook
-  const { register, handleSubmit, reset, formState } = useForm(formOptions);
-  const { errors } = formState;
 
   const handleFormSubmit = (data: any) => {
     console.log("AAAAAAAAA");
@@ -51,51 +42,50 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
       <div className={styles.formRow}>
         <div className={styles.formCol}>
           <Input
-            {...register("firstname")}
             type="text"
-            name="firstname"
+            name="firstName"
             className={styles.formControl}
             placeholder="First Name"
+            register={register}
           />
         </div>
         <div className={styles.formCol}>
           <Input
-            {...register("lastname")}
             type="text"
-            name="lastname"
+            name="lastName"
             className={styles.formControl}
             placeholder="Last Name"
+            register={register}
           />
         </div>
       </div>
       <div className={styles.formRow}>
         <div className={styles.formCol}>
           <Input
-            {...register("email")}
             type="email"
             name="email"
             className={styles.formControl}
             placeholder="Email"
+            register={register}
           />
         </div>
         <div className={styles.formCol}>
           <Input
-            {...register("phone")}
             type="text"
-            name="phone"
+            name="contactNumber"
             className={styles.formControl}
             placeholder="Contact Number"
+            register={register}
           />
         </div>
       </div>
       <div className={`${styles.formRow} ${styles.formRowReverse}`}>
         <div className={styles.formCol}>
           <Input
-            {...register("postcode")}
             type="text"
-            name="postcode"
             className={styles.formControl}
             placeholder="Postcode"
+            register={register}
           />
           <div>
             <h6>Choose a preferred time</h6>
@@ -112,11 +102,9 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
             />
           </div>
           <Checkbox
-            {...register("terms")}
             className={styles.formControl}
             name="terms"
-            text="By clicking submit you acknowledge Allam may contact you via
-              email, you also agree to their Terms and Conditions."
+            text="By clicking submit you acknowledge Allam may contact you via email, you also agree to their Terms and Conditions."
           />
           <Checkbox
             {...register("offers")}

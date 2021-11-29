@@ -85,3 +85,47 @@ export const easyBuyPurchaseQuery = gql`
     }
   }
 `;
+
+export const layoutQuery = gql`
+  query layout {
+    navigation: globalSet(handle: "mainNavigation") {
+      ... on mainNavigation_GlobalSet {
+        menuItems {
+          ... on menuItems_BlockType {
+            linkName
+            hyperlink
+          }
+        }
+      }
+    }
+    footer: globalSet(handle: "footer") {
+      ... on footer_GlobalSet {
+        heading
+        buttons {
+          ... on buttons_BlockType {
+            buttonLabel
+            buttonLink
+            buttonType
+          }
+        }
+        footerBottom {
+          ... on footerBottom_footerBottom_BlockType {
+            copyrightText
+            bottomLinks {
+              ... on bottomLinks_BlockType {
+                ctaLabel
+                ctaLink
+              }
+            }
+            socialLinks {
+              ... on socialLinks_BlockType {
+                socialName
+                socialLink
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

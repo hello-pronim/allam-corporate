@@ -1,12 +1,12 @@
 import React from "react";
 import classNames from "classnames";
+import { useForm } from "react-hook-form";
 import Button from "@components/Common/Button/Button";
 import Checkbox from "@components/Common/Checkbox/Checkbox";
 import Input from "@components/Common/Input/Input";
 import RadioButtons from "@components/Common/RadioButtons/RadioButtons";
 import Select from "@components/Common/FormSelect/FormSelect";
 import Textarea from "@components/Common/Textarea/Textarea";
-
 import styles from "./forms.module.scss";
 
 export interface BuyingProps {}
@@ -30,6 +30,12 @@ const Buying = () => {
   const estates: any = [];
   const buyerTypes: any = [];
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   return (
     <form className={classNames(styles.Form)}>
       <div className={styles.formRow}>
@@ -39,30 +45,35 @@ const Buying = () => {
             type="text"
             name="firstname"
             placeholder="First Name"
+            register={register}
           />
           <Input
             className={styles.formControl}
             type="text"
             name="lastname"
             placeholder="Last Name"
+            register={register}
           />
           <Input
             className={styles.formControl}
             type="email"
             name="email"
             placeholder="Email"
+            register={register}
           />
           <Input
             className={styles.formControl}
             type="text"
             name="phone"
             placeholder="Contact Number"
+            register={register}
           />
           <Input
             className={styles.formControl}
             type="text"
             name="postcode"
             placeholder="Postcode"
+            register={register}
           />
           <Textarea
             rows={4}

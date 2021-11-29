@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import type { NextPage } from "next";
 import { gql } from "@apollo/client";
-import { get, map, sortBy } from "lodash";
+import { get } from "lodash";
 import craftAPI from "@libs/api";
 import { propsFind } from "@utils/propsFind";
-import { trustQuery } from "@libs/queries";
+import { layoutQuery, trustQuery } from "@libs/queries";
 import { useSetRecoilState } from "recoil";
 import { allLandsState } from "@states/atoms/lands";
 import { HomeModel, OverViewPageProps } from "@models";
@@ -19,6 +19,7 @@ const FindLand: NextPage<OverViewPageProps> = ({
   pageData,
   trustMakers,
   listingData,
+  layoutData,
 }) => {
   const [showMap, setShowMap] = useState(false);
   const heading = get(pageData, "entry.heading", "");
@@ -26,7 +27,6 @@ const FindLand: NextPage<OverViewPageProps> = ({
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
   const homesList = get(listingData, "entries", []);
-  const suburbList = sortBy(map(homesList, "suburb"));
   const setLands = useSetRecoilState(allLandsState);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const FindLand: NextPage<OverViewPageProps> = ({
   }, [homesList]);
 
   return (
-    <Layout>
+    <Layout layoutData={layoutData}>
       <Hero
         heading={heading}
         introBlurb={introBlurb}
@@ -139,12 +139,14 @@ export const getStaticProps = async function () {
   const pageData = await craftAPI(findLandQuery);
   const trustMakers = await craftAPI(trustQuery);
   const listingData = await craftAPI(landsQuery);
+  const layoutData = await craftAPI(layoutQuery);
 
   return {
     props: {
       pageData,
       trustMakers,
       listingData,
+      layoutData,
     },
     revalidate: 500,
   };

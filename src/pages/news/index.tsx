@@ -1,18 +1,21 @@
 import type { NextPage } from "next";
+import craftAPI from "@libs/api";
+import { layoutQuery } from "@libs/queries";
+import { PageProps } from "@models";
 import Layout from "@components/Layout/Layout";
-import FeaturedPost from "@sections/News/FeaturedPost/FeaturedPost";
+import CardGrid from "@components/CardGrid/CardGrid";
 import Divider from "@components/Common/Divider/Divider";
 import PostCard from "@sections/News/PostCard/PostCard";
-import CardGrid from "@components/CardGrid/CardGrid";
-import { featuredContent } from "@sections/News/FeaturedPost/constant";
-import { PostContent } from "@sections/News/PostCard/constant";
-import BackgroundWrapper from "@sections/News/BackgroundWrapper/BackgroundWrapper";
 import PostSlider from "@sections/News/PostSlider/PostSlider";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
+import { featuredContent } from "@sections/News/FeaturedPost/constant";
+import { PostContent } from "@sections/News/PostCard/constant";
+import FeaturedPost from "@sections/News/FeaturedPost/FeaturedPost";
+import BackgroundWrapper from "@sections/News/BackgroundWrapper/BackgroundWrapper";
 
-const News: NextPage = () => {
+const News: NextPage<PageProps> = ({ layoutData }) => {
   return (
-    <Layout>
+    <Layout layoutData={layoutData}>
       {/* <BackgroundWrapper>
         <FeaturedPost content={featuredContent} />
         <PostSlider>
@@ -38,6 +41,17 @@ const News: NextPage = () => {
       </BackgroundWrapper> */}
     </Layout>
   );
+};
+
+export const getStaticProps = async function () {
+  const layoutData = await craftAPI(layoutQuery);
+
+  return {
+    props: {
+      layoutData,
+    },
+    revalidate: 500,
+  };
 };
 
 export default News;

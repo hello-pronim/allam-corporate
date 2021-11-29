@@ -1,20 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import classNames from "classnames/bind";
+import { NavItemModel } from "@models";
 import Icon from "@components/Icons/Icons";
 import MobileMenuItem from "@components/MobileMenuItem/MobileMenuItem";
-import { menuObj, stateAuObj } from "./constant";
+import { stateAuObj } from "./constant";
 import styles from "./MobileMenu.module.scss";
 
 export interface IMobileMenuProps {
+  navItems: NavItemModel[];
   closeMenu: () => void;
 }
 
-const MobileMenu = ({ closeMenu, ...props }: IMobileMenuProps) => {
+const MobileMenu = ({ navItems, closeMenu, ...props }: IMobileMenuProps) => {
   const router = useRouter();
   const [isSubMenu, setIsSubMenu] = useState(false);
-  const [menuArray, setMenuArray] = useState(menuObj);
+  const [menuArray, setMenuArray] = useState<NavItemModel[]>([]);
+
   const cx = classNames.bind(styles);
+
+  useEffect(() => {
+    setMenuArray(navItems);
+  }, [navItems]);
 
   const onRedirectLink = (link: any) => {
     closeMenu();
@@ -36,7 +43,7 @@ const MobileMenu = ({ closeMenu, ...props }: IMobileMenuProps) => {
 
   const onBackToParent = () => {
     setIsSubMenu(false);
-    setMenuArray(menuObj);
+    setMenuArray(navItems);
   };
 
   return (

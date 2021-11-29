@@ -1,25 +1,36 @@
 import React from "react";
 import Link from "next/link";
+import { get } from "lodash";
 import { Button } from "@components/Common/Common";
 import Icon from "@components/Icons/Icons";
 import styles from "./Footer.module.scss";
+import { ButtonModel } from "@models";
 
-export interface IFooterProps {}
+export interface IFooterProps {
+  footerData: any;
+}
 
-const Footer = ({}: IFooterProps) => {
+const Footer = ({ footerData }: IFooterProps) => {
+  const footerBottom = get(footerData, "footerBottom[0]");
+  const footerButtons: ButtonModel[] = get(footerData, "buttons");
+
   return (
     <footer className={styles.footer}>
       <div className={styles.footerInfo}>
         <div className={styles.footerInfoWrapper}>
           <div className={styles.footerInfoContact}>
-            <h3>How can we help?</h3>
+            <h3>{footerData.heading}</h3>
             <div className={styles.footerInfoContactButtons}>
-              <Button size="large" rounded>
-                Contact an Agent
-              </Button>
-              <Button size="large" color="outline-light" rounded>
-                View our locations
-              </Button>
+              {footerButtons?.map((button: ButtonModel, id: number) => (
+                <Button
+                  key={id}
+                  href={button.buttonLink}
+                  color={button.buttonType}
+                  rounded
+                >
+                  {button.buttonLabel}
+                </Button>
+              ))}
             </div>
           </div>
 
@@ -54,38 +65,26 @@ const Footer = ({}: IFooterProps) => {
         <div className={styles.footerStatusbarWrapper}>
           <div className={styles.footerStatusbarInside}>
             <div className={styles.footerStatusbarAbove}>
-              <span>© Copyright 2021 Allam Property Group</span>
+              <span>{footerBottom?.copyrightText}</span>
               <div className={styles.footerStatusbarSocial}>
-                <Link href="/">
-                  <a>
-                    <Icon type="facebook" />
-                  </a>
-                </Link>
-
-                <Link href="/">
-                  <a>
-                    <Icon type="instagram" />
-                  </a>
-                </Link>
+                {footerBottom?.socialLinks.map((social: any) => (
+                  <Link href={social.socialLink} key={social.socialName}>
+                    <a>
+                      <Icon type={social.socialName} />
+                    </a>
+                  </Link>
+                ))}
               </div>
             </div>
 
             <ul className={styles.footerStatusbarLinks}>
-              <li>
-                <Link href="/">
-                  <a>Disclaimer</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/">
-                  <a>Terms and Conditions</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/">
-                  <a>Privacy Policy</a>
-                </Link>
-              </li>
+              {footerBottom?.bottomLinks.map((el: any) => (
+                <li key={el.ctaLabel}>
+                  <Link href={el.ctaLink}>
+                    <a>{el.ctaLabel}</a>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

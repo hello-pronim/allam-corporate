@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import get from "lodash/get";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
-import { trustQuery } from "@libs/queries";
+import { layoutQuery, trustQuery } from "@libs/queries";
 import { propsFind } from "@utils/propsFind";
 import { PageProps } from "@models";
 import Layout from "@components/Layout/Layout";
@@ -14,14 +14,14 @@ import Promotion from "@sections/Home/Promotion/Promotion";
 import FindHomes from "@sections/Home/FindHomes/FindHomes";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
-const Home: NextPage<PageProps> = ({ pageData, trustMakers }) => {
+const Home: NextPage<PageProps> = ({ pageData, trustMakers, layoutData }) => {
   const heroSlider = get(pageData, "entry.heroSlider", []);
   const homeLayouts = get(pageData, "entry.homepageLayout", []);
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
 
   return (
-    <Layout>
+    <Layout layoutData={layoutData}>
       <Hero data={heroSlider} />
       <TrustMakers
         features={trustFeatures}
@@ -156,11 +156,13 @@ const homeQuery = gql`
 
 export const getStaticProps = async function () {
   const pageData = await craftAPI(homeQuery);
+  const layoutData = await craftAPI(layoutQuery);
   const trustMakers = await craftAPI(trustQuery);
 
   return {
     props: {
       pageData,
+      layoutData,
       trustMakers,
     },
     revalidate: 500,

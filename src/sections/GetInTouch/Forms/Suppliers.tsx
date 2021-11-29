@@ -1,12 +1,12 @@
 import React from "react";
 import classNames from "classnames";
+import { useForm } from "react-hook-form";
 import Button from "@components/Common/Button/Button";
 import Checkbox from "@components/Common/Checkbox/Checkbox";
 import Input from "@components/Common/Input/Input";
 import RadioButtons from "@components/Common/RadioButtons/RadioButtons";
 import Select from "@components/Common/FormSelect/FormSelect";
 import Textarea from "@components/Common/Textarea/Textarea";
-
 import styles from "./forms.module.scss";
 
 export interface SuppliersProps {}
@@ -29,6 +29,12 @@ const Suppliers = () => {
   const serviceTypes: any = [];
   const workingAreas: any = [];
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   return (
     <form className={classNames(styles.Form)}>
       <div className={styles.formRow}>
@@ -38,30 +44,35 @@ const Suppliers = () => {
             name="firstname"
             className={styles.formControl}
             placeholder="First Name"
+            register={register}
           />
           <Input
             type="text"
             name="lastname"
             className={styles.formControl}
             placeholder="Last Name"
+            register={register}
           />
           <Input
             type="email"
             name="email"
             className={styles.formControl}
             placeholder="Email"
+            register={register}
           />
           <Input
             type="text"
             name="phone"
             className={styles.formControl}
             placeholder="Contact Number"
+            register={register}
           />
           <Input
             type="text"
             name="postcode"
             className={styles.formControl}
             placeholder="Postcode"
+            register={register}
           />
           <Textarea
             rows={3}

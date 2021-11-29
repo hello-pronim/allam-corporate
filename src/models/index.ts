@@ -2,19 +2,27 @@ export type OverViewPageProps = {
   pageData?: any;
   trustMakers?: any;
   listingData?: any;
+  layoutData?: any;
 };
 
 export type AllamAdvPageProps = {
+  layoutData?: any;
   easyBuy?: any;
   allamAdvantages?: any;
 };
 
 export type NormalPageProps = {
+  layoutData?: any;
   pageData?: any;
   trustMakers?: any;
 };
 
 export type PageProps = NormalPageProps | OverViewPageProps;
+
+export type NavItemModel = {
+  linkName: string;
+  hyperlink: string;
+};
 
 export type AdvantageModel = {
   label: string;

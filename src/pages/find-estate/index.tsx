@@ -5,20 +5,21 @@ import { useSetRecoilState } from "recoil";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
 import { OverViewPageProps } from "@models";
-import { trustQuery } from "@libs/queries";
+import { layoutQuery, trustQuery } from "@libs/queries";
 import { propsFind } from "@utils/propsFind";
 import { allEstateState } from "@states/atoms/estates";
-import Layout from "@components/Layout/Layout";
 import Hero from "@sections/FindEstate/Hero/Hero";
-import EstateListing from "@sections/FindEstate/EstateListing/EstateListing";
-import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
-import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 import Overview from "@sections/FindEstate/Overview/Overview";
+import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
+import EstateListing from "@sections/FindEstate/EstateListing/EstateListing";
+import Layout from "@components/Layout/Layout";
+import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
 
 const FindEstate: NextPage<OverViewPageProps> = ({
   pageData,
   trustMakers,
   listingData,
+  layoutData,
 }) => {
   const [showMap, setShowMap] = useState(false);
   const [suburbList, setSuburbList] = useState<string[]>([]);
@@ -32,10 +33,11 @@ const FindEstate: NextPage<OverViewPageProps> = ({
     const estateList = get(listingData, "entries", []);
     setEstates(estateList);
     setSuburbList(sortBy(map(estateList, "suburb")));
-  }, [listingData, setEstates]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [listingData]);
 
   return (
-    <Layout>
+    <Layout layoutData={layoutData}>
       <Hero
         heading={heading}
         introBlurb={introBlurb}
@@ -158,12 +160,14 @@ export const getStaticProps = async function () {
   const pageData = await craftAPI(pageQuery);
   const trustMakers = await craftAPI(trustQuery);
   const listingData = await craftAPI(estatesQuery);
+  const layoutData = await craftAPI(layoutQuery);
 
   return {
     props: {
       pageData,
       trustMakers,
       listingData,
+      layoutData,
     },
     revalidate: 500,
   };
