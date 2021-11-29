@@ -29,8 +29,13 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
     { value: "Afternoon", text: "Afternoon" },
   ];
 
+  const onSubmit = (data: any) => {
+    console.info("errors:", errors);
+    console.info(data);
+  };
+
   return (
-    <form className={classNames(styles.Form)}>
+    <form className={classNames(styles.Form)} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.formRow}>
         <div className={styles.formCol}>
           <Input
@@ -38,6 +43,7 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
             name="firstName"
             className={styles.formControl}
             placeholder="First Name"
+            validation={{ required: true }}
             register={register}
           />
         </div>
@@ -47,6 +53,7 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
             name="lastName"
             className={styles.formControl}
             placeholder="Last Name"
+            validation={{ required: true }}
             register={register}
           />
         </div>
@@ -58,15 +65,17 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
             name="email"
             className={styles.formControl}
             placeholder="Email"
+            validation={{ required: true }}
             register={register}
           />
         </div>
         <div className={styles.formCol}>
           <Input
             type="text"
-            name="contactNumber"
+            name="phone"
             className={styles.formControl}
             placeholder="Contact Number"
+            validation={{ required: true }}
             register={register}
           />
         </div>
@@ -106,7 +115,7 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
             text="Would you like to receive updates and offers from Allam Property
               Group?"
           />
-          <Button className={styles.formControl} color="dark">
+          <Button type="submit" className={styles.formControl} color="dark">
             Submit
           </Button>
         </div>
