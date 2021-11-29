@@ -60,110 +60,97 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
     { value: "Afternoon", text: "Afternoon" },
   ];
 
-  const handleFormSubmit = (values: any) => {
-    console.log(values);
-  };
-
   return (
-    <Form
-      onSubmit={handleFormSubmit}
-      validate={validate}
-      render={({ handleSubmit, submitting, pristine }) => (
-        <form
-          className={classNames(styles.Form)}
-          onSubmit={handleSubmit}
-          noValidate
-        >
-          <div className={styles.formRow}>
-            <div className={styles.formCol}>
-              <Input
-                type="text"
-                name="firstName"
-                className={styles.formControl}
-                placeholder="First Name"
-                register={register}
-              />
-            </div>
-            <div className={styles.formCol}>
-              <Input
-                type="text"
-                name="lastName"
-                className={styles.formControl}
-                placeholder="Last Name"
-                register={register}
-              />
-            </div>
+    <form className={classNames(styles.Form)}>
+      <div className={styles.formRow}>
+        <div className={styles.formCol}>
+          <Input
+            type="text"
+            name="firstName"
+            className={styles.formControl}
+            placeholder="First Name"
+            register={register}
+          />
+        </div>
+        <div className={styles.formCol}>
+          <Input
+            type="text"
+            name="lastName"
+            className={styles.formControl}
+            placeholder="Last Name"
+            register={register}
+          />
+        </div>
+      </div>
+      <div className={styles.formRow}>
+        <div className={styles.formCol}>
+          <Input
+            type="email"
+            name="email"
+            className={styles.formControl}
+            placeholder="Email"
+            register={register}
+          />
+        </div>
+        <div className={styles.formCol}>
+          <Input
+            type="text"
+            name="contactNumber"
+            className={styles.formControl}
+            placeholder="Contact Number"
+            register={register}
+          />
+        </div>
+      </div>
+      <div className={`${styles.formRow} ${styles.formRowReverse}`}>
+        <div className={styles.formCol}>
+          <Input
+            type="text"
+            name="postCode"
+            className={styles.formControl}
+            placeholder="Postcode"
+            register={register}
+          />
+          <div>
+            <h6>Choose a preferred time</h6>
+            <CheckboxButtons
+              name="time"
+              className={styles.formControl}
+              data={checkboxButtonsData1}
+            />
+            <h6>and</h6>
+            <CheckboxButtons
+              name="time"
+              className={styles.formControl}
+              data={checkboxButtonsData2}
+            />
           </div>
-          <div className={styles.formRow}>
-            <div className={styles.formCol}>
-              <Input
-                type="email"
-                name="email"
-                className={styles.formControl}
-                placeholder="Email"
-                register={register}
-              />
-            </div>
-            <div className={styles.formCol}>
-              <Input
-                type="text"
-                name="contactNumber"
-                className={styles.formControl}
-                placeholder="Contact Number"
-                register={register}
-              />
-            </div>
-          </div>
-          <div className={`${styles.formRow} ${styles.formRowReverse}`}>
-            <div className={styles.formCol}>
-              <Input
-                type="text"
-                className={styles.formControl}
-                placeholder="Postcode"
-                register={register}
-              />
-              <div>
-                <h6>Choose a preferred time</h6>
-                <CheckboxButtons
-                  name="time"
-                  className={styles.formControl}
-                  data={checkboxButtonsData1}
-                />
-                <h6>and</h6>
-                <CheckboxButtons
-                  name="time"
-                  className={styles.formControl}
-                  data={checkboxButtonsData2}
-                />
-              </div>
-              <Checkbox
-                className={styles.formControl}
-                name="terms"
-                text="By clicking submit you acknowledge Allam may contact you via
+          <Checkbox
+            className={styles.formControl}
+            name="terms"
+            text="By clicking submit you acknowledge Allam may contact you via
               email, you also agree to their Terms and Conditions."
-              />
-              <Checkbox
-                className={styles.formControl}
-                name="offers"
-                text="Would you like to receive updates and offers from Allam Property
+          />
+          <Checkbox
+            className={styles.formControl}
+            name="offers"
+            text="Would you like to receive updates and offers from Allam Property
               Group?"
-              />
-              <Button className={styles.formControl} color="dark">
-                Submit
-              </Button>
-            </div>
-            <div className={styles.formCol}>
-              <Textarea
-                rows={9}
-                className={styles.formControl}
-                name="comment"
-                placeholder="Comment"
-              />
-            </div>
-          </div>
-        </form>
-      )}
-    />
+          />
+          <Button className={styles.formControl} color="dark">
+            Submit
+          </Button>
+        </div>
+        <div className={styles.formCol}>
+          <Textarea
+            rows={9}
+            className={styles.formControl}
+            name="comment"
+            placeholder="Comment"
+          />
+        </div>
+      </div>
+    </form>
   );
 };
 
