@@ -62,6 +62,21 @@ const FilterDropdown = ({
         ...filterStateValue,
         blockSize: options[id]?.value ?? "All",
       });
+    } else if (placeholderLabel === "Storeys") {
+      setFilterValue({
+        ...filterStateValue,
+        storeys: options[id]?.value ?? "All",
+      });
+    } else if (placeholderLabel === "Beds") {
+      setFilterValue({
+        ...filterStateValue,
+        beds: options[id]?.value ?? "All",
+      });
+    } else if (placeholderLabel === "Baths") {
+      setFilterValue({
+        ...filterStateValue,
+        baths: options[id]?.value ?? "All",
+      });
     }
     closeDropdown();
   };

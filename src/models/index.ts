@@ -157,7 +157,7 @@ export type HomeModel = {
   bedrooms?: number;
   bathrooms?: number;
   car?: number;
-  landSize?: number;
+  landSize: number;
   latitude?: string;
   longitude?: string;
   introBlurb?: string;
@@ -197,9 +197,9 @@ export type EstateFilterModel = {
 };
 export type HomeFilterModel = {
   locations: string[];
-  storeys?: string | number;
-  beds?: string | number;
-  baths?: string | number;
+  storeys?: string;
+  beds?: string;
+  baths?: string;
   blockSize?: string;
   reset: boolean;
 };

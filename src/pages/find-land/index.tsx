@@ -10,7 +10,7 @@ import { allLandsState } from "@states/atoms/lands";
 import { HomeModel, OverViewPageProps } from "@models";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/FindLand/Hero/Hero";
-import LandListing from "@sections/FindLand/LandListing/LandListing";
+import HomesListing from "@sections/FindHome/HomesListing/HomesListing";
 import Overview from "@sections/FindHome/Overview/Overview";
 import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
@@ -46,7 +46,7 @@ const FindLand: NextPage<OverViewPageProps> = ({
         <Overview />
       ) : (
         <>
-          <LandListing />
+          <HomesListing />
           <div style={{ background: "#eef2f5" }}>
             <LeadingTrustMakers
               features={trustFeatures}

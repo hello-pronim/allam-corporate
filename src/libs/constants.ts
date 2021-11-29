@@ -35,3 +35,56 @@ export const landBlockSizes = [
     value: "700",
   },
 ];
+
+export const storeysList = [
+  {
+    label: "All",
+    value: "All",
+  },
+  {
+    label: "1",
+    value: "1",
+  },
+  {
+    label: "2",
+    value: "2",
+  },
+];
+
+export const bathsList = [
+  {
+    label: "All",
+    value: "All",
+  },
+  {
+    label: "1",
+    value: "1",
+  },
+  {
+    label: "2",
+    value: "2",
+  },
+  {
+    label: "3+",
+    value: "3+",
+  },
+];
+
+export const bedsList = [
+  {
+    label: "All",
+    value: "All",
+  },
+  {
+    label: "3",
+    value: "3",
+  },
+  {
+    label: "4",
+    value: "4",
+  },
+  {
+    label: "5+",
+    value: "5+",
+  },
+];
