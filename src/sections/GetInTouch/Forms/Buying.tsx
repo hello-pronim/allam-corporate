@@ -43,14 +43,14 @@ const Buying = () => {
           <Input
             className={styles.formControl}
             type="text"
-            name="firstName"
+            name="firstname"
             placeholder="First Name"
             register={register}
           />
           <Input
             className={styles.formControl}
             type="text"
-            name="lastName"
+            name="lastname"
             placeholder="Last Name"
             register={register}
           />
@@ -64,7 +64,7 @@ const Buying = () => {
           <Input
             className={styles.formControl}
             type="text"
-            name="contactNumber"
+            name="phone"
             placeholder="Contact Number"
             register={register}
           />

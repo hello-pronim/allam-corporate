@@ -41,14 +41,14 @@ const Suppliers = () => {
         <div className={styles.formCol}>
           <Input
             type="text"
-            name="firstName"
+            name="firstname"
             className={styles.formControl}
             placeholder="First Name"
             register={register}
           />
           <Input
             type="text"
-            name="lastName"
+            name="lastname"
             className={styles.formControl}
             placeholder="Last Name"
             register={register}
@@ -62,7 +62,7 @@ const Suppliers = () => {
           />
           <Input
             type="text"
-            name="contactNumber"
+            name="phone"
             className={styles.formControl}
             placeholder="Contact Number"
             register={register}

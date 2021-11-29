@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import { Field, Form } from "react-final-form";
 import { useForm } from "react-hook-form";
 import Button from "@components/Common/Button/Button";
 import Checkbox from "@components/Common/Checkbox/Checkbox";
@@ -13,36 +12,6 @@ import styles from "./forms.module.scss";
 export interface GeneralEnquiryProps {
   handleOnSubmit: (values: any) => void;
 }
-
-const validate = (values: any) => {
-  const errors: { [key: string]: string } = {};
-  if (!values.nickname) {
-    errors.firstName = "This Field Required";
-  }
-
-  if (!values.email) {
-    errors.email = "This Field Required";
-  }
-
-  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = "Please enter a valid Email";
-  }
-
-  if (!values.contactNumber) {
-    errors.contactNumber = "This Field Required";
-  }
-
-  if (
-    // eslint-disable-next-line no-useless-escape
-    !/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(
-      values.contactNumber
-    )
-  ) {
-    errors.contactNumber = "Please enter a valid Phone number";
-  }
-
-  return errors;
-};
 
 const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
   const {
@@ -60,8 +29,13 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
     { value: "Afternoon", text: "Afternoon" },
   ];
 
+  const onSubmit = (data: any) => {
+    console.info("errors:", errors);
+    console.info(data);
+  };
+
   return (
-    <form className={classNames(styles.Form)}>
+    <form className={classNames(styles.Form)} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.formRow}>
         <div className={styles.formCol}>
           <Input
@@ -69,6 +43,7 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
             name="firstName"
             className={styles.formControl}
             placeholder="First Name"
+            validation={{ required: true }}
             register={register}
           />
         </div>
@@ -78,6 +53,7 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
             name="lastName"
             className={styles.formControl}
             placeholder="Last Name"
+            validation={{ required: true }}
             register={register}
           />
         </div>
@@ -89,15 +65,17 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
             name="email"
             className={styles.formControl}
             placeholder="Email"
+            validation={{ required: true }}
             register={register}
           />
         </div>
         <div className={styles.formCol}>
           <Input
             type="text"
-            name="contactNumber"
+            name="phone"
             className={styles.formControl}
             placeholder="Contact Number"
+            validation={{ required: true }}
             register={register}
           />
         </div>
@@ -106,7 +84,7 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
         <div className={styles.formCol}>
           <Input
             type="text"
-            name="postCode"
+            name="postcode"
             className={styles.formControl}
             placeholder="Postcode"
             register={register}
@@ -137,7 +115,7 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
             text="Would you like to receive updates and offers from Allam Property
               Group?"
           />
-          <Button className={styles.formControl} color="dark">
+          <Button type="submit" className={styles.formControl} color="dark">
             Submit
           </Button>
         </div>

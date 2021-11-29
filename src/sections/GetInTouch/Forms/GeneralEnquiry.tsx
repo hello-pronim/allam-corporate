@@ -23,7 +23,7 @@ const GeneralEnquiry = () => {
         <div className={styles.formCol}>
           <Input
             type="text"
-            name="firstName"
+            name="firstname"
             className={styles.formControl}
             placeholder="First Name"
             register={register}
@@ -32,7 +32,7 @@ const GeneralEnquiry = () => {
         <div className={styles.formCol}>
           <Input
             type="text"
-            name="lastName"
+            name="lastname"
             className={styles.formControl}
             placeholder="Last Name"
             register={register}
@@ -52,7 +52,7 @@ const GeneralEnquiry = () => {
         <div className={styles.formCol}>
           <Input
             type="text"
-            name="contactNumber"
+            name="phone"
             className={styles.formControl}
             placeholder="Contact Number"
             register={register}
