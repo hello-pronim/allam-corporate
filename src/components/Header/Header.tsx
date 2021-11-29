@@ -134,7 +134,7 @@ const Header = ({ navItems }: IHeaderProps) => {
             <ul className={styles.navMenuListItems} id="nav-list">
               {navItems?.slice(0, -1).map((el: NavItemModel, id: number) => (
                 <li key={id}>
-                  <Link href={el.hyperlink.slug}>
+                  <Link href={el.hyperlink?.[0].slug}>
                     <a>{el.linkName}</a>
                   </Link>
                 </li>

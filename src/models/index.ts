@@ -23,7 +23,7 @@ export type NavItemModel = {
   linkName: string;
   hyperlink: {
     slug: string;
-  };
+  }[];
 };
 
 export type AdvantageModel = {
