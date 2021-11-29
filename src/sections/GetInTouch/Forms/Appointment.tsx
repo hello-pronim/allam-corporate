@@ -29,16 +29,8 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
     { value: "Afternoon", text: "Afternoon" },
   ];
 
-  const handleFormSubmit = (data: any) => {
-    console.log("AAAAAAAAA");
-    console.log(data);
-  };
-
   return (
-    <form
-      className={classNames(styles.Form)}
-      onSubmit={handleSubmit(handleFormSubmit)}
-    >
+    <form className={classNames(styles.Form)}>
       <div className={styles.formRow}>
         <div className={styles.formCol}>
           <Input
@@ -83,6 +75,7 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
         <div className={styles.formCol}>
           <Input
             type="text"
+            name="postcode"
             className={styles.formControl}
             placeholder="Postcode"
             register={register}
@@ -104,22 +97,21 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
           <Checkbox
             className={styles.formControl}
             name="terms"
-            text="By clicking submit you acknowledge Allam may contact you via email, you also agree to their Terms and Conditions."
+            text="By clicking submit you acknowledge Allam may contact you via
+              email, you also agree to their Terms and Conditions."
           />
           <Checkbox
-            {...register("offers")}
             className={styles.formControl}
             name="offers"
             text="Would you like to receive updates and offers from Allam Property
               Group?"
           />
-          <Button type="submit" className={styles.formControl} color="dark">
+          <Button className={styles.formControl} color="dark">
             Submit
           </Button>
         </div>
         <div className={styles.formCol}>
           <Textarea
-            {...register("comment")}
             rows={9}
             className={styles.formControl}
             name="comment"
