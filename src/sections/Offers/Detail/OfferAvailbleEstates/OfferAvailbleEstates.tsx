@@ -12,7 +12,6 @@ const OfferAvailableEstates = ({
   title,
   estates,
 }: OfferAvailableEstatesProps) => {
-  console.log(estates);
   return (
     <div className={styles.logosPanel}>
       <div className={styles.logosWrapper}>
