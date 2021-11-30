@@ -57,6 +57,9 @@ const homeQuery = gql`
             backgroundImage {
               url
             }
+            bannerHyperlink {
+              slug
+            }
           }
         }
         globalPromos {
@@ -66,7 +69,9 @@ const homeQuery = gql`
             hascta
             cta {
               label
-              link
+              hyperlink {
+                slug
+              }
             }
           }
           ... on globalPromos_easybuy_BlockType {
@@ -81,7 +86,9 @@ const homeQuery = gql`
             }
             cta {
               label
-              link
+              hyperlink {
+                slug
+              }
             }
           }
         }

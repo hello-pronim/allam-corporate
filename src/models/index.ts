@@ -52,8 +52,10 @@ export type Asset = {
 
 export type CTAModel = {
   label: string;
-  link: string;
   uri?: string;
+  hyperlink: {
+    slug: string;
+  }[];
 };
 
 export type ButtonModel = {
@@ -70,6 +72,9 @@ export type HeroModel = {
   buttons?: CTAModel[];
   cta?: CTAModel[];
   icon: CraftImage[];
+  bannerHyperlink: {
+    slug: string;
+  }[];
 };
 
 export type TrustFeature = {

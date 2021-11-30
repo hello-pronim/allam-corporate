@@ -51,9 +51,11 @@ const AllBenefits = ({ data }: IAllBenefitsProps) => {
             </Button>
 
             <div className={styles.allBenefitsCardCTAProcess}>
-              <Link href={data?.cta?.[0]?.link}>
-                <a>{data?.cta?.[0]?.label}</a>
-              </Link>
+              {data?.cta?.[0]?.hyperlink && (
+                <Link href={data?.cta?.[0]?.hyperlink?.[0]?.slug}>
+                  <a>{data?.cta?.[0]?.label}</a>
+                </Link>
+              )}
             </div>
           </div>
         </div>
