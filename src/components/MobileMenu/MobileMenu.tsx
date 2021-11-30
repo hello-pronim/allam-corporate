@@ -17,7 +17,6 @@ const MobileMenu = ({ navItems, closeMenu, ...props }: IMobileMenuProps) => {
   const [isSubMenu, setIsSubMenu] = useState(false);
   const [menuArray, setMenuArray] = useState<NavItemModel[]>([]);
 
-  console.log(navItems);
   const cx = classNames.bind(styles);
 
   useEffect(() => {

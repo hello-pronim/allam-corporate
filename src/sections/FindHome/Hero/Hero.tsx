@@ -13,7 +13,12 @@ import FilterModal from "@components/FilterModal/FilterModal";
 import FilterByChoiceGroup from "@components/FilterByChoiceGroup/FilterByChoiceGroup";
 import { ChoiceModel } from "@models";
 import { transformLocations } from "@utils/transformLocations";
-import { landBlockSizes } from "@libs/constants";
+import {
+  landBlockSizes,
+  storeysList,
+  bedsList,
+  bathsList,
+} from "@libs/constants";
 import styles from "./Hero.module.scss";
 
 type IHeroProps = {
@@ -90,6 +95,30 @@ const Hero = ({
         filterStateValue={homeFilter}
         closeModal={() => setOpenFilter(false)}
       >
+        <FilterByChoiceGroup
+          label="Filter by Storeys:"
+          name="storey"
+          options={storeysList}
+          setFilterValue={setHomeFilters}
+          filterStateValue={homeFilter}
+          resetEstateFilter={resetEstateFilter}
+        />
+        <FilterByChoiceGroup
+          label="Filter by Beds:"
+          name="bed"
+          options={bedsList}
+          setFilterValue={setHomeFilters}
+          filterStateValue={homeFilter}
+          resetEstateFilter={resetEstateFilter}
+        />
+        <FilterByChoiceGroup
+          label="Filter by Bathrooms:"
+          name="bath"
+          options={bathsList}
+          setFilterValue={setHomeFilters}
+          filterStateValue={homeFilter}
+          resetEstateFilter={resetEstateFilter}
+        />
         <FilterByChoiceGroup
           label="Filter by Locations:"
           name="location"

@@ -17,9 +17,9 @@
     border-radius: rem(6) rem(6) 0 0;
 
     &Image {
-      position: relative;
       width: 100%;
       height: rem(300);
+      position: relative;
       @include breakpoint($large) {
         height: rem(350);
       }
