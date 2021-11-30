@@ -32,7 +32,7 @@ export const estateTypeList: ChoiceModel[] = [
 
 export const landBlockSizes = [
   {
-    label: "All",
+    label: "All Blocks",
     value: "All",
   },
   {
