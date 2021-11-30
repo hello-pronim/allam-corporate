@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { ImageButton } from "@components/Common/Common";
 import SortDropdown from "@components/SortDropdown/SortDropdown";
-import { sortHomesKeys } from "@libs/constants";
 import styles from "./SortByOptions.module.scss";
+import { ChoiceModel } from "@models";
 
 export interface ISortByOptionsProps {
+  options: ChoiceModel[];
   resultCount: number;
   showMap?: boolean;
   setShowMap: (value: boolean) => void;
@@ -12,6 +13,7 @@ export interface ISortByOptionsProps {
 }
 
 const SortByOptions = ({
+  options,
   resultCount = 0,
   showMap,
   setShowMap,
@@ -29,7 +31,7 @@ const SortByOptions = ({
             </span>
             <SortDropdown
               isOpen={openSortMenu}
-              options={sortHomesKeys}
+              options={options}
               setSortKey={setSortKey}
               closeDropdown={() => setOpenSortMenu(false)}
               toggleDropdown={() => setOpenSortMenu(!openSortMenu)}

@@ -1,4 +1,6 @@
-export const estateTypeList = [
+import { ChoiceModel } from "@models";
+
+export const estateTypeList: ChoiceModel[] = [
   {
     label: "All / Both",
     value: "All",
@@ -101,5 +103,16 @@ export const sortHomesKeys = [
   {
     label: "Suburb",
     value: "suburb",
+  },
+];
+
+export const sortLandKeys = [
+  {
+    label: "Location",
+    value: "suburb",
+  },
+  {
+    label: "Block Size",
+    value: "landSize",
   },
 ];

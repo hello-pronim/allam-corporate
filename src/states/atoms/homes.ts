@@ -24,8 +24,6 @@ export const filteredHomes = selector({
     const homes = get(allHomesState);
     const filters = get(homesFilterState);
 
-    console.log(filters);
-
     const handleBlockFilter = (
       landSize: number,
       blockSize: string

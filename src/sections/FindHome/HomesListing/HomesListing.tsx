@@ -3,9 +3,10 @@ import { orderBy } from "lodash";
 import { useRecoilValue } from "recoil";
 import { filteredHomes } from "@states/atoms/homes";
 import { Button } from "@components/Common/Common";
-import EasyBuyPurchase from "@components/EasyBuyPurchase/EasyBuyPurchase";
+import { sortHomesKeys } from "@libs/constants";
 import PropertyCard from "@components/PropertyCard/PropertyCard";
 import SortByOptions from "@components/SortByOptions/SortByOptions";
+import EasyBuyPurchase from "@components/EasyBuyPurchase/EasyBuyPurchase";
 import styles from "./HomesListing.module.scss";
 
 export interface IHomesListingProps {
@@ -21,6 +22,7 @@ const HomesListing = ({ showMap, setShowMap }: IHomesListingProps) => {
     <div className={styles.homesListing}>
       <div className={styles.homesListingWrapper}>
         <SortByOptions
+          options={sortHomesKeys}
           resultCount={homesList.length}
           showMap={showMap}
           setShowMap={setShowMap}

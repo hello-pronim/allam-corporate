@@ -39,14 +39,14 @@ const FindLand: NextPage<OverViewPageProps> = ({
       <Hero
         heading={heading}
         introBlurb={introBlurb}
-        setShowMap={setShowMap}
         showMap={showMap}
+        setShowMap={setShowMap}
       />
+      <LandListing showMap={showMap} setShowMap={setShowMap} />
       {showMap ? (
         <Overview />
       ) : (
         <>
-          <LandListing />
           <div style={{ background: "#eef2f5" }}>
             <LeadingTrustMakers
               features={trustFeatures}

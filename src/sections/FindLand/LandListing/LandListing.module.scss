@@ -5,12 +5,15 @@
   padding-top: rem(95);
   background-color: $grey1;
   @include breakpoint($large) {
+    padding-top: rem(115);
   }
 
   &Wrapper {
     @include breakpoint($medium) {
       @include grid-container;
     }
+  }
+  &Container {
     @include breakpoint($large) {
       @include grid(1, 12);
     }

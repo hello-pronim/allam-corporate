@@ -108,28 +108,6 @@ const Hero = ({
           resetEstateFilter={resetEstateFilter}
         />
       </FilterModal>
-
-      {/* <FilterModal
-        style={{
-          visibility: `${isOpenFilter ? "visible" : "hidden"}`,
-          opacity: `${isOpenFilter ? "1" : "0"}`,
-          transitionDelay: "0.2s",
-          transition: "all 0.3s cubic-bezier(1, 0.885, 0.72, 1)",
-        }}
-        closeModal={() => setOpenFilter(false)}
-      >
-        <FilterByChoiceGroup
-          label="Filter by Locations:"
-          name="location"
-          options={newSuburbList}
-          isMultiChoice
-        />
-        <FilterByChoiceGroup
-          label="Filter by type:"
-          name="type"
-          options={typeObj}
-        />
-      </FilterModal> */}
     </div>
   );
 };
