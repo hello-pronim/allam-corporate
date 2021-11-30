@@ -16,7 +16,7 @@ import BackgroundWrapper from "@sections/News/BackgroundWrapper/BackgroundWrappe
 const News: NextPage<PageProps> = ({ layoutData }) => {
   return (
     <Layout layoutData={layoutData}>
-      {/* <BackgroundWrapper>
+      <BackgroundWrapper>
         <FeaturedPost content={featuredContent} />
         <PostSlider>
           {PostContent.map((post, index) => {
@@ -37,8 +37,8 @@ const News: NextPage<PageProps> = ({ layoutData }) => {
             return <PostCard key={index} content={post} />;
           })}
         </CardGrid>
-        <AllBenefits />
-      </BackgroundWrapper> */}
+        {/* <AllBenefits /> */}
+      </BackgroundWrapper>
     </Layout>
   );
 };
