@@ -3,10 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { NavItemModel } from "@models";
 import classnames from "classnames/bind";
-import HamburgerIcon from "@components/HamburgerIcon/HamburgerIcon";
 import { Button, Select } from "@components/Common/Common";
 import MobileMenu from "@components/MobileMenu/MobileMenu";
-import { stateAuObj } from "@components/MobileMenu/constant";
+import HamburgerIcon from "@components/HamburgerIcon/HamburgerIcon";
+import { statesAU } from "@libs/constants";
 import styles from "./Header.module.scss";
 
 export interface IHeaderProps {
@@ -142,7 +142,7 @@ const Header = ({ navItems }: IHeaderProps) => {
               <span>Build in:</span>
 
               <div className="state-select">
-                <Select options={stateAuObj} defaultValue={stateAuObj[0]} />
+                <Select options={statesAU} defaultValue={statesAU[0]} />
               </div>
               <span>(change)</span>
             </div>

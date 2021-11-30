@@ -26,7 +26,7 @@ const MobileMenuItem = ({
 
   return (
     <div className={styles.menuItem} onClick={() => onClickMenuItem(menuItem)}>
-      <p>{menuItem.title}</p>
+      <p>{menuItem.linkName}</p>
       {menuItem.subMenu && (
         <div className={styles.mobileMenuListItemIcon}>
           <Image

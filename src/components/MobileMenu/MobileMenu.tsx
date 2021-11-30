@@ -4,7 +4,7 @@ import classNames from "classnames/bind";
 import { NavItemModel } from "@models";
 import Icon from "@components/Icons/Icons";
 import MobileMenuItem from "@components/MobileMenuItem/MobileMenuItem";
-import { stateAuObj } from "./constant";
+import { statesAU } from "@libs/constants";
 import styles from "./MobileMenu.module.scss";
 
 export interface IMobileMenuProps {
@@ -17,6 +17,7 @@ const MobileMenu = ({ navItems, closeMenu, ...props }: IMobileMenuProps) => {
   const [isSubMenu, setIsSubMenu] = useState(false);
   const [menuArray, setMenuArray] = useState<NavItemModel[]>([]);
 
+  console.log(navItems);
   const cx = classNames.bind(styles);
 
   useEffect(() => {
@@ -73,7 +74,7 @@ const MobileMenu = ({ navItems, closeMenu, ...props }: IMobileMenuProps) => {
         <div className={styles.mobileMenuBuildSelect}>
           <span>Build in:</span>
           <ul className={styles.mobileMenuBuildSelectList}>
-            {stateAuObj?.map((el, id) => (
+            {statesAU?.map((el, id) => (
               <li key={id} className={cx({ selected: id === 0 })}>
                 {el.label}
               </li>

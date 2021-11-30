@@ -1,5 +1,20 @@
 import { ChoiceModel } from "@models";
 
+export const statesAU: ChoiceModel[] = [
+  {
+    value: "nsw",
+    label: "nsw",
+  },
+  {
+    value: "vic",
+    label: "vic",
+  },
+  {
+    value: "qld",
+    label: "qld",
+  },
+];
+
 export const estateTypeList: ChoiceModel[] = [
   {
     label: "All / Both",
