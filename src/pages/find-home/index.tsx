@@ -46,7 +46,7 @@ const FindHome: NextPage<OverViewPageProps> = ({
         <Overview />
       ) : (
         <>
-          <HomesListing />
+          <HomesListing setShowMap={setShowMap} showMap={showMap} />
           <div style={{ background: "#eef2f5" }}>
             <LeadingTrustMakers
               features={trustFeatures}

@@ -6,9 +6,12 @@ import EasyBuyPurchase from "@components/EasyBuyPurchase/EasyBuyPurchase";
 import PropertyCard from "@components/PropertyCard/PropertyCard";
 import styles from "./HomesListing.module.scss";
 
-export interface IHomesListingProps {}
+export interface IHomesListingProps {
+  showMap?: boolean;
+  setShowMap: (value: boolean) => void;
+}
 
-const HomesListing = ({}: IHomesListingProps) => {
+const HomesListing = ({ showMap, setShowMap }: IHomesListingProps) => {
   const homesList = useRecoilValue(filteredHomes);
 
   return (
