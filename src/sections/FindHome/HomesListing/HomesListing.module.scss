@@ -12,6 +12,8 @@
     @include breakpoint($medium) {
       @include grid-container;
     }
+  }
+  &Container {
     @include breakpoint($large) {
       @include grid(1, 12);
     }

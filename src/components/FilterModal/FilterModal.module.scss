@@ -28,6 +28,7 @@
     padding: rem(18) rem(16);
     border-bottom: rem(1) solid $grey1;
     background-color: $white;
+    z-index: 1;
 
     &Icon {
       display: flex;

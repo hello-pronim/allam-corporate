@@ -42,49 +42,64 @@ export const storeysList = [
     value: "All",
   },
   {
-    label: "1",
+    label: "Single Storey",
     value: "1",
   },
   {
-    label: "2",
+    label: "Double Storey",
     value: "2",
   },
 ];
 
 export const bathsList = [
   {
-    label: "All",
+    label: "All Bathrooms",
     value: "All",
   },
   {
-    label: "1",
-    value: "1",
+    label: "2+ Bathroom",
+    value: "2+",
   },
   {
-    label: "2",
-    value: "2",
-  },
-  {
-    label: "3+",
+    label: "3+ Bathroom",
     value: "3+",
+  },
+  {
+    label: "4+ Bathroom",
+    value: "4+",
   },
 ];
 
 export const bedsList = [
   {
-    label: "All",
+    label: "All Bedrooms",
     value: "All",
   },
   {
-    label: "3",
+    label: "2 Bedroom",
+    value: "2",
+  },
+  {
+    label: "3 Bedroom",
     value: "3",
   },
   {
-    label: "4",
-    value: "4",
+    label: "4+ Bedroom",
+    value: "4+",
+  },
+];
+
+export const sortHomesKeys = [
+  {
+    label: "Move in date",
+    value: "completionDate",
   },
   {
-    label: "5+",
-    value: "5+",
+    label: "Price",
+    value: "price",
+  },
+  {
+    label: "Suburb",
+    value: "suburb",
   },
 ];
