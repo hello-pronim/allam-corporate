@@ -2,7 +2,10 @@
 @import "@styles/variables";
 
 .propertyCard {
-  display: block;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  height: 100%;
   max-width: 100%;
   overflow: hidden;
   @include breakpoint($medium) {
@@ -24,6 +27,7 @@
   }
 
   &Bottom {
+    flex: 1;
     padding: rem(16);
     background: $white;
     border: rem(1) solid $grey3;
