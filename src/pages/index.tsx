@@ -161,8 +161,6 @@ export const getStaticProps: GetStaticProps = async function ({
   preview?: any;
   previewData?: any;
 }) {
-  console.log(preview);
-  console.log(previewData);
   const previewToken: any = preview ? previewData?.token : undefined;
   const pageData = await craftAPI(homeQuery, previewToken);
   const layoutData = await craftAPI(layoutQuery, previewToken);

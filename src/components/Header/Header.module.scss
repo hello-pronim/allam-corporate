@@ -16,6 +16,10 @@
   @include breakpoint($webLarge) {
     width: calc(100% - #{rem(48)});
   }
+
+  &Sticky {
+    top: 0;
+  }
 }
 
 .nav {
@@ -177,9 +181,6 @@
               }
             }
           }
-        }
-
-        &Open {
         }
       }
     }

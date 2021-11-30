@@ -16,6 +16,7 @@ export interface IHeaderProps {
 const Header = ({ navItems }: IHeaderProps) => {
   const ref = useRef<HTMLHeadingElement>(null);
   const cx = classnames.bind(styles);
+  const [isSticky, setSticky] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showGreedyMenu, setShowGreedyMenu] = useState(false);
   const [hiddenListCount, setHiddenListCount] = useState(0);
@@ -27,6 +28,20 @@ const Header = ({ navItems }: IHeaderProps) => {
   const toggleGreedyMenu = () => {
     setShowGreedyMenu(!showGreedyMenu);
   };
+
+  useEffect(() => {
+    if (window === undefined) return;
+
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setSticky(scrollTop >= 150);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
 
   useEffect(() => {
     const checkIfClickedOutside = (e: any) => {
@@ -96,7 +111,9 @@ const Header = ({ navItems }: IHeaderProps) => {
   }, []);
 
   return (
-    <header className={styles.header}>
+    <header
+      className={`${styles.header} ${isSticky ? styles.headerSticky : ""}`}
+    >
       <div className={styles.nav}>
         <div className={styles.navBrand}>
           <Link href="/">

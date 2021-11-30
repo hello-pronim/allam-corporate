@@ -31,7 +31,6 @@ const HomeFilter = ({
   const [openBlockMenu, setOpenBlockMenu] = useState(false);
   const [openLocationMenu, setOpenLocationMenu] = useState(false);
   const [homeFilter, setHomeFilters] = useRecoilState(homesFilterState);
-  console.log("homeFilter", homeFilter);
 
   return (
     <div className={styles.homeFilter}>
