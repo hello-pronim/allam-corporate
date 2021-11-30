@@ -78,7 +78,9 @@ const findHomesQuery = gql`
             hascta
             cta {
               label
-              link
+              hyperlink {
+                slug
+              }
             }
           }
           ... on globalPromos_easybuy_BlockType {
