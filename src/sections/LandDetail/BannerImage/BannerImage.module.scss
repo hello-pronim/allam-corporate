@@ -2,12 +2,12 @@
 @import "@styles/variables";
 
 .bannerImage {
-  @include breakpoint($medium) {
-  }
-
   &Container {
     position: relative;
     height: rem(240);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     @include breakpoint($medium) {
       height: rem(360);
     }

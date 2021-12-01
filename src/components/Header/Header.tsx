@@ -21,8 +21,6 @@ const Header = ({ navItems }: IHeaderProps) => {
   const [showGreedyMenu, setShowGreedyMenu] = useState(false);
   const [hiddenListCount, setHiddenListCount] = useState(0);
 
-  console.log(navItems);
-
   const toggleMenu = () => {
     setShowMobileMenu(!showMobileMenu);
   };

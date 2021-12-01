@@ -1,3 +1,4 @@
+import React from "react";
 import type { NextPage } from "next";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { get } from "lodash";
@@ -7,6 +8,15 @@ import { layoutQuery } from "@libs/queries";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/LandDetail/Hero/Hero";
 import BannerImage from "@sections/LandDetail/BannerImage/BannerImage";
+import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
+import LandInfo from "@sections/LandDetail/LandInfo/LandInfo";
+
+const registerPanelData = {
+  headingRedactor:
+    "<h2><strong>To take advantage fo this offer,</strong><br /> Simply register your interest today</h2>",
+  description:
+    "<p>Our history spans 25 years and during that time we’ve helped thousands  of customers find a new home, with homes and estates spread across many of Sydney’s most popular areas.</p>",
+};
 
 const LandDetail: NextPage<any> = ({ land, layoutData }) => {
   console.log("land", land);
@@ -16,19 +26,14 @@ const LandDetail: NextPage<any> = ({ land, layoutData }) => {
   const sellingLabel = get(land, "entry.sellingLabel");
   const landSize = get(land, "entry.landSize", 0);
   const bannerImage = get(land, "entry.images[0]", "");
+  const introBlurb = get(land, "entry.introBlurb", "");
 
   return (
     <Layout layoutData={layoutData}>
       <Hero title={title} landSize={landSize} sellingLabel={sellingLabel} />
       <BannerImage image={bannerImage} />
-      {/* 
-      <LeadingInfo introText={get(estate, "entry.introText", "")} />
-      <HomeList />
-      <MasterPlan />
-      <Deposit />
-      <News />
-      <SimilarEstates />
-      <SignUpEstate /> */}
+      <LandInfo introBlurb={introBlurb} />
+      <RegisterPanel data={registerPanelData} />
     </Layout>
   );
 };
@@ -46,7 +51,15 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
           lotNumber
           address
           estate {
-            title
+            ... on estates_default_Entry {
+              title
+              salesCentre {
+                ... on locations_default_Entry {
+                  title
+                  phoneNumber
+                }
+              }
+            }
           }
           images {
             title
