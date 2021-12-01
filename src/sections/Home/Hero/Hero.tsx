@@ -78,7 +78,7 @@ const Hero = ({ data }: IHeroProps) => {
         {data?.map((el: HeroModel, id: number) => (
           <div key={id} className={styles.heroSingleSlide}>
             {el.bannerHyperlink?.length > 0 ? (
-              <Link href={el.bannerHyperlink?.[0]?.slug}>
+              <Link href={`/${el.bannerHyperlink?.[0]?.slug}`}>
                 <a>{renderSlide(el)}</a>
               </Link>
             ) : (

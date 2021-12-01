@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { orderBy } from "lodash";
 import { useRecoilValue } from "recoil";
 import { filteredLands } from "@states/atoms/lands";
@@ -33,7 +34,11 @@ const LandListing = ({ showMap, setShowMap }: ILandListingProps) => {
             <div className={styles.landListingView}>
               <div className={styles.landListingCards}>
                 {orderBy(landsList, [sortKey], ["asc"])?.map((land, id) => (
-                  <LandCard landData={land} key={id} />
+                  <Link href={`/find-land/${land.slug}`} key={id}>
+                    <a>
+                      <LandCard landData={land} />
+                    </a>
+                  </Link>
                 ))}
                 <EasyBuyPurchase />
               </div>
