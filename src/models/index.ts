@@ -149,6 +149,7 @@ export type EstateModel = {
 };
 
 export type HomeModel = {
+  slug?: string;
   title: string;
   landOnly: boolean;
   lotNumber?: string;
@@ -173,6 +174,7 @@ export type HomeModel = {
 };
 
 export type LandModel = {
+  slug?: string;
   title: string;
   landOnly: boolean;
   lotNumber?: string;

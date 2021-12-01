@@ -24,17 +24,18 @@ export const filteredHomes = selector({
     const homes = get(allHomesState);
     const filters = get(homesFilterState);
 
-    const handleBlockFilter = (
-      landSize: number,
-      blockSize: string
-    ): boolean => {
-      const array = blockSize.split(",");
-      const minSize = parseInt(array[0]);
-      if (landSize >= minSize) {
-        return array.length > 1 ? landSize <= parseInt(array[1]) : true;
-      }
-      return false;
-    };
+    /* Range Filter */
+    // const handleBlockFilter = (
+    //   landSize: number,
+    //   blockSize: string
+    // ): boolean => {
+    //   const array = blockSize.split(",");
+    //   const minSize = parseInt(array[0]);
+    //   if (landSize >= minSize) {
+    //     return array.length > 1 ? landSize <= parseInt(array[1]) : true;
+    //   }
+    //   return false;
+    // };
 
     const handleBedsBath = (
       widgetCount: number,
@@ -58,7 +59,7 @@ export const filteredHomes = selector({
       filters.blockSize === "All"
         ? filterLocation
         : filterLocation.filter((home) =>
-            handleBlockFilter(home.landSize, filters?.blockSize || "")
+            handleBedsBath(home.landSize, filters?.blockSize ?? "1")
           );
 
     const filterStorey =

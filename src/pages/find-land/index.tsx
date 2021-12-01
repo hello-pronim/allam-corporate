@@ -106,6 +106,7 @@ const landsQuery = gql`
   query landsQuery {
     entries(section: "homesAndLand") {
       ... on homesAndLand_default_Entry {
+        slug
         title
         landOnly
         lotNumber

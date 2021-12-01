@@ -21,12 +21,12 @@ export const estateTypeList: ChoiceModel[] = [
     value: "All",
   },
   {
-    label: "House & Land",
-    value: "House & Land",
+    label: "House and Land",
+    value: "House and Land",
   },
   {
-    label: "Retirement Living",
-    value: "Retirement Living",
+    label: "Retirement",
+    value: "Retirement",
   },
 ];
 
@@ -36,20 +36,16 @@ export const landBlockSizes = [
     value: "All",
   },
   {
-    label: "300 - 400",
-    value: "300,400",
+    label: "300+ sqm",
+    value: "300+",
   },
   {
-    label: "400 - 500",
-    value: "400,500",
+    label: "500+ sqm",
+    value: "500+",
   },
   {
-    label: "500 - 600",
-    value: "500,600",
-  },
-  {
-    label: "700+",
-    value: "700",
+    label: "700+ sqm",
+    value: "700+",
   },
 ];
 
@@ -110,10 +106,6 @@ export const sortHomesKeys = [
   {
     label: "Move in date",
     value: "completionDate",
-  },
-  {
-    label: "Price",
-    value: "price",
   },
   {
     label: "Suburb",
