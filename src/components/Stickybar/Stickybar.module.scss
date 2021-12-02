@@ -23,8 +23,37 @@
 
     h5 {
       display: none;
-      @include breakpoint($large) {
+      @include breakpoint($medium) {
         display: block;
+      }
+    }
+  }
+
+  &CTA {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include breakpoint($medium) {
+      width: auto;
+    }
+
+    button {
+      padding: rem(8) rem(10);
+      font-size: rem(12);
+      line-height: rem(34);
+      @media (min-width: 400px) {
+        font-size: rem(16);
+        padding: rem(10) rem(12);
+      }
+      @include breakpoint($large) {
+        padding: rem(12) rem(24);
+      }
+
+      &:first-of-type {
+        @include breakpoint($medium) {
+          margin-right: rem(24);
+        }
       }
     }
   }
