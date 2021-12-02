@@ -28,7 +28,7 @@ const OffersContent = () => {
   return (
     <div className={styles.offersContainer}>
       <div className={styles.offersWrapper}>
-        <div className={`${styles.row} ${styles.recommendedOffer}`}>
+        <div className={styles.recommendedOffer}>
           <PromoCard
             offer={offers[defaultOfferIndex]}
             action={
@@ -39,7 +39,7 @@ const OffersContent = () => {
             size="large"
           />
         </div>
-        <div className={`${styles.row} ${styles.offersList}`}>
+        <div className={styles.offersList}>
           {offers.map((offer) => (
             <PromoCard
               key={offer.id}
@@ -52,7 +52,7 @@ const OffersContent = () => {
             />
           ))}
         </div>
-        <div className={`${styles.row} ${styles.moreOffer}`}>
+        <div className={styles.moreOffer}>
           <PromoCard
             offer={{
               title: "Free Solar with your New Home",

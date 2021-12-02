@@ -2,35 +2,42 @@
 @import "@styles/variables.scss";
 
 .offersContainer {
-  display: grid;
   padding-top: rem(84);
   padding-bottom: rem(36);
   background-color: $grey1;
-  @include breakpoint($large) {
-    @include grid(1, 12);
-  }
-  @include below($medium) {
-    @include grid-container;
-  }
 
   .offersWrapper {
-    grid-column: 2 / span 10;
-    .row {
-      display: flex;
-      gap: rem(48);
-      width: 100%;
-      &:not(:last-child) {
-        margin-bottom: rem(56);
+    display: grid;
+    @include breakpoint($large) {
+      @include grid(1, 12);
+      grid-row-gap: rem(56);
+    }
+    @include below($medium) {
+      @include grid-container;
+      grid-row-gap: rem(24);
+    }
+    .recommendedOffer {
+      grid-column: 2 / span 10;
+      @include below($medium) {
+        display: none;
       }
-      &.recommendedOffer {
-        @include below($medium) {
-          display: none;
-        }
+    }
+    .offersList {
+      grid-column: 2 / span 10;
+      display: grid;
+      @include breakpoint($large) {
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: rem(48);
       }
-      &.offersList {
-        @include below($medium) {
-          flex-direction: column;
-        }
+      @include below($medium) {
+        @include grid-container;
+        grid-row-gap: rem(24);
+      }
+    }
+    .moreOffer {
+      grid-column: 2 / span 10;
+      @include below($medium) {
+        @include grid-container;
       }
     }
   }
