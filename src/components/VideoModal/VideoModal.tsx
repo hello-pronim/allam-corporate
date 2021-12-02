@@ -11,7 +11,7 @@ export type IVideoModalProps = {
 };
 
 const VideoModal = ({ isModalOpen }: IVideoModalProps) => {
-  const { videoUrl, coverImageUrl } = useRecoilValue(videoModalState);
+  const { videoUrl } = useRecoilValue(videoModalState);
   const setVideoModal = useSetRecoilState(videoModalState);
 
   const customStyles = {
@@ -60,14 +60,8 @@ const VideoModal = ({ isModalOpen }: IVideoModalProps) => {
         <div className={styles.videoModalPlayer}>
           <ReactPlayer
             controls
-            playing
+            playing={false}
             playsInline
-            light={coverImageUrl}
-            playIcon={
-              <div className={styles.videoModalPlayerIcon}>
-                <Icon type="video-play" />
-              </div>
-            }
             url={videoUrl}
             width="100%"
             height="100%"

@@ -1,0 +1,115 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.hero {
+  position: relative;
+  padding-top: rem(78);
+  padding-bottom: rem(72);
+  background-color: $white;
+  @include breakpoint($large) {
+    padding-top: rem(135);
+  }
+
+  &Wrapper {
+    @include grid-container;
+
+    @include breakpoint($large) {
+      @include grid(1, 12);
+    }
+  }
+
+  &Breadcrumb {
+    @include breakpoint($large) {
+      grid-column: 1 / span 12;
+    }
+  }
+
+  &Content {
+    position: relative;
+    @include breakpoint($large) {
+      margin: 0;
+      grid-column: 1 / span 12;
+      @include grid(1, 12);
+    }
+
+    &Back {
+      display: none;
+      @include breakpoint($large) {
+        display: block;
+        grid-column: 1 / span 1;
+      }
+    }
+
+    &Text {
+      margin-top: rem(34);
+      @include breakpoint($large) {
+        margin-top: 0;
+        grid-column: 2 / span 6;
+      }
+      @include breakpoint($xx-large) {
+        grid-column: 2 / span 5;
+      }
+
+      &Selling {
+        display: flex;
+        align-items: center;
+
+        p {
+          font-size: rem(14);
+          margin-left: rem(12);
+          @include breakpoint($large) {
+            font-size: rem(18);
+          }
+        }
+      }
+
+      h1 {
+        color: $grey;
+        margin: rem(8) 0;
+        @include breakpoint($large) {
+          margin: rem(16) 0;
+        }
+      }
+
+      p {
+        sup {
+          font-size: rem(10);
+        }
+      }
+    }
+
+    &Buttons {
+      display: none;
+      margin-top: rem(20);
+      @include breakpoint($large) {
+        margin-left: auto;
+        display: inline-grid;
+        align-items: stretch;
+        gap: rem(16);
+      }
+      @include breakpoint($x-large) {
+        width: rem(240);
+      }
+
+      button {
+        flex: 1;
+        padding-left: rem(6);
+        padding-right: rem(6);
+        @include breakpoint($large) {
+          flex: initial;
+          padding-left: rem(12);
+          padding-right: rem(12);
+        }
+      }
+    }
+
+    &CTA {
+      display: none;
+      @include breakpoint($large) {
+        display: block;
+        grid-column: 10 / span 3;
+        text-align: right;
+      }
+    }
+  }
+}

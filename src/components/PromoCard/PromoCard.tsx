@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-
+import { Redactor } from "@components/Common/Common";
 import styles from "./PromoCard.module.scss";
 
 export interface PromoCardProps {
   offer: {
     title?: string;
-    subTitle?: string;
-    description?: string;
+    shortDescription?: string;
+    introBlurb?: string;
   };
   background?: string;
   action?: React.ReactNode;
+  variant?: "default" | "mobile";
   size?: "large" | "normal";
 }
 
@@ -22,6 +23,7 @@ const PromoCard = ({
   offer,
   action,
   background,
+  variant = "default",
   size = "normal",
 }: PromoCardProps) => {
   const [cardBackground, setCardBackground] = useState(defaultBackgrounds[0]);
@@ -38,15 +40,15 @@ const PromoCard = ({
     <div
       className={`${size === "large" ? styles.cardLarge : styles.card} ${
         background ? styles.imageCard : ""
-      }`}
+      } ${variant === "mobile" ? styles.cardMobile : ""}`}
       style={{ backgroundImage: `url(${cardBackground})` }}
     >
       <div className={styles.cardHeader}>
         <h1>{offer.title}</h1>
-        <h5>{offer.subTitle}</h5>
+        <h5>{offer.shortDescription}</h5>
       </div>
       <div className={styles.cardContent}>
-        <p>{offer.description}</p>
+        <Redactor>{offer.introBlurb ?? ""}</Redactor>
         <div
           className={`${styles.cardActions} ${
             background ? styles.alignRight : ""

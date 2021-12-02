@@ -3,8 +3,8 @@ import Image from "next/image";
 import dayjs from "dayjs";
 import Slider from "react-slick";
 import { HomeModel } from "@models";
-import { shimmer, toBase64 } from "@utils/blobImage";
 import Icon from "@components/Icons/Icons";
+import { shimmer, toBase64 } from "@utils/blobImage";
 import styles from "./PropertyCard.module.scss";
 
 export interface PropertyCardProps {

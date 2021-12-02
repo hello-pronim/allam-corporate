@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Button } from "@components/Common/Common";
 import PromoCard from "@components/PromoCard/PromoCard";
 
@@ -12,16 +12,16 @@ const OffersContent = () => {
     {
       id: 1,
       title: "4 bed home from $123,450",
-      subTitle: "Pay the rest when you move in!",
-      description:
-        "Our history spans 25 years and during that time we’ve helped thousands  of customers find a new home, with homes and estates spread across many of Sydney’s most popular areas.",
+      shortDescription: "Pay the rest when you move in!",
+      introBlurb:
+        "<p>Our history spans 25 years and during that time we’ve helped thousands  of customers find a new home, with homes and estates spread across many of Sydney’s most popular areas.</p>",
     },
     {
       id: 2,
       title: "10% Deposit is all you need",
-      subTitle: "Pay the rest when you move in!",
-      description:
-        "Our history spans 25 years and during that time we’ve helped thousands  of customers find a new home, with homes and estates spread across many of Sydney’s most popular areas.",
+      shortDescription: "Pay the rest when you move in!",
+      introBlurb:
+        "<p>Our history spans 25 years and during that time we’ve helped thousands  of customers find a new home, with homes and estates spread across many of Sydney’s most popular areas.</p>",
     },
   ];
 
@@ -56,9 +56,9 @@ const OffersContent = () => {
           <PromoCard
             offer={{
               title: "Free Solar with your New Home",
-              subTitle:
+              shortDescription:
                 "It's Time to Get Smart and Save Big with Free Solar Power. SAVE UP TO $44K*",
-              description: "",
+              introBlurb: "",
             }}
             background="/assets/temp/img-hero-homepage-2.jpg"
             action={

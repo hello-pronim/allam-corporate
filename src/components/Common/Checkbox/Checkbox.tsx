@@ -9,9 +9,9 @@ export interface CheckboxProps {
   onChange?: () => void;
 }
 
-const Checkbox = ({ className, name, text, onChange }: CheckboxProps) => {
+const Checkbox = ({ className, name, text, onChange, ...props }: any) => {
   return (
-    <label className={`${styles.checkbox} ${className}`}>
+    <label className={`${styles.checkbox} ${className}`} {...props}>
       <input type="checkbox" name={name} />
       <span>{text}</span>
     </label>

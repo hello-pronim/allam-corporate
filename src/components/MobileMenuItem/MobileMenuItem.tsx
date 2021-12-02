@@ -20,13 +20,13 @@ const MobileMenuItem = ({
     if (item.subMenu) {
       onShowSubMenu(item);
     } else {
-      onRedirectLink(item.slug);
+      onRedirectLink(`/${item.hyperlink?.[0].slug}`);
     }
   };
 
   return (
     <div className={styles.menuItem} onClick={() => onClickMenuItem(menuItem)}>
-      <p>{menuItem.title}</p>
+      <p>{menuItem.linkName}</p>
       {menuItem.subMenu && (
         <div className={styles.mobileMenuListItemIcon}>
           <Image

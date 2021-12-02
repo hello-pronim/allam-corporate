@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { useForm } from "react-hook-form";
 import Button from "@components/Common/Button/Button";
 import Checkbox from "@components/Common/Checkbox/Checkbox";
 import Input from "@components/Common/Input/Input";
@@ -10,23 +11,31 @@ import styles from "./forms.module.scss";
 export interface GeneralEnquiryProps {}
 
 const GeneralEnquiry = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   return (
     <form className={classNames(styles.Form)}>
       <div className={styles.formRow}>
         <div className={styles.formCol}>
           <Input
             type="text"
-            name="firstName"
+            name="firstname"
             className={styles.formControl}
             placeholder="First Name"
+            register={register}
           />
         </div>
         <div className={styles.formCol}>
           <Input
             type="text"
-            name="lastName"
+            name="lastname"
             className={styles.formControl}
             placeholder="Last Name"
+            register={register}
           />
         </div>
       </div>
@@ -37,14 +46,16 @@ const GeneralEnquiry = () => {
             name="email"
             className={styles.formControl}
             placeholder="Email"
+            register={register}
           />
         </div>
         <div className={styles.formCol}>
           <Input
             type="text"
-            name="contactNumber"
+            name="phone"
             className={styles.formControl}
             placeholder="Contact Number"
+            register={register}
           />
         </div>
       </div>
@@ -55,6 +66,7 @@ const GeneralEnquiry = () => {
             name="postcode"
             className={styles.formControl}
             placeholder="Postcode"
+            register={register}
           />
           <Checkbox
             className={styles.formControl}

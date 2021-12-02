@@ -2,19 +2,29 @@ export type OverViewPageProps = {
   pageData?: any;
   trustMakers?: any;
   listingData?: any;
+  layoutData?: any;
 };
 
 export type AllamAdvPageProps = {
+  layoutData?: any;
   easyBuy?: any;
   allamAdvantages?: any;
 };
 
 export type NormalPageProps = {
+  layoutData?: any;
   pageData?: any;
   trustMakers?: any;
 };
 
 export type PageProps = NormalPageProps | OverViewPageProps;
+
+export type NavItemModel = {
+  linkName: string;
+  hyperlink: {
+    slug: string;
+  }[];
+};
 
 export type AdvantageModel = {
   label: string;
@@ -42,8 +52,10 @@ export type Asset = {
 
 export type CTAModel = {
   label: string;
-  link: string;
   uri?: string;
+  hyperlink: {
+    slug: string;
+  }[];
 };
 
 export type ButtonModel = {
@@ -60,6 +72,9 @@ export type HeroModel = {
   buttons?: CTAModel[];
   cta?: CTAModel[];
   icon: CraftImage[];
+  bannerHyperlink: {
+    slug: string;
+  }[];
 };
 
 export type TrustFeature = {
@@ -134,6 +149,7 @@ export type EstateModel = {
 };
 
 export type HomeModel = {
+  slug?: string;
   title: string;
   landOnly: boolean;
   lotNumber?: string;
@@ -147,7 +163,7 @@ export type HomeModel = {
   bedrooms?: number;
   bathrooms?: number;
   car?: number;
-  landSize?: number;
+  landSize: number;
   latitude?: string;
   longitude?: string;
   introBlurb?: string;
@@ -158,6 +174,7 @@ export type HomeModel = {
 };
 
 export type LandModel = {
+  slug?: string;
   title: string;
   landOnly: boolean;
   lotNumber?: string;
@@ -187,9 +204,9 @@ export type EstateFilterModel = {
 };
 export type HomeFilterModel = {
   locations: string[];
-  storeys?: string | number;
-  beds?: string | number;
-  baths?: string | number;
+  storeys?: string;
+  beds?: string;
+  baths?: string;
   blockSize?: string;
   reset: boolean;
 };

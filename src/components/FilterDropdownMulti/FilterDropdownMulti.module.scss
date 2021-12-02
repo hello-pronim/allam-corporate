@@ -79,9 +79,14 @@
         font-size: rem(14);
         line-height: rem(20);
         padding: rem(18) rem(24);
+        text-transform: capitalize;
         transition: all 0.3s ease-in;
         cursor: pointer;
 
+        &::first-letter,
+        &::first-line {
+          text-transform: uppercase;
+        }
         &:hover {
           background-color: $white;
         }

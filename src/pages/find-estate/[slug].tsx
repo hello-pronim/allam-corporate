@@ -3,6 +3,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import { get } from "lodash";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
+import { layoutQuery } from "@libs/queries";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/FindEstateDetail/Hero/Hero";
 import BannerGallery from "@sections/FindEstateDetail/BannerGallery/BannerGallery";
@@ -14,8 +15,7 @@ import News from "@sections/FindEstateDetail/News/News";
 import SimilarEstates from "@sections/FindEstateDetail/SimilarEstates/SimilarEstates";
 import SignUpEstate from "@sections/FindEstateDetail/SignUpEstate/SignUpEstate";
 
-const FindEstateDetail: NextPage<any> = ({ estate }) => {
-  console.log(estate);
+const FindEstateDetail: NextPage<any> = ({ estate, layoutData }) => {
   const title = get(estate, "entry.title", "");
   const logo = get(estate, "entry.logo", []);
   const suburb = get(estate, "entry.suburb", "");
@@ -23,7 +23,7 @@ const FindEstateDetail: NextPage<any> = ({ estate }) => {
   const postcode = get(estate, "entry.postcode", "");
 
   return (
-    <Layout>
+    <Layout layoutData={layoutData}>
       <Hero
         title={title}
         address={`${suburb}, ${estateState} ${postcode}`}
@@ -43,6 +43,7 @@ const FindEstateDetail: NextPage<any> = ({ estate }) => {
 
 export const getStaticProps: GetStaticProps = async function ({ params }) {
   const slug = get(params, "slug");
+  const layoutData = await craftAPI(layoutQuery);
 
   const estateQuery = gql`
     query estateQuery($slug: [String] = "${slug}") {
@@ -99,8 +100,9 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
   return {
     props: {
       estate,
+      layoutData,
     },
-    revalidate: 500,
+    revalidate: 60,
   };
 };
 

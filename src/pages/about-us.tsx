@@ -4,21 +4,22 @@ import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
 import { useRecoilValue } from "recoil";
 import { PageProps } from "@models";
+import { layoutQuery } from "@libs/queries";
+import { videoModalState } from "@states/atoms/videoModal";
 import Layout from "@components/Layout/Layout";
-import VideoHero from "@sections/AboutUs/VideoHero/VideoHero";
-import FullWidthImage from "@components/FullWidthImage/FullWidthImage";
 import TextBlock from "@components/TextBlock/TextBlock";
+import VideoModal from "@components/VideoModal/VideoModal";
+import FullWidthImage from "@components/FullWidthImage/FullWidthImage";
+import VideoHero from "@sections/AboutUs/VideoHero/VideoHero";
 import LeadingTimeline from "@sections/AboutUs/LeadingTimeline/LeadingTimeline";
 import TimelineGraph from "@sections/AboutUs/TimelineGraph/TimelineGraph";
-import { videoModalState } from "@states/atoms/videoModal";
-import VideoModal from "@components/VideoModal/VideoModal";
 
-const RetirementLiving: NextPage<PageProps> = ({ pageData }) => {
+const RetirementLiving: NextPage<PageProps> = ({ pageData, layoutData }) => {
   const pageLayout = get(pageData, "entry.aboutLayout", []);
   const { isOpen } = useRecoilValue(videoModalState);
 
   return (
-    <Layout>
+    <Layout layoutData={layoutData}>
       {pageLayout?.map((block: any, id: number) => (
         <div key={id}>
           {block.__typename === "aboutLayout_videoHero_BlockType" && (
@@ -88,12 +89,14 @@ const pageQuery = gql`
 
 export const getStaticProps = async function () {
   const pageData = await craftAPI(pageQuery);
+  const layoutData = await craftAPI(layoutQuery);
 
   return {
     props: {
       pageData,
+      layoutData,
     },
-    revalidate: 500,
+    revalidate: 60,
   };
 };
 

@@ -23,7 +23,7 @@ const LandCard = ({ landData }: LandCardProps) => {
     slidesToScroll: 1,
   };
 
-  const address = `${landData.lotNumber}, ${landData.address}`;
+  const address = `${landData.title}`;
 
   return (
     <div className={styles.propertyCard}>

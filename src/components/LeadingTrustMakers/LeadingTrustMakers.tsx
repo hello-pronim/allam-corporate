@@ -73,9 +73,9 @@ const LeadingTrustMakers = ({
             ))}
           </Slider>
 
-          {data?.hascta && (
+          {data?.hascta && data?.cta?.[0]?.hyperlink && (
             <div className={styles.trustMakersCTA}>
-              <Link href={data?.cta?.[0]?.link ?? "/"}>
+              <Link href={`/${data?.cta?.[0]?.hyperlink?.[0]?.slug}`}>
                 <a>
                   <span>{data?.cta?.[0]?.label}</span>
                   <Icon type="arrow-right" />

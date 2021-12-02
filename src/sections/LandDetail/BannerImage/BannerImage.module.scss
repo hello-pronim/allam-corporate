@@ -1,0 +1,21 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.bannerImage {
+  position: relative;
+  z-index: 1;
+
+  &Container {
+    position: relative;
+    height: rem(240);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    @include breakpoint($medium) {
+      height: rem(360);
+    }
+    @include breakpoint($large) {
+      height: rem(1000);
+    }
+  }
+}

@@ -3,7 +3,11 @@ import get from "lodash/get";
 import { useRecoilValue } from "recoil";
 import craftAPI from "@libs/api";
 import { propsFind } from "@utils/propsFind";
-import { allamAdvQuery, easyBuyPurchaseQuery } from "@libs/queries";
+import {
+  allamAdvQuery,
+  easyBuyPurchaseQuery,
+  layoutQuery,
+} from "@libs/queries";
 import { AllamAdvPageProps } from "@models";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/AllamAdvantage/Hero/Hero";
@@ -16,6 +20,7 @@ import VideoModal from "@components/VideoModal/VideoModal";
 const AllamAdvantages: NextPage<AllamAdvPageProps> = ({
   easyBuy,
   allamAdvantages,
+  layoutData,
 }) => {
   const { isOpen } = useRecoilValue(videoModalState);
   const globalPromos = get(
@@ -25,7 +30,7 @@ const AllamAdvantages: NextPage<AllamAdvPageProps> = ({
   );
 
   return (
-    <Layout>
+    <Layout layoutData={layoutData}>
       <Hero
         heading={get(
           allamAdvantages,
@@ -71,13 +76,15 @@ const AllamAdvantages: NextPage<AllamAdvPageProps> = ({
 export const getStaticProps = async function () {
   const allamAdvantages = await craftAPI(allamAdvQuery);
   const easyBuy = await craftAPI(easyBuyPurchaseQuery);
+  const layoutData = await craftAPI(layoutQuery);
 
   return {
     props: {
       allamAdvantages,
       easyBuy,
+      layoutData,
     },
-    revalidate: 500,
+    revalidate: 60,
   };
 };
 

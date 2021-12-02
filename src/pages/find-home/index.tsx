@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import type { NextPage } from "next";
 import { gql } from "@apollo/client";
-import { get, map, sortBy } from "lodash";
+import { get } from "lodash";
 import craftAPI from "@libs/api";
 import { propsFind } from "@utils/propsFind";
-import { trustQuery } from "@libs/queries";
+import { layoutQuery, trustQuery } from "@libs/queries";
 import { useSetRecoilState } from "recoil";
 import { allHomesState } from "@states/atoms/homes";
 import { HomeModel, OverViewPageProps } from "@models";
@@ -19,6 +19,7 @@ const FindHome: NextPage<OverViewPageProps> = ({
   pageData,
   trustMakers,
   listingData,
+  layoutData,
 }) => {
   const [showMap, setShowMap] = useState(false);
   const heading = get(pageData, "entry.heading", "");
@@ -26,7 +27,6 @@ const FindHome: NextPage<OverViewPageProps> = ({
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
   const homesList = get(listingData, "entries", []);
-  const suburbList = sortBy(map(homesList, "suburb"));
   const setHomes = useSetRecoilState(allHomesState);
 
   useEffect(() => {
@@ -35,18 +35,18 @@ const FindHome: NextPage<OverViewPageProps> = ({
   }, [homesList]);
 
   return (
-    <Layout>
+    <Layout layoutData={layoutData}>
       <Hero
         heading={heading}
         introBlurb={introBlurb}
-        setShowMap={setShowMap}
         showMap={showMap}
+        setShowMap={setShowMap}
       />
+      <HomesListing setShowMap={setShowMap} showMap={showMap} />
       {showMap ? (
         <Overview />
       ) : (
         <>
-          <HomesListing />
           <div style={{ background: "#eef2f5" }}>
             <LeadingTrustMakers
               features={trustFeatures}
@@ -78,7 +78,9 @@ const findHomesQuery = gql`
             hascta
             cta {
               label
-              link
+              hyperlink {
+                slug
+              }
             }
           }
           ... on globalPromos_easybuy_BlockType {
@@ -139,14 +141,16 @@ export const getStaticProps = async function () {
   const pageData = await craftAPI(findHomesQuery);
   const trustMakers = await craftAPI(trustQuery);
   const listingData = await craftAPI(homesQuery);
+  const layoutData = await craftAPI(layoutQuery);
 
   return {
     props: {
       pageData,
       trustMakers,
       listingData,
+      layoutData,
     },
-    revalidate: 500,
+    revalidate: 60,
   };
 };
 

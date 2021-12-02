@@ -1,0 +1,37 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.sortByOptions {
+  padding-bottom: rem(8);
+  @include breakpoint($large) {
+    @include grid(1, 12);
+  }
+
+  &Container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include breakpoint($large) {
+      justify-content: space-between;
+      grid-column: 1 / span 12;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 2 / span 10;
+    }
+  }
+
+  &Desktop {
+    display: none;
+    @include breakpoint($large) {
+      display: block;
+    }
+  }
+
+  &Select {
+    display: flex;
+    align-items: center;
+    span {
+      margin-right: rem(12);
+    }
+  }
+}

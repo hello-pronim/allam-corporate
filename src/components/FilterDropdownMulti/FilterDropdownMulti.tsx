@@ -137,7 +137,7 @@ const FilterDropdownMulti = ({
 
           {selectedOptions?.map((option: any, id: number) => (
             <li key={id} onClick={() => setOption(option.label)}>
-              {option.label}
+              {option.label.toLowerCase()}
               <div
                 className={styles.filterDropdownMenuItemCheck}
                 style={{

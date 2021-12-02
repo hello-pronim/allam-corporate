@@ -76,6 +76,21 @@ const FilterByChoiceGroup = ({
         ...filterStateValue,
         blockSize: selectedFilter?.value ?? "All",
       });
+    } else if (name === "bed") {
+      setFilterValue({
+        ...filterStateValue,
+        beds: selectedFilter?.value ?? "All",
+      });
+    } else if (name === "bath") {
+      setFilterValue({
+        ...filterStateValue,
+        baths: selectedFilter?.value ?? "All",
+      });
+    } else if (name === "storey") {
+      setFilterValue({
+        ...filterStateValue,
+        storeys: selectedFilter?.value ?? "All",
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFilter]);

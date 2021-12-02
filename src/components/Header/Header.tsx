@@ -1,18 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { NavItemModel } from "@models";
 import classnames from "classnames/bind";
-import HamburgerIcon from "@components/HamburgerIcon/HamburgerIcon";
 import { Button, Select } from "@components/Common/Common";
 import MobileMenu from "@components/MobileMenu/MobileMenu";
-import { menuObj, stateAuObj } from "@components/MobileMenu/constant";
+import HamburgerIcon from "@components/HamburgerIcon/HamburgerIcon";
+import { statesAU } from "@libs/constants";
 import styles from "./Header.module.scss";
 
-export interface IHeaderProps {}
+export interface IHeaderProps {
+  navItems?: NavItemModel[];
+}
 
-const Header = ({ ...props }: IHeaderProps) => {
+const Header = ({ navItems }: IHeaderProps) => {
   const ref = useRef<HTMLHeadingElement>(null);
   const cx = classnames.bind(styles);
+  const [isSticky, setSticky] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showGreedyMenu, setShowGreedyMenu] = useState(false);
   const [hiddenListCount, setHiddenListCount] = useState(0);
@@ -24,6 +28,20 @@ const Header = ({ ...props }: IHeaderProps) => {
   const toggleGreedyMenu = () => {
     setShowGreedyMenu(!showGreedyMenu);
   };
+
+  useEffect(() => {
+    if (window === undefined) return;
+
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setSticky(scrollTop >= 150);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
 
   useEffect(() => {
     const checkIfClickedOutside = (e: any) => {
@@ -93,7 +111,9 @@ const Header = ({ ...props }: IHeaderProps) => {
   }, []);
 
   return (
-    <header className={styles.header}>
+    <header
+      className={`${styles.header} ${isSticky ? styles.headerSticky : ""}`}
+    >
       <div className={styles.nav}>
         <div className={styles.navBrand}>
           <Link href="/">
@@ -122,17 +142,17 @@ const Header = ({ ...props }: IHeaderProps) => {
               <span>Build in:</span>
 
               <div className="state-select">
-                <Select options={stateAuObj} defaultValue={stateAuObj[0]} />
+                <Select options={statesAU} defaultValue={statesAU[0]} />
               </div>
               <span>(change)</span>
             </div>
           </div>
           <div className={styles.navMenuList}>
             <ul className={styles.navMenuListItems} id="nav-list">
-              {menuObj?.slice(0, -1).map((el: any, id: number) => (
+              {navItems?.slice(0, -1).map((el: NavItemModel, id: number) => (
                 <li key={id}>
-                  <Link href={el.slug}>
-                    <a>{el.title}</a>
+                  <Link href={`/${el.hyperlink?.[0].slug}`}>
+                    <a>{el.linkName}</a>
                   </Link>
                 </li>
               ))}
@@ -174,7 +194,9 @@ const Header = ({ ...props }: IHeaderProps) => {
           </div>
         </div>
       </div>
-      {showMobileMenu && <MobileMenu closeMenu={toggleMenu} />}
+      {showMobileMenu && (
+        <MobileMenu navItems={navItems ?? []} closeMenu={toggleMenu} />
+      )}
     </header>
   );
 };

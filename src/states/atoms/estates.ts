@@ -20,8 +20,7 @@ export const filteredEstates = selector({
   get: ({ get }) => {
     const estates = get(allEstateState);
     const filters = get(estateFilterState);
-    const isRetirementLiving =
-      filters.type === "Retirement Living" ? "yes" : "no";
+    const isRetirementLiving = filters.type === "Retirement" ? "yes" : "no";
 
     const filterType =
       filters.type === "All"
