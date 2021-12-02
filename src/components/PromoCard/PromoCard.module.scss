@@ -101,7 +101,24 @@
 
   &.imageCard {
     color: $white;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        103.51deg,
+        rgba(34, 34, 34, 0.5) -0.25%,
+        rgba(78, 78, 78, 0) 161.84%
+      );
+    }
     .cardHeader {
+      position: relative;
+
       h1 {
         @include below($large) {
           font-size: rem(38);
@@ -159,6 +176,7 @@
     flex-direction: column;
     justify-content: space-between;
     gap: rem(16);
+    position: relative;
 
     p {
       font-family: inherit;
