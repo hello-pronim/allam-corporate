@@ -6,7 +6,7 @@ import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
 import { layoutQuery } from "@libs/queries";
 import Layout from "@components/Layout/Layout";
-import StickyInfo from "@components/StickyInfo/StickyInfo";
+import StickyBar from "@components/StickyBar/StickyBar";
 import Hero from "@sections/LandDetail/Hero/Hero";
 import BannerImage from "@sections/LandDetail/BannerImage/BannerImage";
 import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
@@ -34,7 +34,7 @@ const LandDetail: NextPage<any> = ({ land, layoutData }) => {
         />
         <RegisterPanel data={landRegisterData} />
       </Layout>
-      <StickyInfo title={title} />
+      <StickyBar title={title} />
     </div>
   );
 };

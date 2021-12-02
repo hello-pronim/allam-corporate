@@ -1,12 +1,12 @@
 import React from "react";
 import { Button } from "@components/Common/Common";
-import styles from "./StickyInfo.module.scss";
+import styles from "./StickyBar.module.scss";
 
-export interface IStickyInfoProps {
+export interface IStickyBarProps {
   title: string;
 }
 
-const StickyInfo = ({ title }: IStickyInfoProps) => {
+const StickyBar = ({ title }: IStickyBarProps) => {
   return (
     <div className={styles.stickyBar}>
       <div className={styles.stickyBarWrapper}>
@@ -26,4 +26,4 @@ const StickyInfo = ({ title }: IStickyInfoProps) => {
   );
 };
 
-export default StickyInfo;
+export default StickyBar;
