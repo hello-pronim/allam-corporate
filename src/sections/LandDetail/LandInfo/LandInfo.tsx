@@ -53,7 +53,7 @@ const LandInfo = ({ introBlurb, estateInfo, offer }: ILandInfoProps) => {
                     Contact an Agent today!
                   </Button>
                 }
-                size="large"
+                variant="side"
               />
             </div>
           </div>

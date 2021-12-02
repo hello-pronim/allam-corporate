@@ -14,7 +14,7 @@
   min-height: rem(460);
   @include breakpoint($large) {
     min-height: initial;
-    padding: rem(64) rem(108) rem(32) rem(32);
+    padding: rem(64) rem(32);
   }
 
   &.imageCard {
@@ -26,6 +26,25 @@
       }
     }
   }
+
+  &.cardSide {
+    .cardHeader {
+      h2 {
+        @include breakpoint($large) {
+          font-size: rem(56);
+          line-height: 1;
+        }
+      }
+    }
+    .cardActions {
+      button {
+        @include breakpoint($large) {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+
   .cardHeader {
     flex: 3;
     display: flex;
@@ -35,7 +54,7 @@
     @include breakpoint($large) {
     }
 
-    h1 {
+    h2 {
       font-weight: bold;
       font-size: rem(40);
       line-height: rem(40);
@@ -73,10 +92,11 @@
 
     .cardActions {
       text-align: left;
+      margin-top: rem(60);
       button {
-        margin-top: rem(60);
-        @include below($large) {
-          width: 100%;
+        width: 100%;
+        @include breakpoint($large) {
+          width: auto;
         }
       }
     }
@@ -93,13 +113,11 @@
   padding: rem(48) rem(24);
   min-height: rem(460);
   background-position: center;
+  flex-direction: column;
   @include breakpoint($large) {
     flex-direction: row;
     padding: rem(80);
     min-height: initial;
-  }
-  @include below($medium) {
-    flex-direction: column;
   }
 
   &.imageCard {
@@ -122,7 +140,7 @@
     .cardHeader {
       position: relative;
 
-      h1 {
+      h2 {
         @include below($large) {
           font-size: rem(38);
           line-height: rem(40);
@@ -148,7 +166,7 @@
       padding: 0;
     }
 
-    h1 {
+    h2 {
       font-family: inherit;
       font-weight: bold;
       font-size: rem(38);
