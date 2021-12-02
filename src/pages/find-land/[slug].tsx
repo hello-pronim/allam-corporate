@@ -6,7 +6,7 @@ import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
 import { layoutQuery } from "@libs/queries";
 import Layout from "@components/Layout/Layout";
-import StickyBar from "@components/Stickybar/Stickybar";
+import StickyBar from "@components/StickyBar/StickyBar";
 import Hero from "@sections/LandDetail/Hero/Hero";
 import BannerImage from "@sections/LandDetail/BannerImage/BannerImage";
 import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
