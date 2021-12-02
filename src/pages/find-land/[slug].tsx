@@ -14,7 +14,6 @@ import LandInfo from "@sections/LandDetail/LandInfo/LandInfo";
 import { landRegisterData } from "@libs/constants";
 
 const LandDetail: NextPage<any> = ({ land, layoutData }) => {
-  console.log("land", land);
   const title = get(land, "entry.title", "");
   const estateInfo = get(land, "entry.estate[0]", "");
   const sellingLabel = get(land, "entry.sellingLabel");
