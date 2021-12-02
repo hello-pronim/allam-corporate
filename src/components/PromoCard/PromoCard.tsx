@@ -48,7 +48,11 @@ const PromoCard = ({
         <h5>{offer.shortDescription}</h5>
       </div>
       <div className={styles.cardContent}>
-        <Redactor>{offer.introBlurb ?? ""}</Redactor>
+        {offer.introBlurb && offer.introBlurb !== "" ? (
+          <Redactor>{offer.introBlurb}</Redactor>
+        ) : (
+          <div></div>
+        )}
         <div
           className={`${styles.cardActions} ${
             background ? styles.alignRight : ""
