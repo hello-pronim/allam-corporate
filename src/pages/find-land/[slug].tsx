@@ -21,18 +21,18 @@ const registerPanelData = {
 const LandDetail: NextPage<any> = ({ land, layoutData }) => {
   console.log("land", land);
   const title = get(land, "entry.title", "");
-  const suburb = get(land, "entry.suburb", "");
-  const estateState = get(land, "entry.estate[0].title", "");
+  const estateInfo = get(land, "entry.estate[0]", "");
   const sellingLabel = get(land, "entry.sellingLabel");
   const landSize = get(land, "entry.landSize", 0);
   const bannerImage = get(land, "entry.images[0]", "");
   const introBlurb = get(land, "entry.introBlurb", "");
+  const offer = get(land, "entry.associatedOffers[0]", "");
 
   return (
     <Layout layoutData={layoutData}>
       <Hero title={title} landSize={landSize} sellingLabel={sellingLabel} />
       <BannerImage image={bannerImage} />
-      <LandInfo introBlurb={introBlurb} />
+      <LandInfo introBlurb={introBlurb} estateInfo={estateInfo} offer={offer} />
       <RegisterPanel data={registerPanelData} />
     </Layout>
   );
@@ -59,6 +59,13 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
                   phoneNumber
                 }
               }
+            }
+          }
+          associatedOffers {
+            ... on promotions_default_Entry {
+              title
+              shortDescription
+              introBlurb
             }
           }
           images {
