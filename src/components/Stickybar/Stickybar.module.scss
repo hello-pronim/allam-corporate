@@ -1,0 +1,31 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.stickyBar {
+  position: sticky;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: rem(24) 0;
+  background-color: $primary;
+  z-index: 1000;
+  @include breakpoint($large) {
+  }
+
+  &Wrapper {
+    @include grid-container;
+  }
+
+  &Container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h5 {
+      display: none;
+      @include breakpoint($large) {
+        display: block;
+      }
+    }
+  }
+}
