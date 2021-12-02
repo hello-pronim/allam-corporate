@@ -2,6 +2,9 @@
 @import "@styles/variables";
 
 .bannerImage {
+  position: relative;
+  z-index: 1;
+
   &Container {
     position: relative;
     height: rem(240);
