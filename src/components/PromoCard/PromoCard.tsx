@@ -10,7 +10,7 @@ export interface PromoCardProps {
   };
   background?: string;
   action?: React.ReactNode;
-  variant?: "default" | "mobile";
+  variant?: "default" | "side";
   size?: "large" | "normal";
 }
 
@@ -40,11 +40,11 @@ const PromoCard = ({
     <div
       className={`${size === "large" ? styles.cardLarge : styles.card} ${
         background ? styles.imageCard : ""
-      } ${variant === "mobile" ? styles.cardMobile : ""}`}
+      } ${variant === "side" ? styles.cardSide : ""}`}
       style={{ backgroundImage: `url(${cardBackground})` }}
     >
       <div className={styles.cardHeader}>
-        <h1>{offer.title}</h1>
+        <h2>{offer.title}</h2>
         <h5>{offer.shortDescription}</h5>
       </div>
       <div className={styles.cardContent}>

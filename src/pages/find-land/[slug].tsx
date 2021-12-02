@@ -6,20 +6,14 @@ import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
 import { layoutQuery } from "@libs/queries";
 import Layout from "@components/Layout/Layout";
+import StickyBar from "@components/StickyBar/StickyBar";
 import Hero from "@sections/LandDetail/Hero/Hero";
 import BannerImage from "@sections/LandDetail/BannerImage/BannerImage";
 import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
 import LandInfo from "@sections/LandDetail/LandInfo/LandInfo";
-
-const registerPanelData = {
-  headingRedactor:
-    "<h2><strong>To take advantage fo this offer,</strong><br /> Simply register your interest today</h2>",
-  description:
-    "<p>Our history spans 25 years and during that time we’ve helped thousands  of customers find a new home, with homes and estates spread across many of Sydney’s most popular areas.</p>",
-};
+import { landRegisterData } from "@libs/constants";
 
 const LandDetail: NextPage<any> = ({ land, layoutData }) => {
-  console.log("land", land);
   const title = get(land, "entry.title", "");
   const estateInfo = get(land, "entry.estate[0]", "");
   const sellingLabel = get(land, "entry.sellingLabel");
@@ -29,12 +23,19 @@ const LandDetail: NextPage<any> = ({ land, layoutData }) => {
   const offer = get(land, "entry.associatedOffers[0]", "");
 
   return (
-    <Layout layoutData={layoutData}>
-      <Hero title={title} landSize={landSize} sellingLabel={sellingLabel} />
-      <BannerImage image={bannerImage} />
-      <LandInfo introBlurb={introBlurb} estateInfo={estateInfo} offer={offer} />
-      <RegisterPanel data={registerPanelData} />
-    </Layout>
+    <div>
+      <Layout layoutData={layoutData}>
+        <Hero title={title} landSize={landSize} sellingLabel={sellingLabel} />
+        <BannerImage image={bannerImage} />
+        <LandInfo
+          introBlurb={introBlurb}
+          estateInfo={estateInfo}
+          offer={offer}
+        />
+        <RegisterPanel data={landRegisterData} />
+      </Layout>
+      <StickyBar title={title} />
+    </div>
   );
 };
 

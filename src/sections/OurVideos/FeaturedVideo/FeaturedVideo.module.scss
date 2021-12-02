@@ -1,0 +1,41 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.featuredVideo {
+  &Wrapper {
+    padding-top: rem(136);
+    padding-bottom: rem(68);
+    @include grid-container;
+    @include breakpoint($large) {
+      padding-top: rem(136);
+      padding-bottom: rem(68);
+      @include grid(1, 12);
+      &Breadcrumbs {
+        grid-column: 1 / span 4;
+      }
+      h1 {
+        grid-column: 2 / span 6;
+      }
+      &Content {
+        grid-column: 2 / span 10;
+        & > * {
+          flex-grow: 0;
+        }
+        &Image {
+          background-repeat: none;
+          background-size: cover;
+          background-position: center center;
+          height: rem(250);
+          width: 100%;
+          border-radius: rem(16);
+          @include breakpoint($large) {
+            height: rem(560);
+          }
+        }
+        &Details {
+          padding-top: rem(24);
+        }
+      }
+    }
+  }
+}

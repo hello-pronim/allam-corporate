@@ -123,3 +123,10 @@ export const sortLandKeys = [
     value: "landSize",
   },
 ];
+
+export const landRegisterData = {
+  headingRedactor:
+    "<h2><strong>To take advantage fo this offer,</strong><br /> Simply register your interest today</h2>",
+  description:
+    "<p>Our history spans 25 years and during that time we’ve helped thousands  of customers find a new home, with homes and estates spread across many of Sydney’s most popular areas.</p>",
+};

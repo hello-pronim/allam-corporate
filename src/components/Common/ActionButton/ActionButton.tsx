@@ -25,7 +25,7 @@ const ActionButton = ({
       <div className={styles.actionButtonIcon}>
         <Icon type={type} />
       </div>
-      {label}
+      <span>{label}</span>
     </div>
   );
 };
