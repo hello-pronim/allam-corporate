@@ -1,0 +1,39 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.shareIcons {
+  display: grid;
+  gap: rem(24);
+  &.horizontalShareIcons {
+    grid-auto-flow: column;
+    .shareIconsTitle {
+      color: $black;
+      font-family: Roboto;
+      font-size: rem(16);
+      line-height: rem(24);
+    }
+    .shareIconsWrapper {
+      .shareIconList {
+        display: grid;
+        grid-auto-flow: column;
+        gap: rem(24);
+      }
+    }
+  }
+  &.verticalShareIcons {
+    grid-auto-flow: row;
+    .shareIconsTitle {
+      color: $black;
+      font-family: Roboto;
+      font-size: rem(16);
+      line-height: rem(24);
+    }
+    .shareIconsWrapper {
+      .shareIconList {
+        display: grid;
+        grid-auto-flow: row;
+        gap: rem(24);
+      }
+    }
+  }
+}
