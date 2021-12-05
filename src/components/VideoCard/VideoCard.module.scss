@@ -1,0 +1,70 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.videoCard {
+  border-radius: rem(3);
+  overflow: hidden;
+
+  &Image {
+    position: relative;
+    width: 100%;
+    height: rem(210);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    @include breakpoint($medium) {
+      height: rem(300);
+    }
+    @include breakpoint($large) {
+      height: rem(400);
+    }
+
+    &Play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      display: grid;
+
+      svg {
+        width: rem(50);
+        height: rem(50);
+        @include breakpoint($large) {
+          width: rem(70);
+          height: rem(70);
+        }
+      }
+    }
+  }
+  &Content {
+    h3 {
+      font-size: rem(18);
+      margin-top: rem(24);
+      margin-bottom: rem(8);
+      @include breakpoint($large) {
+        font-size: rem(32);
+      }
+    }
+  }
+
+  &Featured {
+    .videoCardImage {
+      // height: rem(10);
+    }
+  }
+  &Latest {
+    .videoCardImage {
+      height: rem(180);
+      @include breakpoint($medium) {
+        height: rem(250);
+      }
+      @include breakpoint($large) {
+        height: rem(300);
+      }
+      @include breakpoint($webXLarge) {
+        height: rem(400);
+      }
+    }
+  }
+}
