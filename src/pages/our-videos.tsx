@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import { gql } from "@apollo/client";
+import { get } from "lodash";
 import craftAPI from "@libs/api";
 import { useRecoilValue } from "recoil";
 import { layoutQuery } from "@libs/queries";
 import { videoModalState } from "@states/atoms/videoModal";
 import { OverViewPageProps, VideoModel } from "@models";
 import Layout from "@components/Layout/Layout";
-import CardGrid from "@components/CardGrid/CardGrid";
 import Divider from "@components/Common/Divider/Divider";
 import VideoModal from "@components/VideoModal/VideoModal";
-import LatestVideos from "@sections/OurVideos/LatestVideos/LatestVideos";
 import FeaturedVideo from "@sections/OurVideos/FeaturedVideo/FeaturedVideo";
+import LatestVideos from "@sections/OurVideos/LatestVideos/LatestVideos";
+import OldVideos from "@sections/OurVideos/OldVideos/OldVideos";
 import BackgroundWrapper from "@sections/News/BackgroundWrapper/BackgroundWrapper";
-import { get } from "lodash";
 
 const OurVideos: NextPage<OverViewPageProps> = ({
   pageData,
@@ -42,27 +42,15 @@ const OurVideos: NextPage<OverViewPageProps> = ({
     setOldVideos(videos.slice(LATEST_VIDEO_COUNT, videos.length));
   }, [videos, LATEST_VIDEO_COUNT]);
 
-  console.log(featuredVideo);
-
   return (
     <Layout layoutData={layoutData}>
       <BackgroundWrapper>
         <FeaturedVideo video={featuredVideo} />
         <LatestVideos videos={latestVideos} />
-        <Divider />
-        {/* <CardGrid
-          title="Older posts"
-          col={[2, 3]}
-          colGap={40}
-          rowGap={60}
-          padding={[51, 80]}
-          maxItems={9}
-          smallTitle={true}
-        >
-          {PostContent.map((post, index) => {
-            return <VideoCard key={index} content={post} />;
-          })}
-        </CardGrid> */}
+        <div style={{ backgroundColor: "#eef2f5" }}>
+          <Divider />
+        </div>
+        <OldVideos videos={oldVideos} />
       </BackgroundWrapper>
       <VideoModal isModalOpen={isOpen} />
     </Layout>

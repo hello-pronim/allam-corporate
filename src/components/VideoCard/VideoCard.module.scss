@@ -40,12 +40,16 @@
   }
   &Content {
     h3 {
+      color: $grey;
       font-size: rem(18);
       margin: rem(16) 0 rem(8);
       @include breakpoint($large) {
         font-size: rem(32);
         margin-top: rem(24);
       }
+    }
+    p {
+      color: $grey;
     }
   }
 

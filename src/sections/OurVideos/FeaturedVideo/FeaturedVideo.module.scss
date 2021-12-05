@@ -4,9 +4,20 @@
 .featuredVideo {
   padding-top: rem(82);
   padding-bottom: rem(68);
+  position: relative;
   @include breakpoint($large) {
     padding-top: rem(136);
     padding-bottom: rem(68);
+  }
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: 40%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: $grey2;
   }
 
   &Wrapper {

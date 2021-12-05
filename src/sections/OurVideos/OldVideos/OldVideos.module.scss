@@ -1,25 +1,16 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
-.latestVideos {
+.oldVideos {
   background-color: $grey2;
-  &Wrapper {
-    @include breakpoint($large) {
-      @include grid-container;
-      @include grid(1, 12);
-    }
+  @include breakpoint($large) {
   }
 
   h2 {
     margin-bottom: rem(24);
-    font-size: rem(26);
-    line-height: rem(33);
     @include breakpoint($large) {
-      font-size: rem(32);
-      line-height: rem(44);
       grid-column: 1 / span 12;
       margin-bottom: rem(40);
-      color: $grey;
     }
     @include breakpoint($xx-large) {
       grid-column: 2 / span 10;
