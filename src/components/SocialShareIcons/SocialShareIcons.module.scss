@@ -11,12 +11,29 @@
       font-family: Roboto;
       font-size: rem(16);
       line-height: rem(24);
+      @include below($medium) {
+        display: none;
+      }
     }
     .shareIconsWrapper {
       .shareIconList {
         display: grid;
         grid-auto-flow: column;
         gap: rem(24);
+      }
+      .shareIconItem {
+        @include below($medium) {
+          background-color: $black;
+          border-radius: rem(4);
+          padding: rem(4) rem(24);
+          text-align: center;
+          svg {
+            path {
+              fill: $white;
+              stroke: $black;
+            }
+          }
+        }
       }
     }
   }
@@ -27,12 +44,29 @@
       font-family: Roboto;
       font-size: rem(16);
       line-height: rem(24);
+      @include below($medium) {
+        display: none;
+      }
     }
     .shareIconsWrapper {
       .shareIconList {
         display: grid;
         grid-auto-flow: row;
         gap: rem(24);
+        .shareIconItem {
+          @include below($medium) {
+            background-color: $black;
+            border-radius: rem(4);
+            padding: rem(4) rem(24);
+            text-align: center;
+            svg {
+              path {
+                fill: $white;
+                stroke: $black;
+              }
+            }
+          }
+        }
       }
     }
   }
