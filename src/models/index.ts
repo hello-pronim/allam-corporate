@@ -151,6 +151,7 @@ export type EstateModel = {
   geojson: string;
   galleryImages: CraftImage[];
   offersLink: any[];
+  salesCentre: LocationModel[];
   masterPlanImage: CraftImage[];
   downloadableBrochure: Asset[];
 };

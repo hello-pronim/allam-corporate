@@ -25,12 +25,15 @@
     }
 
     &Logo {
+      width: rem(156);
       position: absolute;
       top: 0;
       left: 0;
-      display: grid;
-      border-radius: rem(6) 0;
       overflow: hidden;
+      display: grid;
+      @include breakpoint($large) {
+        border-radius: rem(6) 0;
+      }
     }
   }
 

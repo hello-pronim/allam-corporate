@@ -27,7 +27,6 @@ const OurVideos: NextPage<OverViewPageProps> = ({
 
   const featuredVideo = get(pageData, "entry.featuredVideo[0]", []);
   const LATEST_VIDEO_COUNT = get(pageData, "entry.latestVideoCount", 4);
-  console.log(featuredVideo);
 
   useEffect(() => {
     setVideos(
