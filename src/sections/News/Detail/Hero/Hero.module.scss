@@ -9,38 +9,77 @@
     padding-top: rem(135);
   }
 
+  &BannerMobile {
+    position: relative;
+    @include breakpoint($large) {
+      display: none;
+    }
+    @include below($medium) {
+      min-height: rem(250);
+      @include grid(1, 12);
+    }
+    .heroBannerTextWrapper {
+      grid-column: 1 / span 12;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      z-index: 1;
+      background-color: $black;
+      opacity: 0.9;
+      padding: rem(8) rem(16);
+      .heroBannerText {
+        color: $white;
+        font-size: rem(12);
+        line-height: rem(16);
+      }
+    }
+    .heroBannerImage {
+      position: relative;
+      grid-column: 1 / span 12;
+    }
+  }
+
   &Wrapper {
-    padding-bottom: rem(277);
     @include grid-container;
+    @include breakpoint($large) {
+      padding-bottom: rem(277);
+    }
+    @include below($medium) {
+      grid-column: 1 / span 12;
+    }
   }
 
   &Breadcrumb {
+    @include grid-container;
     @include breakpoint($large) {
       grid-column: 1 / span 12;
     }
   }
 
   &Content {
-    margin-top: rem(60);
     position: relative;
     @include breakpoint($large) {
+      margin-top: rem(60);
       align-items: center;
       grid-column: 1 / span 12;
       @include grid(1, 12);
     }
+    @include below($medium) {
+      margin-top: rem(20);
+      margin-bottom: rem(20);
+    }
     &Title {
       grid-column: 3 / 11;
-
-      h1 {
-        color: $grey;
-        margin-bottom: rem(24);
-      }
 
       h3 {
         color: $grey;
         font-weight: 700;
         font-size: rem(42);
         line-height: rem(52);
+        @include below($medium) {
+          font-size: rem(22);
+          line-height: rem(28.6);
+        }
       }
 
       p {
@@ -48,6 +87,11 @@
         font-size: rem(18);
         line-height: rem(28);
         margin-bottom: rem(16);
+        @include below($medium) {
+          display: none;
+          font-size: rem(12);
+          line-height: rem(16);
+        }
       }
     }
   }

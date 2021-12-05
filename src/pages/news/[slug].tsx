@@ -8,6 +8,7 @@ import { layoutQuery } from "@libs/queries";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/News/Detail/Hero/Hero";
 import DetailContent from "@sections/News/Detail/DetailContent/DetailContent";
+import KnowMoreAllamHomes from "@sections/News/Detail/KnowMoreAllamHomes/KnowMoreAllamHomes";
 
 const NewsDetail: NextPage<any> = ({ newsDetail, layoutData }) => {
   const news = {
@@ -19,6 +20,7 @@ const NewsDetail: NextPage<any> = ({ newsDetail, layoutData }) => {
     images: [
       "/assets/images/news/news_detail_image1.png",
       "/assets/images/news/news_detail_image2.png",
+      "/assets/images/news/news_detail_mobile_banner.png",
     ],
     socials: [
       {
@@ -59,11 +61,25 @@ const NewsDetail: NextPage<any> = ({ newsDetail, layoutData }) => {
         "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat mattis vel id sociis diam id congue amet. Aliquam porttitor auctor amet, pretium sapien posuere non.</p>",
     },
   ];
+  const footerPanelData = {
+    headingRedactor:
+      "<h1><strong>Like to know more about Allam Homes?</strong><br/>Contact an Allam home specialist.</h1>",
+    introBlurb:
+      "<p>Our history spans 25 years and during that time we’ve helped thousands  of customers find a new home, with homes and estates spread across many of Sydney’s most popular areas.</p>",
+    buttons: [
+      {
+        buttonType: "light",
+        buttonLink: "/get-in-touch",
+        buttonLabel: "Contact an Agent",
+      },
+    ],
+  };
 
   return (
     <Layout layoutData={layoutData}>
-      <Hero title={news.title} date={news.date} />
+      <Hero title={news.title} date={news.date} bannerImage={news.images[2]} />
       <DetailContent data={news} faqs={faqs} />
+      <KnowMoreAllamHomes data={footerPanelData} />
     </Layout>
   );
 };

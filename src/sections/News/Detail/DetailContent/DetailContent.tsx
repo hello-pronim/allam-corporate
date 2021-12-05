@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Redactor } from "@components/Common/Common";
 import SocialShareIcons from "@components/SocialShareIcons/SocialShareIcons";
@@ -12,11 +12,35 @@ export interface DetailContentProps {
 }
 
 const DetailContent = ({ data, faqs }: DetailContentProps) => {
+  const [windowDimensions, setWindowDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  const getWindowDimensions = () => {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height,
+    };
+  };
+
+  useEffect(() => {
+    getWindowDimensions();
+
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className={styles.detailPanel}>
       <div className={styles.detailPanelWrapper}>
         <div className={styles.detailHeaderWrapper}>
-          {data.images?.map((image: string) => (
+          {data.images?.slice(0, 2).map((image: string) => (
             <Image
               key={image}
               src={image}
@@ -32,7 +56,9 @@ const DetailContent = ({ data, faqs }: DetailContentProps) => {
               title="Share"
               size="small"
               data={data.socials}
-              direction="vertical"
+              direction={
+                windowDimensions.width > 768 ? "vertical" : "horizontal"
+              }
             />
           </div>
           <div className={styles.detailContentWrapper}>
@@ -41,7 +67,7 @@ const DetailContent = ({ data, faqs }: DetailContentProps) => {
         </div>
         <div className={styles.detailFooterWrapper}>
           <div className={styles.detailImages}>
-            {data.images?.map((image: string) => (
+            {data.images?.slice(0, 2).map((image: string) => (
               <Image
                 key={image}
                 src={image}
