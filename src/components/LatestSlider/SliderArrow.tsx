@@ -1,6 +1,6 @@
-import classNames from "classnames";
 import React from "react";
-import styles from "./PostSlider.module.scss";
+import cx from "classnames";
+import styles from "./LatestSlider.module.scss";
 
 export interface ArrowProps {
   onClick: React.MouseEventHandler;
@@ -10,7 +10,7 @@ export interface ArrowProps {
 const SliderArrow = ({ onClick, right = false }: ArrowProps) => {
   return (
     <div
-      className={classNames(styles.SliderArrow, right && styles.RightArrow)}
+      className={cx(styles.SliderArrow, right && styles.RightArrow)}
       onClick={onClick}
     >
       <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -18,7 +18,7 @@ const SliderArrow = ({ onClick, right = false }: ArrowProps) => {
           d="M66.6665 40L13.3332 40"
           stroke="#171717"
           strokeWidth="2"
-          stroke-Linecap="round"
+          strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path

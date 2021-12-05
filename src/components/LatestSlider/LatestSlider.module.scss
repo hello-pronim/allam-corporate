@@ -1,19 +1,26 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
-.TimelineContainer {
-  position: relative;
-  @include grid-container;
-  overflow: hidden;
-  grid-row-gap: 0 !important;
-  @include breakpoint($large) {
-    @include grid(1, 12);
+.latestSlider {
+  &Container {
+    position: relative;
+    overflow: hidden;
+    @include grid-container;
+    @include breakpoint($large) {
+      @include grid(1, 12);
+    }
   }
-}
-.TimelineWrapper {
-  position: relative;
-  grid-column: 2 / span infinite;
-  overflow: hidden;
+  &Wrapper {
+    position: relative;
+    grid-column: 2 / span infinite;
+    overflow: hidden;
+    @include breakpoint($large) {
+      margin-right: rem(-24);
+    }
+    @include breakpoint($webLarge) {
+      margin-right: rem(-48);
+    }
+  }
 }
 
 .card {
@@ -46,6 +53,7 @@
   scroll-snap-align: start;
   justify-content: space-between;
 }
+
 .featured {
   justify-content: flex-start;
   h2 {
@@ -98,14 +106,23 @@
   background-color: $grey;
   border-radius: 100%;
 }
-.arrowWrapper {
+.arrowLeft {
+  left: 0;
+}
+.arrowRight {
+  right: 0;
+}
+.arrowLeft,
+.arrowRight {
+  display: none;
   position: absolute;
-  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
   grid-column: 1 / span 12;
-  display: flex;
-  top: 120px;
-  justify-content: space-between;
-  align-items: center;
+  @include breakpoint($medium) {
+    display: block;
+  }
+
   div {
     cursor: pointer;
     &:hover {
@@ -119,8 +136,8 @@
 }
 
 .SliderArrow {
-  width: 80px;
-  height: 80px;
+  width: rem(70);
+  height: rem(70);
   border-radius: 100%;
 }
 .RightArrow {
