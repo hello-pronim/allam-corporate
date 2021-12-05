@@ -19,7 +19,12 @@
       .shareIconList {
         display: grid;
         grid-auto-flow: column;
-        gap: rem(24);
+        @include breakpoint($large) {
+          gap: rem(24);
+        }
+        @include below($medium) {
+          gap: rem(12);
+        }
       }
       .shareIconItem {
         @include below($medium) {
