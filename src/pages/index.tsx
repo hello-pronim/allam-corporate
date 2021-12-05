@@ -20,6 +20,8 @@ const Home: NextPage<PageProps> = ({ pageData, trustMakers, layoutData }) => {
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
 
+  console.log(layoutData);
+
   return (
     <Layout layoutData={layoutData}>
       <Hero data={heroSlider} />
