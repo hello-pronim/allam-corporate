@@ -9,9 +9,8 @@ import { OverViewPageProps, VideoModel } from "@models";
 import Layout from "@components/Layout/Layout";
 import CardGrid from "@components/CardGrid/CardGrid";
 import Divider from "@components/Common/Divider/Divider";
-import VideoCard from "@components/VideoCard/VideoCard";
 import VideoModal from "@components/VideoModal/VideoModal";
-import LatestSlider from "@components/LatestSlider/LatestSlider";
+import LatestVideos from "@sections/OurVideos/LatestVideos/LatestVideos";
 import FeaturedVideo from "@sections/OurVideos/FeaturedVideo/FeaturedVideo";
 import BackgroundWrapper from "@sections/News/BackgroundWrapper/BackgroundWrapper";
 import { get } from "lodash";
@@ -49,11 +48,7 @@ const OurVideos: NextPage<OverViewPageProps> = ({
     <Layout layoutData={layoutData}>
       <BackgroundWrapper>
         <FeaturedVideo video={featuredVideo} />
-        <LatestSlider>
-          {latestVideos.map((video, index) => (
-            <VideoCard key={index} video={video} variant="latest" />
-          ))}
-        </LatestSlider>
+        <LatestVideos videos={latestVideos} />
         <Divider />
         {/* <CardGrid
           title="Older posts"

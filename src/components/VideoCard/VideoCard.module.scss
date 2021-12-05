@@ -2,7 +2,6 @@
 @import "@styles/variables";
 
 .videoCard {
-  border-radius: rem(3);
   overflow: hidden;
 
   &Image {
@@ -12,6 +11,8 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    border-radius: rem(3);
+    overflow: hidden;
     @include breakpoint($medium) {
       height: rem(300);
     }
@@ -51,12 +52,13 @@
   &Featured {
     .videoCardImage {
       height: rem(250);
+      border-radius: rem(16);
       @include breakpoint($medium) {
         height: rem(400);
       }
       @include breakpoint($large) {
         height: 70vh;
-        min-height: rem(400);
+        min-height: rem(600);
       }
     }
     .videoCardContent {

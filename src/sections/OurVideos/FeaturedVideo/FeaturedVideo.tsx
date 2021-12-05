@@ -16,7 +16,7 @@ const FeaturedVideo = ({ video }: featuredPostProps) => {
           <BreadCrumb />
         </div>
         <h1>Videos</h1>
-        <div className={styles.featuredVideoWrapperContent}>
+        <div className={styles.featuredVideoContent}>
           <VideoCard video={video} variant="featured" />
         </div>
       </div>
