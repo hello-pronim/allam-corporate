@@ -12,7 +12,6 @@ import Divider from "@components/Common/Divider/Divider";
 import VideoCard from "@components/VideoCard/VideoCard";
 import VideoModal from "@components/VideoModal/VideoModal";
 import LatestSlider from "@components/LatestSlider/LatestSlider";
-import { featuredContent } from "@sections/News/FeaturedPost/constant";
 import FeaturedVideo from "@sections/OurVideos/FeaturedVideo/FeaturedVideo";
 import BackgroundWrapper from "@sections/News/BackgroundWrapper/BackgroundWrapper";
 import { get } from "lodash";
@@ -27,7 +26,7 @@ const OurVideos: NextPage<OverViewPageProps> = ({
   const [latestVideos, setLatestVideos] = useState<VideoModel[]>([]);
   const [oldVideos, setOldVideos] = useState<VideoModel[]>([]);
 
-  const featuredVideo = get(pageData, "entry.featuredVideo", []);
+  const featuredVideo = get(pageData, "entry.featuredVideo[0]", []);
   const LATEST_VIDEO_COUNT = get(pageData, "entry.latestVideoCount", 4);
   console.log(featuredVideo);
 
@@ -42,12 +41,14 @@ const OurVideos: NextPage<OverViewPageProps> = ({
   useEffect(() => {
     setLatestVideos(videos.slice(0, LATEST_VIDEO_COUNT));
     setOldVideos(videos.slice(LATEST_VIDEO_COUNT, videos.length));
-  }, [videos]);
+  }, [videos, LATEST_VIDEO_COUNT]);
+
+  console.log(featuredVideo);
 
   return (
     <Layout layoutData={layoutData}>
       <BackgroundWrapper>
-        <FeaturedVideo content={featuredContent} />
+        <FeaturedVideo video={featuredVideo} />
         <LatestSlider>
           {latestVideos.map((video, index) => (
             <VideoCard key={index} video={video} variant="latest" />

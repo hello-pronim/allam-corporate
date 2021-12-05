@@ -40,17 +40,29 @@
   &Content {
     h3 {
       font-size: rem(18);
-      margin-top: rem(24);
-      margin-bottom: rem(8);
+      margin: rem(16) 0 rem(8);
       @include breakpoint($large) {
         font-size: rem(32);
+        margin-top: rem(24);
       }
     }
   }
 
   &Featured {
     .videoCardImage {
-      // height: rem(10);
+      height: rem(250);
+      @include breakpoint($medium) {
+        height: rem(400);
+      }
+      @include breakpoint($large) {
+        height: 70vh;
+        min-height: rem(400);
+      }
+    }
+    .videoCardContent {
+      @include below($large) {
+        padding: 0 rem(16);
+      }
     }
   }
   &Latest {

@@ -23,8 +23,9 @@ const LatestSlider = ({ children }: ILatestSliderProps) => {
       {
         breakpoint: 1023,
         settings: {
-          slidesToShow: 2.5,
+          slidesToShow: 1,
           dots: false,
+          variableWidth: true,
         },
       },
       {
