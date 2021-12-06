@@ -1,0 +1,48 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.collapse {
+  border-top: rem(1) solid $black;
+  padding: rem(8) rem(16);
+  cursor: pointer;
+  &Header {
+    &MainTitle {
+      position: relative;
+      padding-right: rem(30);
+      margin-top: rem(10);
+      margin-bottom: rem(10);
+      .collapseTitle {
+        font-size: rem(21);
+        line-height: rem(28);
+        color: $grey;
+      }
+      .collapseOpenIcon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        width: rem(30);
+        top: 50%;
+        right: 0;
+        transform: translate(0, -50%);
+        &.open {
+          transform: translate(0, -50%) rotate(90deg);
+        }
+      }
+    }
+    &SubTitle1 {
+      height: rem(24);
+      font-size: rem(16);
+      line-height: rem(24);
+      color: $grey;
+    }
+    &SubTitle2 {
+      height: rem(24);
+      font-size: rem(16);
+      line-height: rem(24);
+      color: $grey;
+    }
+  }
+  &Body {
+  }
+}

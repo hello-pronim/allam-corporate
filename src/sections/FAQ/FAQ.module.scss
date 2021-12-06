@@ -1,0 +1,16 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.faqContainer {
+  padding-top: rem(56);
+  padding-bottom: rem(56);
+  .faqTitle {
+    font-weight: 700;
+    font-size: rem(28);
+    line-height: rem(32);
+    color: $grey;
+  }
+  .faqsWrapper {
+    margin-top: rem(56);
+  }
+}
