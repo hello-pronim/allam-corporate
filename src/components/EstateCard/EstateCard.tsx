@@ -47,7 +47,6 @@ const EstateCard = ({ estate }: IEstateCardProps) => {
           ))}
         </Slider>
 
-        {console.log(estate.logo)}
         {estate.logo?.[0]?.url && (
           <div className={styles.estateCardTopLogo}>
             <Image
