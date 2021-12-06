@@ -1,0 +1,88 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.videoCard {
+  overflow: hidden;
+
+  &Image {
+    position: relative;
+    width: 100%;
+    height: rem(210);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: rem(3);
+    overflow: hidden;
+    @include breakpoint($medium) {
+      height: rem(300);
+    }
+    @include breakpoint($large) {
+      height: rem(400);
+    }
+
+    &Play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      display: grid;
+
+      svg {
+        width: rem(50);
+        height: rem(50);
+        @include breakpoint($large) {
+          width: rem(70);
+          height: rem(70);
+        }
+      }
+    }
+  }
+  &Content {
+    h3 {
+      color: $grey;
+      font-size: rem(18);
+      margin: rem(16) 0 rem(8);
+      @include breakpoint($large) {
+        font-size: rem(32);
+        margin-top: rem(24);
+      }
+    }
+    p {
+      color: $grey;
+    }
+  }
+
+  &Featured {
+    .videoCardImage {
+      height: rem(250);
+      border-radius: rem(16);
+      @include breakpoint($medium) {
+        height: rem(400);
+      }
+      @include breakpoint($large) {
+        height: 70vh;
+        min-height: rem(600);
+      }
+    }
+    .videoCardContent {
+      @include below($large) {
+        padding: 0 rem(16);
+      }
+    }
+  }
+  &Latest {
+    .videoCardImage {
+      height: rem(180);
+      @include breakpoint($medium) {
+        height: rem(250);
+      }
+      @include breakpoint($large) {
+        height: rem(300);
+      }
+      @include breakpoint($webXLarge) {
+        height: rem(400);
+      }
+    }
+  }
+}

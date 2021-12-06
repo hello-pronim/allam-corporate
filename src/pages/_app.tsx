@@ -8,7 +8,7 @@ import "@styles/index.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    ReactModal.setAppElement("#__next");
+    ReactModal.setAppElement("body");
   }, []);
   const apolloClient = getClient();
 

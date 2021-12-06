@@ -47,14 +47,16 @@ const EstateCard = ({ estate }: IEstateCardProps) => {
           ))}
         </Slider>
 
+        {console.log(estate.logo)}
         {estate.logo?.[0]?.url && (
           <div className={styles.estateCardTopLogo}>
             <Image
               src={estate.logo?.[0]?.url}
               alt={estate.logo?.[0]?.title}
-              width={156}
-              height={110}
-              objectFit={"contain"}
+              width={estate.logo?.[0]?.width}
+              height={estate.logo?.[0]?.height}
+              // objectFit={"contain"}
+              layout="responsive"
             />
           </div>
         )}

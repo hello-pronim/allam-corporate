@@ -21,6 +21,9 @@ const FindEstateDetail: NextPage<any> = ({ estate, layoutData }) => {
   const suburb = get(estate, "entry.suburb", "");
   const estateState = get(estate, "entry.estateState", "");
   const postcode = get(estate, "entry.postcode", "");
+  const salesCentre = get(estate, "entry.salesCentre[0]", "");
+  const streetAddress = get(estate, "entry.streetAddress", "");
+  const estateLocationAddress = `${suburb} ${estateState} ${postcode}`;
 
   return (
     <Layout layoutData={layoutData}>
@@ -30,7 +33,12 @@ const FindEstateDetail: NextPage<any> = ({ estate, layoutData }) => {
         logo={logo}
       />
       <BannerGallery />
-      <LeadingInfo introText={get(estate, "entry.introText", "")} />
+      <LeadingInfo
+        introText={get(estate, "entry.introText", "")}
+        streetAddress={streetAddress}
+        salesCentre={salesCentre}
+        estateLocationAddress={estateLocationAddress}
+      />
       <HomeList />
       <MasterPlan />
       <Deposit />
@@ -68,6 +76,20 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
           geojson
           downloadableBrochure {
             url
+          }
+          salesCentre {
+            ... on locations_default_Entry {
+              title
+              phoneNumber
+              streetAddress
+              officeName
+              suburb
+              locationState
+              postcode
+              daysOpen
+              hoursOpen
+              directionsLink
+            }
           }
           masterPlanImage {
             url

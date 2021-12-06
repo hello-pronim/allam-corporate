@@ -46,6 +46,13 @@ export type CraftImage = {
   title?: string;
 };
 
+export type VideoModel = {
+  title: string;
+  description?: string;
+  videoLink: string;
+  titleImage: CraftImage[];
+  dateCreated: string;
+};
 export type Asset = {
   url: string;
 };
@@ -144,6 +151,7 @@ export type EstateModel = {
   geojson: string;
   galleryImages: CraftImage[];
   offersLink: any[];
+  salesCentre: LocationModel[];
   masterPlanImage: CraftImage[];
   downloadableBrochure: Asset[];
 };
