@@ -41,7 +41,7 @@ const BannerGallery = ({}: IBannerGalleryProps) => {
 
       <div className={styles.bannerGallerySide}>
         <div className={styles.bannerGallerySideTop}>
-          <Icon type="play-circle" />
+          <Icon type="video-play" />
         </div>
 
         <div className={styles.bannerGallerySideBottom}>

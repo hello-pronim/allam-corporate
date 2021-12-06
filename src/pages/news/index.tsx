@@ -6,7 +6,7 @@ import Layout from "@components/Layout/Layout";
 import CardGrid from "@components/CardGrid/CardGrid";
 import Divider from "@components/Common/Divider/Divider";
 import PostCard from "@sections/News/PostCard/PostCard";
-import PostSlider from "@sections/News/PostSlider/PostSlider";
+import LatestSlider from "@components/LatestSlider/LatestSlider";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 import { featuredContent } from "@sections/News/FeaturedPost/constant";
 import { PostContent } from "@sections/News/PostCard/constant";
@@ -18,11 +18,11 @@ const News: NextPage<PageProps> = ({ layoutData }) => {
     <Layout layoutData={layoutData}>
       <BackgroundWrapper>
         <FeaturedPost content={featuredContent} />
-        <PostSlider>
+        <LatestSlider>
           {PostContent.map((post, index) => {
             return <PostCard key={index} content={post} />;
           })}
-        </PostSlider>
+        </LatestSlider>
         <Divider />
         <CardGrid
           title="Older posts"
