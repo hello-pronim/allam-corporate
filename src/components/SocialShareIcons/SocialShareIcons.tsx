@@ -25,7 +25,7 @@ const SocialShareIcons = ({
         direction == "horizontal"
           ? styles.horizontalShareIcons
           : styles.verticalShareIcons
-      } ${className}`}
+      } ${className ?? ""}`}
     >
       <div className={styles.shareIconsTitle}>{title}</div>
       <div className={styles.shareIconsWrapper}>

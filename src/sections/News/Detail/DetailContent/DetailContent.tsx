@@ -19,6 +19,7 @@ const DetailContent = ({ data, faqs }: DetailContentProps) => {
 
   const getWindowDimensions = () => {
     const { innerWidth: width, innerHeight: height } = window;
+
     return {
       width,
       height,
@@ -26,7 +27,7 @@ const DetailContent = ({ data, faqs }: DetailContentProps) => {
   };
 
   useEffect(() => {
-    getWindowDimensions();
+    setWindowDimensions(getWindowDimensions());
 
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
