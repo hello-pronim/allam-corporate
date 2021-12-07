@@ -109,9 +109,10 @@ const PropertyCard = ({
             </span>
           </div>
         </div>
-        {!isOpenInspection && (
+        {!isOpenInspection && homeData.homeDesign?.[0] && (
           <p>
-            <b>Home Design:</b>
+            <b>Home Design: </b>
+            <span>{homeData.homeDesign?.[0]?.title}</span>
             {/* <span>{card.homeDesign}</span> */}
           </p>
         )}

@@ -2,7 +2,10 @@
 @import "@styles/variables";
 
 .propertyCard {
-  display: block;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  height: 100%;
   max-width: 100%;
   overflow: hidden;
   @include breakpoint($medium) {
@@ -24,12 +27,12 @@
 
     &Bar {
       width: 100%;
-      background: #212121;
+      background: $grey;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       justify-content: space-evenly;
-      row-gap: 5px;
-      padding: 9px 18px;
+      row-gap: rem(6);
+      padding: rem(9) rem(18);
       &Text {
         font-size: 14px;
         line-height: 24px;
@@ -56,6 +59,7 @@
   }
 
   &Bottom {
+    flex: 1;
     padding: rem(16);
     background: $white;
     border: rem(1) solid $grey3;

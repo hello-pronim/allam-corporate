@@ -26,11 +26,11 @@ const LandCard = ({ landData }: LandCardProps) => {
   const address = `${landData.title}`;
 
   return (
-    <div className={styles.propertyCard}>
-      <div className={styles.propertyCardTop}>
+    <div className={styles.landCard}>
+      <div className={styles.landCardTop}>
         <Slider {...settings}>
           {landData?.images?.map((image, id) => (
-            <div key={id} className={styles.propertyCardTopImage}>
+            <div key={id} className={styles.landCardTopImage}>
               <Image
                 src={image.url}
                 alt={image.title}
@@ -47,11 +47,11 @@ const LandCard = ({ landData }: LandCardProps) => {
         </Slider>
       </div>
 
-      <div className={styles.propertyCardBottom}>
+      <div className={styles.landCardBottom}>
         <h5>{address}</h5>
 
-        <div className={styles.propertyCardBottomInfo}>
-          <div className={styles.propertyCardBottomInfoDetail}>
+        <div className={styles.landCardBottomInfo}>
+          <div className={styles.landCardBottomInfoDetail}>
             <p>Land size</p>
             <span className={styles.superComp}>
               {landData.landSize}m<sup>2</sup>
