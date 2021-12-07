@@ -163,6 +163,9 @@ export type HomeModel = {
   lotNumber?: string;
   address: string;
   suburb: string;
+  homeDesign?: {
+    title: string;
+  }[];
   openForInspection?: boolean;
   inspectionTimes?: InspectionTimeModel[];
   buildingSize?: number;

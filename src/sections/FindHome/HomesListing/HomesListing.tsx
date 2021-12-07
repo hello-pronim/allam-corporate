@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { orderBy } from "lodash";
 import { useRecoilValue } from "recoil";
 import { filteredHomes } from "@states/atoms/homes";
@@ -33,7 +34,11 @@ const HomesListing = ({ showMap, setShowMap }: IHomesListingProps) => {
             <div className={styles.homesListingView}>
               <div className={styles.homesListingCards}>
                 {orderBy(homesList, [sortKey], ["asc"])?.map((home, id) => (
-                  <PropertyCard key={id} homeData={home} />
+                  <Link href={`/find-home/${home.slug}`} key={id}>
+                    <a>
+                      <PropertyCard key={id} homeData={home} />
+                    </a>
+                  </Link>
                 ))}
                 <EasyBuyPurchase />
               </div>

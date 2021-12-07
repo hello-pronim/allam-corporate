@@ -108,6 +108,7 @@ const homesQuery = gql`
   query homesQuery {
     entries(section: "homesAndLand") {
       ... on homesAndLand_default_Entry {
+        slug
         title
         landOnly
         lotNumber
@@ -117,6 +118,9 @@ const homesQuery = gql`
           ... on estates_default_Entry {
             title
           }
+        }
+        homeDesign {
+          title
         }
         openForInspection
         buildingSize
