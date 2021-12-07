@@ -3,30 +3,54 @@
 
 .logosPanel {
   display: grid;
-  padding-top: rem(84);
-  padding-bottom: rem(84);
   background-color: $grey2;
   @include grid-container;
   @include breakpoint($large) {
+    padding-top: rem(84);
+    padding-bottom: rem(84);
     @include grid(1, 12);
+  }
+  @include below($medium) {
+    padding-top: rem(40);
+    padding-bottom: rem(80);
   }
 
   .logosWrapper {
     grid-column: 2 / span 10;
     h3 {
       text-align: center;
-      font-size: rem(48);
-      line-height: rem(55);
+      @include breakpoint($large) {
+        font-size: rem(48);
+        line-height: rem(55);
+      }
+      @include below($medium) {
+        font-size: rem(24);
+        line-height: rem(33.6);
+      }
     }
 
     .logosList {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: rem(72);
+      @include breakpoint($large) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: rem(72);
+      }
+      @include below($medium) {
+        flex-direction: column;
+        margin-top: rem(20);
+      }
       &Item {
-        width: 25%;
-        padding: rem(44);
+        @include breakpoint($large) {
+          width: 25%;
+          padding: rem(44);
+        }
+        @include below($large) {
+          width: 100%;
+          padding-top: rem(20);
+          padding-bottom: rem(20);
+        }
       }
     }
   }

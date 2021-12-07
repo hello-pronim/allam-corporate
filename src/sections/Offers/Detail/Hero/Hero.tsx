@@ -34,9 +34,14 @@ const Hero = ({ offer, background }: IHeroProps) => {
             <div className={styles.heroContentTopTitle}>
               <h1>{title}</h1>
             </div>
+            {subTitle && (
+              <div className={styles.heroContentTopSubTitleMobile}>
+                <Redactor>{subTitle}</Redactor>
+              </div>
+            )}
             {!background && (
-              <>
-                <div className={styles.heroContentTopImage}>
+              <div className={styles.heroContentTopExtra}>
+                <div className={styles.heroContentTopExtraImage}>
                   <Image
                     src={"/assets/images/img-easyBuy-seal-waxMain.png"}
                     alt="easy-buy-mark"
@@ -45,13 +50,17 @@ const Hero = ({ offer, background }: IHeroProps) => {
                     layout="responsive"
                   />
                 </div>
-                <div className={styles.heroContentTopAction}>
-                  <div className={styles.heroContentTopActionButtons}>
-                    <Button color="dark">Register your interest</Button>
-                    <Button color="light">Contact an Agent</Button>
+                <div className={styles.heroContentTopExtraAction}>
+                  <div className={styles.heroContentTopExtraActionButtons}>
+                    <Button color="dark" rounded>
+                      Register your interest
+                    </Button>
+                    <Button color="light" rounded>
+                      Contact an Agent
+                    </Button>
                   </div>
                 </div>
-              </>
+              </div>
             )}
           </div>
           <div className={styles.heroContentBottom}>
