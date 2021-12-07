@@ -13,6 +13,11 @@
   border-width: 0;
   cursor: pointer;
 
+  @include below($medium) {
+    font-size: rem(16);
+    line-height: rem(34);
+  }
+
   &.rounded {
     border-radius: rem(6);
   }
