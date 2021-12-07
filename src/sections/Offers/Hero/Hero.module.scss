@@ -10,7 +10,6 @@
   }
 
   &Wrapper {
-    padding-bottom: rem(25);
     @include grid-container;
 
     @include breakpoint($large) {
@@ -18,7 +17,7 @@
       padding-bottom: rem(125);
     }
     @include below($medium) {
-      padding-bottom: rem(125);
+      padding-bottom: rem(72);
     }
   }
 
@@ -36,21 +35,22 @@
   }
 
   &Content {
-    margin-top: rem(44);
     position: relative;
     @include breakpoint($large) {
-      margin: 0;
+      margin-top: rem(44);
       align-items: center;
       grid-column: 1 / span 12;
       @include grid(1, 12);
     }
+    @include below($medium) {
+      margin-top: rem(64);
+    }
 
     h1 {
       color: $grey;
-      margin-bottom: rem(24);
       @include breakpoint($large) {
         grid-column: 1 / span 7;
-        margin: 0;
+        margin-bottom: rem(24);
       }
       @include breakpoint($xx-large) {
         grid-column: 2 / span 5;

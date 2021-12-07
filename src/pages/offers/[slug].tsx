@@ -19,7 +19,7 @@ const PromotionalOfferDetail: NextPage<PageProps> = ({
   layoutData,
 }) => {
   const router = useRouter();
-  const { id } = router.query;
+  const { slug } = router.query;
   const backgrounds = [
     "/assets/images/temp/rugby.png",
     "/assets/temp/img-hero-homepage-2.jpg",
