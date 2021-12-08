@@ -8,7 +8,7 @@ import { layoutQuery } from "@libs/queries";
 import Layout from "@components/Layout/Layout";
 import StickyBar from "@components/StickyBar/StickyBar";
 import Hero from "@sections/HomeDetail/Hero/Hero";
-import BannerImage from "@sections/LandDetail/BannerImage/BannerImage";
+import BannerGallery from "@sections/HomeDetail/BannerGallery/BannerGallery";
 import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
 import LandInfo from "@sections/LandDetail/LandInfo/LandInfo";
 import { landRegisterData } from "@libs/constants";
@@ -16,15 +16,16 @@ import { landRegisterData } from "@libs/constants";
 const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
   const title = get(home, "entry.title", "");
   const estateInfo = get(home, "entry.estate[0]", "");
-  const bannerImage = get(home, "entry.images[0]", "");
+  const bannerImages = get(home, "entry.images", []);
   const introBlurb = get(home, "entry.introBlurb", "");
+  const gallery3dUrl = get(home, "entry.gallery3dUrl", "");
   const offer = get(home, "entry.associatedOffers[0]", "");
 
   return (
     <div>
       <Layout layoutData={layoutData}>
         <Hero data={home?.entry} />
-        <BannerImage image={bannerImage} />
+        <BannerGallery images={bannerImages} gallery3dUrl={gallery3dUrl} />
         <LandInfo
           introBlurb={introBlurb}
           estateInfo={estateInfo}
@@ -63,6 +64,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
             width
             height
           }
+          gallery3dUrl
           estate {
             ... on estates_default_Entry {
               title

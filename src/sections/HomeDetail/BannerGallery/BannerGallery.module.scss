@@ -1,0 +1,91 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.bannerGallery {
+  height: rem(475);
+  z-index: 1;
+  position: relative;
+  @include breakpoint($large) {
+    height: rem(742);
+    display: grid;
+    gap: rem(8);
+    grid-template-areas: "main side" "main side";
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 8.5fr 3.5fr;
+  }
+  @include breakpoint($xx-large) {
+    grid-template-columns: 9fr 3fr;
+  }
+
+  &Main {
+    position: relative;
+    height: 100%;
+    background: url("/assets/images/estate-detail/img-gallery-main.jpg")
+      no-repeat;
+    background-size: cover;
+    background-position: center;
+    @include breakpoint($large) {
+      grid-area: main;
+    }
+  }
+
+  &Side {
+    display: none;
+    @include breakpoint($large) {
+      display: grid;
+      gap: rem(8);
+      grid-template-rows: 1fr 1fr;
+      grid-area: side;
+    }
+
+    &Top {
+      @include breakpoint($large) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: url("/assets/images/estate-detail/img-gallery-top.jpg")
+          no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+    }
+
+    &Bottom {
+      @include breakpoint($large) {
+        position: relative;
+        background: url("/assets/images/estate-detail/img-gallery-bottom.jpg")
+          no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+    }
+  }
+
+  &ViewButton {
+    padding: rem(12) rem(8);
+    position: absolute;
+    left: 50%;
+    bottom: rem(34);
+    transform: translateX(-50%);
+    background: $white;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px rem(12) rgba(0, 0, 0, 0.25);
+    border-radius: rem(4);
+
+    a,
+    span {
+      padding: 0 rem(16);
+      display: block;
+      color: $grey;
+      font-weight: 700;
+      font-size: rem(16);
+      line-height: rem(24);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    a {
+      border-right: rem(1) solid $grey;
+    }
+  }
+}
