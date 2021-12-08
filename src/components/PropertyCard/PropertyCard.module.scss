@@ -34,12 +34,12 @@
       row-gap: rem(6);
       padding: rem(9) rem(18);
       &Text {
-        font-size: 14px;
-        line-height: 24px;
-        color: #ffcb05;
+        font-size: rem(14);
+        line-height: rem(24);
+        color: $primary;
         &:nth-child(even) {
-          text-align: right;
           font-weight: bold;
+          text-align: right;
         }
       }
       &Completion {

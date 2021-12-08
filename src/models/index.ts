@@ -166,6 +166,7 @@ export type HomeModel = {
   homeDesign?: {
     title: string;
   }[];
+  sellingLabel?: string;
   openForInspection?: boolean;
   inspectionTimes?: InspectionTimeModel[];
   buildingSize?: number;
@@ -174,7 +175,7 @@ export type HomeModel = {
   bedrooms?: number;
   bathrooms?: number;
   car?: number;
-  landSize: number;
+  landSize: string;
   latitude?: string;
   longitude?: string;
   introBlurb?: string;

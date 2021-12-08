@@ -1,0 +1,215 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.hero {
+  position: relative;
+  padding: rem(78) 0 rem(18);
+  background-color: $white;
+  @include breakpoint($large) {
+    padding: rem(135) 0 rem(78);
+  }
+
+  &Wrapper {
+    @include grid-container;
+
+    @include breakpoint($large) {
+      @include grid(1, 12);
+    }
+  }
+
+  &Breadcrumb {
+    @include breakpoint($large) {
+      grid-column: 1 / span 12;
+    }
+  }
+
+  &Content {
+    position: relative;
+    @include breakpoint($large) {
+      margin: 0;
+      grid-column: 1 / span 12;
+      @include grid(1, 12);
+    }
+
+    &Back {
+      display: none;
+      @include breakpoint($large) {
+        display: block;
+        grid-column: 1 / span 1;
+      }
+    }
+
+    &Text {
+      margin-top: rem(34);
+      @include breakpoint($large) {
+        margin-top: 0;
+        grid-column: 2 / span 5;
+      }
+      @include breakpoint($xx-large) {
+        grid-column: 2 / span 4;
+      }
+
+      &Selling {
+        display: flex;
+        align-items: center;
+
+        p {
+          font-size: rem(14);
+          margin-left: rem(10);
+          @include breakpoint($large) {
+            font-size: rem(18);
+          }
+        }
+        span {
+          font-size: rem(14);
+        }
+
+        &Date {
+          @include breakpoint($large) {
+            display: none;
+          }
+        }
+      }
+
+      h1 {
+        color: $grey;
+        margin: rem(8) 0;
+        @include breakpoint($large) {
+          margin: rem(16) 0;
+        }
+      }
+
+      &Info {
+        @include breakpoint($webLarge) {
+          display: flex;
+          align-items: center;
+        }
+
+        &Top {
+          display: flex;
+          align-items: center;
+          margin-bottom: rem(12);
+          @include breakpoint($large) {
+            margin-bottom: rem(16);
+          }
+          @include breakpoint($webLarge) {
+            margin-bottom: 0;
+            margin-right: rem(24);
+          }
+          & > div {
+            &:not(:last-of-type) {
+              margin-right: rem(24);
+            }
+          }
+        }
+        &Bottom {
+          display: flex;
+          align-items: center;
+          & > div {
+            &:not(:last-of-type) {
+              margin-right: rem(24);
+            }
+          }
+        }
+
+        &Detail {
+          display: flex;
+          align-items: center;
+          span {
+            display: block;
+            font-weight: bold;
+            margin-left: rem(12);
+          }
+          sup {
+            font-size: rem(10);
+          }
+        }
+      }
+    }
+
+    &Buttons {
+      display: none;
+      margin-top: rem(20);
+      @include breakpoint($large) {
+        margin: 0;
+        margin-left: auto;
+        display: inline-grid;
+        align-items: stretch;
+        gap: rem(16);
+      }
+      @include breakpoint($x-large) {
+        width: rem(250);
+      }
+
+      button {
+        flex: 1;
+        padding-left: rem(6);
+        padding-right: rem(6);
+        @include breakpoint($large) {
+          flex: initial;
+          padding-left: rem(12);
+          padding-right: rem(12);
+        }
+      }
+    }
+
+    &Bar {
+      width: 100%;
+      margin-top: rem(32);
+      @include breakpoint($large) {
+        margin-top: 0;
+        grid-column: 7 / span 3;
+        display: flex;
+        align-items: stretch;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      &Info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @include breakpoint($large) {
+          margin-bottom: rem(4);
+        }
+      }
+
+      &Text {
+        color: $grey;
+        font-size: rem(16);
+        line-height: 1.5;
+        &:nth-child(even) {
+          text-align: right;
+          font-weight: bold;
+          display: none;
+          @include breakpoint($large) {
+            display: block;
+          }
+        }
+      }
+
+      &Completion {
+        width: 100%;
+        height: rem(4);
+        background: $grey2;
+        border-radius: rem(4);
+        overflow: hidden;
+        span {
+          background: $primary;
+          display: block;
+          border-radius: rem(4);
+        }
+      }
+    }
+
+    &CTA {
+      display: none;
+      @include breakpoint($large) {
+        display: flex;
+        align-items: center;
+        grid-column: 10 / span 3;
+        text-align: right;
+      }
+    }
+  }
+}

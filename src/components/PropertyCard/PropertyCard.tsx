@@ -29,8 +29,10 @@ const PropertyCard = ({
     slidesToScroll: 1,
   };
 
-  const address = `${homeData.lotNumber}, ${homeData.address}`;
+  // const address = `${homeData.lotNumber}, ${homeData.address}`;
+  const address = `${homeData.title}`;
 
+  console.log(homeData);
   return (
     <div className={styles.propertyCard}>
       <div className={styles.propertyCardTop}>
@@ -113,7 +115,6 @@ const PropertyCard = ({
           <p>
             <b>Home Design: </b>
             <span>{homeData.homeDesign?.[0]?.title}</span>
-            {/* <span>{card.homeDesign}</span> */}
           </p>
         )}
       </div>
