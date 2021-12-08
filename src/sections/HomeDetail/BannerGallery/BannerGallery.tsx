@@ -34,14 +34,28 @@ const BannerGallery = ({ images, gallery3dUrl }: IBannerGalleryProps) => {
       </div>
 
       <div className={styles.bannerGallerySide}>
-        <div className={styles.bannerGallerySideTop}>
+        <div
+          className={styles.bannerGallerySideTop}
+          style={{ backgroundImage: `url(${images[1]?.url})` }}
+        >
           <Icon type="video-play" />
         </div>
 
-        <div className={styles.bannerGallerySideBottom}>
+        <div
+          className={styles.bannerGallerySideBottom}
+          style={
+            images[2]?.url
+              ? { backgroundImage: `url(${images[2]?.url})` }
+              : { background: "#eef2f5" }
+          }
+        >
           {!useMobileView() && (
             <div className={styles.bannerGalleryViewButton}>
-              <span>Virtual Tour</span>
+              {gallery3dUrl !== "" && (
+                <a href={gallery3dUrl} target="_blank" rel="noreferrer">
+                  Virtual Tour
+                </a>
+              )}{" "}
               <span onClick={() => setGalleryOpen(true)}>View Gallery</span>
             </div>
           )}
