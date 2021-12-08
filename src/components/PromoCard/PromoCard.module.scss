@@ -28,6 +28,8 @@
   }
 
   &.cardSide {
+    background-image: url("/assets/icons/icon-panel-type-2-desktop.svg");
+
     .cardHeader {
       h2 {
         @include breakpoint($large) {

@@ -25,7 +25,9 @@ export const filteredLands = selector({
       filters.locations?.[0] === "All"
         ? lands
         : lands?.filter((land) =>
-            filters?.locations?.some((location) => location === land.suburb)
+            filters?.locations?.some(
+              (location) => location.toLowerCase() === land.suburb.toLowerCase()
+            )
           );
 
     const handleBlockFilter = (

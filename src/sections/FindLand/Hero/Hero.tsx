@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { map, sortBy } from "lodash";
 import { useRecoilValue, useRecoilState } from "recoil";
 import {
   allLandsState,
@@ -8,10 +7,11 @@ import {
 } from "@states/atoms/lands";
 import { Redactor } from "@components/Common/Common";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
-import LandFilter from "@sections/FindLand/LandFilter/LandFilter";
 import FilterModal from "@components/FilterModal/FilterModal";
 import FilterByChoiceGroup from "@components/FilterByChoiceGroup/FilterByChoiceGroup";
+import LandFilter from "@sections/FindLand/LandFilter/LandFilter";
 import { ChoiceModel } from "@models";
+import { getSuburbs } from "@utils/getSuburbs";
 import { transformLocations } from "@utils/transformLocations";
 import { landBlockSizes } from "@libs/constants";
 import styles from "./Hero.module.scss";
@@ -37,7 +37,7 @@ const Hero = ({
   const [landFilter, setLandFilters] = useRecoilState(landsFilterState);
 
   useEffect(() => {
-    setSuburbList(sortBy(map(landsList, "suburb")));
+    setSuburbList(getSuburbs(landsList));
   }, [landsList]);
 
   useEffect(() => {

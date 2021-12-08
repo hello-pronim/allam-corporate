@@ -32,7 +32,6 @@ const PropertyCard = ({
   // const address = `${homeData.lotNumber}, ${homeData.address}`;
   const address = `${homeData.title}`;
 
-  console.log(homeData);
   return (
     <div className={styles.propertyCard}>
       <div className={styles.propertyCardTop}>

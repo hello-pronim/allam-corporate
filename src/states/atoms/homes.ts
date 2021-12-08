@@ -52,7 +52,9 @@ export const filteredHomes = selector({
       filters.locations?.[0] === "All"
         ? homes
         : homes?.filter((home) =>
-            filters?.locations?.some((location) => location === home.suburb)
+            filters?.locations?.some(
+              (location) => location.toLowerCase() === home.suburb.toLowerCase()
+            )
           );
 
     const filterBlock =
