@@ -10,7 +10,7 @@ import StickyBar from "@components/StickyBar/StickyBar";
 import Hero from "@sections/HomeDetail/Hero/Hero";
 import BannerGallery from "@sections/HomeDetail/BannerGallery/BannerGallery";
 import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
-import LandInfo from "@sections/LandDetail/LandInfo/LandInfo";
+import HomeInfo from "@sections/HomeDetail/HomeInfo/HomeInfo";
 import { landRegisterData } from "@libs/constants";
 
 const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
@@ -26,7 +26,7 @@ const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
       <Layout layoutData={layoutData}>
         <Hero data={home?.entry} />
         <BannerGallery images={bannerImages} gallery3dUrl={gallery3dUrl} />
-        <LandInfo
+        <HomeInfo
           introBlurb={introBlurb}
           estateInfo={estateInfo}
           offer={offer}
