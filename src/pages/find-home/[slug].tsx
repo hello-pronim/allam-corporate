@@ -20,7 +20,11 @@ const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
   const introBlurb = get(home, "entry.introBlurb", "");
   const gallery3dUrl = get(home, "entry.gallery3dUrl", "");
   const offer = get(home, "entry.associatedOffers[0]", "");
+  const homeDesign = get(home, "entry.homeDesign[0].title", "");
+  const brochureUrl = get(home, "entry.downloadableBrochure[0].url", "");
+  const floorPlan = get(home, "entry.floorPlan[0]");
 
+  console.log(home);
   return (
     <div>
       <Layout layoutData={layoutData}>
@@ -30,6 +34,9 @@ const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
           introBlurb={introBlurb}
           estateInfo={estateInfo}
           offer={offer}
+          homeDesign={homeDesign}
+          brochureUrl={brochureUrl}
+          floorPlan={floorPlan}
         />
         <RegisterPanel data={landRegisterData} />
       </Layout>
@@ -64,14 +71,24 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
             width
             height
           }
+          homeDesign {
+            title
+          }
           gallery3dUrl
           estate {
             ... on estates_default_Entry {
               title
               salesCentre {
                 ... on locations_default_Entry {
-                  title
                   phoneNumber
+                  title
+                  officeName
+                  streetAddress
+                  suburb
+                  locationState
+                  postcode
+                  daysOpen
+                  hoursOpen
                 }
               }
             }

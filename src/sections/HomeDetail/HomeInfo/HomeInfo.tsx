@@ -1,49 +1,115 @@
 import React from "react";
-import { Redactor } from "@components/Common/Common";
-import { Button, ImageButton } from "@components/Common/Common";
+import Image from "next/image";
+import { CraftImage } from "@models";
 import PromoCard from "@components/PromoCard/PromoCard";
+import { Button, ImageButton, Redactor } from "@components/Common/Common";
 import styles from "./HomeInfo.module.scss";
 
 export interface IHomeInfoProps {
   introBlurb?: string;
   estateInfo?: any;
   offer?: any;
+  homeDesign: string;
+  brochureUrl?: string;
+  floorPlan?: CraftImage;
 }
 
-const HomeInfo = ({ introBlurb, estateInfo, offer }: IHomeInfoProps) => {
+const HomeInfoCard = ({
+  estateInfo,
+  homeDesign,
+}: {
+  estateInfo: any;
+  homeDesign: string;
+}) => {
+  const location = estateInfo?.salesCentre?.[0];
+
+  return (
+    <div className={styles.homeInfoContactCard}>
+      <div className={styles.homeInfoContactCardRow}>
+        <p>
+          <strong>Home Design</strong>
+        </p>
+        <span>{homeDesign}</span>
+      </div>
+
+      <div className={styles.homeInfoContactCardRow}>
+        <p>
+          <strong>Contact us</strong>
+        </p>
+        <span>{location?.phoneNumber}</span>
+      </div>
+
+      <div className={styles.homeInfoContactCardRow}>
+        <p>
+          <strong>{location?.officeName}</strong>
+        </p>
+        <div>
+          <span>
+            {`${location?.streetAddress},`}
+            <br />
+            {`${location?.suburb} ${location?.locationState} ${location?.postcode}`}
+          </span>
+          <span>
+            <strong>{location?.daysOpen}</strong>
+            {` ${location?.hoursOpen}`}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const HomeInfo = ({
+  introBlurb,
+  estateInfo,
+  offer,
+  homeDesign,
+  brochureUrl,
+  floorPlan,
+}: IHomeInfoProps) => {
   return (
     <div className={styles.homeInfo}>
       <div className={styles.homeInfoWrapper}>
         <div className={styles.homeInfoContainer}>
           <div className={styles.homeInfoContent}>
+            <HomeInfoCard estateInfo={estateInfo} homeDesign={homeDesign} />
+
             <div className={styles.homeInfoContentIntro}>
               <Redactor>{introBlurb ?? ""}</Redactor>
             </div>
-            <ImageButton
-              href="#"
-              variant="primary"
-              icon="download-white"
-              label="Download Brochure"
-              chevron={true}
-              labelSpacingLeft={8}
-              labelSpacingRight={16}
-            />
+
+            <div className={styles.homeInfoContentFloorPlan}>
+              {floorPlan?.url && (
+                <Image
+                  src={floorPlan?.url}
+                  alt={floorPlan?.title}
+                  width={floorPlan?.width}
+                  height={floorPlan?.height}
+                  layout="responsive"
+                />
+              )}
+            </div>
+
+            {brochureUrl && (
+              <a
+                target="_blank"
+                download="test.pdf"
+                href={brochureUrl}
+                rel="noreferrer"
+              >
+                <ImageButton
+                  variant="primary"
+                  icon="download-white"
+                  label="Download Brochure"
+                  chevron={true}
+                  labelSpacingLeft={8}
+                  labelSpacingRight={16}
+                />
+              </a>
+            )}
           </div>
           <div className={styles.homeInfoContact}>
-            <div className={styles.homeInfoContactCard}>
-              <div className={styles.homeInfoContactCardTop}>
-                <p>
-                  <strong>Estate</strong>
-                </p>
-                <span>{estateInfo?.salesCentre?.[0]?.title}</span>
-              </div>
-              <div>
-                <p>
-                  <strong>Contact us</strong>
-                </p>
-                <span>{estateInfo?.salesCentre?.[0]?.phoneNumber}</span>
-              </div>
-            </div>
+            <HomeInfoCard estateInfo={estateInfo} homeDesign={homeDesign} />
 
             <div className={styles.homeInfoContactOffer}>
               <PromoCard

@@ -8,6 +8,7 @@
   }
 
   &::before {
+    display: none;
     content: "";
     position: absolute;
     top: -3%;
@@ -21,9 +22,9 @@
       rgba($white, 0.5) 33.84%,
       rgba(255, 255, 255, 0) 81.13%
     );
-    clip-path: polygon(85% 0, 100% 0, 100% 100%, 25% 100%);
 
     @include breakpoint($medium) {
+      display: block;
       top: -3%;
       clip-path: polygon(75% 0, 100% 0, 100% 100%, 5% 100%);
     }
@@ -37,8 +38,8 @@
     @include grid-container;
   }
   &Container {
-    padding: rem(80) 0 rem(40);
-    @include breakpoint($medium) {
+    padding: rem(24) 0 rem(40);
+    @include breakpoint($large) {
       @include grid(1, 12);
       padding: rem(120) 0;
     }
@@ -47,6 +48,7 @@
   &Content {
     padding-bottom: rem(80);
     @include breakpoint($large) {
+      padding: 0;
       grid-column: 1 / span 6;
     }
     @include breakpoint($xx-large) {
@@ -61,6 +63,22 @@
         }
       }
     }
+
+    &FloorPlan {
+      margin-bottom: rem(24);
+      @include breakpoint($large) {
+        margin-bottom: rem(56);
+      }
+    }
+
+    a {
+      display: inline-flex;
+    }
+    .homeInfoContactCard {
+      @include breakpoint($large) {
+        display: none;
+      }
+    }
   }
   &Contact {
     @include breakpoint($large) {
@@ -70,32 +88,47 @@
       grid-column: 9 / span 3;
     }
 
-    &Card {
-      padding: rem(24);
-      background: $white;
-      border-radius: rem(8);
-      border: rem(1) solid rgba($grey, 0.5);
-
-      &Top {
-        margin-bottom: rem(16);
-        padding-bottom: rem(16);
-        border-bottom: rem(1) solid $primary;
-      }
-
-      p {
-        color: $light-grey;
-        font-size: rem(18);
-        margin-bottom: rem(8);
-      }
-
-      span {
-        color: $light-grey;
-        font-size: rem(16);
-      }
-    }
-
     &Offer {
       margin-top: rem(40);
+    }
+
+    .homeInfoContactCard {
+      display: none;
+      @include breakpoint($large) {
+        display: block;
+      }
+    }
+  }
+}
+
+.homeInfoContactCard {
+  padding: rem(24);
+  background: $white;
+  border-radius: rem(8);
+  border: rem(1) solid rgba($grey, 0.5);
+  margin-bottom: rem(40);
+
+  &Row {
+    &:not(:last-of-type) {
+      margin-bottom: rem(16);
+      padding-bottom: rem(16);
+      border-bottom: rem(1) solid $primary;
+    }
+
+    p {
+      color: $light-grey;
+      font-size: rem(18);
+      margin-bottom: rem(8);
+    }
+
+    span {
+      display: block;
+      color: $light-grey;
+      font-size: rem(16);
+
+      &:nth-of-type(2) {
+        margin-top: rem(4);
+      }
     }
   }
 }

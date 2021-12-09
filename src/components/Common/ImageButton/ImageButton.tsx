@@ -16,6 +16,7 @@ export interface IImageButtonProps {
   labelSpacingLeft?: number;
   labelSpacingRight?: number;
   onClick?: () => void;
+  download?: boolean;
 }
 
 const ImageButton = ({

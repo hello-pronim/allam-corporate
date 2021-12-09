@@ -13,7 +13,15 @@
     @include breakpoint($large) {
       @include grid(1, 12);
     }
+
+    h2 {
+      margin: rem(40) 0;
+      @include breakpoint($large) {
+        margin-bottom: rem(106);
+      }
+    }
   }
+
   .TabWrapper {
     position: absolute;
     z-index: 100;
@@ -23,6 +31,7 @@
     grid-column: 1 / span 12;
     align-items: center;
     justify-content: center;
+
     .TabContainer {
       display: flex;
       background-color: $white;
@@ -127,16 +136,28 @@
 .locationCard {
   width: 100%;
   height: 100%;
-  background-color: #fff;
   padding: rem(24);
+  background-color: $white;
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25), 0px 3px 4px rgba(0, 0, 0, 0.1);
   border-radius: rem(8);
+
   &CTAs {
     @include grid(1, 2, rem(24));
+    @include below($medium) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    button {
+      padding-left: rem(14);
+      padding-right: rem(14);
+      @include breakpoint($medium) {
+        width: 100%;
+      }
+    }
   }
   .divider {
     background: $primary;
-    height: 1px;
+    height: rem(1);
     width: 100%;
     margin-top: rem(24);
     margin-bottom: rem(24);
