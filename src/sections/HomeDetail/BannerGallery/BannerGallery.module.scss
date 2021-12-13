@@ -46,6 +46,10 @@
         background-size: cover;
         background-position: center;
       }
+
+      & > div {
+        cursor: pointer;
+      }
     }
 
     &Bottom {

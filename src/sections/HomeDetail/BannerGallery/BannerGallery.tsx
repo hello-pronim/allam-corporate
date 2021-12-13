@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import Image from "next/image";
-import { CraftImage } from "@models";
+import { CraftImage, VideoModel } from "@models";
 import Icon from "@components/Icons/Icons";
-import { Button } from "@components/Common/Common";
 import GalleryModal from "@components/GalleryModal/GalleryModal";
 import { useMobileView } from "src/utils/useMobileView";
 import styles from "./BannerGallery.module.scss";
@@ -10,9 +8,14 @@ import styles from "./BannerGallery.module.scss";
 export interface IBannerGalleryProps {
   images: CraftImage[];
   gallery3dUrl: string;
+  videos: VideoModel[];
 }
 
-const BannerGallery = ({ images, gallery3dUrl }: IBannerGalleryProps) => {
+const BannerGallery = ({
+  images,
+  gallery3dUrl,
+  videos,
+}: IBannerGalleryProps) => {
   const [isGalleryOpen, setGalleryOpen] = useState(false);
 
   return (
@@ -38,7 +41,7 @@ const BannerGallery = ({ images, gallery3dUrl }: IBannerGalleryProps) => {
           className={styles.bannerGallerySideTop}
           style={{ backgroundImage: `url(${images[1]?.url})` }}
         >
-          <Icon type="video-play" />
+          <Icon type="video-play" onClick={() => setGalleryOpen(true)} />
         </div>
 
         <div
@@ -65,6 +68,8 @@ const BannerGallery = ({ images, gallery3dUrl }: IBannerGalleryProps) => {
       <GalleryModal
         isModalOpen={isGalleryOpen}
         closeModal={() => setGalleryOpen(false)}
+        videos={videos}
+        images={images}
       />
     </div>
   );

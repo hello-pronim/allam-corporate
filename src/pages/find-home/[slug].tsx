@@ -20,16 +20,51 @@ const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
   const introBlurb = get(home, "entry.introBlurb", "");
   const gallery3dUrl = get(home, "entry.gallery3dUrl", "");
   const offer = get(home, "entry.associatedOffers[0]", "");
+  const videos = get(home, "entry.videos", []);
   const homeDesign = get(home, "entry.homeDesign[0].title", "");
   const brochureUrl = get(home, "entry.downloadableBrochure[0].url", "");
   const floorPlan = get(home, "entry.floorPlan[0]");
 
   console.log(home);
+
+  const settings = {
+    className: "gallery-modal-slider",
+    infinite: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    speed: 500,
+    arrows: false,
+    dots: false,
+    variableWidth: true,
+    responsive: [
+      {
+        breakpoint: 1023,
+        settings: {
+          slidesToShow: 1,
+          variableWidth: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 564,
+        settings: {
+          slidesToShow: 1,
+          variableWidth: true,
+          dots: false,
+        },
+      },
+    ],
+  };
+
   return (
     <div>
       <Layout layoutData={layoutData}>
         <Hero data={home?.entry} />
-        <BannerGallery images={bannerImages} gallery3dUrl={gallery3dUrl} />
+        <BannerGallery
+          images={bannerImages}
+          videos={videos}
+          gallery3dUrl={gallery3dUrl}
+        />
         <HomeInfo
           introBlurb={introBlurb}
           estateInfo={estateInfo}
@@ -105,6 +140,14 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
             url
             width
             height
+          }
+          videos {
+            ... on ourVideos_default_Entry {
+              videoLink
+              titleImage {
+                url
+              }
+            }
           }
           introBlurb
           latitude

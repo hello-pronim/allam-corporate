@@ -11,10 +11,12 @@
   }
 
   h2 {
+    margin-left: rem(16);
     margin-bottom: rem(24);
     font-size: rem(26);
     line-height: rem(33);
     @include breakpoint($large) {
+      margin: 0;
       font-size: rem(32);
       line-height: rem(44);
       grid-column: 1 / span 12;

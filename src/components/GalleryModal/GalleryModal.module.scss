@@ -3,15 +3,51 @@
 
 .galleryModal {
   height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
   @include breakpoint($large) {
   }
 
+  &Close {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: $white;
+    position: absolute;
+    top: 2vh;
+    right: 2vh;
+
+    svg {
+      path {
+        fill: $white;
+      }
+    }
+
+    span {
+      font-size: rem(16);
+      text-transform: uppercase;
+    }
+  }
+
   &Slider {
-    &ArrowLeft {
+    &Wrapper {
+      max-width: 100%;
+    }
+    &ArrowLeft,
+    &ArrowRight {
+      display: none;
       position: absolute;
       top: 50%;
-      left: 1vw;
       transform: translateY(-50%);
+      border-radius: 100%;
+      background-color: rgba($grey, 0.75);
+      @include breakpoint($large) {
+        display: inline-grid;
+        z-index: 100;
+        cursor: pointer;
+      }
 
       svg {
         path {
@@ -20,16 +56,28 @@
       }
     }
 
+    &ArrowLeft {
+      left: 1vw;
+    }
     &ArrowRight {
-      position: absolute;
-      top: 50%;
       right: 1vw;
       transform: translateY(-50%) rotate(180deg);
+    }
 
-      svg {
-        path {
-          stroke: $white;
-        }
+    &Single {
+      width: 100%;
+      height: rem(320);
+      position: relative;
+      border-radius: rem(4);
+      // overflow: hidden;
+      @include breakpoint($large) {
+        height: 70vh;
+        max-height: rem(640);
+      }
+
+      & > div {
+        width: 100%;
+        height: 100%;
       }
     }
   }
