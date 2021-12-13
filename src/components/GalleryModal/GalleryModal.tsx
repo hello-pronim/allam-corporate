@@ -20,7 +20,7 @@ const GalleryModal = ({
 }: IGalleryModalProps) => {
   const customStyles: React.ReactNode = {
     overlay: {
-      backgroundColor: "rgba(0, 0, 0, 0.55)",
+      backgroundColor: "rgb(0, 0, 0)",
       zIndex: "1000",
     },
     content: {
