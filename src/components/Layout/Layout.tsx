@@ -13,7 +13,7 @@ export interface ILayoutProps {
 }
 
 const Layout = ({
-  title = "Allam Corp Website",
+  title = "Allam Property Group - Now Selling - New Ready Built Homes",
   layoutData,
   children,
 }: ILayoutProps) => {

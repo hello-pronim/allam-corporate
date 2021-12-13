@@ -21,9 +21,14 @@ const FindEstateDetail: NextPage<any> = ({ estate, layoutData }) => {
   const suburb = get(estate, "entry.suburb", "");
   const estateState = get(estate, "entry.estateState", "");
   const postcode = get(estate, "entry.postcode", "");
+  const videos = get(estate, "entry.videos", []);
+  const bannerImages = get(estate, "entry.galleryImages", []);
+  const masterPlan = get(estate, "entry.masterPlanImage[0]", "");
   const salesCentre = get(estate, "entry.salesCentre[0]", "");
   const streetAddress = get(estate, "entry.streetAddress", "");
   const estateLocationAddress = `${suburb} ${estateState} ${postcode}`;
+
+  console.log(estate);
 
   return (
     <Layout layoutData={layoutData}>
@@ -32,7 +37,7 @@ const FindEstateDetail: NextPage<any> = ({ estate, layoutData }) => {
         address={`${suburb}, ${estateState} ${postcode}`}
         logo={logo}
       />
-      <BannerGallery />
+      <BannerGallery images={bannerImages} videos={videos} logo={logo} />
       <LeadingInfo
         introText={get(estate, "entry.introText", "")}
         streetAddress={streetAddress}
@@ -40,7 +45,7 @@ const FindEstateDetail: NextPage<any> = ({ estate, layoutData }) => {
         estateLocationAddress={estateLocationAddress}
       />
       <HomeList />
-      <MasterPlan />
+      <MasterPlan masterPlanImage={masterPlan} />
       <Deposit />
       <News />
       <SimilarEstates />
@@ -77,6 +82,14 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
           downloadableBrochure {
             url
           }
+          videos {
+            ... on ourVideos_default_Entry {
+              videoLink
+              titleImage {
+                url
+              }
+            }
+          }
           salesCentre {
             ... on locations_default_Entry {
               title
@@ -92,6 +105,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
             }
           }
           masterPlanImage {
+            title
             url
           }
           galleryImages {

@@ -18,6 +18,10 @@ const BannerGallery = ({
 }: IBannerGalleryProps) => {
   const [isGalleryOpen, setGalleryOpen] = useState(false);
 
+  const openGallery = () => {
+    setGalleryOpen(true);
+  };
+
   return (
     <div className={styles.bannerGallery}>
       <div
@@ -31,7 +35,7 @@ const BannerGallery = ({
                 Virtual Tour
               </a>
             )}
-            <span onClick={() => setGalleryOpen(true)}>View Gallery</span>
+            <span onClick={openGallery}>View Gallery</span>
           </div>
         )}
       </div>
@@ -41,7 +45,7 @@ const BannerGallery = ({
           className={styles.bannerGallerySideTop}
           style={{ backgroundImage: `url(${images[1]?.url})` }}
         >
-          <Icon type="video-play" onClick={() => setGalleryOpen(true)} />
+          <Icon type="video-play" onClick={openGallery} />
         </div>
 
         <div
@@ -59,7 +63,7 @@ const BannerGallery = ({
                   Virtual Tour
                 </a>
               )}{" "}
-              <span onClick={() => setGalleryOpen(true)}>View Gallery</span>
+              <span onClick={openGallery}>View Gallery</span>
             </div>
           )}
         </div>

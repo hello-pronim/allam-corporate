@@ -25,37 +25,6 @@ const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
   const brochureUrl = get(home, "entry.downloadableBrochure[0].url", "");
   const floorPlan = get(home, "entry.floorPlan[0]");
 
-  console.log(home);
-
-  const settings = {
-    className: "gallery-modal-slider",
-    infinite: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    speed: 500,
-    arrows: false,
-    dots: false,
-    variableWidth: true,
-    responsive: [
-      {
-        breakpoint: 1023,
-        settings: {
-          slidesToShow: 1,
-          variableWidth: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 564,
-        settings: {
-          slidesToShow: 1,
-          variableWidth: true,
-          dots: false,
-        },
-      },
-    ],
-  };
-
   return (
     <div>
       <Layout layoutData={layoutData}>

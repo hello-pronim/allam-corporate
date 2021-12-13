@@ -1,14 +1,18 @@
 import React, { useState } from "react";
+import Image from "next/image";
 import classnames from "classnames/bind";
-import { ImageButton } from "@components/Common/Common";
+import { CraftImage } from "@models";
 import Icon from "@components/Icons/Icons";
+import { ImageButton } from "@components/Common/Common";
 import styles from "./MasterPlan.module.scss";
 
-export interface IMasterPlanProps {}
+export interface IMasterPlanProps {
+  masterPlanImage: CraftImage;
+}
 
 const cx = classnames.bind(styles);
 
-const MasterPlan = ({}: IMasterPlanProps) => {
+const MasterPlan = ({ masterPlanImage }: IMasterPlanProps) => {
   const [isTouchPan, setTouchPan] = useState(false);
 
   return (
@@ -23,10 +27,7 @@ const MasterPlan = ({}: IMasterPlanProps) => {
               })}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={"/assets/images/estate-detail/img-masterplan.jpg"}
-                alt="masterplan"
-              />
+              <img src={masterPlanImage.url} alt={masterPlanImage.title} />
             </div>
 
             <div className={styles.masterPlanImageAction}>
