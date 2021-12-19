@@ -11,13 +11,12 @@
 
   &Wrapper {
     @include grid-container;
+    padding-bottom: rem(72);
 
     @include breakpoint($large) {
       @include grid(1, 12);
-      padding-bottom: rem(125);
-    }
-    @include below($medium) {
-      padding-bottom: rem(72);
+      row-gap: 0 !important;
+      padding-bottom: rem(100);
     }
   }
 
@@ -36,14 +35,12 @@
 
   &Content {
     position: relative;
+    margin-top: rem(64);
     @include breakpoint($large) {
       margin-top: rem(44);
       align-items: center;
       grid-column: 1 / span 12;
       @include grid(1, 12);
-    }
-    @include below($medium) {
-      margin-top: rem(64);
     }
 
     h1 {

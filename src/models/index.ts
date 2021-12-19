@@ -203,6 +203,15 @@ export type LandModel = {
   downloadableBrochure?: CraftImage[];
 };
 
+export type OfferModel = {
+  title: string;
+  shortDescription: string;
+  description: string;
+  introBlurb: string;
+  titleImage: CraftImage[];
+  filesDownloads: Asset[];
+};
+
 export type ChoiceModel = {
   label: string;
   value: string;
