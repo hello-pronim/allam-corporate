@@ -23,6 +23,7 @@ const offersQuery = gql`
   query offersQuery {
     entries(section: "promotions") {
       ... on promotions_default_Entry {
+        slug
         title
         publishDate
         expiryDate

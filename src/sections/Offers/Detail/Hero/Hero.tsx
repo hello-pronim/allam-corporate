@@ -4,26 +4,25 @@ import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
 import { Button, Redactor } from "@components/Common/Common";
 
 import styles from "./Hero.module.scss";
+import { CraftImage } from "@models";
 
 type IHeroProps = {
-  offer?: any;
-  background?: any;
+  title: string;
+  shortDescription: string;
+  heroBackground?: CraftImage;
 };
 
-const defaultBackground = "/assets/icons/icon-panel-type-2-desktop.svg";
-const Hero = ({ offer, background }: IHeroProps) => {
-  const [heroBackground, setHeroBackground] = useState(defaultBackground);
-  const { title, subTitle } = offer;
-
-  useEffect(() => {
-    if (background) setHeroBackground(background);
-    else setHeroBackground(defaultBackground);
-  }, [background]);
-
+const Hero = ({ title, shortDescription, heroBackground }: IHeroProps) => {
   return (
     <div
-      className={background ? styles.bgHero : styles.defaultHero}
-      style={{ backgroundImage: `url(${heroBackground})` }}
+      className={`${styles.offerHero} ${heroBackground ? styles.bgHero : ""}`}
+      style={{
+        backgroundImage: `url(${
+          heroBackground?.url
+            ? heroBackground?.url
+            : "/assets/icons/icon-panel-type-1.svg"
+        })`,
+      }}
     >
       <div className={styles.heroWrapper}>
         <div className={styles.heroBreadcrumb}>
@@ -31,15 +30,11 @@ const Hero = ({ offer, background }: IHeroProps) => {
         </div>
         <div className={styles.heroContent}>
           <div className={styles.heroContentTop}>
-            <div className={styles.heroContentTopTitle}>
+            <div className={styles.heroContentTopMain}>
               <h1>{title}</h1>
+              {shortDescription && <h3>{shortDescription}</h3>}
             </div>
-            {subTitle && (
-              <div className={styles.heroContentTopSubTitleMobile}>
-                <Redactor>{subTitle}</Redactor>
-              </div>
-            )}
-            {!background && (
+            {!heroBackground && (
               <div className={styles.heroContentTopExtra}>
                 <div className={styles.heroContentTopExtraImage}>
                   <Image
@@ -59,21 +54,6 @@ const Hero = ({ offer, background }: IHeroProps) => {
                       Contact an Agent
                     </Button>
                   </div>
-                </div>
-              </div>
-            )}
-          </div>
-          <div className={styles.heroContentBottom}>
-            {subTitle && (
-              <div className={styles.heroContentBottomText}>
-                <Redactor>{subTitle}</Redactor>
-              </div>
-            )}
-            {background && (
-              <div className={styles.heroContentBottomAction}>
-                <div className={styles.heroContentBottomActionButtons}>
-                  <Button color="light">Register your interest</Button>
-                  <Button color="dark">Contact an Agent</Button>
                 </div>
               </div>
             )}

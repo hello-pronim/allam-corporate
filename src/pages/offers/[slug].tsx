@@ -4,8 +4,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
-import { trustQuery, layoutQuery } from "@libs/queries";
-import { propsFind } from "@utils/propsFind";
+import { layoutQuery } from "@libs/queries";
 import { PageProps } from "@models";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/Offers/Detail/Hero/Hero";
@@ -15,11 +14,15 @@ import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
 
 const PromotionalOfferDetail: NextPage<PageProps> = ({
   pageData,
-  trustMakers,
   layoutData,
 }) => {
-  const router = useRouter();
-  const { slug } = router.query;
+  console.log(pageData);
+  const title = get(pageData, "entry.title", "");
+  const description = get(pageData, "entry.description", "");
+  const introBlurb = get(pageData, "entry.introBlurb", "");
+  const shortDescription = get(pageData, "entry.shortDescription", "");
+  const heroBackground = get(pageData, "entry.titleImage[0]", "");
+
   const backgrounds = [
     "/assets/images/temp/rugby.png",
     "/assets/temp/img-hero-homepage-2.jpg",
@@ -88,9 +91,12 @@ const PromotionalOfferDetail: NextPage<PageProps> = ({
 
   return (
     <Layout layoutData={layoutData}>
-      <Hero offer={offers[0]} />
-      {/* <Hero offer={offers[1]} background={backgrounds[0]} /> */}
-      {/* <Hero offer={offers[1]} background={backgrounds[1]} /> */}
+      <Hero
+        title={title}
+        shortDescription={shortDescription}
+        // heroBackground={heroBackground}
+      />
+
       <DetailContent description={offers[0].description} />
       <OfferAvailableEstates
         title="Offer available at these estates"
@@ -101,15 +107,42 @@ const PromotionalOfferDetail: NextPage<PageProps> = ({
   );
 };
 
-export const getStaticProps = async function () {
-  // const pageData = await craftAPI(pageQuery);
-  // const trustMakers = await craftAPI(trustQuery);
+export const getStaticProps: GetStaticProps = async function ({ params }) {
+  const slug = get(params, "slug");
   const layoutData = await craftAPI(layoutQuery);
+
+  const offerQuery = gql`
+    query offerQuery($slug: [String] = "${slug}") {
+      entry(section: "promotions", slug: $slug) {
+        ... on promotions_default_Entry {
+          slug
+          title
+          publishDate
+          expiryDate
+          shortDescription
+          introBlurb
+          description
+          homePageBanner {
+            title
+            url
+          }
+          titleImage {
+            title
+            url
+          }
+          filesDownloads {
+            url
+          }
+        }
+      }
+    }
+  `;
+
+  const pageData = await craftAPI(offerQuery);
 
   return {
     props: {
-      // pageData,
-      // trustMakers,
+      pageData,
       layoutData,
     },
     revalidate: 60,

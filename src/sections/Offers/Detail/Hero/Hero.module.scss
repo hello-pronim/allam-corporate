@@ -1,34 +1,32 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
-.defaultHero {
+.offerHero {
   position: relative;
   padding-top: rem(78);
-  background-image: url("/assets/icons/icon-panel-type-2-desktop.svg");
   background-repeat: no-repeat;
   background-size: cover;
   @include breakpoint($large) {
+    height: 100vh;
     padding-top: rem(135);
+    min-height: rem(800);
   }
+
   &:before {
     background: linear-gradient(
       180.02deg,
-      #ffffff 33.84%,
+      $white 33.84%,
       rgba(255, 255, 255, 0) 91.13%
     );
   }
 
   .heroWrapper {
     @include grid-container;
-
+    padding-bottom: rem(84);
     @include breakpoint($large) {
       padding-bottom: rem(125);
     }
-    @include below($medium) {
-      padding-bottom: rem(84);
-    }
   }
-
   .heroBreadcrumb {
     @include breakpoint($large) {
       grid-column: 1 / span 12;
@@ -37,133 +35,75 @@
 
   .heroContent {
     position: relative;
+    padding-top: rem(56);
+    @include breakpoint($large) {
+      padding: rem(96) 0;
+    }
 
-    @include below($medium) {
-      padding-top: rem(56);
+    h1 {
+      color: $grey;
+      font-size: rem(40);
+      line-height: 1;
+      margin-bottom: rem(16);
+      @include breakpoint($large) {
+        font-size: rem(112);
+        margin-bottom: rem(76);
+      }
+    }
+    h3 {
+      color: $grey;
+      font-size: rem(16);
+      line-height: rem(26);
+      @include breakpoint($large) {
+        font-size: rem(48);
+        line-height: rem(56);
+      }
     }
 
     &Top {
-      color: $grey;
       @include breakpoint($large) {
-        margin: 0;
-        align-items: center;
-        grid-gap: rem(32) !important;
         @include grid(1, 12);
       }
-      @include below($medium) {
-        @include grid-container;
-      }
-      &Title {
+
+      &Main {
         @include breakpoint($large) {
+          grid-column: 1 / span 6;
+        }
+        @include breakpoint($xx-large) {
           grid-column: 2 / span 5;
-          margin: 0;
-        }
-        @include below($medium) {
-          width: 80%;
-        }
-        h1 {
-          @include breakpoint($large) {
-            font-size: rem(104);
-            line-height: 1;
-          }
-          @include below($medium) {
-            font-size: rem(40);
-            line-height: 1;
-            margin-bottom: rem(16);
-          }
-        }
-      }
-      &SubTitleMobile {
-        @include breakpoint($large) {
-          display: none;
-        }
-        @include below($medium) {
-          display: block;
-        }
-        h3 {
-          @include breakpoint($large) {
-            font-size: rem(48);
-            line-height: rem(56);
-          }
-          @include below($medium) {
-            font-size: rem(16);
-            line-height: rem(26);
-          }
         }
       }
       &Extra {
         @include breakpoint($large) {
-          grid-column: 7 / span 5;
-          margin: 0;
+          display: flex;
           align-items: center;
-          @include grid(1, 12);
+          justify-content: space-between;
+          grid-column: 7 / span 7;
         }
-        &Title {
-          @include breakpoint($large) {
-            display: block;
-          }
-          @include below($medium) {
-            display: none;
-          }
-          h3 {
-            @include breakpoint($large) {
-              font-size: rem(48);
-              line-height: rem(56);
-            }
-            @include below($medium) {
-              font-size: rem(16);
-              line-height: rem(26);
-            }
-          }
+        @include breakpoint($xx-large) {
+          grid-column: 7 / span 6;
         }
+
         &Image {
-          @include breakpoint($xx-large) {
-            grid-column: 1 / span 7;
-          }
-          @include below($medium) {
-            width: 60%;
-            margin-left: auto;
-            margin-bottom: rem(42);
+          width: rem(200);
+          margin-left: auto;
+          margin-bottom: rem(42);
+          @include breakpoint($large) {
+            width: 50%;
+            margin: 0;
           }
         }
         &Action {
-          @include breakpoint($xx-large) {
-            grid-column: 8 / span 5;
+          @include breakpoint($large) {
+            width: 50%;
+            text-align: center;
           }
           &Buttons {
-            display: flex;
-            flex-direction: column;
-            gap: rem(24);
-          }
-        }
-      }
-    }
-
-    &Bottom {
-      color: $grey;
-      @include breakpoint($large) {
-        margin: 0;
-        align-items: center;
-        grid-column: 1 / span 12;
-        @include grid(1, 12);
-      }
-      &Text {
-        @include breakpoint($large) {
-          display: block;
-          grid-column: 2 / span 5;
-          margin: 0;
-        }
-        @include below($medium) {
-          display: none;
-        }
-        h3 {
-          @include breakpoint($large) {
-            font-size: rem(48);
-            line-height: rem(56);
-          }
-          @include below($medium) {
-            font-size: rem(16);
-            line-height: rem(26);
+            @include grid(1, 1);
+            @include breakpoint($xx-large) {
+              width: auto !important;
+              display: inline-grid !important;
+            }
           }
         }
       }

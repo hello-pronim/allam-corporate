@@ -17,8 +17,8 @@ const OfferAvailableEstates = ({
       <div className={styles.logosWrapper}>
         {title && <h3>{title}</h3>}
         <div className={styles.logosList}>
-          {estates.map((estate) => (
-            <div key={estate.id} className={styles.logosListItem}>
+          {estates.map((estate, id) => (
+            <div key={id} className={styles.logosListItem}>
               <Image
                 src={estate.logo}
                 alt={estate.name}

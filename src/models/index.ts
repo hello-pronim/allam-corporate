@@ -204,6 +204,7 @@ export type LandModel = {
 };
 
 export type OfferModel = {
+  slug?: string;
   title: string;
   shortDescription: string;
   description: string;
