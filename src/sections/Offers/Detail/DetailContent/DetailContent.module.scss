@@ -5,7 +5,7 @@
   background-color: $grey2;
   padding: rem(80) 0;
   @include breakpoint($large) {
-    padding: rem(210) 0 rem(116);
+    padding: rem(150) 0 rem(116);
   }
 
   &Wrapper {
@@ -17,10 +17,10 @@
 
   &Container {
     @include breakpoint($large) {
-      grid-column: 1 / span 12;
+      grid-column: 2 / span 10;
     }
     @include breakpoint($xx-large) {
-      grid-column: 2 / span 10;
+      grid-column: 3 / span 8;
     }
 
     h3 {
