@@ -23,10 +23,6 @@ const PromotionalOfferDetail: NextPage<PageProps> = ({
   const shortDescription = get(pageData, "entry.shortDescription", "");
   const heroBackground = get(pageData, "entry.titleImage[0]", "");
 
-  const backgrounds = [
-    "/assets/images/temp/rugby.png",
-    "/assets/temp/img-hero-homepage-2.jpg",
-  ];
   const registerPanelData = {
     headingRedactor:
       "<h2><strong>To take advantage fo this offer,</strong><br /> Simply register your interest today</h2>",
@@ -94,10 +90,10 @@ const PromotionalOfferDetail: NextPage<PageProps> = ({
       <Hero
         title={title}
         shortDescription={shortDescription}
-        // heroBackground={heroBackground}
+        heroBackground={heroBackground}
       />
 
-      <DetailContent description={offers[0].description} />
+      <DetailContent description={description} />
       <OfferAvailableEstates
         title="Offer available at these estates"
         estates={estates}

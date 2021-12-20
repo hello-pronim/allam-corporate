@@ -1,6 +1,5 @@
 import React from "react";
 import { Redactor } from "@components/Common/Common";
-
 import styles from "./DetailContent.module.scss";
 
 export interface DetailContentProps {
@@ -9,10 +8,12 @@ export interface DetailContentProps {
 
 const DetailContent = ({ description }: DetailContentProps) => {
   return (
-    <div className={styles.offerDetailPanel}>
+    <div className={styles.offerDetail}>
       <div className={styles.offerDetailWrapper}>
-        <div className={styles.offerDescription}>
-          {description && <Redactor>{description}</Redactor>}
+        <div className={styles.offerDetailContainer}>
+          <div className={styles.offerDetailDescription}>
+            {description && <Redactor>{description}</Redactor>}
+          </div>
         </div>
       </div>
     </div>
