@@ -130,3 +130,63 @@ export const landRegisterData = {
   description:
     "<p>Our history spans 25 years and during that time we’ve helped thousands  of customers find a new home, with homes and estates spread across many of Sydney’s most popular areas.</p>",
 };
+
+export const aboutTimelineCards = [
+  {
+    featured: true,
+    title: "Our journey begins in November 1991.",
+    subtitle: "Allam Bros Australia Py Ltd (Incorporated)",
+    year: 1991,
+    background: "/assets/images/temp/yellow-card.png",
+  },
+  {
+    featured: false,
+    title: "Our first home is completed in Cranebrooke, NSW.",
+    subtitle: "",
+    year: 1992,
+    background: "",
+  },
+  {
+    featured: false,
+    title: "Allam Homes enters top 10 list of ~Sydney Builders.~",
+    subtitle: "",
+    year: 1992,
+    background: "",
+  },
+  {
+    featured: false,
+    title: "~Max Walker~ becomes the face of Allam Maxi Homes",
+    subtitle: "Allam Bros Australia Py Ltd (Incorporated)",
+    year: 1992,
+    textColor: "white",
+    background: "/assets/images/temp/temp-grey.jpg",
+  },
+  {
+    featured: false,
+    title: "Our first home is completed in Cranebrooke, NSW.",
+    subtitle: "",
+    year: 2000,
+    background: "",
+  },
+  {
+    featured: false,
+    title: "Our first home is completed in Cranebrooke, NSW.",
+    subtitle: "",
+    year: 2005,
+    background: "",
+  },
+  {
+    featured: false,
+    title: "Our first home is completed in Cranebrooke, NSW.",
+    subtitle: "",
+    year: 2008,
+    background: "",
+  },
+  {
+    featured: false,
+    title: "Our first home is completed in Cranebrooke, NSW.",
+    subtitle: "",
+    year: 2012,
+    background: "",
+  },
+];
