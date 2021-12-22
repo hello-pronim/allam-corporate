@@ -215,6 +215,14 @@ export type OfferModel = {
 
 export type NewsModel = {
   slug?: string;
+  title: string;
+  category: string;
+  description: string;
+  shortDescription: string;
+  publishDate: string;
+  linkedEstates: EstateModel[];
+  titleImage: CraftImage[];
+  filesDownloads: Asset[];
 };
 
 export type ChoiceModel = {

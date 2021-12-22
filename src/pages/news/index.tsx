@@ -16,9 +16,13 @@ import { PostContent } from "@sections/News/PostCard/constant";
 import FeaturedPost from "@sections/News/FeaturedPost/FeaturedPost";
 import BackgroundWrapper from "@sections/News/BackgroundWrapper/BackgroundWrapper";
 
-const News: NextPage<OverViewPageProps> = ({ listingData, layoutData }) => {
+const News: NextPage<OverViewPageProps> = ({
+  pageData,
+  listingData,
+  layoutData,
+}) => {
   console.log(listingData);
-  const [videos, setVideos] = useState<NewsModel[]>([]);
+  const [news, setNews] = useState<NewsModel[]>([]);
 
   return (
     <Layout layoutData={layoutData}>
@@ -48,6 +52,40 @@ const News: NextPage<OverViewPageProps> = ({ listingData, layoutData }) => {
     </Layout>
   );
 };
+
+const pageQuery = gql`
+  query newsPage {
+    entry(section: "newsPage") {
+      ... on newsPage_newsPage_Entry {
+        featuredNews {
+          ... on newsAndEvents_default_Entry {
+            slug
+            title
+            description
+            category
+            publishDate
+            shortDescription
+            titleImage {
+              url
+              title
+              width
+              height
+            }
+            linkedEstates {
+              ... on estates_default_Entry {
+                title
+              }
+            }
+            filesDownloads {
+              url
+            }
+          }
+        }
+        latestArticleCount
+      }
+    }
+  }
+`;
 
 const newsQuery = gql`
   query newsQuery {
@@ -79,11 +117,13 @@ const newsQuery = gql`
 export const getStaticProps = async function () {
   const layoutData = await craftAPI(layoutQuery);
   const listingData = await craftAPI(newsQuery);
+  const pageData = await craftAPI(pageQuery);
 
   return {
     props: {
       layoutData,
       listingData,
+      pageData,
     },
     revalidate: 60,
   };
