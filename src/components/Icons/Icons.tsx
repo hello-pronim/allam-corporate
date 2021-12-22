@@ -233,6 +233,20 @@ const Icon = ({ type, onClick, ...props }: IIconProps) => {
       )}
       {type === "facebook" && (
         <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="11"
+          height="20"
+          viewBox="0 0 11 20"
+          fill="none"
+        >
+          <path
+            d="M9.11986 3.32003H10.9999V0.14003C10.0896 0.045377 9.17502 -0.00135428 8.25986 2.98641e-05C5.53986 2.98641e-05 3.67986 1.66003 3.67986 4.70003V7.32003H0.609863V10.88H3.67986V20H7.35986V10.88H10.4199L10.8799 7.32003H7.35986V5.05003C7.35986 4.00003 7.63986 3.32003 9.11986 3.32003Z"
+            fill="white"
+          />
+        </svg>
+      )}
+      {type === "facebook-dark" && (
+        <svg
           width="24"
           height="24"
           viewBox="0 0 24 24"

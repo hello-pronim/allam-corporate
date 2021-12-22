@@ -213,6 +213,10 @@ export type OfferModel = {
   filesDownloads: Asset[];
 };
 
+export type NewsModel = {
+  slug?: string;
+};
+
 export type ChoiceModel = {
   label: string;
   value: string;

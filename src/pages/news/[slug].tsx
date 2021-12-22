@@ -24,7 +24,7 @@ const NewsDetail: NextPage<any> = ({ newsDetail, layoutData }) => {
     ],
     socials: [
       {
-        type: "facebook",
+        type: "facebook-dark",
         icon: "",
         url: "https://facebook.com",
       },
