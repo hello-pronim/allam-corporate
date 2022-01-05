@@ -11,7 +11,6 @@ import Divider from "@components/Common/Divider/Divider";
 import PostCard from "@sections/News/PostCard/PostCard";
 import LatestSlider from "@components/LatestSlider/LatestSlider";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
-import { featuredContent } from "@sections/News/FeaturedPost/constant";
 import { PostContent } from "@sections/News/PostCard/constant";
 import FeaturedPost from "@sections/News/FeaturedPost/FeaturedPost";
 import BackgroundWrapper from "@sections/News/BackgroundWrapper/BackgroundWrapper";
