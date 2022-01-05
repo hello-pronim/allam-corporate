@@ -21,13 +21,16 @@ const News: NextPage<OverViewPageProps> = ({
   listingData,
   layoutData,
 }) => {
-  console.log(listingData);
+  console.log(pageData);
   const [news, setNews] = useState<NewsModel[]>([]);
+
+  const featuredNews = get(pageData, "entry.featuredNews[0]", []);
+  const LATEST_NEWS_COUNT = get(pageData, "entry.latestArticleCount", 4);
 
   return (
     <Layout layoutData={layoutData}>
       <BackgroundWrapper>
-        <FeaturedPost content={featuredContent} />
+        <FeaturedPost post={featuredNews} />
         <LatestSlider>
           {PostContent.map((post, index) => {
             return <PostCard key={index} content={post} />;

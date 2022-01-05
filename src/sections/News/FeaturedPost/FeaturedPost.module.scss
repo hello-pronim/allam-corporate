@@ -3,53 +3,103 @@
 
 .FeaturedPost {
   &Wrapper {
-    padding-top: rem(136);
-    padding-bottom: rem(68);
-    @include grid-container;
+    padding: rem(80) 0 rem(50);
+
     @include breakpoint($large) {
+      @include grid-container;
       padding-top: rem(136);
       padding-bottom: rem(68);
       @include grid(1, 12);
-      &Breadcrumbs {
-        grid-column: 1 / span 4;
+    }
+  }
+
+  &Breadcrumbs {
+    padding: 0 rem(16);
+    margin-bottom: rem(36);
+    font-size: rem(12);
+    line-height: rem(28);
+    letter-spacing: rem(0.25);
+
+    @include breakpoint($large) {
+      padding: 0;
+      grid-column: 1 / span 4;
+    }
+  }
+
+  h1 {
+    padding: 0 rem(16);
+    margin-bottom: rem(30);
+    @include breakpoint($large) {
+      padding: 0;
+      grid-column: 2 / span 6;
+    }
+  }
+
+  &Content {
+    grid-column: 2 / span 10;
+
+    &ImageContainer {
+      position: relative;
+    }
+
+    &Tag {
+      padding: rem(4) rem(14);
+      position: absolute;
+      top: rem(12);
+      left: rem(16);
+      border-radius: rem(2);
+      background-color: $primary;
+
+      span {
+        display: block;
+        font-weight: 600;
         font-size: rem(12);
-        line-height: rem(28);
-        letter-spacing: rem(0.25);
+        line-height: rem(16);
       }
-      h1 {
-        grid-column: 2 / span 6;
+    }
+
+    &Image {
+      width: 100%;
+      height: rem(250);
+      background-repeat: none;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: rem(18);
+
+      @include breakpoint($large) {
+        height: rem(560);
+        border-radius: rem(16);
       }
-      h4 {
-        margin-bottom: rem(24);
+    }
+
+    &Details {
+      padding: 0 rem(16);
+      @include breakpoint($large) {
+        padding: 0;
       }
-      &Content {
-        grid-column: 2 / span 10;
-        & > * {
-          flex-grow: 0;
-        }
-        &Image {
-          background-repeat: none;
-          background-size: cover;
-          background-position: center center;
-          // background-image: url(/assets/images/retirement-living/Slide-1.png);
-          height: rem(250);
-          width: 100%;
-          border-radius: rem(16);
-          @include breakpoint($large) {
-            height: rem(560);
-          }
-        }
-        &Details {
-          padding-top: rem(24);
-          display: inline-flex;
-          column-gap: rem(40);
-          &Categories {
-            & > *:not(:last-child) {
-              &::after {
-                content: ", ";
-              }
+
+      &Info {
+        display: inline-grid;
+        grid-template-columns: repeat(3, auto);
+        gap: rem(20);
+        margin-bottom: rem(8);
+
+        span {
+          text-transform: capitalize;
+
+          &:last-of-type {
+            display: none;
+            @include breakpoint($large) {
+              display: block;
             }
           }
+        }
+      }
+
+      h4 {
+        margin-bottom: rem(16);
+        @include below($large) {
+          font-size: rem(22);
         }
       }
     }

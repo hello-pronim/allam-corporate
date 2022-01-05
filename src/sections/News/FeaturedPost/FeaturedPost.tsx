@@ -1,21 +1,15 @@
 import React from "react";
-import styles from "./FeaturedPost.module.scss";
+import { NewsModel } from "@models";
 import { Button } from "@components/Common/Common";
 import css from "@styled-system/css";
+import styles from "./FeaturedPost.module.scss";
 
 export interface featuredPostProps {
-  content: {
-    imageUrl: string;
-    categories: Array<string>;
-    estate: string;
-    title: string;
-    buttonLink: string;
-    date: string;
-  };
+  post: NewsModel;
 }
 
-const FeaturedPost = ({ content }: featuredPostProps) => {
-  const date = (date: string) => {
+const FeaturedPost = ({ post }: featuredPostProps) => {
+  const formateDate = (date: string) => {
     const d = date && new Date(date);
     var options = { day: "numeric", month: "long", year: "numeric" };
     //@ts-ignore
@@ -23,31 +17,36 @@ const FeaturedPost = ({ content }: featuredPostProps) => {
     return writtenDate;
   };
 
+  console.log(post);
+
   return (
     <div className={styles.FeaturedPost}>
       <div className={styles.FeaturedPostWrapper}>
-        <div className={styles.FeaturedPostWrapperBreadcrumbs}>
-          Home / Promotions
-        </div>
+        <div className={styles.FeaturedPostBreadcrumbs}>Home / Promotions</div>
         <h1>News and Events</h1>
-        <div className={styles.FeaturedPostWrapperContent}>
-          <div
-            className={styles.FeaturedPostWrapperContentImage}
-            css={css({ backgroundImage: `url(${content.imageUrl})` })}
-          />
-          <div className={styles.FeaturedPostWrapperContentDetails}>
-            <span>{date(content.date)}</span>
-            <div className={styles.FeaturedPostWrapperContentDetailsCategories}>
-              {content.categories.map((category) => {
-                return <span key={category}>{category}</span>;
-              })}
+        <div className={styles.FeaturedPostContent}>
+          <div className={styles.FeaturedPostContentImageContainer}>
+            <div
+              className={styles.FeaturedPostContentImage}
+              style={{ backgroundImage: `url(${post?.titleImage?.[0]?.url})` }}
+            />
+            <div className={styles.FeaturedPostContentTag}>
+              <span>{post?.linkedEstates?.[0]?.title}</span>
             </div>
-            <span>{content.estate}</span>
           </div>
-          <h4>{content.title}</h4>
-          <Button rounded={true} href={content.buttonLink}>
-            Read more
-          </Button>
+
+          <div className={styles.FeaturedPostContentDetails}>
+            <div className={styles.FeaturedPostContentDetailsInfo}>
+              <span>{formateDate(post.publishDate)}</span>
+              <span>{post.category}</span>
+              <span>{post?.linkedEstates?.[0]?.title}</span>
+            </div>
+
+            <h4>{post.title}</h4>
+            <Button rounded={true} href={`/news/${post?.slug}`} size="small">
+              Read more
+            </Button>
+          </div>
         </div>
       </div>
     </div>
