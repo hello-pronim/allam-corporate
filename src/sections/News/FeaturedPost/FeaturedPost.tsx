@@ -1,7 +1,6 @@
 import React from "react";
 import { NewsModel } from "@models";
 import { Button } from "@components/Common/Common";
-import css from "@styled-system/css";
 import styles from "./FeaturedPost.module.scss";
 
 export interface featuredPostProps {
@@ -16,8 +15,6 @@ const FeaturedPost = ({ post }: featuredPostProps) => {
     const writtenDate = d && d.toLocaleDateString("en-AU", options);
     return writtenDate;
   };
-
-  console.log(post);
 
   return (
     <div className={styles.FeaturedPost}>
@@ -43,7 +40,7 @@ const FeaturedPost = ({ post }: featuredPostProps) => {
             </div>
 
             <h4>{post.title}</h4>
-            <Button rounded={true} href={`/news/${post?.slug}`} size="small">
+            <Button href={`/news/${post?.slug}`} size="small" rounded>
               Read more
             </Button>
           </div>

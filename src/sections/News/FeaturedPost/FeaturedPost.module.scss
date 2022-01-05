@@ -50,6 +50,10 @@
       border-radius: rem(2);
       background-color: $primary;
 
+      @include breakpoint($large) {
+        display: none;
+      }
+
       span {
         display: block;
         font-weight: 600;
