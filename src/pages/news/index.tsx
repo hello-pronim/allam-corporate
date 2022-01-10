@@ -23,8 +23,9 @@ const News: NextPage<OverViewPageProps> = ({
   const [latestNews, setLatestNews] = useState<NewsModel[]>([]);
   const [oldNews, setOldNews] = useState<NewsModel[]>([]);
 
-  const featuredNews = get(pageData, "entry.featuredNews[0]", []);
+  const featuredNews = get(pageData, "entry.featuredNews[0]");
   const LATEST_NEWS_COUNT = get(pageData, "entry.latestArticleCount", 4);
+  const easyBuy = get(pageData, "entry.globalPromos[0]");
 
   const sortNews = useCallback(() => {
     setNews(
@@ -56,7 +57,7 @@ const News: NextPage<OverViewPageProps> = ({
           <Divider />
         </div>
         <OldPosts posts={oldNews} />
-        {/* <AllBenefits /> */}
+        <AllBenefits data={easyBuy} />
       </BackgroundWrapper>
     </Layout>
   );
@@ -91,6 +92,19 @@ const pageQuery = gql`
           }
         }
         latestArticleCount
+        globalPromos {
+          ... on globalPromos_easybuy_BlockType {
+            headingRedactor
+            introBlurb
+            buttons {
+              ... on buttons_BlockType {
+                buttonLabel
+                buttonLink
+                buttonType
+              }
+            }
+          }
+        }
       }
     }
   }
