@@ -1,5 +1,4 @@
 import React from "react";
-import css from "@styled-system/css";
 import classnames from "classnames/bind";
 import { NewsModel } from "@models";
 import styles from "./PostCard.module.scss";
@@ -21,7 +20,11 @@ const PostCard = ({ post, variant = "normal" }: PostCardProps) => {
   };
 
   return (
-    <div className={styles.postCard}>
+    <div
+      className={cx("postCard", {
+        postCardLatest: variant === "latest",
+      })}
+    >
       <div className={styles.postCardContent}>
         <div className={styles.postCardContentImageContainer}>
           <div

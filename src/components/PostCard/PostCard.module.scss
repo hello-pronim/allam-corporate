@@ -7,6 +7,9 @@
       position: relative;
       padding-bottom: 60%;
       margin-bottom: rem(12);
+      @include breakpoint($large) {
+        margin-bottom: rem(20);
+      }
     }
 
     &Tag {
@@ -46,11 +49,18 @@
         display: inline-grid;
         grid-template-columns: repeat(3, auto);
         gap: rem(20);
+        @include breakpoint($large) {
+          margin-bottom: rem(6);
+        }
 
         span {
           font-size: rem(12);
           line-height: rem(16);
           text-transform: capitalize;
+          @include breakpoint($large) {
+            font-size: rem(18);
+            line-height: 1;
+          }
 
           &:last-of-type {
             display: none;
@@ -65,8 +75,16 @@
         margin: 0;
         font-size: rem(18);
         @include breakpoint($large) {
-          font-size: rem(24);
+          font-size: rem(20);
         }
+      }
+    }
+  }
+
+  &.postCardLatest {
+    h5 {
+      @include breakpoint($large) {
+        font-size: rem(24);
       }
     }
   }
