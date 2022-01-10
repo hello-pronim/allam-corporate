@@ -22,27 +22,25 @@ const PostCard = ({ post, variant = "normal" }: PostCardProps) => {
 
   return (
     <div className={styles.postCard}>
-      <div className={styles.postCardWrapper}>
-        <div className={styles.postCardContent}>
-          <div className={styles.postCardContentImageContainer}>
-            <div
-              className={styles.postCardContentImage}
-              style={{ backgroundImage: `url(${post?.titleImage?.[0]?.url})` }}
-            />
-            <div className={styles.postCardContentTag}>
-              <span>{post?.linkedEstates?.[0]?.title}</span>
-            </div>
+      <div className={styles.postCardContent}>
+        <div className={styles.postCardContentImageContainer}>
+          <div
+            className={styles.postCardContentImage}
+            style={{ backgroundImage: `url(${post?.titleImage?.[0]?.url})` }}
+          />
+          <div className={styles.postCardContentTag}>
+            <span>{post?.linkedEstates?.[0]?.title}</span>
+          </div>
+        </div>
+
+        <div className={styles.postCardContentDetails}>
+          <div className={styles.postCardContentDetailsInfo}>
+            <span>{formateDate(post.publishDate)}</span>
+            <span>{post.category}</span>
+            <span>{post?.linkedEstates?.[0]?.title}</span>
           </div>
 
-          <div className={styles.postCardContentDetails}>
-            <div className={styles.postCardContentDetailsInfo}>
-              <span>{formateDate(post.publishDate)}</span>
-              <span>{post.category}</span>
-              <span>{post?.linkedEstates?.[0]?.title}</span>
-            </div>
-
-            <h5>{post.title}</h5>
-          </div>
+          <h5>{post.title}</h5>
         </div>
       </div>
     </div>

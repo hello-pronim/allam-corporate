@@ -2,13 +2,6 @@
 @import "@styles/variables.scss";
 
 .postCard {
-  &Wrapper {
-    @include breakpoint($large) {
-      @include grid-container;
-      @include grid(1, 12);
-    }
-  }
-
   &Content {
     &ImageContainer {
       position: relative;
@@ -46,9 +39,6 @@
       background-size: cover;
       background-repeat: none;
       background-position: center;
-      @include breakpoint($large) {
-        border-radius: rem(16);
-      }
     }
 
     &Details {
