@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { NewsModel } from "@models";
 import PostCard from "@components/PostCard/PostCard";
 import CardGrid from "@components/CardGrid/CardGrid";
@@ -20,7 +21,11 @@ const OldPosts = ({ posts }: IOldPostsProps) => {
         maxItems={9}
       >
         {posts.map((post, index) => (
-          <PostCard post={post} variant="latest" key={index} />
+          <Link key={index} href={`/news/${post.slug}`}>
+            <a>
+              <PostCard post={post} key={index} />
+            </a>
+          </Link>
         ))}
       </CardGrid>
     </div>

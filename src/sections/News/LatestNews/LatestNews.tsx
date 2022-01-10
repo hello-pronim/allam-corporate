@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { NewsModel } from "@models";
 import PostCard from "@components/PostCard/PostCard";
 import LatestSlider from "@components/LatestSlider/LatestSlider";
@@ -17,7 +18,11 @@ const LatestNews = ({ news }: ILatestNewsProps) => {
 
       <LatestSlider>
         {news?.map((news, index) => (
-          <PostCard post={news} variant="latest" key={index} />
+          <Link key={index} href={`/news/${news.slug}`}>
+            <a>
+              <PostCard post={news} variant="latest" key={index} />
+            </a>
+          </Link>
         ))}
       </LatestSlider>
     </div>
