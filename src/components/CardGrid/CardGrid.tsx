@@ -43,8 +43,7 @@ const CardGrid = ({
         className={styles.CardGrid}
         css={css({ py: rem(padding), background: background && background })}
       >
-        {title && !smallTitle && <h2>{title}</h2>}
-        {title && smallTitle && <h4>{title}</h4>}
+        {smallTitle ? <h4>{title}</h4> : <h2>{title}</h2>}
         <div
           className={styles.GridWrapper}
           css={css({

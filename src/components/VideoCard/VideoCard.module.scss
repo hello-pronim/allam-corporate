@@ -67,6 +67,7 @@
       }
     }
     .videoCardContent {
+      position: relative;
       @include below($large) {
         padding: 0 rem(16);
       }
