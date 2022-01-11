@@ -18,7 +18,6 @@ const News: NextPage<OverViewPageProps> = ({
   listingData,
   layoutData,
 }) => {
-  console.log(pageData);
   const [news, setNews] = useState<NewsModel[]>([]);
   const [latestNews, setLatestNews] = useState<NewsModel[]>([]);
   const [oldNews, setOldNews] = useState<NewsModel[]>([]);
