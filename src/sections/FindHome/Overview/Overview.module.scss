@@ -7,3 +7,20 @@
     height: rem(700);
   }
 }
+
+.cluster {
+  &Marker {
+    position: relative;
+    transform: translate(-20px, -26px);
+    cursor: pointer;
+
+    span {
+      color: $white;
+      font-size: rem(20);
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
