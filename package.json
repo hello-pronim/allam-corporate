@@ -13,9 +13,7 @@
     "@babel/core": "^7.15.5",
     "@emotion/babel-preset-css-prop": "^11.2.0",
     "@emotion/react": "^11.4.1",
-    "@hookform/resolvers": "^2.8.3",
     "@styled-system/css": "^5.1.5",
-    "@types/styled-system__css": "^5.0.16",
     "classnames": "^2.3.1",
     "dayjs": "^1.10.7",
     "graphql": "^15.6.1",
@@ -32,8 +30,7 @@
     "react-slick": "^0.28.1",
     "recoil": "^0.4.1",
     "sass": "^1.38.1",
-    "use-supercluster": "^0.4.0",
-    "yup": "^0.32.11"
+    "use-supercluster": "^0.4.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.176",
@@ -42,6 +39,7 @@
     "@types/react-modal": "^3.12.1",
     "@types/react-select": "^4.0.17",
     "@types/react-slick": "^0.23.5",
+    "@types/styled-system__css": "^5.0.16",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.0",
     "typescript": "4.4.2"
