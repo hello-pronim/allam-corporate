@@ -176,8 +176,8 @@ export type HomeModel = {
   bathrooms?: number;
   car?: number;
   landSize: number;
-  latitude?: string;
-  longitude?: string;
+  latitude: number;
+  longitude: number;
   introBlurb?: string;
   features?: string;
   gallery3dUrl?: string;

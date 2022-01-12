@@ -136,6 +136,8 @@ const homesQuery = gql`
           width
           height
         }
+        latitude
+        longitude
       }
     }
   }
