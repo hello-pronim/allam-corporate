@@ -8,7 +8,8 @@
       "@libs/*": ["src/libs/*"],
       "@utils/*": ["src/utils/*"],
       "@models": ["src/models"],
-      "@states/*": ["src/states/*"]
+      "@states/*": ["src/states/*"],
+      "@hooks/*": ["src/hooks/*"]
     },
     "types": ["@emotion/react/types/css-prop"],
     "target": "es5",
