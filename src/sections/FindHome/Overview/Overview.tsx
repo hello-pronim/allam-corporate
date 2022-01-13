@@ -1,9 +1,5 @@
-import React, { useCallback, useState, useEffect, useRef } from "react";
-import * as d3 from "d3";
-import Image from "next/image";
+import React from "react";
 import { useRecoilValue } from "recoil";
-import useSupercluster from "use-supercluster";
-import ReactMapGL, { MapRef, Marker, FlyToInterpolator } from "react-map-gl";
 import { HomeModel } from "@models";
 import { filteredHomes } from "@states/atoms/homes";
 import MapView from "@components/MapView/MapView";
