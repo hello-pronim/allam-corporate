@@ -1,15 +1,15 @@
 import React from "react";
 import Image from "next/image";
+import { CraftImage } from "@models";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
 import { Redactor } from "@components/Common/Common";
-
+import { formateDate } from "@utils/formatDate";
 import styles from "./Hero.module.scss";
-import { mergeStyles } from "react-select";
 
 type IHeroProps = {
   title: string;
-  date?: string;
-  bannerImage: string;
+  date: string;
+  bannerImage: CraftImage;
 };
 
 const Hero = ({ title, date, bannerImage }: IHeroProps) => {
@@ -20,11 +20,11 @@ const Hero = ({ title, date, bannerImage }: IHeroProps) => {
       </div>
       <div className={styles.heroBannerMobile}>
         <div className={styles.heroBannerTextWrapper}>
-          <p className={styles.heroBannerText}>{date}</p>
+          <p className={styles.heroBannerText}>{formateDate(date)}</p>
         </div>
         <div className={styles.heroBannerImage}>
           <Image
-            src={bannerImage}
+            src={bannerImage.url}
             alt="hero-banner"
             layout="fill"
             objectFit="contain"
@@ -34,8 +34,8 @@ const Hero = ({ title, date, bannerImage }: IHeroProps) => {
       <div className={styles.heroWrapper}>
         <div className={styles.heroContent}>
           <div className={styles.heroContentTitle}>
-            <p>{date}</p>
-            <Redactor>{title}</Redactor>
+            <p>{formateDate(date)}</p>
+            <h1>{title}</h1>
           </div>
         </div>
       </div>

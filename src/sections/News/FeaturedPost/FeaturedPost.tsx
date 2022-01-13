@@ -1,6 +1,7 @@
 import React from "react";
 import { NewsModel } from "@models";
 import { Button } from "@components/Common/Common";
+import { formateDate } from "@utils/formatDate";
 import styles from "./FeaturedPost.module.scss";
 
 export interface featuredPostProps {
@@ -8,14 +9,6 @@ export interface featuredPostProps {
 }
 
 const FeaturedPost = ({ post }: featuredPostProps) => {
-  const formateDate = (date: string) => {
-    const d = date && new Date(date);
-    var options = { day: "numeric", month: "long", year: "numeric" };
-    //@ts-ignore
-    const writtenDate = d && d.toLocaleDateString("en-AU", options);
-    return writtenDate;
-  };
-
   return (
     <div className={styles.FeaturedPost}>
       <div className={styles.FeaturedPostWrapper}>

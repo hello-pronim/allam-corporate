@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames/bind";
 import { NewsModel } from "@models";
+import { formateDate } from "@utils/formatDate";
 import styles from "./PostCard.module.scss";
 
 export interface PostCardProps {
@@ -11,14 +12,6 @@ export interface PostCardProps {
 const cx = classnames.bind(styles);
 
 const PostCard = ({ post, variant = "normal" }: PostCardProps) => {
-  const formateDate = (date: string) => {
-    const d = date && new Date(date);
-    var options = { day: "numeric", month: "long", year: "numeric" };
-    //@ts-ignore
-    const writtenDate = d && d.toLocaleDateString("en-AU", options);
-    return writtenDate;
-  };
-
   return (
     <div
       className={cx("postCard", {

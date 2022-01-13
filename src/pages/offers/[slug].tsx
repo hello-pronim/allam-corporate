@@ -15,7 +15,6 @@ const PromotionalOfferDetail: NextPage<PageProps> = ({
   pageData,
   layoutData,
 }) => {
-  console.log(pageData);
   const title = get(pageData, "entry.title", "");
   const description = get(pageData, "entry.description", "");
   const introBlurb = get(pageData, "entry.introBlurb", "");

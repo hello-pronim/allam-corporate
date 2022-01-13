@@ -12,6 +12,12 @@ import DetailContent from "@sections/News/Detail/DetailContent/DetailContent";
 import KnowMoreAllamHomes from "@sections/News/Detail/KnowMoreAllamHomes/KnowMoreAllamHomes";
 
 const NewsDetail: NextPage<PageProps> = ({ pageData, layoutData }) => {
+  console.log(pageData);
+  const title = get(pageData, "entry.title", "");
+  const description = get(pageData, "entry.description", "");
+  const publishDate = get(pageData, "entry.publishDate", "");
+  const titleImage = get(pageData, "entry.titleImage[0]", "");
+
   const news = {
     title:
       "<h3>Allam signs national deal with Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>",
@@ -80,7 +86,7 @@ const NewsDetail: NextPage<PageProps> = ({ pageData, layoutData }) => {
 
   return (
     <Layout layoutData={layoutData}>
-      <Hero title={news.title} date={news.date} bannerImage={news.images[2]} />
+      <Hero title={title} date={publishDate} bannerImage={titleImage} />
       <DetailContent data={news} faqs={faqs} />
       <KnowMoreAllamHomes data={footerPanelData} />
     </Layout>
