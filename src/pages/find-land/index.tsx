@@ -11,7 +11,7 @@ import { HomeModel, OverViewPageProps } from "@models";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/FindLand/Hero/Hero";
 import LandListing from "@sections/FindLand/LandListing/LandListing";
-import Overview from "@sections/FindHome/Overview/Overview";
+import Overview from "@sections/FindLand/Overview/Overview";
 import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
@@ -131,6 +131,8 @@ const landsQuery = gql`
           width
           height
         }
+        latitude
+        longitude
       }
     }
   }
