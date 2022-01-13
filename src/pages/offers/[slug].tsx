@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import get from "lodash/get";
 import { GetStaticProps, GetStaticPaths } from "next";
-import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
 import { layoutQuery } from "@libs/queries";
@@ -29,24 +28,7 @@ const PromotionalOfferDetail: NextPage<PageProps> = ({
     description:
       "<h5>Available at selected estates<br/>Offer available from 18 June to 19 July, 2021</h5><p>Excludes garden and dual occupancy homes and land Includes: solar panels, inverter & battery Terms and conditions apply</p>",
   };
-  const offers = [
-    {
-      id: 0,
-      title: "10% Deposit is all you need",
-      subTitle:
-        "<h3>It's Time to Get Smart and<br/>Save Big with Free Solar Power.<br/>SAVE UP TO $44K*</h3>",
-      description:
-        "<h3>When you buy your new Allam Ready Built Home everything's included.</h3><h3>And for a limited time your new Allam Home* will come complete with a full solar power pack including solar panels, inverter and battery. This is a great value added-bonus.</h3><br/><p>Available with your future Allam Ready Built Home, this free solar offer is valued at $44,000* - now that really is a very smart idea.</p><p>Select a new home from one of our participating master-planned estates.</p><p>Our Get Smart Solar Power offer will not only help with savings on your power bills, it is also good for the environment... a really smart offer you don't want to miss.</p><p>Our Get Smart Solar Power offer is just one of the Allam Advantages you get when buying an Allam Home. You can look forward to saving heaps on your power bills.</p>",
-    },
-    {
-      id: 1,
-      title: "Free Solar with your New Home*",
-      subTitle:
-        "<h3>It's Time to Get Smart and<br/>Save Big with Free Solar Power.<br/>SAVE UP TO $44K*</h3>",
-      description:
-        "<h3>When you buy your new Allam Ready Built Home everything's included.</h3><h3>And for a limited time your new Allam Home* will come complete with a full solar power pack including solar panels, inverter and battery. This is a great value added-bonus.</h3><br/><p>Available with your future Allam Ready Built Home, this free solar offer is valued at $44,000* - now that really is a very smart idea.</p><p>Select a new home from one of our participating master-planned estates.</p><p>Our Get Smart Solar Power offer will not only help with savings on your power bills, it is also good for the environment... a really smart offer you don't want to miss.</p><p>Our Get Smart Solar Power offer is just one of the Allam Advantages you get when buying an Allam Home. You can look forward to saving heaps on your power bills.</p>",
-    },
-  ];
+
   const estates = [
     {
       id: 1,

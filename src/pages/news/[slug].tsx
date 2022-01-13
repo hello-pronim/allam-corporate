@@ -5,12 +5,13 @@ import { get } from "lodash";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
 import { layoutQuery } from "@libs/queries";
+import { PageProps } from "@models";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/News/Detail/Hero/Hero";
 import DetailContent from "@sections/News/Detail/DetailContent/DetailContent";
 import KnowMoreAllamHomes from "@sections/News/Detail/KnowMoreAllamHomes/KnowMoreAllamHomes";
 
-const NewsDetail: NextPage<any> = ({ newsDetail, layoutData }) => {
+const NewsDetail: NextPage<PageProps> = ({ pageData, layoutData }) => {
   const news = {
     title:
       "<h3>Allam signs national deal with Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>",
@@ -75,6 +76,8 @@ const NewsDetail: NextPage<any> = ({ newsDetail, layoutData }) => {
     ],
   };
 
+  console.log(pageData);
+
   return (
     <Layout layoutData={layoutData}>
       <Hero title={news.title} date={news.date} bannerImage={news.images[2]} />
@@ -85,52 +88,42 @@ const NewsDetail: NextPage<any> = ({ newsDetail, layoutData }) => {
 };
 
 export const getStaticProps: GetStaticProps = async function ({ params }) {
-  //   const slug = get(params, "slug");
+  const slug = get(params, "slug");
   const layoutData = await craftAPI(layoutQuery);
 
-  //   const newsDetailQuery = gql`
-  //     query newsQuery($slug: [String] = "${slug}") {
-  //       entry(section: "homesAndLand", slug: $slug) {
-  //         ... on homesAndLand_default_Entry {
-  //           title
-  //           suburb
-  //           lotNumber
-  //           address
-  //           estate {
-  //             ... on estates_default_Entry {
-  //               title
-  //               salesCentre {
-  //                 ... on locations_default_Entry {
-  //                   title
-  //                   phoneNumber
-  //                 }
-  //               }
-  //             }
-  //           }
-  //           images {
-  //             title
-  //             url
-  //             width
-  //             height
-  //           }
-  //           sellingLabel
-  //           landSize
-  //           introBlurb
-  //           latitude
-  //           longitude
-  //           downloadableBrochure {
-  //             url
-  //           }
-  //         }
-  //       }
-  //     }
-  //   `;
+  const newsQuery = gql`
+    query newsQuery($slug: [String] = "${slug}") {
+      entry(section: "newsAndEvents", slug: $slug) {
+        ... on newsAndEvents_default_Entry {
+          title
+          description
+          category
+          publishDate
+          shortDescription
+          titleImage {
+            url
+            title
+            width
+            height
+          }
+          linkedEstates {
+            ... on estates_default_Entry {
+              title
+            }
+          }
+          filesDownloads {
+            url
+          }
+        }
+      }
+    }
+  `;
 
-  //   const newsDetail = await craftAPI(newsDetailQuery);
+  const pageData = await craftAPI(newsQuery);
 
   return {
     props: {
-      // newsDetail,
+      pageData,
       layoutData,
     },
     revalidate: 60,

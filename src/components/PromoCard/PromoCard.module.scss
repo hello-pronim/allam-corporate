@@ -66,6 +66,10 @@
         font-size: rem(88);
         line-height: 1;
       }
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
     h5 {
       width: 75%;
@@ -148,6 +152,10 @@
         @include below($large) {
           font-size: rem(38);
           line-height: rem(40);
+        }
+
+        &:hover {
+          text-decoration: underline;
         }
       }
       h5 {

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { OfferModel } from "@models";
 import { Redactor } from "@components/Common/Common";
 import styles from "./PromoCard.module.scss";
 
 export interface PromoCardProps {
-  offer: {
-    title?: string;
-    shortDescription?: string;
-    introBlurb?: string;
-  };
+  offer: OfferModel;
   background?: string;
   action?: React.ReactNode;
   variant?: "default" | "side";
@@ -44,7 +42,11 @@ const PromoCard = ({
       style={{ backgroundImage: `url(${cardBackground})` }}
     >
       <div className={styles.cardHeader}>
-        <h2>{offer.title}</h2>
+        <Link href={`offers/${offer.slug}`}>
+          <a>
+            <h2>{offer.title}</h2>
+          </a>
+        </Link>
         <h5>{offer.shortDescription}</h5>
       </div>
       <div className={styles.cardContent}>
