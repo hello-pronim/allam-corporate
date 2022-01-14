@@ -190,3 +190,10 @@ export const aboutTimelineCards = [
     background: "",
   },
 ];
+
+export const offerRegisterPanelData = {
+  headingRedactor:
+    "<h2><strong>To take advantage fo this offer,</strong><br /> Simply register your interest today</h2>",
+  description:
+    "<h5>Available at selected estates<br/>Offer available from 18 June to 19 July, 2021</h5><p>Excludes garden and dual occupancy homes and land Includes: solar panels, inverter & battery Terms and conditions apply</p>",
+};

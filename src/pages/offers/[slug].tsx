@@ -2,72 +2,30 @@ import type { NextPage } from "next";
 import get from "lodash/get";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { gql } from "@apollo/client";
+
 import craftAPI from "@libs/api";
 import { layoutQuery } from "@libs/queries";
+import { offerRegisterPanelData } from "@libs/constants";
 import { EstateModel, PageProps } from "@models";
+
 import Layout from "@components/Layout/Layout";
+import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
+
 import Hero from "@sections/Offers/Detail/Hero/Hero";
 import DetailContent from "@sections/Offers/Detail/DetailContent/DetailContent";
 import OfferAvailableEstates from "@sections/Offers/Detail/OfferAvailbleEstates/OfferAvailbleEstates";
-import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
 
 const PromotionalOfferDetail: NextPage<PageProps> = ({
   pageData,
   layoutData,
 }) => {
-  console.log(pageData);
-
   const title = get(pageData, "entry.title", "");
   const description = get(pageData, "entry.description", "");
   const textColor = get(pageData, "entry.textColor", null);
   const shortDescription = get(pageData, "entry.shortDescription", "");
   const heroBackground = get(pageData, "entry.titleImage[0]", "");
   const linkedEstates: EstateModel[] = get(pageData, "entry.linkedEstates", []);
-
-  const registerPanelData = {
-    headingRedactor:
-      "<h2><strong>To take advantage fo this offer,</strong><br /> Simply register your interest today</h2>",
-    description:
-      "<h5>Available at selected estates<br/>Offer available from 18 June to 19 July, 2021</h5><p>Excludes garden and dual occupancy homes and land Includes: solar panels, inverter & battery Terms and conditions apply</p>",
-  };
-
-  const estates = [
-    {
-      id: 1,
-      name: "Ardennes",
-      logo: "/assets/images/estate/Logo-Ardennes-1.png",
-    },
-    {
-      id: 2,
-      name: "Killarney",
-      logo: "/assets/images/estate/Logo-Madison-Rise-1.png",
-    },
-    {
-      id: 2,
-      name: "Madison Rise",
-      logo: "/assets/images/estate/Logo-Madison-Rise-1.png",
-    },
-    {
-      id: 3,
-      name: "Fernlea",
-      logo: "/assets/images/estate/Logo-Fernlea-1.png",
-    },
-    {
-      id: 4,
-      name: "Mirragan",
-      logo: "/assets/images/estate/Logo-Mirragan-1.png",
-    },
-    {
-      id: 5,
-      name: "Ravenswood",
-      logo: "/assets/images/estate/Logo-Ravenswood-1.png",
-    },
-    {
-      id: 6,
-      name: "Sophia Waters",
-      logo: "/assets/images/estate/Logo-Sophia-Waters-1.png",
-    },
-  ];
+  const registerPanel = get(pageData, "entry.registerPanel[0]", null);
 
   return (
     <Layout layoutData={layoutData}>
@@ -84,7 +42,9 @@ const PromotionalOfferDetail: NextPage<PageProps> = ({
           estates={linkedEstates}
         />
       )}
-      <RegisterPanel data={registerPanelData} />
+      <RegisterPanel
+        data={registerPanel ? registerPanel : offerRegisterPanelData}
+      />
     </Layout>
   );
 };
@@ -125,6 +85,12 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
                 width
                 height
               }
+            }
+          }
+          registerPanel {
+            ... on registerPanel_registerPanel_BlockType {
+              headingRedactor
+              description
             }
           }
         }
