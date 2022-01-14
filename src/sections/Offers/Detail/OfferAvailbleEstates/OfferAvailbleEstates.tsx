@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
 
+import { EstateModel } from "@models";
 import styles from "./OfferAvailableEstates.module.scss";
 
 export interface OfferAvailableEstatesProps {
   title?: string;
-  estates: Array<any>;
+  estates: EstateModel[];
 }
 
 const OfferAvailableEstates = ({
@@ -17,15 +18,17 @@ const OfferAvailableEstates = ({
       <div className={styles.logosWrapper}>
         {title && <h3>{title}</h3>}
         <div className={styles.logosList}>
-          {estates.map((estate, id) => (
-            <div key={id} className={styles.logosListItem}>
-              <Image
-                src={estate.logo}
-                alt={estate.name}
-                width={372}
-                height={178}
-                layout="responsive"
-              />
+          {estates?.map((estate) => (
+            <div key={estate.title} className={styles.logosListItem}>
+              <div className={styles.logosListItemImage}>
+                <Image
+                  src={estate.logo?.[0].url}
+                  alt={estate.logo?.[0].title}
+                  width={estate.logo?.[0].width}
+                  height={estate.logo?.[0].height}
+                  layout="responsive"
+                />
+              </div>
             </div>
           ))}
         </div>

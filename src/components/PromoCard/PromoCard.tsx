@@ -39,7 +39,10 @@ const PromoCard = ({
       className={`${size === "large" ? styles.cardLarge : styles.card} ${
         background ? styles.imageCard : ""
       } ${variant === "side" ? styles.cardSide : ""}`}
-      style={{ backgroundImage: `url(${cardBackground})` }}
+      style={{
+        backgroundImage: `url(${cardBackground})`,
+        color: `${offer.textColor ? offer.textColor : "#fff"}`,
+      }}
     >
       <div className={styles.cardHeader}>
         <Link href={`offers/${offer.slug}`}>

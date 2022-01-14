@@ -206,11 +206,13 @@ export type LandModel = {
 export type OfferModel = {
   slug: string;
   title: string;
+  textColor: string;
   shortDescription: string;
   description: string;
   introBlurb: string;
   titleImage: CraftImage[];
   filesDownloads: Asset[];
+  linkedEstates: EstateModel[];
 };
 
 export type NewsModel = {

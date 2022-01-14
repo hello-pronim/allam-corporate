@@ -27,6 +27,7 @@ const offersQuery = gql`
         title
         publishDate
         expiryDate
+        textColor
         shortDescription
         introBlurb
         description

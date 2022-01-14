@@ -4,7 +4,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
 import { layoutQuery } from "@libs/queries";
-import { PageProps } from "@models";
+import { EstateModel, PageProps } from "@models";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/Offers/Detail/Hero/Hero";
 import DetailContent from "@sections/Offers/Detail/DetailContent/DetailContent";
@@ -15,11 +15,14 @@ const PromotionalOfferDetail: NextPage<PageProps> = ({
   pageData,
   layoutData,
 }) => {
+  console.log(pageData);
+
   const title = get(pageData, "entry.title", "");
   const description = get(pageData, "entry.description", "");
-  const introBlurb = get(pageData, "entry.introBlurb", "");
+  const textColor = get(pageData, "entry.textColor", null);
   const shortDescription = get(pageData, "entry.shortDescription", "");
   const heroBackground = get(pageData, "entry.titleImage[0]", "");
+  const linkedEstates: EstateModel[] = get(pageData, "entry.linkedEstates", []);
 
   const registerPanelData = {
     headingRedactor:
@@ -75,10 +78,12 @@ const PromotionalOfferDetail: NextPage<PageProps> = ({
       />
 
       <DetailContent description={description} />
-      <OfferAvailableEstates
-        title="Offer available at these estates"
-        estates={estates}
-      />
+      {linkedEstates.length > 0 && (
+        <OfferAvailableEstates
+          title="Offer available at these estates"
+          estates={linkedEstates}
+        />
+      )}
       <RegisterPanel data={registerPanelData} />
     </Layout>
   );
@@ -96,6 +101,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
           title
           publishDate
           expiryDate
+          textColor
           shortDescription
           introBlurb
           description
@@ -109,6 +115,17 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
           }
           filesDownloads {
             url
+          }
+          linkedEstates {
+            ... on estates_default_Entry {
+              title
+              logo {
+                url
+                title
+                width
+                height
+              }
+            }
           }
         }
       }
