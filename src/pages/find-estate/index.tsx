@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import type { NextPage } from "next";
-import { get, map, sortBy } from "lodash";
-import { useSetRecoilState } from "recoil";
+import { get } from "lodash";
 import { gql } from "@apollo/client";
+import { useSetRecoilState } from "recoil";
+
 import { OverViewPageProps } from "@models";
 import craftAPI from "@libs/api";
-import { layoutQuery, trustQuery } from "@libs/queries";
+import { layoutQuery, trustQuery, homesQuery } from "@libs/queries";
 import { allEstateState } from "@states/atoms/estates";
+
+import Layout from "@components/Layout/Layout";
+import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
 import Hero from "@sections/FindEstate/Hero/Hero";
 import Overview from "@sections/FindEstate/Overview/Overview";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 import EstateListing from "@sections/FindEstate/EstateListing/EstateListing";
-import Layout from "@components/Layout/Layout";
-import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
+
 import { propsFind } from "@utils/propsFind";
 import { getSuburbs } from "@utils/getSuburbs";
 
@@ -21,6 +24,7 @@ const FindEstate: NextPage<OverViewPageProps> = ({
   trustMakers,
   listingData,
   layoutData,
+  homesList,
 }) => {
   const [showMap, setShowMap] = useState(false);
   const [suburbList, setSuburbList] = useState<string[]>([]);
@@ -50,7 +54,7 @@ const FindEstate: NextPage<OverViewPageProps> = ({
         <Overview />
       ) : (
         <>
-          <EstateListing />
+          <EstateListing homesList={homesList.entries} />
           <div style={{ background: "#eef2f5" }}>
             <LeadingTrustMakers
               features={trustFeatures}
@@ -162,6 +166,7 @@ export const getStaticProps = async function () {
   const trustMakers = await craftAPI(trustQuery);
   const listingData = await craftAPI(estatesQuery);
   const layoutData = await craftAPI(layoutQuery);
+  const homesList = await craftAPI(homesQuery);
 
   return {
     props: {
@@ -169,6 +174,7 @@ export const getStaticProps = async function () {
       trustMakers,
       listingData,
       layoutData,
+      homesList,
     },
     revalidate: 60,
   };

@@ -1,5 +1,22 @@
 import { gql } from "@apollo/client";
 
+export const homesQuery = gql`
+  query homesQuery {
+    entries(section: "homesAndLand") {
+      ... on homesAndLand_default_Entry {
+        slug
+        title
+        landOnly
+        estate {
+          ... on estates_default_Entry {
+            title
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const trustQuery = gql`
   query trustMakers {
     globalSet(handle: "trustMakers") {

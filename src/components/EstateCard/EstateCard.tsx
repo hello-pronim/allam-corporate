@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
+
 import { EstateModel } from "@models";
 import { shimmer, toBase64 } from "@utils/blobImage";
+
 import Icon from "@components/Icons/Icons";
 import styles from "./EstateCard.module.scss";
 
 export interface IEstateCardProps {
   estate: EstateModel;
+  homesList?: any[];
 }
 
-const EstateCard = ({ estate }: IEstateCardProps) => {
+const EstateCard = ({ estate, homesList = [] }: IEstateCardProps) => {
   const settings = {
     className: "estate-card-slider",
     dots: true,
@@ -24,7 +27,18 @@ const EstateCard = ({ estate }: IEstateCardProps) => {
     slidesToScroll: 1,
   };
 
+  const [landCount, setLandCount] = useState(0);
   const addr = `${estate.suburb} ${estate.estateState} ${estate.postcode}`;
+
+  const filteredHomes = useMemo(() => {
+    return Array.from(homesList).filter(
+      (home) => home.estate[0].title === estate.title
+    );
+  }, [estate.title, homesList]);
+
+  useEffect(() => {
+    setLandCount(filteredHomes.filter((el) => el.landOnly).length);
+  }, [filteredHomes]);
 
   return (
     <div className={styles.estateCard}>
@@ -54,7 +68,6 @@ const EstateCard = ({ estate }: IEstateCardProps) => {
               alt={estate.logo?.[0]?.title}
               width={estate.logo?.[0]?.width}
               height={estate.logo?.[0]?.height}
-              // objectFit={"contain"}
               layout="responsive"
             />
           </div>
@@ -70,16 +83,21 @@ const EstateCard = ({ estate }: IEstateCardProps) => {
           <div className={styles.estateCardBottomInfoDetail}>
             <Icon type="home-insurance" />
             <span>
-              <b>17 Homes for Sale</b>
+              <b>
+                {filteredHomes?.filter((el) => !el.landOnly).length} Homes for
+                Sale
+              </b>
             </span>
           </div>
 
-          <div className={styles.estateCardBottomInfoDetail}>
-            <Icon type="land-sale" />
-            <span>
-              <b>6 Land for Sale</b>
-            </span>
-          </div>
+          {landCount > 0 && (
+            <div className={styles.estateCardBottomInfoDetail}>
+              <Icon type="land-sale" />
+              <span>
+                <b>{landCount} Land for Sale</b>
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </div>

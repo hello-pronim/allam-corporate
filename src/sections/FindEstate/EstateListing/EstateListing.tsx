@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Link from "next/link";
 import { useRecoilValue } from "recoil";
+
 import { filteredEstates } from "@states/atoms/estates";
+
 import { Button } from "@components/Common/Common";
-import EasyBuyPurchase from "@components/EasyBuyPurchase/EasyBuyPurchase";
 import EstateCard from "@components/EstateCard/EstateCard";
+import EasyBuyPurchase from "@components/EasyBuyPurchase/EasyBuyPurchase";
 import styles from "./EstateListing.module.scss";
 
-export interface IEstateListingProps {}
+export interface IEstateListingProps {
+  homesList: any[];
+}
 
-const EstateListing = () => {
+const EstateListing = ({ homesList }: IEstateListingProps) => {
   const estatesList = useRecoilValue(filteredEstates);
 
   return (
@@ -20,7 +24,7 @@ const EstateListing = () => {
             {estatesList?.map((estate, id) => (
               <Link href={`/find-estate/${estate.slug}`} key={id}>
                 <a>
-                  <EstateCard estate={estate} />
+                  <EstateCard estate={estate} homesList={homesList} />
                 </a>
               </Link>
             ))}

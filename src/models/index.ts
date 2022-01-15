@@ -3,6 +3,7 @@ export type OverViewPageProps = {
   trustMakers?: any;
   listingData?: any;
   layoutData?: any;
+  homesList?: any;
 };
 
 export type AllamAdvPageProps = {

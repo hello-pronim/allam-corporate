@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react";
 import type { NextPage } from "next";
-import { gql } from "@apollo/client";
 import { get } from "lodash";
-import craftAPI from "@libs/api";
-import { propsFind } from "@utils/propsFind";
-import { layoutQuery, trustQuery } from "@libs/queries";
+import { gql } from "@apollo/client";
 import { useSetRecoilState } from "recoil";
+
+import craftAPI from "@libs/api";
+import { layoutQuery, trustQuery } from "@libs/queries";
 import { allHomesState } from "@states/atoms/homes";
 import { HomeModel, OverViewPageProps } from "@models";
+
 import Layout from "@components/Layout/Layout";
-import Hero from "@sections/FindHome/Hero/Hero";
-import HomesListing from "@sections/FindHome/HomesListing/HomesListing";
-import Overview from "@sections/FindHome/Overview/Overview";
 import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
+import Hero from "@sections/FindHome/Hero/Hero";
+import Overview from "@sections/FindHome/Overview/Overview";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
+import HomesListing from "@sections/FindHome/HomesListing/HomesListing";
+
+import { propsFind } from "@utils/propsFind";
 
 const FindHome: NextPage<OverViewPageProps> = ({
   pageData,
