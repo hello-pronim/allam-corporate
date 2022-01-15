@@ -5,7 +5,7 @@ import { gql } from "@apollo/client";
 import { useSetRecoilState } from "recoil";
 
 import craftAPI from "@libs/api";
-import { layoutQuery, trustQuery } from "@libs/queries";
+import { fullHomeListQuery, layoutQuery, trustQuery } from "@libs/queries";
 import { allHomesState } from "@states/atoms/homes";
 import { HomeModel, OverViewPageProps } from "@models";
 
@@ -107,49 +107,10 @@ const findHomesQuery = gql`
   }
 `;
 
-const homesQuery = gql`
-  query homesQuery {
-    entries(section: "homesAndLand") {
-      ... on homesAndLand_default_Entry {
-        slug
-        title
-        landOnly
-        lotNumber
-        address
-        suburb
-        estate {
-          ... on estates_default_Entry {
-            title
-          }
-        }
-        homeDesign {
-          title
-        }
-        openForInspection
-        buildingSize
-        landSize
-        percentageComplete
-        completionDate
-        bedrooms
-        bathrooms
-        car
-        images {
-          url
-          title
-          width
-          height
-        }
-        latitude
-        longitude
-      }
-    }
-  }
-`;
-
 export const getStaticProps = async function () {
   const pageData = await craftAPI(findHomesQuery);
   const trustMakers = await craftAPI(trustQuery);
-  const listingData = await craftAPI(homesQuery);
+  const listingData = await craftAPI(fullHomeListQuery);
   const layoutData = await craftAPI(layoutQuery);
 
   return {

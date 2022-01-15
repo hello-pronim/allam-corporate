@@ -6,7 +6,7 @@ import { useSetRecoilState } from "recoil";
 
 import { OverViewPageProps } from "@models";
 import craftAPI from "@libs/api";
-import { layoutQuery, trustQuery, homesQuery } from "@libs/queries";
+import { layoutQuery, trustQuery, simpleHomeListQuery } from "@libs/queries";
 import { allEstateState } from "@states/atoms/estates";
 
 import Layout from "@components/Layout/Layout";
@@ -166,7 +166,7 @@ export const getStaticProps = async function () {
   const trustMakers = await craftAPI(trustQuery);
   const listingData = await craftAPI(estatesQuery);
   const layoutData = await craftAPI(layoutQuery);
-  const homesList = await craftAPI(homesQuery);
+  const homesList = await craftAPI(simpleHomeListQuery);
 
   return {
     props: {

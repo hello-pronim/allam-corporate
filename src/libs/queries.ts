@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const homesQuery = gql`
+export const simpleHomeListQuery = gql`
   query homesQuery {
     entries(section: "homesAndLand") {
       ... on homesAndLand_default_Entry {
@@ -12,6 +12,45 @@ export const homesQuery = gql`
             title
           }
         }
+      }
+    }
+  }
+`;
+
+export const fullHomeListQuery = gql`
+  query homesQuery {
+    entries(section: "homesAndLand") {
+      ... on homesAndLand_default_Entry {
+        slug
+        title
+        landOnly
+        lotNumber
+        address
+        suburb
+        estate {
+          ... on estates_default_Entry {
+            title
+          }
+        }
+        homeDesign {
+          title
+        }
+        openForInspection
+        buildingSize
+        landSize
+        percentageComplete
+        completionDate
+        bedrooms
+        bathrooms
+        car
+        images {
+          url
+          title
+          width
+          height
+        }
+        latitude
+        longitude
       }
     }
   }

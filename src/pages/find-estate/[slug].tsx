@@ -1,21 +1,26 @@
+import React, { useMemo } from "react";
 import type { NextPage } from "next";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { get } from "lodash";
 import { gql } from "@apollo/client";
+
 import craftAPI from "@libs/api";
-import { layoutQuery } from "@libs/queries";
+import { layoutQuery, fullHomeListQuery } from "@libs/queries";
+
 import Layout from "@components/Layout/Layout";
+
 import Hero from "@sections/FindEstateDetail/Hero/Hero";
-import BannerGallery from "@sections/FindEstateDetail/BannerGallery/BannerGallery";
-import LeadingInfo from "@sections/FindEstateDetail/LeadingInfo/LeadingInfo";
+import News from "@sections/FindEstateDetail/News/News";
+import Deposit from "@sections/FindEstateDetail/Deposit/Deposit";
 import HomeList from "@sections/FindEstateDetail/HomeList/HomeList";
 import MasterPlan from "@sections/FindEstateDetail/MasterPlan/MasterPlan";
-import Deposit from "@sections/FindEstateDetail/Deposit/Deposit";
-import News from "@sections/FindEstateDetail/News/News";
-import SimilarEstates from "@sections/FindEstateDetail/SimilarEstates/SimilarEstates";
+import LeadingInfo from "@sections/FindEstateDetail/LeadingInfo/LeadingInfo";
 import SignUpEstate from "@sections/FindEstateDetail/SignUpEstate/SignUpEstate";
+import BannerGallery from "@sections/FindEstateDetail/BannerGallery/BannerGallery";
+import SimilarEstates from "@sections/FindEstateDetail/SimilarEstates/SimilarEstates";
+import { HomeModel } from "@models";
 
-const FindEstateDetail: NextPage<any> = ({ estate, layoutData }) => {
+const FindEstateDetail: NextPage<any> = ({ estate, layoutData, homeList }) => {
   const title = get(estate, "entry.title", "");
   const logo = get(estate, "entry.logo", []);
   const suburb = get(estate, "entry.suburb", "");
@@ -28,7 +33,13 @@ const FindEstateDetail: NextPage<any> = ({ estate, layoutData }) => {
   const streetAddress = get(estate, "entry.streetAddress", "");
   const estateLocationAddress = `${suburb} ${estateState} ${postcode}`;
 
-  console.log(estate);
+  const filteredHomes: any[] = useMemo(() => {
+    return homeList
+      ? Array.from(homeList?.entries).filter(
+          (home: any) => home?.estate[0].title === title
+        )
+      : [];
+  }, [title, homeList]);
 
   return (
     <Layout layoutData={layoutData}>
@@ -36,6 +47,7 @@ const FindEstateDetail: NextPage<any> = ({ estate, layoutData }) => {
         title={title}
         address={`${suburb}, ${estateState} ${postcode}`}
         logo={logo}
+        filteredHomes={filteredHomes}
       />
       <BannerGallery images={bannerImages} videos={videos} logo={logo} />
       <LeadingInfo
@@ -132,11 +144,13 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
   `;
 
   const estate = await craftAPI(estateQuery);
+  const homeList = await craftAPI(fullHomeListQuery);
 
   return {
     props: {
       estate,
       layoutData,
+      homeList,
     },
     revalidate: 60,
   };
