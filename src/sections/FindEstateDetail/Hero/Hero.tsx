@@ -39,8 +39,14 @@ const Hero = ({ title, address, logo }: IHeroProps) => {
                 icon="home-insurance"
                 label="Homes for Sale"
                 count={12}
+                labelSpacingLeft={8}
               />
-              <ImageButton icon="land-sale" label="Land for Sale" count={12} />
+              <ImageButton
+                icon="land-sale"
+                label="Land for Sale"
+                count={12}
+                labelSpacingLeft={8}
+              />
 
               <div className={styles.heroContentButtonsCondition}>
                 <Button href="/get-in-touch" rounded>

@@ -28,6 +28,7 @@ const EstateCard = ({ estate, homesList = [] }: IEstateCardProps) => {
   };
 
   const [landCount, setLandCount] = useState(0);
+  const [homeCount, setHomeCount] = useState(0);
   const addr = `${estate.suburb} ${estate.estateState} ${estate.postcode}`;
 
   const filteredHomes = useMemo(() => {
@@ -37,6 +38,7 @@ const EstateCard = ({ estate, homesList = [] }: IEstateCardProps) => {
   }, [estate.title, homesList]);
 
   useEffect(() => {
+    setHomeCount(filteredHomes.filter((el) => !el.landOnly).length);
     setLandCount(filteredHomes.filter((el) => el.landOnly).length);
   }, [filteredHomes]);
 
@@ -80,15 +82,14 @@ const EstateCard = ({ estate, homesList = [] }: IEstateCardProps) => {
         </p>
 
         <div className={styles.estateCardBottomInfo}>
-          <div className={styles.estateCardBottomInfoDetail}>
-            <Icon type="home-insurance" />
-            <span>
-              <b>
-                {filteredHomes?.filter((el) => !el.landOnly).length} Homes for
-                Sale
-              </b>
-            </span>
-          </div>
+          {homeCount > 0 && (
+            <div className={styles.estateCardBottomInfoDetail}>
+              <Icon type="home-insurance" />
+              <span>
+                <b>{homeCount} Homes for Sale</b>
+              </span>
+            </div>
+          )}
 
           {landCount > 0 && (
             <div className={styles.estateCardBottomInfoDetail}>

@@ -3,15 +3,17 @@ import type { NextPage } from "next";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { get } from "lodash";
 import { gql } from "@apollo/client";
+
 import craftAPI from "@libs/api";
 import { layoutQuery } from "@libs/queries";
+import { landRegisterData } from "@libs/constants";
+
 import Layout from "@components/Layout/Layout";
 import StickyBar from "@components/StickyBar/StickyBar";
-import Hero from "@sections/HomeDetail/Hero/Hero";
-import BannerGallery from "@sections/HomeDetail/BannerGallery/BannerGallery";
 import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
+import Hero from "@sections/HomeDetail/Hero/Hero";
 import HomeInfo from "@sections/HomeDetail/HomeInfo/HomeInfo";
-import { landRegisterData } from "@libs/constants";
+import BannerGallery from "@sections/HomeDetail/BannerGallery/BannerGallery";
 
 const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
   const title = get(home, "entry.title", "");
