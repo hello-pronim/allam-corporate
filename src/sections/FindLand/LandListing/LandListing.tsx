@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { orderBy } from "lodash";
 import { useRecoilValue } from "recoil";
-import { filteredLands } from "@states/atoms/lands";
+
 import { sortLandKeys } from "@libs/constants";
+import { filteredLands } from "@states/atoms/lands";
+
 import { Button } from "@components/Common/Common";
 import LandCard from "@components/LandCard/LandCard";
 import SortByOptions from "@components/SortByOptions/SortByOptions";
@@ -16,8 +18,19 @@ export interface ILandListingProps {
 }
 
 const LandListing = ({ showMap, setShowMap }: ILandListingProps) => {
-  const [sortKey, setSortKey] = useState("");
+  const MAX_ESTATE_COUNT = 30;
   const landsList = useRecoilValue(filteredLands);
+
+  const [sortKey, setSortKey] = useState("");
+  const [isLoadMore, setIsLoadMore] = useState(false);
+
+  useEffect(() => {
+    setIsLoadMore(landsList.length <= MAX_ESTATE_COUNT);
+  }, [landsList]);
+
+  const visibleLands = useMemo(() => {
+    return isLoadMore ? landsList : landsList.slice(0, MAX_ESTATE_COUNT);
+  }, [isLoadMore, landsList]);
 
   return (
     <div className={styles.landListing}>
@@ -33,7 +46,7 @@ const LandListing = ({ showMap, setShowMap }: ILandListingProps) => {
           <div className={styles.landListingContainer}>
             <div className={styles.landListingView}>
               <div className={styles.landListingCards}>
-                {orderBy(landsList, [sortKey], ["asc"])?.map((land, id) => (
+                {orderBy(visibleLands, [sortKey], ["asc"])?.map((land, id) => (
                   <Link href={`/find-land/${land.slug}`} key={id}>
                     <a>
                       <LandCard landData={land} />
@@ -43,11 +56,17 @@ const LandListing = ({ showMap, setShowMap }: ILandListingProps) => {
                 <EasyBuyPurchase />
               </div>
 
-              <div className={styles.landListingViewCTA}>
-                <Button size="large" rounded>
-                  Load more
-                </Button>
-              </div>
+              {!isLoadMore && (
+                <div className={styles.landListingViewCTA}>
+                  <Button
+                    size="large"
+                    onClick={() => setIsLoadMore(true)}
+                    rounded
+                  >
+                    Load more
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         )}

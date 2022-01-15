@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRecoilValue } from "recoil";
 
@@ -17,6 +17,10 @@ const EstateListing = ({ homesList }: IEstateListingProps) => {
   const MAX_ESTATE_COUNT = 12;
   const estatesList = useRecoilValue(filteredEstates);
   const [isLoadMore, setIsLoadMore] = useState(false);
+
+  useEffect(() => {
+    setIsLoadMore(estatesList.length <= MAX_ESTATE_COUNT);
+  }, [estatesList]);
 
   const visibleEstates = useMemo(() => {
     return isLoadMore ? estatesList : estatesList.slice(0, MAX_ESTATE_COUNT);
