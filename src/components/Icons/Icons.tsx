@@ -487,6 +487,44 @@ const Icon = ({ type, onClick, ...props }: IIconProps) => {
           />
         </svg>
       )}
+      {type === "expand" && (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+        >
+          <path
+            d="M18.35 1.65002L11.675 8.32502"
+            stroke="#212121"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M10.9917 1.42505H4.49175C3.67765 1.42505 2.89677 1.74787 2.32034 2.32275C1.7439 2.89762 1.41895 3.67762 1.41675 4.49172V15.5084C1.41895 16.3225 1.7439 17.1025 2.32034 17.6774C2.89677 18.2522 3.67765 18.5751 4.49175 18.575H15.5084C16.3225 18.5751 17.1034 18.2522 17.6798 17.6774C18.2563 17.1025 18.5812 16.3225 18.5834 15.5084V9.00838"
+            stroke="#212121"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M18.5833 6.17505V1.42505H13.825"
+            stroke="#212121"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M9.16662 10.275H5.39162C5.07866 10.275 4.82495 10.5287 4.82495 10.8417V14.6167C4.82495 14.9297 5.07866 15.1834 5.39162 15.1834H9.16662C9.47958 15.1834 9.73328 14.9297 9.73328 14.6167V10.8417C9.73328 10.5287 9.47958 10.275 9.16662 10.275Z"
+            stroke="#212121"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      )}
       {type === "arrow-left" && (
         <svg
           width="24"
