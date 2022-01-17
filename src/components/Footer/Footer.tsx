@@ -79,9 +79,9 @@ const Footer = ({ footerData }: IFooterProps) => {
 
             <ul className={styles.footerStatusbarLinks}>
               {footerBottom?.bottomLinks.map((el: any) => (
-                <li key={el.ctaLabel}>
-                  <Link href={el.ctaLink}>
-                    <a>{el.ctaLabel}</a>
+                <li key={el.linkLabel}>
+                  <Link href={`/${el.hyperlink?.[0]?.slug}`}>
+                    <a>{el.linkLabel}</a>
                   </Link>
                 </li>
               ))}

@@ -218,8 +218,10 @@ export const layoutQuery = gql`
             copyrightText
             bottomLinks {
               ... on bottomLinks_BlockType {
-                ctaLabel
-                ctaLink
+                linkLabel
+                hyperlink {
+                  slug
+                }
               }
             }
             socialLinks {
