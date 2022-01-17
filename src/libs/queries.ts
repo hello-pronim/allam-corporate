@@ -56,6 +56,53 @@ export const fullHomeListQuery = gql`
   }
 `;
 
+export const simpleNewsQuery = gql`
+  query newsQuery {
+    entries(section: "newsAndEvents") {
+      ... on newsAndEvents_default_Entry {
+        slug
+        title
+        titleImage {
+          title
+          url
+        }
+        linkedEstates {
+          ... on estates_default_Entry {
+            title
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const fullNewsQuery = gql`
+  query newsQuery {
+    entries(section: "newsAndEvents") {
+      ... on newsAndEvents_default_Entry {
+        slug
+        title
+        category
+        publishDate
+        shortDescription
+        description
+        titleImage {
+          title
+          url
+        }
+        filesDownloads {
+          url
+        }
+        linkedEstates {
+          ... on estates_default_Entry {
+            title
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const trustQuery = gql`
   query trustMakers {
     globalSet(handle: "trustMakers") {

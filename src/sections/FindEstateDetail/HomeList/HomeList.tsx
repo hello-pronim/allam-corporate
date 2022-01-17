@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { HomeModel } from "@models";
 import { Button } from "@components/Common/Common";
 import PropertyCard from "@components/PropertyCard/PropertyCard";
@@ -17,7 +18,11 @@ const HomeList = ({ filteredHomes }: IHomeListProps) => {
           <div className={styles.homeListGrid}>
             <div className={styles.homeListGridWrapper}>
               {filteredHomes?.map((home, id) => (
-                <PropertyCard homeData={home} key={id} />
+                <Link href={`/find-home/${home.slug}`} key={id}>
+                  <a>
+                    <PropertyCard homeData={home} />
+                  </a>
+                </Link>
               ))}
             </div>
           </div>

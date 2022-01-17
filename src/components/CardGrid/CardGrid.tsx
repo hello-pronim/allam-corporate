@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styles from "./CardGrid.module.scss";
+import rem from "src/utils/pxRem";
 import css from "@styled-system/css";
 import { Button } from "@components/Common/Common";
-import rem from "src/utils/pxRem";
+import styles from "./CardGrid.module.scss";
 
 export interface CardGridProps {
   title?: string;
@@ -73,10 +73,10 @@ const CardGrid = ({
             )}
             {button && (
               <Button
+                href={button.url}
                 color="dark-secondary"
                 size="large"
-                rounded={true}
-                href={button.url}
+                rounded
               >
                 {button.label}
               </Button>

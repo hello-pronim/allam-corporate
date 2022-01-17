@@ -1,17 +1,19 @@
 import React, { useState, useEffect, useCallback } from "react";
 import type { NextPage } from "next";
 import { get } from "lodash";
-import craftAPI from "@libs/api";
-import { layoutQuery } from "@libs/queries";
 import { gql } from "@apollo/client";
+
+import craftAPI from "@libs/api";
+import { layoutQuery, fullNewsQuery } from "@libs/queries";
 import { NewsModel, OverViewPageProps } from "@models";
+
 import Layout from "@components/Layout/Layout";
 import Divider from "@components/Common/Divider/Divider";
-import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 import OldPosts from "@sections/News/OldPosts/OldPosts";
+import LatestNews from "@sections/News/LatestNews/LatestNews";
+import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 import FeaturedPost from "@sections/News/FeaturedPost/FeaturedPost";
 import BackgroundWrapper from "@sections/News/BackgroundWrapper/BackgroundWrapper";
-import LatestNews from "@sections/News/LatestNews/LatestNews";
 
 const News: NextPage<OverViewPageProps> = ({
   pageData,
@@ -109,36 +111,9 @@ const pageQuery = gql`
   }
 `;
 
-const newsQuery = gql`
-  query newsQuery {
-    entries(section: "newsAndEvents") {
-      ... on newsAndEvents_default_Entry {
-        slug
-        title
-        category
-        publishDate
-        shortDescription
-        description
-        titleImage {
-          title
-          url
-        }
-        filesDownloads {
-          url
-        }
-        linkedEstates {
-          ... on estates_default_Entry {
-            title
-          }
-        }
-      }
-    }
-  }
-`;
-
 export const getStaticProps = async function () {
   const layoutData = await craftAPI(layoutQuery);
-  const listingData = await craftAPI(newsQuery);
+  const listingData = await craftAPI(fullNewsQuery);
   const pageData = await craftAPI(pageQuery);
 
   return {

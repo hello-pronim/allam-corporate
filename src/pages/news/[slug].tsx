@@ -52,6 +52,7 @@ const NewsDetail: NextPage<PageProps> = ({ pageData, layoutData }) => {
       },
     ],
   };
+
   const faqs = [
     {
       id: "0",
@@ -68,6 +69,7 @@ const NewsDetail: NextPage<PageProps> = ({ pageData, layoutData }) => {
         "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat mattis vel id sociis diam id congue amet. Aliquam porttitor auctor amet, pretium sapien posuere non.</p>",
     },
   ];
+
   const footerPanelData = {
     headingRedactor:
       "<h1><strong>Like to know more about Allam Homes?</strong><br/>Contact an Allam home specialist.</h1>",

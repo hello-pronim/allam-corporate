@@ -5,21 +5,26 @@ import { get } from "lodash";
 import { gql } from "@apollo/client";
 
 import craftAPI from "@libs/api";
-import { layoutQuery, fullHomeListQuery } from "@libs/queries";
+import { layoutQuery, fullHomeListQuery, simpleNewsQuery } from "@libs/queries";
 
 import Layout from "@components/Layout/Layout";
 
 import Hero from "@sections/FindEstateDetail/Hero/Hero";
-import News from "@sections/FindEstateDetail/News/News";
 import Deposit from "@sections/FindEstateDetail/Deposit/Deposit";
 import HomeList from "@sections/FindEstateDetail/HomeList/HomeList";
+import NewsList from "@sections/FindEstateDetail/NewsList/NewsList";
 import MasterPlan from "@sections/FindEstateDetail/MasterPlan/MasterPlan";
 import LeadingInfo from "@sections/FindEstateDetail/LeadingInfo/LeadingInfo";
 import SignUpEstate from "@sections/FindEstateDetail/SignUpEstate/SignUpEstate";
 import BannerGallery from "@sections/FindEstateDetail/BannerGallery/BannerGallery";
 import SimilarEstates from "@sections/FindEstateDetail/SimilarEstates/SimilarEstates";
 
-const FindEstateDetail: NextPage<any> = ({ estate, layoutData, homeList }) => {
+const FindEstateDetail: NextPage<any> = ({
+  estate,
+  layoutData,
+  homeList,
+  newsList,
+}) => {
   const title = get(estate, "entry.title", "");
   const logo = get(estate, "entry.logo", []);
   const suburb = get(estate, "entry.suburb", "");
@@ -40,6 +45,14 @@ const FindEstateDetail: NextPage<any> = ({ estate, layoutData, homeList }) => {
       : [];
   }, [title, homeList]);
 
+  const filteredNews: any[] = useMemo(() => {
+    return newsList
+      ? Array.from(newsList?.entries).filter((news: any) =>
+          news?.linkedEstates.some((estate: any) => estate.title === title)
+        )
+      : [];
+  }, [title, newsList]);
+
   return (
     <Layout layoutData={layoutData}>
       <Hero
@@ -58,7 +71,7 @@ const FindEstateDetail: NextPage<any> = ({ estate, layoutData, homeList }) => {
       {filteredHomes && <HomeList filteredHomes={filteredHomes} />}
       <MasterPlan masterPlanImage={masterPlan} />
       <Deposit />
-      <News />
+      <NewsList news={filteredNews} />
       <SimilarEstates />
       <SignUpEstate />
     </Layout>
@@ -144,12 +157,14 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
 
   const estate = await craftAPI(estateQuery);
   const homeList = await craftAPI(fullHomeListQuery);
+  const newsList = await craftAPI(simpleNewsQuery);
 
   return {
     props: {
       estate,
       layoutData,
       homeList,
+      newsList,
     },
     revalidate: 60,
   };
