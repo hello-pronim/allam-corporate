@@ -18,7 +18,6 @@ import LeadingInfo from "@sections/FindEstateDetail/LeadingInfo/LeadingInfo";
 import SignUpEstate from "@sections/FindEstateDetail/SignUpEstate/SignUpEstate";
 import BannerGallery from "@sections/FindEstateDetail/BannerGallery/BannerGallery";
 import SimilarEstates from "@sections/FindEstateDetail/SimilarEstates/SimilarEstates";
-import { HomeModel } from "@models";
 
 const FindEstateDetail: NextPage<any> = ({ estate, layoutData, homeList }) => {
   const title = get(estate, "entry.title", "");
@@ -56,7 +55,7 @@ const FindEstateDetail: NextPage<any> = ({ estate, layoutData, homeList }) => {
         salesCentre={salesCentre}
         estateLocationAddress={estateLocationAddress}
       />
-      <HomeList />
+      {filteredHomes && <HomeList filteredHomes={filteredHomes} />}
       <MasterPlan masterPlanImage={masterPlan} />
       <Deposit />
       <News />

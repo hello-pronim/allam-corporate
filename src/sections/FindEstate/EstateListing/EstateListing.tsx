@@ -43,7 +43,7 @@ const EstateListing = ({ homesList }: IEstateListingProps) => {
 
           {!isLoadMore && (
             <div className={styles.estateListingViewCTA}>
-              <Button size="large" onClick={() => setIsLoadMore(true)} rounded>
+              <Button onClick={() => setIsLoadMore(true)} rounded>
                 Load more
               </Button>
             </div>
