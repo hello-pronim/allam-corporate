@@ -4,9 +4,13 @@ import styles from "./LocationCard.module.scss";
 
 export interface ILocationCardProps {
   location: any;
+  showEstateButton?: boolean;
 }
 
-const LocationCard = ({ location }: ILocationCardProps) => {
+const LocationCard = ({
+  location,
+  showEstateButton = false,
+}: ILocationCardProps) => {
   return (
     <div className={styles.locationCard}>
       <h5>{location?.linkedEstates?.[0]?.title} Estate</h5>
@@ -34,15 +38,16 @@ const LocationCard = ({ location }: ILocationCardProps) => {
       <div className={styles.divider} />
       <div className={styles.locationCardCTAs}>
         {location?.directionsLink && (
-          <Button rounded href={location.directionsLink}>
+          <Button href={location.directionsLink} size="small" rounded>
             Get directions
           </Button>
         )}
-        {location?.linkedEstates?.[0] && (
+        {showEstateButton && location?.linkedEstates?.[0] && (
           <Button
-            color="light"
-            rounded
             href={`/find-estate/${location?.linkedEstates?.[0]?.slug}`}
+            color="light"
+            size="small"
+            rounded
           >
             View estate
           </Button>

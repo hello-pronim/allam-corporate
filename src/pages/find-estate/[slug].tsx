@@ -34,8 +34,6 @@ const FindEstateDetail: NextPage<any> = ({
   const bannerImages = get(estate, "entry.galleryImages", []);
   const masterPlan = get(estate, "entry.masterPlanImage[0]", "");
   const salesCentre = get(estate, "entry.salesCentre[0]", "");
-  const streetAddress = get(estate, "entry.streetAddress", "");
-  const estateLocationAddress = `${suburb} ${estateState} ${postcode}`;
 
   const filteredHomes: any[] = useMemo(() => {
     return homeList
@@ -64,11 +62,11 @@ const FindEstateDetail: NextPage<any> = ({
       <BannerGallery images={bannerImages} videos={videos} logo={logo} />
       <LeadingInfo
         introText={get(estate, "entry.introText", "")}
-        streetAddress={streetAddress}
         salesCentre={salesCentre}
-        estateLocationAddress={estateLocationAddress}
       />
-      {filteredHomes && <HomeList filteredHomes={filteredHomes} />}
+      {filteredHomes && (
+        <HomeList title={title} filteredHomes={filteredHomes} />
+      )}
       <MasterPlan masterPlanImage={masterPlan} />
       <Deposit />
       <NewsList news={filteredNews} />
@@ -117,14 +115,24 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
           salesCentre {
             ... on locations_default_Entry {
               title
-              phoneNumber
-              streetAddress
+              linkedEstates {
+                ... on estates_default_Entry {
+                  slug
+                  title
+                  streetAddress
+                  estateState(label: true)
+                  suburb
+                  postcode
+                }
+              }
               officeName
+              streetAddress
               suburb
               locationState
               postcode
               daysOpen
               hoursOpen
+              phoneNumber
               directionsLink
             }
           }

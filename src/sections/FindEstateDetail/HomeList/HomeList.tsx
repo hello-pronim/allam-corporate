@@ -6,15 +6,16 @@ import PropertyCard from "@components/PropertyCard/PropertyCard";
 import styles from "./HomeList.module.scss";
 
 export interface IHomeListProps {
+  title: string;
   filteredHomes?: HomeModel[];
 }
 
-const HomeList = ({ filteredHomes }: IHomeListProps) => {
+const HomeList = ({ title, filteredHomes }: IHomeListProps) => {
   return (
     <div className={styles.homeList}>
       <div className={styles.homeListWrapper}>
         <div className={styles.homeListContent}>
-          <h2>Find your perfect home or land in Ardennes</h2>
+          <h2>Find your perfect home or land in {title}</h2>
           <div className={styles.homeListGrid}>
             <div className={styles.homeListGridWrapper}>
               {filteredHomes?.map((home, id) => (
