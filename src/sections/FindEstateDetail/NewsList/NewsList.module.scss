@@ -1,7 +1,7 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
-.news {
+.newsList {
   background-color: $grey2;
   @include breakpoint($large) {
   }
