@@ -7,6 +7,7 @@
   height: 100vh;
   @include breakpoint($large) {
     min-height: rem(700);
+    max-height: rem(1280);
   }
 
   &Wrapper {

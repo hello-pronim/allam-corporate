@@ -4,6 +4,7 @@
 .hero {
   height: 100vh;
   min-height: rem(700);
+  max-height: rem(1280);
   background-size: cover;
   background-position: center;
   background-blend-mode: multiply, normal;
