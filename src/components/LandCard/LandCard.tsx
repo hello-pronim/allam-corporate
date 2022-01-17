@@ -5,11 +5,11 @@ import { LandModel } from "@models";
 import { shimmer, toBase64 } from "@utils/blobImage";
 import styles from "./LandCard.module.scss";
 
-export interface LandCardProps {
+export interface ILandCardProps {
   landData: LandModel;
 }
 
-const LandCard = ({ landData }: LandCardProps) => {
+const LandCard = ({ landData }: ILandCardProps) => {
   const settings = {
     className: "estate-card-slider",
     dots: true,

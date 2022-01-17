@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { css } from "@styled-system/css";
-import Buying from "../Forms/Buying";
-import Suppliers from "../Forms/Suppliers";
-import GeneralEnquiry from "../Forms/GeneralEnquiry";
+
 import { LocationModel } from "@models";
 import CardGrid from "@components/CardGrid/CardGrid";
+import LocationCard from "@components/LocationCard/LocationCard";
 import { ImageButton, Button } from "@components/Common/Common";
+
+import Buying from "../Forms/Buying";
+import Suppliers from "../Forms/Suppliers";
 import Appointment from "../Forms/Appointment";
+import GeneralEnquiry from "../Forms/GeneralEnquiry";
 import styles from "./TabbedContent.module.scss";
 
 export interface TabbedContentProps {
@@ -142,47 +145,7 @@ const TabbedContent = ({ locations }: TabbedContentProps) => {
                 padding={[80, 160]}
               >
                 {locations?.map((location, id) => (
-                  <div className={styles.locationCard} key={id}>
-                    <h5>{location?.linkedEstates?.[0]?.title} Estate</h5>
-                    <p>{`${location?.linkedEstates?.[0]?.streetAddress},`}</p>
-                    <p>{`${location?.linkedEstates?.[0]?.suburb} ${location?.linkedEstates?.[0]?.estateState} ${location?.linkedEstates?.[0]?.postcode}`}</p>
-
-                    <div className={styles.divider} />
-
-                    <h5>{location.officeName}</h5>
-                    <p>
-                      {`${location.streetAddress},`}
-                      <br />
-                      {`${location.suburb} ${location.locationState} ${location.postcode}`}
-                    </p>
-                    <p>
-                      <strong>{location.daysOpen}</strong>
-                      {` ${location.hoursOpen}`}
-                      <br />
-                      {location.phoneNumber && (
-                        <>
-                          <strong>Phone</strong> {location.phoneNumber}
-                        </>
-                      )}
-                    </p>
-                    <div className={styles.divider} />
-                    <div className={styles.locationCardCTAs}>
-                      {location.directionsLink && (
-                        <Button rounded href={location.directionsLink}>
-                          Get directions
-                        </Button>
-                      )}
-                      {location?.linkedEstates?.[0] && (
-                        <Button
-                          color="light"
-                          rounded
-                          href={`/find-estate/${location?.linkedEstates?.[0]?.slug}`}
-                        >
-                          View estate
-                        </Button>
-                      )}
-                    </div>
-                  </div>
+                  <LocationCard location={location} key={id} />
                 ))}
               </CardGrid>
             </div>
