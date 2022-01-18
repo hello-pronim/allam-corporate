@@ -5,7 +5,12 @@ import { get } from "lodash";
 import { gql } from "@apollo/client";
 
 import craftAPI from "@libs/api";
-import { layoutQuery, fullHomeListQuery, simpleNewsQuery } from "@libs/queries";
+import {
+  layoutQuery,
+  fullHomeListQuery,
+  simpleNewsQuery,
+  fullEstatesQuery,
+} from "@libs/queries";
 
 import Layout from "@components/Layout/Layout";
 
@@ -22,6 +27,7 @@ import SimilarEstates from "@sections/FindEstateDetail/SimilarEstates/SimilarEst
 const FindEstateDetail: NextPage<any> = ({
   estate,
   layoutData,
+  estateList,
   homeList,
   newsList,
 }) => {
@@ -35,6 +41,16 @@ const FindEstateDetail: NextPage<any> = ({
   const bannerImages = get(estate, "entry.galleryImages", []);
   const masterPlan = get(estate, "entry.masterPlanImage[0]", "");
   const salesCentre = get(estate, "entry.salesCentre[0]", "");
+  const latitude = get(estate, "entry.latitude", "");
+  const longitude = get(estate, "entry.longitude", "");
+
+  const filteredEstates: any[] = useMemo(() => {
+    return estateList
+      ? Array.from(estateList.entries).filter(
+          (estate: any) => estate.title !== title
+        )
+      : [];
+  }, [title, estateList]);
 
   const filteredHomes: any[] = useMemo(() => {
     return homeList
@@ -72,7 +88,12 @@ const FindEstateDetail: NextPage<any> = ({
       <MasterPlan masterPlanImage={masterPlan} />
       <Deposit />
       <NewsList news={filteredNews} />
-      <SimilarEstates />
+      <SimilarEstates
+        estateList={filteredEstates}
+        homeList={homeList.entries}
+        latitude={Number(latitude)}
+        longitude={Number(longitude)}
+      />
       <SignUpEstate />
     </Layout>
   );
@@ -167,6 +188,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
   `;
 
   const estate = await craftAPI(estateQuery);
+  const estateList = await craftAPI(fullEstatesQuery);
   const homeList = await craftAPI(fullHomeListQuery);
   const newsList = await craftAPI(simpleNewsQuery);
 
@@ -174,6 +196,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
     props: {
       estate,
       layoutData,
+      estateList,
       homeList,
       newsList,
     },
