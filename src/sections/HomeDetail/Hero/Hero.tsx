@@ -100,7 +100,11 @@ const Hero = ({ data }: IHeroProps) => {
               <ImageButton
                 href="#"
                 icon="download-yellow"
-                label="Book an inspection"
+                label={
+                  data?.openForInspection
+                    ? "Book an inspection"
+                    : "Click for price"
+                }
                 chevron={true}
                 labelSpacingLeft={8}
                 labelSpacingRight={16}
