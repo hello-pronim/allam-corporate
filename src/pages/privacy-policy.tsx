@@ -4,7 +4,8 @@ import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
 import { layoutQuery } from "@libs/queries";
 import Layout from "@components/Layout/Layout";
-import ContentPage from "@components/ContentPage/ContentPage";
+import Hero from "@sections/ContentPages/Hero/Hero";
+import PageContent from "@components/PageContent/PageContent";
 
 type PageProps = {
   pageData: any;
@@ -16,7 +17,8 @@ const PrivacyPolicy: NextPage<PageProps> = ({ pageData, layoutData }) => {
 
   return (
     <Layout layoutData={layoutData}>
-      <ContentPage content={page.pageContent} />
+      <Hero heading={page.title} />
+      <PageContent content={page.pageContent} />
     </Layout>
   );
 };
