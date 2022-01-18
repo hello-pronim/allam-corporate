@@ -78,8 +78,8 @@ const PropertyCard = ({
         {isOpenInspection && (
           <div className={styles.propertyCardBottomInspection}>
             <p>
-              {homeData.inspectionTimes?.[0]?.days
-                ? `Open for Inspection: ${homeData.inspectionTimes?.[0]?.days}`
+              {homeData.inspectionTimes
+                ? `Open for Inspection: ${homeData.inspectionTimes}`
                 : "FOR SALE"}
             </p>
           </div>

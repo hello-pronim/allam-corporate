@@ -122,12 +122,7 @@ const homesQuery = gql`
           }
         }
         openForInspection
-        inspectionTimes {
-          ... on inspectionTimes_BlockType {
-            days
-            time
-          }
-        }
+        inspectionTimes
         buildingSize
         landSize
         percentageComplete

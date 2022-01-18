@@ -79,6 +79,20 @@
         margin-top: rem(24);
       }
     }
+
+    &Documents {
+      margin-top: rem(24);
+      @include breakpoint($large) {
+        margin-top: rem(40);
+      }
+
+      p {
+        a {
+          font-weight: normal;
+          text-decoration: none;
+        }
+      }
+    }
   }
 
   &Right {

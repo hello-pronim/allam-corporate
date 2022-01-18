@@ -7,14 +7,22 @@ import LocationCard from "@components/LocationCard/LocationCard";
 type ILeadingInfoProps = {
   introText: string;
   salesCentre?: LocationModel;
+  documents: string;
 };
 
-const LeadingInfo = ({ introText, salesCentre }: ILeadingInfoProps) => {
+const LeadingInfo = ({
+  documents,
+  introText,
+  salesCentre,
+}: ILeadingInfoProps) => {
   return (
     <div className={styles.leadingInfo}>
       <div className={styles.leadingInfoWrapper}>
         <div className={styles.leadingInfoLeft}>
           <Redactor>{introText ?? ""}</Redactor>
+          <div className={styles.leadingInfoLeftDocuments}>
+            {documents && <Redactor>{documents}</Redactor>}
+          </div>
         </div>
 
         <div className={styles.leadingInfoRight}>

@@ -31,6 +31,7 @@ const FindEstateDetail: NextPage<any> = ({
   const estateState = get(estate, "entry.estateState", "");
   const postcode = get(estate, "entry.postcode", "");
   const videos = get(estate, "entry.videos", []);
+  const documents = get(estate, "entry.documents", null);
   const bannerImages = get(estate, "entry.galleryImages", []);
   const masterPlan = get(estate, "entry.masterPlanImage[0]", "");
   const salesCentre = get(estate, "entry.salesCentre[0]", "");
@@ -63,6 +64,7 @@ const FindEstateDetail: NextPage<any> = ({
       <LeadingInfo
         introText={get(estate, "entry.introText", "")}
         salesCentre={salesCentre}
+        documents={documents}
       />
       {filteredHomes && (
         <HomeList title={title} filteredHomes={filteredHomes} />
@@ -86,6 +88,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
         ... on estates_default_Entry {
           title
           introText
+          documents
           streetAddress
           estateState(label: true)
           estateStatus
