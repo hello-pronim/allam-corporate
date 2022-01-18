@@ -1,10 +1,11 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import Slider from "react-slick";
+
 import { HomeLayoutModel } from "@models";
 import { Button, Redactor } from "@components/Common/Common";
 import styles from "./PerfectEstate.module.scss";
-import { estateFilterState } from "@states/atoms/estates";
 
 export interface IPerfectEstateProps {
   data?: HomeLayoutModel;
@@ -62,15 +63,17 @@ const PerfectEstate = ({ data, estates = [] }: IPerfectEstateProps) => {
           <Slider {...settings}>
             {estates.map((estate: any, id: number) => (
               <div className={styles.perfectEstateSlideImage} key={id}>
-                {estate.logo?.[0]?.url && (
-                  <Image
-                    src={estate.logo?.[0]?.url}
-                    alt={estate.logo?.[0]?.title}
-                    width={estate.logo?.[0]?.width}
-                    height={estate.logo?.[0]?.height}
-                    layout="responsive"
-                  />
-                )}
+                <Link href={`/find-estate/${estate.slug}`}>
+                  <a>
+                    <Image
+                      src={estate.logo?.[0]?.url}
+                      alt={estate.logo?.[0]?.title}
+                      width={estate.logo?.[0]?.width}
+                      height={estate.logo?.[0]?.height}
+                      layout="responsive"
+                    />
+                  </a>
+                </Link>
               </div>
             ))}
           </Slider>
