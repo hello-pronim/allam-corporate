@@ -2,15 +2,16 @@ import React from "react";
 import Image from "next/image";
 import Slider from "react-slick";
 import { HomeLayoutModel } from "@models";
-import { estateObj } from "./constant";
 import { Button, Redactor } from "@components/Common/Common";
 import styles from "./PerfectEstate.module.scss";
+import { estateFilterState } from "@states/atoms/estates";
 
 export interface IPerfectEstateProps {
   data?: HomeLayoutModel;
+  estates: any[];
 }
 
-const PerfectEstate = ({ data }: IPerfectEstateProps) => {
+const PerfectEstate = ({ data, estates = [] }: IPerfectEstateProps) => {
   const settings = {
     infinite: false,
     slidesToShow: 1,
@@ -59,14 +60,17 @@ const PerfectEstate = ({ data }: IPerfectEstateProps) => {
           className={`${styles.perfectEstateLogosSlider} estate-logo-slider`}
         >
           <Slider {...settings}>
-            {estateObj?.map((estate: any, id: number) => (
+            {estates.map((estate: any, id: number) => (
               <div className={styles.perfectEstateSlideImage} key={id}>
-                <Image
-                  src={estate.image}
-                  alt="estate-logo"
-                  width={312}
-                  height={178}
-                />
+                {estate.logo?.[0]?.url && (
+                  <Image
+                    src={estate.logo?.[0]?.url}
+                    alt={estate.logo?.[0]?.title}
+                    width={estate.logo?.[0]?.width}
+                    height={estate.logo?.[0]?.height}
+                    layout="responsive"
+                  />
+                )}
               </div>
             ))}
           </Slider>
@@ -76,8 +80,9 @@ const PerfectEstate = ({ data }: IPerfectEstateProps) => {
           <Button
             color={data?.buttons?.[0]?.buttonType}
             href={data?.buttons?.[0]?.buttonLink}
+            rounded
           >
-            {`${data?.buttons?.[0]?.buttonLabel} (10)`}
+            {`${data?.buttons?.[0]?.buttonLabel} (${estates?.length})`}
           </Button>
         </div>
       </div>

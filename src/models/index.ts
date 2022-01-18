@@ -16,6 +16,7 @@ export type NormalPageProps = {
   layoutData?: any;
   pageData?: any;
   trustMakers?: any;
+  estateList?: any;
 };
 
 export type PageProps = NormalPageProps | OverViewPageProps;

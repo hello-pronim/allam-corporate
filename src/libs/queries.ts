@@ -1,5 +1,76 @@
 import { gql } from "@apollo/client";
 
+export const simpleEstatesQuery = gql`
+  query estatesQuery {
+    entries(section: "estates") {
+      ... on estates_default_Entry {
+        slug
+        title
+        logo {
+          title
+          url
+          width
+          height
+        }
+        suburb
+        latitude
+        longitude
+      }
+    }
+  }
+`;
+
+export const fullEstatesQuery = gql`
+  query estatesQuery {
+    entries(section: "estates") {
+      ... on estates_default_Entry {
+        slug
+        title
+        introText
+        streetAddress
+        estateState(label: true)
+        estateStatus
+        retirementLiving
+        logo {
+          title
+          url
+          width
+          height
+        }
+        postcode
+        suburb
+        latitude
+        longitude
+        geojson
+        downloadableBrochure {
+          url
+        }
+        masterPlanImage {
+          url
+        }
+        galleryImages {
+          title
+          url
+          width
+          height
+        }
+        offersLink {
+          ... on offersLink_BlockType {
+            internalOffer {
+              ... on promotions_default_Entry {
+                title
+                shortDescription
+                introBlurb
+                description
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const simpleHomeListQuery = gql`
   query homesQuery {
     entries(section: "homesAndLand") {

@@ -6,7 +6,12 @@ import { useSetRecoilState } from "recoil";
 
 import { OverViewPageProps } from "@models";
 import craftAPI from "@libs/api";
-import { layoutQuery, trustQuery, simpleHomeListQuery } from "@libs/queries";
+import {
+  layoutQuery,
+  trustQuery,
+  simpleHomeListQuery,
+  fullEstatesQuery,
+} from "@libs/queries";
 import { allEstateState } from "@states/atoms/estates";
 
 import Layout from "@components/Layout/Layout";
@@ -110,61 +115,10 @@ const pageQuery = gql`
   }
 `;
 
-const estatesQuery = gql`
-  query estatesQuery {
-    entries(section: "estates") {
-      ... on estates_default_Entry {
-        slug
-        title
-        introText
-        streetAddress
-        estateState(label: true)
-        estateStatus
-        retirementLiving
-        logo {
-          title
-          url
-          width
-          height
-        }
-        postcode
-        suburb
-        latitude
-        longitude
-        geojson
-        downloadableBrochure {
-          url
-        }
-        masterPlanImage {
-          url
-        }
-        galleryImages {
-          title
-          url
-          width
-          height
-        }
-        offersLink {
-          ... on offersLink_BlockType {
-            internalOffer {
-              ... on promotions_default_Entry {
-                title
-                shortDescription
-                introBlurb
-                description
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
 export const getStaticProps = async function () {
   const pageData = await craftAPI(pageQuery);
   const trustMakers = await craftAPI(trustQuery);
-  const listingData = await craftAPI(estatesQuery);
+  const listingData = await craftAPI(fullEstatesQuery);
   const layoutData = await craftAPI(layoutQuery);
   const homesList = await craftAPI(simpleHomeListQuery);
 
