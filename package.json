@@ -15,7 +15,6 @@
     "@emotion/react": "^11.4.1",
     "@styled-system/css": "^5.1.5",
     "@types/d3": "^7.1.0",
-    "@urbica/react-map-gl": "^1.14.4",
     "classnames": "^2.3.1",
     "d3": "^7.3.0",
     "dayjs": "^1.10.7",

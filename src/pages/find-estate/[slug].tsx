@@ -39,7 +39,7 @@ const FindEstateDetail: NextPage<any> = ({
   const videos = get(estate, "entry.videos", []);
   const documents = get(estate, "entry.documents", null);
   const bannerImages = get(estate, "entry.galleryImages", []);
-  const masterPlan = get(estate, "entry.masterPlanImage[0]", "");
+  const masterPlan = get(estate, "entry.masterPlanImage[0]", null);
   const salesCentre = get(estate, "entry.salesCentre[0]", "");
   const latitude = get(estate, "entry.latitude", "");
   const longitude = get(estate, "entry.longitude", "");
@@ -85,7 +85,7 @@ const FindEstateDetail: NextPage<any> = ({
       {filteredHomes && (
         <HomeList title={title} filteredHomes={filteredHomes} />
       )}
-      <MasterPlan masterPlanImage={masterPlan} />
+      {masterPlan && <MasterPlan masterPlanImage={masterPlan} />}
       <Deposit />
       <NewsList news={filteredNews} />
       <SimilarEstates
