@@ -1,0 +1,41 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.masterPlanModal {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  @include breakpoint($large) {
+  }
+
+  &Close {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: $white;
+    position: absolute;
+    top: 32px;
+    right: 48px;
+
+    svg {
+      path {
+        fill: $white;
+      }
+    }
+
+    span {
+      font-size: rem(16);
+      text-transform: uppercase;
+    }
+  }
+
+  &Image {
+    width: 100%;
+    padding: rem(80) rem(48);
+
+    &Container {
+      width: 100%;
+    }
+  }
+}
