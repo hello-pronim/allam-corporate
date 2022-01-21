@@ -73,8 +73,8 @@ const FindEstateDetail: NextPage<any> = ({
       <Hero
         title={title}
         address={`${suburb}, ${estateState} ${postcode}`}
-        logo={logo}
         filteredHomes={filteredHomes}
+        logo={logo}
       />
       <BannerGallery images={bannerImages} videos={videos} logo={logo} />
       <LeadingInfo
