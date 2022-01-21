@@ -26,9 +26,11 @@ const LeadingInfo = ({
         </div>
 
         <div className={styles.leadingInfoRight}>
-          <div className={styles.leadingInfoRightPanel}>
-            <LocationCard location={salesCentre} showEstateButton />
-          </div>
+          {salesCentre && (
+            <div className={styles.leadingInfoRightPanel}>
+              <LocationCard location={salesCentre} />
+            </div>
+          )}
         </div>
       </div>
     </div>

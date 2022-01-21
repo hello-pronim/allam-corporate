@@ -40,6 +40,7 @@ const FindEstateDetail: NextPage<any> = ({
   const documents = get(estate, "entry.documents", null);
   const bannerImages = get(estate, "entry.galleryImages", []);
   const masterPlan = get(estate, "entry.masterPlanImage[0]", null);
+  const masterplanDownload = get(estate, "entry.masterplanDownload[0]", null);
   const salesCentre = get(estate, "entry.salesCentre[0]", "");
   const latitude = get(estate, "entry.latitude", "");
   const longitude = get(estate, "entry.longitude", "");
@@ -85,7 +86,12 @@ const FindEstateDetail: NextPage<any> = ({
       {filteredHomes && (
         <HomeList title={title} filteredHomes={filteredHomes} />
       )}
-      {masterPlan && <MasterPlan masterPlanImage={masterPlan} />}
+      {masterPlan && (
+        <MasterPlan
+          masterPlanImage={masterPlan}
+          masterplanDownload={masterplanDownload}
+        />
+      )}
       <Deposit />
       <NewsList news={filteredNews} />
       <SimilarEstates
@@ -162,6 +168,11 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
           }
           masterPlanImage {
             title
+            url
+            width
+            height
+          }
+          masterplanDownload {
             url
           }
           galleryImages {
