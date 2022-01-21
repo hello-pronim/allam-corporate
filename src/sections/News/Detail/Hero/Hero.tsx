@@ -18,25 +18,27 @@ const Hero = ({ title, date, bannerImage }: IHeroProps) => {
         <BreadCrumb />
       </div>
 
-      <div className={styles.heroBannerMobile}>
-        <div className={styles.heroBannerTextWrapper}>
-          <p className={styles.heroBannerText}>{formateDate(date)}</p>
+      <div className={styles.heroContainer}>
+        <div className={styles.heroBanner}>
+          <div className={styles.heroBannerTextWrapper}>
+            <p className={styles.heroBannerText}>{formateDate(date)}</p>
+          </div>
+          <div className={styles.heroBannerImage}>
+            <Image
+              src={bannerImage.url}
+              alt="hero-banner"
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
         </div>
-        <div className={styles.heroBannerImage}>
-          <Image
-            src={bannerImage.url}
-            alt="hero-banner"
-            layout="fill"
-            objectFit="cover"
-          />
-        </div>
-      </div>
 
-      <div className={styles.heroWrapper}>
-        <div className={styles.heroContent}>
-          <div className={styles.heroContentTitle}>
-            <p>{formateDate(date)}</p>
-            <h1>{title}</h1>
+        <div className={styles.heroWrapper}>
+          <div className={styles.heroContent}>
+            <div className={styles.heroContentTitle}>
+              <p>{formateDate(date)}</p>
+              <h1>{title}</h1>
+            </div>
           </div>
         </div>
       </div>

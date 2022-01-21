@@ -89,11 +89,7 @@ const NewsDetail: NextPage<PageProps> = ({ pageData, layoutData }) => {
   return (
     <Layout layoutData={layoutData}>
       <Hero title={title} date={publishDate} bannerImage={titleImage} />
-      <DetailContent
-        content={description}
-        faqs={faqs}
-        bannerImage={titleImage}
-      />
+      <DetailContent content={description} faqs={faqs} />
       <KnowMoreAllamHomes data={footerPanelData} />
     </Layout>
   );

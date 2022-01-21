@@ -12,24 +12,8 @@
 
     @include breakpoint($large) {
       position: relative;
-      padding-top: rem(280);
-      padding-bottom: rem(80);
+      padding: rem(80) 0;
       @include grid(1, 12);
-    }
-
-    .detailHeaderWrapper {
-      width: 100%;
-      display: grid;
-      grid-column: 3 / span 8;
-      position: absolute;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: none;
-
-      @include breakpoint($large) {
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: rem(4);
-      }
     }
 
     .detailBodyWrapper {
@@ -88,18 +72,6 @@
         grid-row-gap: rem(120);
       }
 
-      .detailImages {
-        grid-column: 1 / span 12;
-        display: grid;
-        @include breakpoint($large) {
-          grid-template-columns: 1fr 1fr;
-          grid-column-gap: rem(4);
-        }
-        @include below($medium) {
-          grid-template-rows: 1fr 1fr;
-          grid-row-gap: rem(4);
-        }
-      }
       .faqPanel {
         grid-column: 2 / span 10;
       }
