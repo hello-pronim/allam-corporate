@@ -23,6 +23,7 @@ import LeadingInfo from "@sections/FindEstateDetail/LeadingInfo/LeadingInfo";
 import SignUpEstate from "@sections/FindEstateDetail/SignUpEstate/SignUpEstate";
 import BannerGallery from "@sections/FindEstateDetail/BannerGallery/BannerGallery";
 import SimilarEstates from "@sections/FindEstateDetail/SimilarEstates/SimilarEstates";
+import EstateStickyBar from "@sections/FindEstateDetail/EstateStickyBar/EstateStickyBar";
 
 const FindEstateDetail: NextPage<any> = ({
   estate,
@@ -70,38 +71,41 @@ const FindEstateDetail: NextPage<any> = ({
   }, [title, newsList]);
 
   return (
-    <Layout layoutData={layoutData}>
-      <Hero
-        title={title}
-        address={`${suburb}, ${estateState} ${postcode}`}
-        filteredHomes={filteredHomes}
-        logo={logo}
-      />
-      <BannerGallery images={bannerImages} videos={videos} logo={logo} />
-      <LeadingInfo
-        introText={get(estate, "entry.introText", "")}
-        salesCentre={salesCentre}
-        documents={documents}
-      />
-      {filteredHomes && (
-        <HomeList title={title} filteredHomes={filteredHomes} />
-      )}
-      {masterPlan && (
-        <MasterPlan
-          masterPlanImage={masterPlan}
-          masterplanDownload={masterplanDownload}
+    <div>
+      <Layout layoutData={layoutData}>
+        <Hero
+          title={title}
+          address={`${suburb}, ${estateState} ${postcode}`}
+          filteredHomes={filteredHomes}
+          logo={logo}
         />
-      )}
-      <Deposit />
-      <NewsList news={filteredNews} />
-      <SimilarEstates
-        estateList={filteredEstates}
-        homeList={homeList.entries}
-        latitude={Number(latitude)}
-        longitude={Number(longitude)}
-      />
-      <SignUpEstate />
-    </Layout>
+        <BannerGallery images={bannerImages} videos={videos} logo={logo} />
+        <LeadingInfo
+          introText={get(estate, "entry.introText", "")}
+          salesCentre={salesCentre}
+          documents={documents}
+        />
+        {filteredHomes && (
+          <HomeList title={title} filteredHomes={filteredHomes} />
+        )}
+        {masterPlan && (
+          <MasterPlan
+            masterPlanImage={masterPlan}
+            masterplanDownload={masterplanDownload}
+          />
+        )}
+        <Deposit />
+        <NewsList news={filteredNews} />
+        <SimilarEstates
+          estateList={filteredEstates}
+          homeList={homeList.entries}
+          latitude={Number(latitude)}
+          longitude={Number(longitude)}
+        />
+        <SignUpEstate />
+      </Layout>
+      <EstateStickyBar title={title} suburb={suburb} />
+    </div>
   );
 };
 
