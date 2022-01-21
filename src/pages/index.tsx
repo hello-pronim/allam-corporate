@@ -27,8 +27,6 @@ const Home: NextPage<NormalPageProps> = ({
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
 
-  console.log(estateList);
-
   return (
     <Layout layoutData={layoutData}>
       <Hero data={heroSlider} />

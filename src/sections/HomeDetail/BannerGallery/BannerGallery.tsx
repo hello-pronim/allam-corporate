@@ -45,7 +45,9 @@ const BannerGallery = ({
           className={styles.bannerGallerySideTop}
           style={{ backgroundImage: `url(${images[1]?.url})` }}
         >
-          <Icon type="video-play" onClick={openGallery} />
+          {videos.length > 0 && (
+            <Icon type="video-play" onClick={openGallery} />
+          )}
         </div>
 
         <div
