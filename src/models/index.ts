@@ -150,6 +150,7 @@ export type EstateModel = {
   offersLink: any[];
   salesCentre: LocationModel[];
   masterPlanImage: CraftImage[];
+  masterplanDownload: Asset[];
   downloadableBrochure: Asset[];
 };
 
