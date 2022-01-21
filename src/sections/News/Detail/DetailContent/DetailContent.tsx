@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+
+import { CraftImage } from "@models";
 import { Redactor } from "@components/Common/Common";
 import SocialShareIcons from "@components/SocialShareIcons/SocialShareIcons";
+
 import FAQ from "@sections/FAQ/FAQ";
 
 import styles from "./DetailContent.module.scss";
 
 export interface DetailContentProps {
-  data: any;
+  content: string;
+  bannerImage: CraftImage;
   faqs?: Array<any>;
 }
 
-const DetailContent = ({ data, faqs }: DetailContentProps) => {
+const DetailContent = ({ content, bannerImage, faqs }: DetailContentProps) => {
   const [windowDimensions, setWindowDimensions] = useState({
     width: 0,
     height: 0,
@@ -41,33 +45,33 @@ const DetailContent = ({ data, faqs }: DetailContentProps) => {
     <div className={styles.detailPanel}>
       <div className={styles.detailPanelWrapper}>
         <div className={styles.detailHeaderWrapper}>
-          {data.images?.slice(0, 2).map((image: string) => (
-            <Image
-              key={image}
-              src={image}
-              alt="news detail image"
-              width={600}
-              height={400}
-            />
-          ))}
+          <Image
+            src={bannerImage.url}
+            alt="news detail image"
+            width={600}
+            height={400}
+            layout="responsive"
+          />
         </div>
+
         <div className={styles.detailBodyWrapper}>
           <div className={styles.socialShareWrapper}>
-            <SocialShareIcons
+            {/* <SocialShareIcons
               title="Share"
               size="small"
               data={data.socials}
               direction={
                 windowDimensions.width > 768 ? "vertical" : "horizontal"
               }
-            />
+            /> */}
           </div>
           <div className={styles.detailContentWrapper}>
-            <Redactor>{data.content}</Redactor>
+            <Redactor>{content}</Redactor>
           </div>
         </div>
+
         <div className={styles.detailFooterWrapper}>
-          <div className={styles.detailImages}>
+          {/* <div className={styles.detailImages}>
             {data.images?.slice(0, 2).map((image: string) => (
               <Image
                 key={image}
@@ -77,7 +81,7 @@ const DetailContent = ({ data, faqs }: DetailContentProps) => {
                 height={400}
               />
             ))}
-          </div>
+          </div> */}
           {faqs && (
             <div className={styles.faqPanel}>
               <hr className={styles.divider}></hr>

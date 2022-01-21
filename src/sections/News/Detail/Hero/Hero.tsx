@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import { CraftImage } from "@models";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
-import { Redactor } from "@components/Common/Common";
 import { formateDate } from "@utils/formatDate";
 import styles from "./Hero.module.scss";
 
@@ -18,6 +17,7 @@ const Hero = ({ title, date, bannerImage }: IHeroProps) => {
       <div className={styles.heroBreadcrumb}>
         <BreadCrumb />
       </div>
+
       <div className={styles.heroBannerMobile}>
         <div className={styles.heroBannerTextWrapper}>
           <p className={styles.heroBannerText}>{formateDate(date)}</p>
@@ -27,10 +27,11 @@ const Hero = ({ title, date, bannerImage }: IHeroProps) => {
             src={bannerImage.url}
             alt="hero-banner"
             layout="fill"
-            objectFit="contain"
+            objectFit="cover"
           />
         </div>
       </div>
+
       <div className={styles.heroWrapper}>
         <div className={styles.heroContent}>
           <div className={styles.heroContentTitle}>
