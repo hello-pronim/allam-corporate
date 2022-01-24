@@ -6,7 +6,7 @@ import craftAPI from "@libs/api";
 import { propsFind } from "@utils/propsFind";
 import { layoutQuery, trustQuery } from "@libs/queries";
 import { useSetRecoilState } from "recoil";
-import { allHomesState } from "@states/atoms/homes";
+import { allInspectionState } from "@states/atoms/inspection";
 import { HomeModel, OverViewPageProps } from "@models";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/OpenInspection/Hero/Hero";
@@ -27,7 +27,7 @@ const OpenInspection: NextPage<OverViewPageProps> = ({
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
   const homesList = get(listingData, "entries", []);
-  const setHomes = useSetRecoilState(allHomesState);
+  const setHomes = useSetRecoilState(allInspectionState);
 
   useEffect(() => {
     setHomes(

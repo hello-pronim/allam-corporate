@@ -84,8 +84,6 @@ const NewsDetail: NextPage<PageProps> = ({ pageData, layoutData }) => {
     ],
   };
 
-  console.log(pageData);
-
   return (
     <Layout layoutData={layoutData}>
       <Hero title={title} date={publishDate} bannerImage={titleImage} />

@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { filteredHomes } from "@states/atoms/homes";
+import { filteredInspection } from "@states/atoms/inspection";
 import { Button } from "@components/Common/Common";
 import EasyBuyPurchase from "@components/EasyBuyPurchase/EasyBuyPurchase";
 import PropertyCard from "@components/PropertyCard/PropertyCard";
@@ -9,7 +9,7 @@ import styles from "./InspectionList.module.scss";
 export interface IInspectionListProps {}
 
 const InspectionList = ({}: IInspectionListProps) => {
-  const homesList = useRecoilValue(filteredHomes);
+  const homesList = useRecoilValue(filteredInspection);
 
   return (
     <div className={styles.homesListing}>
