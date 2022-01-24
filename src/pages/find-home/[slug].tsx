@@ -24,7 +24,7 @@ const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
   const offer = get(home, "entry.associatedOffers[0]", "");
   const videos = get(home, "entry.videos", []);
   const homeDesign = get(home, "entry.homeDesign[0].title", "");
-  const brochureUrl = get(home, "entry.downloadableBrochure[0].url", "");
+  const brochureUrl = get(home, "entry.downloadableBrochure[0].url", null);
   const floorPlan = get(home, "entry.floorPlan[0]");
 
   return (

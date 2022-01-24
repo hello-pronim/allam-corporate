@@ -10,7 +10,7 @@ export interface IHomeInfoProps {
   estateInfo?: any;
   offer?: any;
   homeDesign: string;
-  brochureUrl?: string;
+  brochureUrl?: string | null;
   floorPlan?: CraftImage;
 }
 
@@ -91,12 +91,7 @@ const HomeInfo = ({
             </div>
 
             {brochureUrl && (
-              <a
-                target="_blank"
-                download="test.pdf"
-                href={brochureUrl}
-                rel="noreferrer"
-              >
+              <a target="_blank" href={brochureUrl} rel="noreferrer" download>
                 <ImageButton
                   variant="primary"
                   icon="download-white"

@@ -20,6 +20,7 @@ const LandDetail: NextPage<any> = ({ land, layoutData }) => {
   const landSize = get(land, "entry.landSize", 0);
   const bannerImage = get(land, "entry.images[0]", "");
   const introBlurb = get(land, "entry.introBlurb", "");
+  const brochureUrl = get(land, "entry.downloadableBrochure[0].url", null);
   const offer = get(land, "entry.associatedOffers[0]", "");
 
   return (
@@ -31,6 +32,7 @@ const LandDetail: NextPage<any> = ({ land, layoutData }) => {
           introBlurb={introBlurb}
           estateInfo={estateInfo}
           offer={offer}
+          brochureUrl={brochureUrl}
         />
         <RegisterPanel data={landRegisterData} />
       </Layout>
