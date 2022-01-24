@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { useRecoilValue } from "recoil";
 import { filteredInspection } from "@states/atoms/inspection";
 import { Button } from "@components/Common/Common";
@@ -17,7 +18,11 @@ const InspectionList = ({}: IInspectionListProps) => {
         <div className={styles.homesListingView}>
           <div className={styles.homesListingCards}>
             {homesList?.map((home, id) => (
-              <PropertyCard key={id} homeData={home} isOpenInspection />
+              <Link href={`/find-home/${home.slug}`} key={id}>
+                <a>
+                  <PropertyCard key={id} homeData={home} isOpenInspection />
+                </a>
+              </Link>
             ))}
             <EasyBuyPurchase />
           </div>
