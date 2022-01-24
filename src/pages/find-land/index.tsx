@@ -26,13 +26,13 @@ const FindLand: NextPage<OverViewPageProps> = ({
   const introBlurb = get(pageData, "entry.introBlurb", "");
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
-  const homesList = get(listingData, "entries", []);
+  const landsList = get(listingData, "entries", []);
   const setLands = useSetRecoilState(allLandsState);
 
   useEffect(() => {
-    setLands(homesList?.filter((el: HomeModel) => el.landOnly === true));
+    setLands(landsList?.filter((el: HomeModel) => el.landOnly === true));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [homesList]);
+  }, [landsList]);
 
   return (
     <Layout layoutData={layoutData}>
