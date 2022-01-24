@@ -2,15 +2,22 @@ import React, { useCallback, useState, useEffect, useRef } from "react";
 import * as d3 from "d3";
 import Image from "next/image";
 import useSupercluster from "use-supercluster";
-import ReactMapGL, { MapRef, Marker, FlyToInterpolator } from "react-map-gl";
+import ReactMapGL, {
+  Source,
+  Layer,
+  MapRef,
+  Marker,
+  FlyToInterpolator,
+} from "react-map-gl";
 import { useWindowSize } from "@hooks/useWindowSize";
 import styles from "./MapView.module.scss";
 
 export interface IMapViewProps {
   data: any[];
+  geoJSON?: any;
 }
 
-const MapView = ({ data }: IMapViewProps) => {
+const MapView = ({ data, geoJSON = null }: IMapViewProps) => {
   const { width, height } = useWindowSize();
   const [viewport, setViewport] = useState({
     width: "100%",
@@ -39,6 +46,16 @@ const MapView = ({ data }: IMapViewProps) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
+
+  const dataLayer = {
+    id: "data",
+    source: "estates",
+    type: "fill" as "fill",
+    paint: {
+      "fill-color": ["get", "color"],
+      "fill-opacity": 0.8,
+    } as any,
+  };
 
   const mapRef = useRef<MapRef>(null);
 
@@ -84,6 +101,11 @@ const MapView = ({ data }: IMapViewProps) => {
         onViewportChange={setViewport}
         ref={mapRef}
       >
+        {geoJSON && (
+          <Source id="estates" type="geojson" data={geoJSON}>
+            <Layer {...dataLayer} />
+          </Source>
+        )}
         {data &&
           clusters.map((cluster) => {
             const [longitude, latitude] = cluster.geometry.coordinates;
@@ -136,14 +158,25 @@ const MapView = ({ data }: IMapViewProps) => {
                 latitude={latitude}
                 longitude={longitude}
               >
-                <div style={{ transform: `translate(-20px, -26px)` }}>
-                  <Image
-                    src={"/assets/icons/icon-pin.svg"}
-                    alt={cluster.properties.clusterId}
-                    width={40}
-                    height={52}
-                  />
-                </div>
+                {geoJSON ? (
+                  <div style={{ transform: `translate(-20px, -28px)` }}>
+                    <Image
+                      src={"/assets/icons/icon-pin-drop.svg"}
+                      alt={cluster.properties.clusterId}
+                      width={40}
+                      height={56}
+                    />
+                  </div>
+                ) : (
+                  <div style={{ transform: `translate(-20px, -26px)` }}>
+                    <Image
+                      src={"/assets/icons/icon-pin.svg"}
+                      alt={cluster.properties.clusterId}
+                      width={40}
+                      height={52}
+                    />
+                  </div>
+                )}
               </Marker>
             );
           })}
