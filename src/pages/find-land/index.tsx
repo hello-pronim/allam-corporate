@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import type { NextPage } from "next";
-import { gql } from "@apollo/client";
 import { get } from "lodash";
-import craftAPI from "@libs/api";
-import { propsFind } from "@utils/propsFind";
-import { layoutQuery, trustQuery } from "@libs/queries";
+import { gql } from "@apollo/client";
 import { useSetRecoilState } from "recoil";
+
+import craftAPI from "@libs/api";
+import { layoutQuery, trustQuery } from "@libs/queries";
+import { propsFind } from "@utils/propsFind";
 import { allLandsState } from "@states/atoms/lands";
 import { HomeModel, OverViewPageProps } from "@models";
+
 import Layout from "@components/Layout/Layout";
+import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
 import Hero from "@sections/FindLand/Hero/Hero";
 import LandListing from "@sections/FindLand/LandListing/LandListing";
 import Overview from "@sections/FindLand/Overview/Overview";
-import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
 const FindLand: NextPage<OverViewPageProps> = ({
