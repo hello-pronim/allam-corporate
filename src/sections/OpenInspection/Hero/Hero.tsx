@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { map, sortBy } from "lodash";
 import { useRecoilValue, useRecoilState } from "recoil";
 import {
-  allHomesState,
-  filteredHomes,
-  homesFilterState,
-} from "@states/atoms/homes";
+  allInspectionState,
+  filteredInspection,
+  inspectionFilterState,
+} from "@states/atoms/inspection";
 import { Redactor } from "@components/Common/Common";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
 import FilterModal from "@components/FilterModal/FilterModal";
@@ -29,12 +29,12 @@ const Hero = ({
   setShowMap,
 }: IHeroProps) => {
   const [isOpenFilter, setOpenFilter] = useState(false);
-  const filteredHomesList = useRecoilValue(filteredHomes);
+  const filteredHomesList = useRecoilValue(filteredInspection);
 
   const [suburbList, setSuburbList] = useState<string[]>([]);
   const [newSuburbList, setNewSuburbList] = useState<ChoiceModel[]>([]);
-  const homesList = useRecoilValue(allHomesState);
-  const [homesFilter, setHomesFilters] = useRecoilState(homesFilterState);
+  const homesList = useRecoilValue(allInspectionState);
+  const [homesFilter, setHomesFilters] = useRecoilState(inspectionFilterState);
 
   useEffect(() => {
     setSuburbList(sortBy(map(homesList, "suburb")));
