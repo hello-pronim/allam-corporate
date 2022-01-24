@@ -1,25 +1,30 @@
+import React, { useMemo } from "react";
 import type { NextPage } from "next";
 import get from "lodash/get";
 import { gql } from "@apollo/client";
+
 import craftAPI from "@libs/api";
-import { PageProps } from "@models";
+import { OverViewPageProps } from "@models";
 import { propsFind } from "@utils/propsFind";
-import { layoutQuery, trustQuery } from "@libs/queries";
+import { layoutQuery, simpleNewsQuery, trustQuery } from "@libs/queries";
+
 import Layout from "@components/Layout/Layout";
-import CardGrid from "@components/CardGrid/CardGrid";
-import MinimalCard from "@components/MinimalCard/MinimalCard";
-import FullWidthImage from "@components/FullWidthImage/FullWidthImage";
 import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
+import FullWidthImage from "@components/FullWidthImage/FullWidthImage";
+
 import Hero from "@sections/Retirement/Hero/Hero";
-import LeadingHomes from "@sections/Retirement/LeadingHomes/LeadingHomes";
 import CostAndFee from "@sections/Retirement/CostAndFee/CostAndFee";
 import MasterPlan from "@sections/Retirement/MasterPlan/MasterPlan";
+import RelatedNews from "@sections/Retirement/RelatedNews/RelatedNews";
+import LeadingHomes from "@sections/Retirement/LeadingHomes/LeadingHomes";
 
-const RetirementLiving: NextPage<PageProps> = ({
+const RetirementLiving: NextPage<OverViewPageProps> = ({
   pageData,
   trustMakers,
   layoutData,
+  newsList,
 }) => {
+  const ESTATE_TITLE = "Monterey";
   const pageLayout = get(pageData, "entry.retirementLayout", []);
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
@@ -27,6 +32,18 @@ const RetirementLiving: NextPage<PageProps> = ({
     pageLayout,
     "retirementLayout_fullImage_BlockType"
   );
+
+  const filteredNews: any[] = useMemo(() => {
+    return newsList
+      ? Array.from(newsList?.entries).filter((news: any) =>
+          news?.linkedEstates.some(
+            (estate: any) => estate.title === ESTATE_TITLE
+          )
+        )
+      : [];
+  }, [newsList]);
+
+  console.log(filteredNews);
 
   return pageData ? (
     <Layout layoutData={layoutData}>
@@ -38,16 +55,7 @@ const RetirementLiving: NextPage<PageProps> = ({
           "globalPromos_trustMakers_BlockType"
         )}
       />
-      <CardGrid
-        title="News and Events"
-        col={[1, 2]}
-        button={{ label: "View More", url: "#" }}
-        padding={[80, 160]}
-        background="linear-gradient(180deg, rgba(255,255,255,1) 21%, rgba(237,242,245,1) 91%)"
-      >
-        <MinimalCard />
-        <MinimalCard />
-      </CardGrid>
+      <RelatedNews news={filteredNews} />
       <FullWidthImage image={fullImageLayout?.backgroundImage?.[0].url} />
       <MasterPlan
         data={propsFind(pageLayout, "retirementLayout_masterPlan_BlockType")}
@@ -138,12 +146,14 @@ export const getStaticProps = async function () {
   const pageData = await craftAPI(pageQuery);
   const trustMakers = await craftAPI(trustQuery);
   const layoutData = await craftAPI(layoutQuery);
+  const newsList = await craftAPI(simpleNewsQuery);
 
   return {
     props: {
       pageData,
       trustMakers,
       layoutData,
+      newsList,
     },
     revalidate: 60,
   };

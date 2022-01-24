@@ -1,5 +1,6 @@
 export type OverViewPageProps = {
   pageData?: any;
+  newsList?: any;
   trustMakers?: any;
   listingData?: any;
   layoutData?: any;
