@@ -56,7 +56,7 @@ const FindEstate: NextPage<OverViewPageProps> = ({
         suburbList={suburbList}
       />
       {showMap ? (
-        <Overview />
+        <Overview homesList={homesList.entries} />
       ) : (
         <>
           <EstateListing homesList={homesList.entries} />

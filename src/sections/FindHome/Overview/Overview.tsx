@@ -12,7 +12,7 @@ const Overview = ({}: IOverviewProps) => {
 
   return (
     <div className={styles.overview}>
-      <MapView data={homesList} />
+      <MapView data={homesList} type="home" />
     </div>
   );
 };

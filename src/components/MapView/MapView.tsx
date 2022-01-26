@@ -1,7 +1,8 @@
 import React, { useCallback, useState, useEffect, useRef } from "react";
 import * as d3 from "d3";
 import Image from "next/image";
-import useSupercluster from "use-supercluster";
+import { useSetRecoilState } from "recoil";
+import useSuperCluster from "use-supercluster";
 import ReactMapGL, {
   Source,
   Layer,
@@ -9,26 +10,40 @@ import ReactMapGL, {
   Marker,
   FlyToInterpolator,
 } from "react-map-gl";
+
 import { useWindowSize } from "@hooks/useWindowSize";
+import { markerPopupState } from "@states/atoms/markerPopup";
+
+import MarkerPopup from "@components/MarkerPopup/MarkerPopup";
+
 import styles from "./MapView.module.scss";
 
 export interface IMapViewProps {
   data: any[];
   geoJSON?: any;
+  type?: "estate" | "home" | "land";
+  homesList?: any[];
 }
 
-const MapView = ({ data, geoJSON = null }: IMapViewProps) => {
+const MapView = ({
+  data,
+  geoJSON = null,
+  type = "estate",
+  homesList,
+}: IMapViewProps) => {
   const { width, height } = useWindowSize();
+  const [openPopup, setOpenPopup] = useState(false);
   const [viewport, setViewport] = useState({
     width: "100%",
     height: "100%",
     latitude: data.length > 0 ? Number(data[0].latitude) : -37.85,
     longitude: data.length > 0 ? Number(data[0].longitude) : 145.11,
     zoom: 8,
-    transitionDuration: 5000,
+    transitionDuration: 3000,
     transitionInterpolator: new FlyToInterpolator(),
     transitionEasing: d3.easeCubic,
   });
+  const setMarkerPopupState = useSetRecoilState(markerPopupState);
 
   useEffect(() => {
     if (data.length === 0) {
@@ -72,12 +87,12 @@ const MapView = ({ data, geoJSON = null }: IMapViewProps) => {
     updateViewport();
   }, [updateViewport]);
 
-  const points = data?.map((home) => ({
+  const points = data?.map((el) => ({
     type: "Feature",
-    properties: { cluster: false, clusterId: home.slug },
+    properties: { cluster: false, clusterId: el.slug },
     geometry: {
       type: "Point",
-      coordinates: [Number(home.longitude), Number(home.latitude)],
+      coordinates: [Number(el.longitude), Number(el.latitude)],
     },
   }));
 
@@ -85,12 +100,20 @@ const MapView = ({ data, geoJSON = null }: IMapViewProps) => {
     ? mapRef.current.getMap().getBounds().toArray().flat()
     : null;
 
-  const { clusters, supercluster } = useSupercluster({
+  const { clusters, supercluster: superCluster } = useSuperCluster({
     points,
     bounds,
     zoom: viewport.zoom,
     options: { radius: 75, maxZoom: 20 },
   });
+
+  const handleClickMarker = (slug: string) => {
+    setMarkerPopupState({
+      data: data.find((el: any) => el.slug === slug),
+      type,
+    });
+    setOpenPopup(true);
+  };
 
   return (
     <div className={styles.map}>
@@ -123,7 +146,7 @@ const MapView = ({ data, geoJSON = null }: IMapViewProps) => {
                     className={styles.cluster}
                     onClick={() => {
                       const expansionZoom = Math.min(
-                        supercluster.getClusterExpansionZoom(cluster.id),
+                        superCluster.getClusterExpansionZoom(cluster.id),
                         20
                       );
 
@@ -157,9 +180,15 @@ const MapView = ({ data, geoJSON = null }: IMapViewProps) => {
                 key={`crime-${cluster.properties.clusterId}`}
                 latitude={latitude}
                 longitude={longitude}
+                onClick={() => handleClickMarker(cluster.properties.clusterId)}
               >
                 {geoJSON ? (
-                  <div style={{ transform: `translate(-20px, -28px)` }}>
+                  <div
+                    style={{
+                      transform: `translate(-20px, -28px)`,
+                      cursor: "pointer",
+                    }}
+                  >
                     <Image
                       src={"/assets/icons/icon-pin-drop.svg"}
                       alt={cluster.properties.clusterId}
@@ -168,7 +197,12 @@ const MapView = ({ data, geoJSON = null }: IMapViewProps) => {
                     />
                   </div>
                 ) : (
-                  <div style={{ transform: `translate(-20px, -26px)` }}>
+                  <div
+                    style={{
+                      transform: `translate(-20px, -26px)`,
+                      cursor: "pointer",
+                    }}
+                  >
                     <Image
                       src={"/assets/icons/icon-pin.svg"}
                       alt={cluster.properties.clusterId}
@@ -180,6 +214,12 @@ const MapView = ({ data, geoJSON = null }: IMapViewProps) => {
               </Marker>
             );
           })}
+        {openPopup && (
+          <MarkerPopup
+            onClose={() => setOpenPopup(false)}
+            homesList={homesList}
+          />
+        )}
       </ReactMapGL>
     </div>
   );

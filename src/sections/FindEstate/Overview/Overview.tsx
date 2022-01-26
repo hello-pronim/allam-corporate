@@ -1,19 +1,18 @@
-import React, { useCallback, useState, useEffect, useRef } from "react";
-import Image from "next/image";
+import React, { useCallback, useState, useEffect } from "react";
 import { useRecoilValue } from "recoil";
-import ReactMapGL, { Source, Layer, MapRef, Marker } from "react-map-gl";
-
-import { filteredEstates } from "@states/atoms/estates";
 
 import MapView from "@components/MapView/MapView";
 
+import { filteredEstates } from "@states/atoms/estates";
 import { convertGeoJSON } from "@utils/convertGeoJSON";
 
 import styles from "./Overview.module.scss";
 
-export interface IOverviewProps {}
+export interface IOverviewProps {
+  homesList?: any[];
+}
 
-const Overview = ({}: IOverviewProps) => {
+const Overview = ({ homesList }: IOverviewProps) => {
   const [geoList, setGeoList] = useState<any>();
   const estatesList = useRecoilValue(filteredEstates);
 
@@ -35,7 +34,7 @@ const Overview = ({}: IOverviewProps) => {
 
   return (
     <div className={styles.overview}>
-      <MapView data={estatesList} geoJSON={geoList} />
+      <MapView data={estatesList} geoJSON={geoList} homesList={homesList} />
     </div>
   );
 };
