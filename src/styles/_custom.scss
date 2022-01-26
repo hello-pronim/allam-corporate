@@ -452,3 +452,25 @@
 .word-accent-color {
   color: #ffca00;
 }
+
+// Map Popup
+.mapboxgl-popup-content {
+  padding: 0;
+  background-color: transparent;
+
+  .mapboxgl-popup-close-button {
+    width: 24px;
+    height: 24px;
+    top: rem(-10);
+    right: rem(-10);
+    color: $white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $grey;
+    box-shadow: 0 0 rem(12) rgba($primary, 0.25);
+    border-radius: 100%;
+    z-index: 20;
+  }
+}
