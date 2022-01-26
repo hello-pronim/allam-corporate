@@ -10,11 +10,13 @@ import styles from "./PropertyCard.module.scss";
 export interface PropertyCardProps {
   homeData: HomeModel;
   isOpenInspection?: boolean;
+  simple?: boolean;
 }
 
 const PropertyCard = ({
   homeData,
   isOpenInspection = false,
+  simple = false,
 }: PropertyCardProps) => {
   const settings = {
     className: "estate-card-slider",
@@ -55,23 +57,39 @@ const PropertyCard = ({
             </div>
           </div>
         )}
-        <Slider {...settings}>
-          {homeData?.images?.map((image, id) => (
-            <div key={id} className={styles.propertyCardTopImage}>
-              <Image
-                src={image.url}
-                alt={image.title}
-                layout="fill"
-                objectFit="cover"
-                objectPosition="center"
-                blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                  shimmer(700, 475)
-                )}`}
-                placeholder="blur"
-              />
-            </div>
-          ))}
-        </Slider>
+        {simple ? (
+          <div className={styles.propertyCardTopImage}>
+            <Image
+              src={homeData?.images?.[0].url ?? ""}
+              alt={homeData?.images?.[0].title}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center"
+              blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                shimmer(700, 475)
+              )}`}
+              placeholder="blur"
+            />
+          </div>
+        ) : (
+          <Slider {...settings}>
+            {homeData?.images?.map((image, id) => (
+              <div key={id} className={styles.propertyCardTopImage}>
+                <Image
+                  src={image.url}
+                  alt={image.title}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                    shimmer(700, 475)
+                  )}`}
+                  placeholder="blur"
+                />
+              </div>
+            ))}
+          </Slider>
+        )}
       </div>
 
       <div className={styles.propertyCardBottom}>

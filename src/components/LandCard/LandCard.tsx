@@ -7,9 +7,10 @@ import styles from "./LandCard.module.scss";
 
 export interface ILandCardProps {
   landData: LandModel;
+  simple?: boolean;
 }
 
-const LandCard = ({ landData }: ILandCardProps) => {
+const LandCard = ({ landData, simple = false }: ILandCardProps) => {
   const settings = {
     className: "estate-card-slider",
     dots: true,
@@ -28,23 +29,39 @@ const LandCard = ({ landData }: ILandCardProps) => {
   return (
     <div className={styles.landCard}>
       <div className={styles.landCardTop}>
-        <Slider {...settings}>
-          {landData?.images?.map((image, id) => (
-            <div key={id} className={styles.landCardTopImage}>
-              <Image
-                src={image.url}
-                alt={image.title}
-                layout="fill"
-                objectFit="cover"
-                objectPosition="center"
-                blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                  shimmer(700, 475)
-                )}`}
-                placeholder="blur"
-              />
-            </div>
-          ))}
-        </Slider>
+        {simple ? (
+          <div className={styles.landCardTopImage}>
+            <Image
+              src={landData?.images?.[0].url ?? ""}
+              alt={landData?.images?.[0].title}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center"
+              blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                shimmer(700, 475)
+              )}`}
+              placeholder="blur"
+            />
+          </div>
+        ) : (
+          <Slider {...settings}>
+            {landData?.images?.map((image, id) => (
+              <div key={id} className={styles.landCardTopImage}>
+                <Image
+                  src={image.url}
+                  alt={image.title}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                    shimmer(700, 475)
+                  )}`}
+                  placeholder="blur"
+                />
+              </div>
+            ))}
+          </Slider>
+        )}
       </div>
 
       <div className={styles.landCardBottom}>

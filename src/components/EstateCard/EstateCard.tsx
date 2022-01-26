@@ -11,9 +11,14 @@ import styles from "./EstateCard.module.scss";
 export interface IEstateCardProps {
   estate: EstateModel;
   homesList?: any[];
+  simple?: boolean;
 }
 
-const EstateCard = ({ estate, homesList = [] }: IEstateCardProps) => {
+const EstateCard = ({
+  estate,
+  homesList = [],
+  simple = false,
+}: IEstateCardProps) => {
   const settings = {
     className: "estate-card-slider",
     dots: true,
@@ -45,23 +50,39 @@ const EstateCard = ({ estate, homesList = [] }: IEstateCardProps) => {
   return (
     <div className={styles.estateCard}>
       <div className={styles.estateCardTop}>
-        <Slider {...settings}>
-          {estate?.galleryImages?.map((image, id) => (
-            <div className={styles.estateCardTopImage} key={id}>
-              <Image
-                src={image.url}
-                alt={image.title}
-                layout="fill"
-                objectFit="cover"
-                objectPosition="center"
-                blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                  shimmer(700, 475)
-                )}`}
-                placeholder="blur"
-              />
-            </div>
-          ))}
-        </Slider>
+        {simple ? (
+          <div className={styles.estateCardTopImage}>
+            <Image
+              src={estate?.galleryImages?.[0].url ?? ""}
+              alt={estate?.galleryImages?.[0].title}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center"
+              blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                shimmer(700, 475)
+              )}`}
+              placeholder="blur"
+            />
+          </div>
+        ) : (
+          <Slider {...settings}>
+            {estate?.galleryImages?.map((image, id) => (
+              <div className={styles.estateCardTopImage} key={id}>
+                <Image
+                  src={image.url}
+                  alt={image.title}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                    shimmer(700, 475)
+                  )}`}
+                  placeholder="blur"
+                />
+              </div>
+            ))}
+          </Slider>
+        )}
 
         {estate.logo?.[0]?.url && (
           <div className={styles.estateCardTopLogo}>
