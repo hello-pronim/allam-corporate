@@ -250,3 +250,9 @@ export type LandFilterModel = {
   blockSize: string;
   reset: boolean;
 };
+
+// Marker Popup Model
+export type MarkerPopupModel = {
+  data: any;
+  type: string;
+};
