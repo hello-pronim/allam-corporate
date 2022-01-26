@@ -85,7 +85,7 @@ const FindEstateDetail: NextPage<any> = ({
           salesCentre={salesCentre}
           documents={documents}
         />
-        {filteredHomes && (
+        {filteredHomes.length !== 0 && (
           <HomeList title={title} filteredHomes={filteredHomes} />
         )}
         {masterPlan && (
@@ -95,7 +95,7 @@ const FindEstateDetail: NextPage<any> = ({
           />
         )}
         <Deposit />
-        <NewsList news={filteredNews} />
+        {filteredNews.length !== 0 && <NewsList news={filteredNews} />}
         <SimilarEstates
           estateList={filteredEstates}
           homeList={homeList.entries}

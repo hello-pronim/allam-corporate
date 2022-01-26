@@ -13,7 +13,7 @@ const NewsList = ({ news }: INewsProps) => {
   return (
     <div className={styles.newsList}>
       <div className={styles.newsListCards}>
-        <CardGrid title="News and Events" col={[1, 2]}>
+        <CardGrid title="News and Events" col={[1, 2]} padding={[40, 80]}>
           {news.slice(0, 2).map((el) => (
             <Link key={el.title} href={`/news/${el.slug}`}>
               <a>

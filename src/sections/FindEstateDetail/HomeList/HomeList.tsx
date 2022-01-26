@@ -18,7 +18,7 @@ const HomeList = ({ title, filteredHomes }: IHomeListProps) => {
           <h2>Find your perfect home or land in {title}</h2>
           <div className={styles.homeListGrid}>
             <div className={styles.homeListGridWrapper}>
-              {filteredHomes?.map((home, id) => (
+              {filteredHomes?.slice(0, 6).map((home, id) => (
                 <Link href={`/find-home/${home.slug}`} key={id}>
                   <a>
                     <PropertyCard homeData={home} />

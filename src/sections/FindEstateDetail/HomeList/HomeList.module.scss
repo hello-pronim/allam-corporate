@@ -2,6 +2,7 @@
 @import "@styles/variables";
 
 .homeList {
+  padding-bottom: rem(56);
   background-color: $grey2;
   @include breakpoint($large) {
     padding-bottom: rem(116);
