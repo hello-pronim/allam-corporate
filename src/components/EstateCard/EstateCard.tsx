@@ -48,7 +48,11 @@ const EstateCard = ({
   }, [filteredHomes]);
 
   return (
-    <div className={styles.estateCard}>
+    <div
+      className={`${styles.estateCard} ${
+        simple ? styles.estateCardSimple : ""
+      }`}
+    >
       <div className={styles.estateCardTop}>
         {simple ? (
           <div className={styles.estateCardTopImage}>

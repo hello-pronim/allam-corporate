@@ -11,6 +11,15 @@
   @include breakpoint($medium) {
   }
 
+  &.propertyCardSimple {
+    .propertyCardTopImage {
+      height: rem(200);
+      @include breakpoint($large) {
+        height: rem(220);
+      }
+    }
+  }
+
   &Top {
     position: relative;
     overflow: hidden;

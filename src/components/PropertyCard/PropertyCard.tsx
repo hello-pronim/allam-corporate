@@ -35,9 +35,13 @@ const PropertyCard = ({
   const address = `${homeData.title}`;
 
   return (
-    <div className={styles.propertyCard}>
+    <div
+      className={`${styles.propertyCard} ${
+        simple ? styles.propertyCardSimple : ""
+      }`}
+    >
       <div className={styles.propertyCardTop}>
-        {!isOpenInspection && (
+        {!simple && !isOpenInspection && (
           <div className={styles.propertyCardTopBar}>
             <span className={styles.propertyCardTopBarText}>
               {homeData.percentageComplete}% Completed
