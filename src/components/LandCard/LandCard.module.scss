@@ -11,6 +11,15 @@
   @include breakpoint($medium) {
   }
 
+  &.landCardSimple {
+    .landCardTopImage {
+      height: rem(200);
+      @include breakpoint($large) {
+        height: rem(220);
+      }
+    }
+  }
+
   &Top {
     position: relative;
     overflow: hidden;

@@ -27,7 +27,9 @@ const LandCard = ({ landData, simple = false }: ILandCardProps) => {
   const address = `${landData.title}`;
 
   return (
-    <div className={styles.landCard}>
+    <div
+      className={`${styles.landCard} ${simple ? styles.landCardSimple : ""}`}
+    >
       <div className={styles.landCardTop}>
         {simple ? (
           <div className={styles.landCardTopImage}>
