@@ -14,6 +14,7 @@ import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
 import Hero from "@sections/HomeDetail/Hero/Hero";
 import HomeInfo from "@sections/HomeDetail/HomeInfo/HomeInfo";
 import BannerGallery from "@sections/HomeDetail/BannerGallery/BannerGallery";
+import { InclusionModel } from "@models";
 
 const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
   const title = get(home, "entry.title", "");
@@ -26,6 +27,11 @@ const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
   const homeDesign = get(home, "entry.homeDesign[0].title", "");
   const brochureUrl = get(home, "entry.downloadableBrochure[0].url", null);
   const floorPlan = get(home, "entry.floorPlan[0]");
+  const featuresInclusion: InclusionModel = get(
+    home,
+    "entry.featuresInclusion[0]",
+    null
+  );
 
   return (
     <div>
@@ -43,6 +49,7 @@ const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
           homeDesign={homeDesign}
           brochureUrl={brochureUrl}
           floorPlan={floorPlan}
+          featuresInclusion={featuresInclusion}
         />
         <RegisterPanel data={landRegisterData} />
       </Layout>
@@ -95,6 +102,20 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
                   postcode
                   daysOpen
                   hoursOpen
+                }
+              }
+            }
+          }
+          featuresInclusion {
+            ... on inclusions_default_Entry {
+              inclusionLevel
+              featuredInclusions
+              fullInclusionTable {
+                ... on fullInclusionTable_BlockType {
+                  inclusionCategory
+                  inclusionList {
+                    inclusionName
+                  }
                 }
               }
             }

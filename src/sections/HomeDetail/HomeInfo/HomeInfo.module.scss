@@ -70,6 +70,57 @@
       }
     }
 
+    &Inclusions {
+      h5 {
+        font-size: rem(16);
+        line-height: rem(30);
+        @include breakpoint($large) {
+          font-size: rem(18);
+          margin-bottom: rem(24);
+        }
+      }
+
+      ul {
+        margin-top: rem(16);
+
+        li {
+          color: $grey;
+          font-size: rem(16);
+          line-height: rem(30);
+          padding-left: rem(4);
+          @include breakpoint($large) {
+            padding-bottom: rem(8);
+            font-size: rem(18);
+          }
+
+          &:last-of-type {
+            padding-bottom: 0;
+          }
+
+          &::before {
+            content: "•";
+            padding-right: rem(8);
+          }
+        }
+      }
+
+      &Full {
+        margin-bottom: rem(60);
+        & > p {
+          font-weight: bold;
+          margin: rem(24) 0 rem(32);
+          @include breakpoint($large) {
+            margin-bottom: rem(48);
+          }
+          cursor: pointer;
+        }
+
+        &List {
+          @include grid(1, 1, rem(24));
+        }
+      }
+    }
+
     &FloorPlan {
       margin-bottom: rem(24);
       @include breakpoint($large) {
@@ -86,6 +137,7 @@
       }
     }
   }
+
   &Contact {
     @include breakpoint($large) {
       grid-column: 9 / span 4;

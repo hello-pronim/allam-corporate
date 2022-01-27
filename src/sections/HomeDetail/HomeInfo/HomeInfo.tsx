@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { CraftImage } from "@models";
+import { CraftImage, InclusionModel } from "@models";
 import PromoCard from "@components/PromoCard/PromoCard";
 import { Button, ImageButton, Redactor } from "@components/Common/Common";
 import styles from "./HomeInfo.module.scss";
@@ -12,6 +12,7 @@ export interface IHomeInfoProps {
   homeDesign: string;
   brochureUrl?: string | null;
   floorPlan?: CraftImage;
+  featuresInclusion: InclusionModel;
 }
 
 const HomeInfoCard = ({
@@ -66,7 +67,10 @@ const HomeInfo = ({
   homeDesign,
   brochureUrl,
   floorPlan,
+  featuresInclusion,
 }: IHomeInfoProps) => {
+  const [isShowAll, setShowAll] = useState(false);
+
   return (
     <div className={styles.homeInfo}>
       <div className={styles.homeInfoWrapper}>
@@ -77,6 +81,51 @@ const HomeInfo = ({
             <div className={styles.homeInfoContentIntro}>
               <Redactor>{introBlurb ?? ""}</Redactor>
             </div>
+
+            {featuresInclusion && (
+              <div className={styles.homeInfoContentInclusions}>
+                <h5>Special Features/Inclusions</h5>
+                <Redactor>
+                  {featuresInclusion.featuredInclusions ?? ""}
+                </Redactor>
+
+                {featuresInclusion.fullInclusionTable.length > 0 && (
+                  <div className={styles.homeInfoContentInclusionsFull}>
+                    <p onClick={() => setShowAll(!isShowAll)}>
+                      <u>View {isShowAll ? "less" : "more"}</u>
+                    </p>
+
+                    {isShowAll && (
+                      <div>
+                        <h5>All Inclusions</h5>
+
+                        <div
+                          className={styles.homeInfoContentInclusionsFullList}
+                        >
+                          {featuresInclusion.fullInclusionTable.map(
+                            (inclusion, index) => (
+                              <div
+                                key={index}
+                                className={
+                                  styles.homeInfoContentInclusionsFullItem
+                                }
+                              >
+                                <h5>{inclusion.inclusionCategory}</h5>
+                                <ul>
+                                  {inclusion.inclusionList.map((el, id) => (
+                                    <li key={id}>{el.inclusionName}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
 
             <div className={styles.homeInfoContentFloorPlan}>
               {floorPlan?.url && (
