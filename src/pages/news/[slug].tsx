@@ -12,46 +12,10 @@ import DetailContent from "@sections/News/Detail/DetailContent/DetailContent";
 import KnowMoreAllamHomes from "@sections/News/Detail/KnowMoreAllamHomes/KnowMoreAllamHomes";
 
 const NewsDetail: NextPage<PageProps> = ({ pageData, layoutData }) => {
-  console.log(pageData);
   const title = get(pageData, "entry.title", "");
   const description = get(pageData, "entry.description", "");
   const publishDate = get(pageData, "entry.publishDate", "");
   const titleImage = get(pageData, "entry.titleImage[0]", "");
-
-  const news = {
-    title:
-      "<h3>Allam signs national deal with Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>",
-    date: "12 September 2021",
-    content:
-      "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat mattis vel id sociis diam id congue amet. Aliquam porttitor auctor amet, pretium sapien posuere non. Massa mi aenean urna eu. Sit libero, tortor amet cursus. Interdum sed vitae, odio est pretium velit duis. Quis velit quis neque, lorem nulla commodo. Praesent imperdiet in diam dictum. Rutrum sit viverra commodo nunc, eget. Turpis ornare viverra nunc egestas eu, nisi, pretium risus.</p><p>Eeww non. Massa mi aenean urna eu. Sit libero, tortor amet cursus. Interdum sed vitae, odio est pretium velit duis. Quis velit quis nEeww non. Massa mi aenean urna eu. Sit libero, tortor amet cursus. Interdum sed vitae, odio est pretium velit duis. Quis velit quis n</p><br/><br/><br/><p>Subheading</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat mattis vel id sociis diam id congue amet. Aliquam porttitor auctor amet, pretium sapien posuere non. Massa mi aenean urna eu. Sit libero, tortor amet cursus. Interdum sed vitae, odio est pretium velit duis. Quis velit quis neque, lorem nulla commodo. Praesent imperdiet in diam dictum. Rutrum sit viverra commodo nunc, eget. Turpis ornare viverra nunc egestas eu, nisi, pretium risus.</p><br/><br/><br/><img src='/assets/images/news/news_detail_image3.png' width='100%'/><br/><br/><br/><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat mattis vel id sociis diam id congue amet. Aliquam porttitor auctor amet, pretium sapien posuere non. Massa mi aenean urna eu. Sit libero, tortor amet cursus. Interdum sed vitae, odio est pretium velit duis. Quis velit quis neque, lorem nulla commodo. Praesent imperdiet in diam dictum. Rutrum sit viverra commodo nunc, eget. Turpis ornare viverra nunc egestas eu, nisi, pretium risus.</p><p>Eeww non. Massa mi aenean urna eu. Sit libero, tortor amet cursus. Interdum sed vitae, odio est pretium velit duis. Quis velit quis nEeww non. Massa mi aenean urna eu. Sit libero, tortor amet cursus. Interdum sed vitae, odio est pretium velit duis. Quis velit quis n</p><br/><br/><br/>",
-    images: [
-      "/assets/images/news/news_detail_image1.png",
-      "/assets/images/news/news_detail_image2.png",
-      "/assets/images/news/news_detail_mobile_banner.png",
-    ],
-    socials: [
-      {
-        type: "facebook-dark",
-        icon: "",
-        url: "https://facebook.com",
-      },
-      {
-        type: "twitter",
-        icon: "",
-        url: "https://twitter.com",
-      },
-      {
-        type: "linkedin",
-        icon: "",
-        url: "https://linkedin.com",
-      },
-      {
-        type: "telegram",
-        icon: "",
-        url: "https://telegram.com",
-      },
-    ],
-  };
 
   const faqs = [
     {
