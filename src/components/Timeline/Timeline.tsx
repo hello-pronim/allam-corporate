@@ -182,7 +182,7 @@ const Timeline = ({ cards, padding = [] }: TimelineProps) => {
                   slider.current.slickGoTo(card.index)
                 }
               >
-                {card.year}
+                {card.year.split(" ")[0]}
               </button>
               {index !== firstOfYear?.length - 1 && (
                 <span className={styles.yearDivider} />
