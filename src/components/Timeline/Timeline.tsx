@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Timeline.module.scss";
-import { css } from "@styled-system/css";
-import rem from "src/utils/pxRem";
-import classNames from "classnames";
 import Slider from "react-slick";
+import classNames from "classnames";
+import { css } from "@styled-system/css";
+import rem from "@utils/pxRem";
 import Icon from "@components/Icons/Icons";
+import { Redactor } from "@components/Common/Common";
+import styles from "./Timeline.module.scss";
 
 export interface CardProps {
+  isImageBg?: boolean;
   featured?: boolean;
   title?: string;
   subtitle?: string;
@@ -51,18 +53,30 @@ const FeaturedCard = (card: CardProps) => {
   );
 };
 
-const Card = (card: CardProps) => {
+const Card = ({ isImageBg = false, ...card }: CardProps) => {
   return (
     <div
       id={card?.year?.toString()}
-      className={classNames(styles.card)}
+      className={classNames(
+        styles.card,
+        `${isImageBg ? styles.cardImage : ""}`
+      )}
+      style={{
+        background: `${
+          isImageBg ? `url(${card.background}) no-repeat` : card.background
+        }`,
+      }}
       css={css({
-        backgroundImage: `url(${card.background})`,
         h2: { color: card.textColor },
+        p: {
+          color: card.textColor,
+        },
       })}
     >
-      <h3>{card.year}</h3>
-      <h2 dangerouslySetInnerHTML={accent(card?.title ?? "")} />
+      <p>{card.year}</p>
+      <div className={styles.cardDescription}>
+        <Redactor>{card.title ?? ""}</Redactor>
+      </div>
     </div>
   );
 };
