@@ -181,6 +181,7 @@ export type HomeModel = {
   features?: string;
   gallery3dUrl?: string;
   images?: CraftImage[];
+  featuresInclusion: InclusionModel[];
   downloadableBrochure?: CraftImage[];
 };
 
@@ -224,6 +225,19 @@ export type NewsModel = {
   linkedEstates: EstateModel[];
   titleImage: CraftImage[];
   filesDownloads: Asset[];
+};
+
+export type InclusionModel = {
+  inclusionLevel: string;
+  featuredInclusions: string;
+  fullInclusionTable: InclusionTableModel[];
+};
+
+export type InclusionTableModel = {
+  inclusionCategory: string;
+  inclusionList: {
+    inclusionName: string;
+  }[];
 };
 
 export type ChoiceModel = {
