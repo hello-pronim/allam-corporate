@@ -60,8 +60,9 @@
       border-radius: 0 0 rem(6) rem(6);
     }
 
-    p {
+    h5 {
       font-size: rem(16);
+      text-transform: capitalize;
       @include breakpoint($large) {
         font-size: rem(18);
       }

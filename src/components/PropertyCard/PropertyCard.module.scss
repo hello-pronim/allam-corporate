@@ -86,6 +86,7 @@
     h5 {
       font-size: rem(16);
       font-weight: bold;
+      text-transform: capitalize;
       @include breakpoint($large) {
         font-size: rem(18);
       }

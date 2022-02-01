@@ -74,6 +74,8 @@
       h1 {
         color: $grey;
         margin: rem(8) 0;
+        text-transform: capitalize;
+
         @include breakpoint($large) {
           margin: rem(16) 0;
         }

@@ -102,9 +102,7 @@ const EstateCard = ({
       </div>
 
       <div className={styles.estateCardBottom}>
-        <p>
-          <b>{addr}</b>
-        </p>
+        <h5>{addr}</h5>
 
         <div className={styles.estateCardBottomInfo}>
           {homeCount > 0 && (
