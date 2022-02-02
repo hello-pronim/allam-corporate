@@ -8,13 +8,13 @@ import craftAPI from "@libs/api";
 import { layoutQuery } from "@libs/queries";
 import { landRegisterData } from "@libs/constants";
 
+import { InclusionModel } from "@models";
 import Layout from "@components/Layout/Layout";
 import StickyBar from "@components/StickyBar/StickyBar";
 import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
 import Hero from "@sections/HomeDetail/Hero/Hero";
 import HomeInfo from "@sections/HomeDetail/HomeInfo/HomeInfo";
 import BannerGallery from "@sections/HomeDetail/BannerGallery/BannerGallery";
-import { InclusionModel } from "@models";
 
 const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
   const title = get(home, "entry.title", "");

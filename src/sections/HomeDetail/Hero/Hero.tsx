@@ -35,7 +35,7 @@ const Hero = ({ data }: IHeroProps) => {
               <p>
                 <strong>{data?.sellingLabel}</strong>
               </p>
-              {data.completionDate && (
+              {data?.completionDate && (
                 <span className={styles.heroContentTextSellingDate}>
                   : Move In {dayjs(data.completionDate).format("MMM YYYY")}
                 </span>
