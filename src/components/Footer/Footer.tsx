@@ -35,27 +35,47 @@ const Footer = ({ footerData }: IFooterProps) => {
           </div>
 
           <div className={styles.footerInfoTestimonial}>
-            <div className={styles.footerInfoTestimonialReview}>
-              {Array(5)
-                .fill("")
-                .map((_, id: number) => (
-                  <div
-                    className={styles.footerInfoTestimonialReviewIcon}
-                    key={id}
-                  >
-                    <Icon type="star" />
-                  </div>
-                ))}
+            <div className={styles.footerInfoTestimonialDesktop}>
+              <div
+                className="trustpilot-widget"
+                data-locale="en-AU"
+                data-template-id="53aa8912dec7e10d38f59f36"
+                data-businessunit-id="605a6fefe31540000196de10"
+                data-style-height="140px"
+                data-style-width="100%"
+                data-theme="light"
+                data-stars="1,2,3,4,5"
+                data-review-languages="en"
+              >
+                <a
+                  href="https://au.trustpilot.com/review/allam.com.au"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Trustpilot
+                </a>
+              </div>
             </div>
-
-            <p>
-              “Allam have been fantastic from the minute we started. We have
-              purchased a ready built home and move in a few weeks.
-            </p>
-            <div className={styles.footerInfoTestimonialReviewClient}>
-              <p>
-                <b>Ally Watts - Penrith (2 weeks ago)</b>
-              </p>
+            <div className={styles.footerInfoTestimonialMobile}>
+              <div
+                className="trustpilot-widget"
+                data-locale="en-AU"
+                data-template-id="54ad5defc6454f065c28af8b"
+                data-businessunit-id="605a6fefe31540000196de10"
+                data-style-height="240px"
+                data-style-width="100%"
+                data-theme="light"
+                data-stars="1,2,3,4,5"
+                data-review-languages="en"
+              >
+                <a
+                  href="https://au.trustpilot.com/review/allam.com.au"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Trustpilot
+                </a>
+              </div>
             </div>
           </div>
         </div>

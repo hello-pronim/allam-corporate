@@ -5,6 +5,7 @@ import Document, {
   NextScript,
   DocumentContext,
 } from "next/document";
+import Script from "next/script";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -32,6 +33,11 @@ class MyDocument extends Document {
             href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css"
             rel="stylesheet"
           />
+          <script
+            type="text/javascript"
+            src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
+            async
+          ></script>
         </Head>
         <body>
           <Main />
