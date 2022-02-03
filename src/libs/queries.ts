@@ -126,6 +126,7 @@ export const fullHomeListQuery = gql`
         homeDesign {
           title
         }
+        sellingLabel
         openForInspection
         buildingSize
         landSize

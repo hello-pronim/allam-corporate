@@ -44,11 +44,13 @@ const PropertyCard = ({
         {!simple && !isOpenInspection && (
           <div className={styles.propertyCardTopBar}>
             <span className={styles.propertyCardTopBarText}>
-              {homeData.percentageComplete}% Completed
+              {homeData.percentageComplete
+                ? `${homeData.percentageComplete}% Completed`
+                : ""}
             </span>
-            {homeData.completionDate && (
+            {homeData.sellingLabel && (
               <span className={styles.propertyCardTopBarText}>
-                Move In {dayjs(homeData.completionDate).format("MMM YYYY")}
+                {homeData.sellingLabel}
               </span>
             )}
             <div className={styles.propertyCardTopBarCompletion}>
