@@ -26,6 +26,7 @@ const FindLand: NextPage<OverViewPageProps> = ({
   const [showMap, setShowMap] = useState(false);
   const heading = get(pageData, "entry.heading", "");
   const introBlurb = get(pageData, "entry.introBlurb", "");
+  const noticeText = get(pageData, "entry.noticeText", "");
   const globalPromos = get(pageData, "entry.globalPromos", []);
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
   const landsList = get(listingData, "entries", []);
@@ -44,7 +45,11 @@ const FindLand: NextPage<OverViewPageProps> = ({
         showMap={showMap}
         setShowMap={setShowMap}
       />
-      <LandListing showMap={showMap} setShowMap={setShowMap} />
+      <LandListing
+        showMap={showMap}
+        setShowMap={setShowMap}
+        noticeText={noticeText}
+      />
       {showMap ? (
         <Overview />
       ) : (
@@ -73,6 +78,7 @@ const findLandQuery = gql`
       ... on findLandPage_findLandPage_Entry {
         heading
         introBlurb
+        noticeText
         globalPromos {
           ... on globalPromos_trustMakers_BlockType {
             heading

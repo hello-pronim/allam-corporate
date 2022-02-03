@@ -13,11 +13,16 @@ import EasyBuyPurchase from "@components/EasyBuyPurchase/EasyBuyPurchase";
 import styles from "./LandListing.module.scss";
 
 export interface ILandListingProps {
+  noticeText?: string;
   showMap?: boolean;
   setShowMap: (value: boolean) => void;
 }
 
-const LandListing = ({ showMap, setShowMap }: ILandListingProps) => {
+const LandListing = ({
+  noticeText,
+  showMap,
+  setShowMap,
+}: ILandListingProps) => {
   const MAX_ESTATE_COUNT = 30;
   const landsList = useRecoilValue(filteredLands);
 
@@ -35,6 +40,9 @@ const LandListing = ({ showMap, setShowMap }: ILandListingProps) => {
   return (
     <div className={styles.landListing}>
       <div className={styles.landListingWrapper}>
+        <div className={styles.landListingNotice}>
+          <p>{landsList.length === 0 ? noticeText : ""}</p>
+        </div>
         <SortByOptions
           options={sortLandKeys}
           resultCount={landsList.length}

@@ -75,24 +75,28 @@ const Hero = ({ data }: IHeroProps) => {
           </div>
 
           <div className={styles.heroContentBar}>
-            <div className={styles.heroContentBarInfo}>
-              <span className={styles.heroContentBarText}>
-                {data.percentageComplete}% Completed
-              </span>
-              {data.completionDate && (
-                <span className={styles.heroContentBarText}>
-                  Move In {dayjs(data.completionDate).format("MMM YYYY")}
-                </span>
-              )}
-            </div>
-            <div className={styles.heroContentBarCompletion}>
-              <span
-                style={{
-                  height: "100%",
-                  width: `${data.percentageComplete}%`,
-                }}
-              />
-            </div>
+            {data.percentageComplete && (
+              <>
+                <div className={styles.heroContentBarInfo}>
+                  <span className={styles.heroContentBarText}>
+                    {data.percentageComplete}% Completed
+                  </span>
+                  {data.completionDate && (
+                    <span className={styles.heroContentBarText}>
+                      Move In {dayjs(data.completionDate).format("MMM YYYY")}
+                    </span>
+                  )}
+                </div>
+                <div className={styles.heroContentBarCompletion}>
+                  <span
+                    style={{
+                      height: "100%",
+                      width: `${data.percentageComplete}%`,
+                    }}
+                  />
+                </div>
+              </>
+            )}
           </div>
 
           <div className={styles.heroContentCTA}>
