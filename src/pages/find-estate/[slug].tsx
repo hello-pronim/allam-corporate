@@ -12,6 +12,7 @@ import {
   fullEstatesQuery,
 } from "@libs/queries";
 
+import { NeighborhoodModel } from "@models";
 import Layout from "@components/Layout/Layout";
 
 import Hero from "@sections/FindEstateDetail/Hero/Hero";
@@ -45,6 +46,11 @@ const FindEstateDetail: NextPage<any> = ({
   const salesCentre = get(estate, "entry.salesCentre[0]", "");
   const latitude = get(estate, "entry.latitude", "");
   const longitude = get(estate, "entry.longitude", "");
+  const neighborhood: NeighborhoodModel = get(
+    estate,
+    "entry.neighborhood[0]",
+    null
+  );
 
   const filteredEstates: any[] = useMemo(() => {
     return estateList
@@ -135,6 +141,26 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
           latitude
           longitude
           geojson
+          neighborhood {
+            ... on neighborhoods_default_Entry {
+              title
+              amenities {
+                ... on amenities_BlockType {
+                  amenityCategory {
+                    ... on amenityCategories_Category {
+                      title
+                    }
+                  }
+                  amenityName
+                  address
+                  suburb
+                  latitude
+                  longitude
+                  externalUrl
+                }
+              }
+            }
+          }
           downloadableBrochure {
             url
           }

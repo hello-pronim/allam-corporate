@@ -119,6 +119,21 @@ export type PromotionLayout = {
   image?: CraftImage[];
 };
 
+export type NeighborhoodModel = {
+  title: string;
+  amenities: {
+    amenityCategory: {
+      title: string;
+    }[];
+    amenityName: string;
+    address: string;
+    suburb: string;
+    latitude: string;
+    longitude: string;
+    externalUrl: string;
+  };
+};
+
 export type LocationModel = {
   title: string;
   officeName: string;
@@ -150,6 +165,7 @@ export type EstateModel = {
   galleryImages: CraftImage[];
   offersLink: any[];
   salesCentre: LocationModel[];
+  neighborhood: NeighborhoodModel[];
   masterPlanImage: CraftImage[];
   masterplanDownload: Asset[];
   downloadableBrochure: Asset[];

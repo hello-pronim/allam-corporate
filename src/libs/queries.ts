@@ -54,6 +54,26 @@ export const fullEstatesQuery = gql`
           width
           height
         }
+        neighborhood {
+          ... on neighborhoods_default_Entry {
+            title
+            amenities {
+              ... on amenities_BlockType {
+                amenityCategory {
+                  ... on amenityCategories_Category {
+                    title
+                  }
+                }
+                amenityName
+                address
+                suburb
+                latitude
+                longitude
+                externalUrl
+              }
+            }
+          }
+        }
         offersLink {
           ... on offersLink_BlockType {
             internalOffer {
