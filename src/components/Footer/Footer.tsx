@@ -16,13 +16,9 @@ declare global {
   }
 }
 
-const TrustBox = () => {
-  // Create a reference to the <div> element which will represent the TrustBox
+const TrustBoxDesktop = () => {
   const ref = useRef(null);
   useEffect(() => {
-    // If window.Trustpilot is available it means that we need to load the TrustBox from our ref.
-    // If it's not, it means the script you pasted into <head /> isn't loaded  just yet.
-    // When it is, it will automatically load the TrustBox.
     if (window?.Trustpilot) {
       window?.Trustpilot?.loadFromElement(ref.current, true);
     }
@@ -46,7 +42,38 @@ const TrustBox = () => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        {" "}
+        Trustpilot
+      </a>
+    </div>
+  );
+};
+
+const TrustBoxMobile = () => {
+  const ref = useRef(null);
+  useEffect(() => {
+    if (window?.Trustpilot) {
+      window?.Trustpilot?.loadFromElement(ref.current, true);
+    }
+  }, []);
+
+  return (
+    <div
+      ref={ref} // We need a reference to this element to load the TrustBox in the effect.
+      className="trustpilot-widget"
+      data-locale="en-AU"
+      data-template-id="54ad5defc6454f065c28af8b"
+      data-businessunit-id="605a6fefe31540000196de10"
+      data-style-height="240px"
+      data-style-width="100%"
+      data-theme="light"
+      data-stars="1,2,3,4,5"
+      data-review-languages="en"
+    >
+      <a
+        href="https://au.trustpilot.com/review/allam.com.au"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Trustpilot
       </a>
     </div>
@@ -56,19 +83,6 @@ const TrustBox = () => {
 const Footer = ({ footerData }: IFooterProps) => {
   const footerBottom = get(footerData, "footerBottom[0]");
   const footerButtons: ButtonModel[] = get(footerData, "buttons");
-
-  // useEffect(() => {
-  //   var aScript = document.createElement("script");
-  //   aScript.type = "text/javascript";
-  //   aScript.src =
-  //     "//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js";
-  //   aScript.async = true;
-  //   document.head.appendChild(aScript);
-  //   aScript.onload = function () {
-  //     var trustbox = document.getElementById("trustbox");
-  //     window?.Trustpilot?.loadFromElement(trustbox);
-  //   };
-  // }, []);
 
   return (
     <footer className={styles.footer}>
@@ -92,47 +106,10 @@ const Footer = ({ footerData }: IFooterProps) => {
 
           <div className={styles.footerInfoTestimonial}>
             <div className={styles.footerInfoTestimonialDesktop}>
-              {/* <div
-                className="trustpilot-widget"
-                data-locale="en-AU"
-                data-template-id="53aa8912dec7e10d38f59f36"
-                data-businessunit-id="605a6fefe31540000196de10"
-                data-style-height="140px"
-                data-style-width="100%"
-                data-theme="light"
-                data-stars="1,2,3,4,5"
-                data-review-languages="en"
-              >
-                <a
-                  href="https://au.trustpilot.com/review/allam.com.au"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Trustpilot
-                </a>
-              </div> */}
-              <TrustBox />
+              <TrustBoxDesktop />
             </div>
             <div className={styles.footerInfoTestimonialMobile}>
-              <div
-                className="trustpilot-widget"
-                data-locale="en-AU"
-                data-template-id="54ad5defc6454f065c28af8b"
-                data-businessunit-id="605a6fefe31540000196de10"
-                data-style-height="240px"
-                data-style-width="100%"
-                data-theme="light"
-                data-stars="1,2,3,4,5"
-                data-review-languages="en"
-              >
-                <a
-                  href="https://au.trustpilot.com/review/allam.com.au"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Trustpilot
-                </a>
-              </div>
+              <TrustBoxMobile />
             </div>
           </div>
         </div>
