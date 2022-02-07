@@ -6,21 +6,21 @@ import styles from "./StoryTimeline.module.scss";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 export const StoryTimeline = () => {
-  const [numPages, setNumPages] = useState(null);
+  const [numPages, setNumPages] = useState(0);
   const [fadeIn, setFadeIn] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
-  const [pageTwo, setPageTwo] = useState(null);
+  const [pageTwo, setPageTwo] = useState<any>(null);
 
   const options = {
     cMapUrl: "cmaps/",
     cMapPacked: true,
   };
 
-  const onDocumentLoadSuccess = ({ numPages }) => {
+  const onDocumentLoadSuccess = ({ numPages }: { numPages: any }) => {
     setNumPages(numPages);
   };
 
-  const changePage = (offset) => {
+  const changePage = (offset: any) => {
     setFadeIn(false);
     if (pageNumber + offset > numPages) {
       setPageNumber(numPages);
@@ -77,7 +77,7 @@ export const StoryTimeline = () => {
               className={classnames(styles.fade, { [styles.hide]: fadeIn })}
             />
             <div
-              onClick={pageNumber > 1 ? previousPage : null}
+              onClick={pageNumber > 1 ? previousPage : () => {}}
               className={classnames(styles.previousHover, {
                 [styles.firstPage]: pageNumber <= 1,
               })}
@@ -95,7 +95,7 @@ export const StoryTimeline = () => {
                 className={classnames(styles.fade, { [styles.hide]: fadeIn })}
               />
               <div
-                onClick={pageNumber + 1 < numPages ? nextPage : null}
+                onClick={pageNumber + 1 < numPages ? nextPage : () => {}}
                 className={classnames(styles.nextHover, {
                   [styles.firstPage]: pageNumber <= 1,
                 })}
