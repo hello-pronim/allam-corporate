@@ -58,15 +58,14 @@
     display: flex;
     align-items: flex-start;
     gap: rem(36);
-    padding-bottom: rem(24);
+    padding-bottom: rem(16);
     margin: rem(24) rem(16) 0;
     overflow: auto;
-
     @include breakpoint($large) {
       margin: 0;
       margin-top: rem(60);
       gap: rem(52);
-      padding-bottom: rem(40);
+      padding-bottom: rem(24);
     }
 
     &::-webkit-scrollbar {
@@ -101,11 +100,7 @@
         color: $light-grey;
         font-size: rem(18);
         line-height: rem(21);
-        margin-bottom: rem(20);
         cursor: pointer;
-        @include breakpoint($large) {
-          margin-bottom: rem(24);
-        }
 
         &:hover,
         &.isActive {
@@ -120,40 +115,44 @@
           }
         }
       }
+    }
+  }
 
-      a,
-      h6,
-      p {
-        color: $light-grey;
-        font-size: rem(16);
-        line-height: rem(19);
-      }
+  &Result {
+    padding-top: rem(20);
 
-      a {
-        text-decoration: underline;
-      }
+    a,
+    h6,
+    p {
+      color: $light-grey;
+      font-size: rem(16);
+      line-height: rem(19);
+    }
 
-      ul {
-        list-style-position: inside;
+    a {
+      text-decoration: underline;
+    }
 
-        li {
-          display: flex;
-          align-items: center;
-          gap: rem(16);
+    ul {
+      list-style-position: inside;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: rem(16);
+        @include breakpoint($large) {
+          gap: rem(24);
+        }
+
+        &:not(:last-of-type) {
+          margin-bottom: rem(8);
           @include breakpoint($large) {
-            gap: rem(24);
+            margin-bottom: rem(16);
           }
+        }
 
-          &:not(:last-of-type) {
-            margin-bottom: rem(8);
-            @include breakpoint($large) {
-              margin-bottom: rem(16);
-            }
-          }
-
-          span {
-            color: $primary;
-          }
+        span {
+          color: $primary;
         }
       }
     }

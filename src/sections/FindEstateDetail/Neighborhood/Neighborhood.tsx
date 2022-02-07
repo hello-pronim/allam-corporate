@@ -60,29 +60,32 @@ const Neighborhood = ({ data, categoryList }: NeighborhoodProps) => {
                 >
                   {category.title}
                 </h5>
-                <ul>
-                  {getFilteredAmenity(category.title).map((amenity) => (
-                    <li key={amenity.amenityName}>
-                      <span>•</span>
-                      <div>
-                        <h6>{amenity.amenityName}</h6>
-                        <p>{amenity.address}</p>
-                        <p>{amenity.suburb}</p>
-                        {amenity.externalUrl && (
-                          <a
-                            href={amenity.externalUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            View more
-                          </a>
-                        )}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
               </div>
             ))}
+          </div>
+
+          <div className={styles.neighborhoodResult}>
+            <ul>
+              {getFilteredAmenity(selectedCategory).map((amenity) => (
+                <li key={amenity.amenityName}>
+                  <span>•</span>
+                  <div>
+                    <h6>{amenity.amenityName}</h6>
+                    <p>{amenity.address}</p>
+                    <p>{amenity.suburb}</p>
+                    {amenity.externalUrl && (
+                      <a
+                        href={amenity.externalUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        View more
+                      </a>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
