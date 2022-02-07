@@ -60,9 +60,6 @@ const FindEstateDetail: NextPage<any> = ({
     null
   );
 
-  console.log("categories", categoryList);
-  console.log(neighborhood);
-
   const filteredEstates: any[] = useMemo(() => {
     return estateList
       ? Array.from(estateList.entries).filter(

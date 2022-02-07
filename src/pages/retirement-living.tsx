@@ -43,8 +43,6 @@ const RetirementLiving: NextPage<OverViewPageProps> = ({
       : [];
   }, [newsList]);
 
-  console.log(filteredNews);
-
   return pageData ? (
     <Layout layoutData={layoutData}>
       <Hero data={propsFind(pageLayout, "retirementLayout_hero_BlockType")} />
