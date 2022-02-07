@@ -17,8 +17,8 @@ const TrustBox = () => {
     // If window.Trustpilot is available it means that we need to load the TrustBox from our ref.
     // If it's not, it means the script you pasted into <head /> isn't loaded  just yet.
     // When it is, it will automatically load the TrustBox.
-    if (window.Trustpilot) {
-      window.Trustpilot.loadFromElement(ref.current, true);
+    if (window?.Trustpilot) {
+      window?.Trustpilot?.loadFromElement(ref.current, true);
     }
   }, []);
   return (
