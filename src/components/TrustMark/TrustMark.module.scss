@@ -10,6 +10,7 @@
   &Icon {
     width: rem(56);
     height: rem(56);
+    margin-bottom: rem(14);
 
     @include breakpoint($medium) {
       margin-bottom: rem(24);
@@ -20,7 +21,7 @@
     color: $primary;
     font-size: rem(48);
     font-weight: 800;
-    margin-bottom: rem(4);
+    margin-bottom: rem(10);
     @include breakpoint($large) {
       margin-bottom: rem(16);
     }
