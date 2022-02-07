@@ -121,17 +121,21 @@ export type PromotionLayout = {
 
 export type NeighborhoodModel = {
   title: string;
-  amenities: {
-    amenityCategory: {
-      title: string;
-    }[];
-    amenityName: string;
-    address: string;
-    suburb: string;
-    latitude: string;
-    longitude: string;
-    externalUrl: string;
-  };
+  amenities: AmenityModel[];
+};
+
+export type AmenityModel = {
+  amenityCategory: AmenityCategoryModel[];
+  amenityName: string;
+  address: string;
+  suburb: string;
+  latitude: string;
+  longitude: string;
+  externalUrl: string;
+};
+
+export type AmenityCategoryModel = {
+  title: string;
 };
 
 export type LocationModel = {

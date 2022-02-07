@@ -328,3 +328,13 @@ export const layoutQuery = gql`
     }
   }
 `;
+
+export const amenityCategoryQuery = gql`
+  query {
+    categories {
+      ... on amenityCategories_Category {
+        title
+      }
+    }
+  }
+`;

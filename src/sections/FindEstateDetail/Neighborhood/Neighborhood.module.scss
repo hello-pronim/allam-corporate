@@ -1,0 +1,161 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.neighborhood {
+  padding: rem(146) 0 0;
+  background-color: $grey2;
+  @include breakpoint($large) {
+    padding: rem(236) 0 0;
+    position: relative;
+  }
+
+  &::before {
+    position: absolute;
+    top: rem(130);
+    left: 0;
+    width: 100%;
+    height: 55%;
+    background: linear-gradient(
+      179.44deg,
+      $white 61.01%,
+      rgba($white, 0) 103.32%
+    );
+
+    @include breakpoint($large) {
+      content: "";
+    }
+  }
+
+  &Wrapper {
+    @include breakpoint($large) {
+      @include grid(1, 12);
+      @include grid-container;
+      row-gap: 0 !important;
+      position: relative;
+    }
+  }
+
+  &Content {
+    @include breakpoint($large) {
+      grid-column: 1 / span 12;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 2 / span 10;
+    }
+
+    h2 {
+      padding: 0 rem(16);
+      color: $grey;
+      margin-bottom: rem(24);
+      @include breakpoint($large) {
+        padding: 0;
+        margin-bottom: rem(56);
+      }
+    }
+  }
+
+  &Categories {
+    display: flex;
+    align-items: flex-start;
+    gap: rem(36);
+    padding-bottom: rem(24);
+    margin: rem(24) rem(16) 0;
+    overflow: auto;
+
+    @include breakpoint($large) {
+      margin: 0;
+      margin-top: rem(60);
+      gap: rem(52);
+      padding-bottom: rem(40);
+    }
+
+    &::-webkit-scrollbar {
+      width: rem(6);
+      height: rem(6);
+      border-radius: rem(30);
+      @include breakpoint($large) {
+        height: rem(8);
+      }
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: $white;
+      border-radius: rem(30);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $primary;
+      border-radius: rem(30);
+    }
+
+    &Item {
+      min-width: rem(150);
+      @include breakpoint($large) {
+        width: rem(240);
+        min-width: rem(220);
+      }
+
+      h5 {
+        display: inline-block;
+        position: relative;
+        color: $light-grey;
+        font-size: rem(18);
+        line-height: rem(21);
+        margin-bottom: rem(20);
+        cursor: pointer;
+        @include breakpoint($large) {
+          margin-bottom: rem(24);
+        }
+
+        &:hover,
+        &.isActive {
+          &::before {
+            content: "";
+            width: 100%;
+            height: rem(2);
+            position: absolute;
+            left: 0;
+            bottom: rem(-6);
+            background-color: $primary;
+          }
+        }
+      }
+
+      a,
+      h6,
+      p {
+        color: $light-grey;
+        font-size: rem(16);
+        line-height: rem(19);
+      }
+
+      a {
+        text-decoration: underline;
+      }
+
+      ul {
+        list-style-position: inside;
+
+        li {
+          display: flex;
+          align-items: center;
+          gap: rem(16);
+          @include breakpoint($large) {
+            gap: rem(24);
+          }
+
+          &:not(:last-of-type) {
+            margin-bottom: rem(8);
+            @include breakpoint($large) {
+              margin-bottom: rem(16);
+            }
+          }
+
+          span {
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+}

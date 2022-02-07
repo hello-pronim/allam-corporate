@@ -10,9 +10,10 @@ import {
   fullHomeListQuery,
   simpleNewsQuery,
   fullEstatesQuery,
+  amenityCategoryQuery,
 } from "@libs/queries";
 
-import { NeighborhoodModel } from "@models";
+import { AmenityCategoryModel, NeighborhoodModel } from "@models";
 import Layout from "@components/Layout/Layout";
 
 import Hero from "@sections/FindEstateDetail/Hero/Hero";
@@ -21,6 +22,7 @@ import HomeList from "@sections/FindEstateDetail/HomeList/HomeList";
 import NewsList from "@sections/FindEstateDetail/NewsList/NewsList";
 import MasterPlan from "@sections/FindEstateDetail/MasterPlan/MasterPlan";
 import LeadingInfo from "@sections/FindEstateDetail/LeadingInfo/LeadingInfo";
+import Neighborhood from "@sections/FindEstateDetail/Neighborhood/Neighborhood";
 import SignUpEstate from "@sections/FindEstateDetail/SignUpEstate/SignUpEstate";
 import BannerGallery from "@sections/FindEstateDetail/BannerGallery/BannerGallery";
 import SimilarEstates from "@sections/FindEstateDetail/SimilarEstates/SimilarEstates";
@@ -32,6 +34,7 @@ const FindEstateDetail: NextPage<any> = ({
   estateList,
   homeList,
   newsList,
+  categories,
 }) => {
   const title = get(estate, "entry.title", "");
   const logo = get(estate, "entry.logo", []);
@@ -51,6 +54,14 @@ const FindEstateDetail: NextPage<any> = ({
     "entry.neighborhood[0]",
     null
   );
+  const categoryList: AmenityCategoryModel[] = get(
+    categories,
+    "categories",
+    null
+  );
+
+  console.log("categories", categoryList);
+  console.log(neighborhood);
 
   const filteredEstates: any[] = useMemo(() => {
     return estateList
@@ -102,6 +113,9 @@ const FindEstateDetail: NextPage<any> = ({
         )}
         <Deposit />
         {filteredNews.length !== 0 && <NewsList news={filteredNews} />}
+        {neighborhood && (
+          <Neighborhood data={neighborhood} categoryList={categoryList} />
+        )}
         <SimilarEstates
           estateList={filteredEstates}
           homeList={homeList.entries}
@@ -232,6 +246,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
   const estateList = await craftAPI(fullEstatesQuery);
   const homeList = await craftAPI(fullHomeListQuery);
   const newsList = await craftAPI(simpleNewsQuery);
+  const categories = await craftAPI(amenityCategoryQuery);
 
   return {
     props: {
@@ -240,6 +255,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
       estateList,
       homeList,
       newsList,
+      categories,
     },
     revalidate: 60,
   };

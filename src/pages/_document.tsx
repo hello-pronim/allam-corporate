@@ -37,7 +37,7 @@ class MyDocument extends Document {
             type="text/javascript"
             src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
             async
-          ></script>
+          />
         </Head>
         <body>
           <Main />
