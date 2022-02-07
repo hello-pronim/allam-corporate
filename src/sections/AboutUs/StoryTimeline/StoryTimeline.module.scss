@@ -1,12 +1,30 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
-.pdf {
-  padding: 0px 0 40px 0;
-  position: relative;
-  @include below($medium) {
-    display: none;
+.storyTimeline {
+  background-color: $grey2;
+  overflow: hidden;
+
+  &Wrapper {
+    @include grid-container;
+    @include breakpoint($large) {
+      @include grid(1, 12);
+    }
   }
+
+  &Content {
+    @include breakpoint($large) {
+      grid-column: 1 / span 12;
+      padding: 0 rem(60);
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 2 / span 10;
+    }
+  }
+}
+
+.pdf {
+  position: relative;
 }
 
 .pdfThumb {
@@ -94,26 +112,38 @@
 
 .button {
   position: absolute;
-  width: 25px;
-  height: 25px;
-  border: none;
-  border-radius: 50%;
-  background-color: $primary;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  width: rem(32);
+  height: rem(32);
   position: absolute;
   top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  border-radius: 50%;
+  background-color: $light-grey;
+  transition: background-color 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+
+  @include breakpoint($medium) {
+    display: block;
+  }
 
   svg {
-    width: 9px;
-    height: 11px;
-    margin-top: 3px;
+    width: rem(7);
+    height: rem(11);
+
+    path {
+      fill: $white;
+    }
   }
 
   &.prev {
-    left: -30px;
+    left: rem(-12);
     @include breakpoint($medium) {
-      left: -40px;
+      left: rem(-60);
     }
 
     svg {
@@ -122,51 +152,20 @@
   }
 
   &.next {
-    right: -30px;
+    right: rem(-12);
     @include breakpoint($medium) {
-      right: -40px;
+      right: rem(-60);
     }
   }
   &.first {
-    right: calc(50% - 50px);
-    z-index: 9999;
+    right: rem(-12);
+    @include breakpoint($medium) {
+      z-index: 9999;
+      right: calc(50% - 50px);
+    }
   }
 
   &:hover {
-    background-color: $primary;
+    background-color: $grey;
   }
-}
-.content__description {
-  padding-bottom: 10px;
-}
-.container__layout {
-  position: relative;
-  max-width: 1280px;
-  margin-bottom: 50px;
-}
-
-.main__content {
-  width: 100%;
-
-  @include breakpoint($medium) {
-    float: left;
-    width: calc(100% - #{rem(10)});
-  }
-}
-
-.sidebar {
-  display: block;
-  margin-top: 20px;
-  @include breakpoint($medium) {
-    margin-top: 0;
-    float: right;
-    width: 320px;
-  }
-}
-
-.similarposts {
-  max-width: 100%;
-  margin-bottom: 32px;
-  color: $primary;
-  text-decoration: none;
 }

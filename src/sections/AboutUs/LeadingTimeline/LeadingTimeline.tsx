@@ -12,7 +12,7 @@ const LeadingTimeline = ({ textContent }: ILeadingTimelineProps) => {
   return (
     <div className={styles.timeLine}>
       <TextBlock data={textContent} />
-      <Timeline cards={aboutTimelineCards} />
+      {/* <Timeline cards={aboutTimelineCards} /> */}
     </div>
   );
 };
