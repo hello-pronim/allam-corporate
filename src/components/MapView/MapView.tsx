@@ -38,7 +38,7 @@ const MapView = ({
     height: "100%",
     latitude: data.length > 0 ? Number(data[0].latitude) : -37.85,
     longitude: data.length > 0 ? Number(data[0].longitude) : 145.11,
-    zoom: 8,
+    zoom: 6,
     transitionDuration: 3000,
     transitionInterpolator: new FlyToInterpolator(),
     transitionEasing: d3.easeCubic,
