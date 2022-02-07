@@ -49,14 +49,16 @@ export const StoryTimeline = () => {
   };
 
   const previousPage = () => {
-    changePage(width < 768 ? -1 : -2);
+    // changePage(width < 768 ? -1 : -2);
+    changePage(-1);
   };
 
   const nextPage = () => {
     if (pageNumber === 1) {
       changePage(1);
     } else {
-      changePage(width < 768 ? 1 : 2);
+      // changePage(width < 768 ? 1 : 2);
+      changePage(1);
     }
   };
 
@@ -89,7 +91,7 @@ export const StoryTimeline = () => {
                   })}
                 />
               </Page>
-              {width >= 768 && pageTwo && (
+              {/* {width >= 768 && pageTwo && (
                 <Page
                   pageNumber={pageTwo}
                   className={classnames(styles.page, styles.pageTwo)}
@@ -109,7 +111,7 @@ export const StoryTimeline = () => {
                     })}
                   />
                 </Page>
-              )}
+              )} */}
               {!pageTwo && <div className={classnames(styles.page)}></div>}
             </Document>
             {pageNumber > 1 && (

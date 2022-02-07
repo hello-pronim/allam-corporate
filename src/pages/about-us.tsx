@@ -2,15 +2,18 @@ import React from "react";
 import type { NextPage } from "next";
 import get from "lodash/get";
 import { gql } from "@apollo/client";
-import craftAPI from "@libs/api";
 import { useRecoilValue } from "recoil";
+
+import craftAPI from "@libs/api";
 import { PageProps } from "@models";
 import { layoutQuery } from "@libs/queries";
 import { videoModalState } from "@states/atoms/videoModal";
+
 import Layout from "@components/Layout/Layout";
 import TextBlock from "@components/TextBlock/TextBlock";
 import VideoModal from "@components/VideoModal/VideoModal";
 import FullWidthImage from "@components/FullWidthImage/FullWidthImage";
+
 import VideoHero from "@sections/AboutUs/VideoHero/VideoHero";
 import LeadingTimeline from "@sections/AboutUs/LeadingTimeline/LeadingTimeline";
 import TimelineGraph from "@sections/AboutUs/TimelineGraph/TimelineGraph";
