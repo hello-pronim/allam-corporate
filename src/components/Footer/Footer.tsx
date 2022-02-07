@@ -6,8 +6,14 @@ import Icon from "@components/Icons/Icons";
 import styles from "./Footer.module.scss";
 import { ButtonModel } from "@models";
 
-export interface IFooterProps {
+interface IFooterProps {
   footerData: any;
+}
+
+declare global {
+  interface Window {
+    Trustpilot: any;
+  }
 }
 
 const TrustBox = () => {
@@ -21,6 +27,7 @@ const TrustBox = () => {
       window?.Trustpilot?.loadFromElement(ref.current, true);
     }
   }, []);
+
   return (
     <div
       ref={ref} // We need a reference to this element to load the TrustBox in the effect.
@@ -50,18 +57,18 @@ const Footer = ({ footerData }: IFooterProps) => {
   const footerBottom = get(footerData, "footerBottom[0]");
   const footerButtons: ButtonModel[] = get(footerData, "buttons");
 
-  useEffect(() => {
-    var aScript = document.createElement("script");
-    aScript.type = "text/javascript";
-    aScript.src =
-      "//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js";
-    aScript.async = true;
-    document.head.appendChild(aScript);
-    aScript.onload = function () {
-      var trustbox = document.getElementById("trustbox");
-      window?.Trustpilot?.loadFromElement(trustbox);
-    };
-  }, []);
+  // useEffect(() => {
+  //   var aScript = document.createElement("script");
+  //   aScript.type = "text/javascript";
+  //   aScript.src =
+  //     "//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js";
+  //   aScript.async = true;
+  //   document.head.appendChild(aScript);
+  //   aScript.onload = function () {
+  //     var trustbox = document.getElementById("trustbox");
+  //     window?.Trustpilot?.loadFromElement(trustbox);
+  //   };
+  // }, []);
 
   return (
     <footer className={styles.footer}>
