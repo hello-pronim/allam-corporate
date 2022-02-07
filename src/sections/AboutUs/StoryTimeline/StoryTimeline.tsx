@@ -9,7 +9,7 @@ import styles from "./StoryTimeline.module.scss";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export const StoryTimeline = () => {
-  const { width, height } = useWindowSize();
+  const { width } = useWindowSize();
   const [numPages, setNumPages] = useState(0);
   const [fadeIn, setFadeIn] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
