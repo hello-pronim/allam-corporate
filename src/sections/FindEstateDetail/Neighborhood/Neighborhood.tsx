@@ -10,13 +10,16 @@ type NeighborhoodProps = {
 
 const Neighborhood = ({ data, categoryList }: NeighborhoodProps) => {
   const { title, amenities } = data;
-  const [selectedCategory, SetSelectedCategory] = useState("All");
+  const [selectedCategory, SetSelectedCategory] = useState("");
   const [filteredAmenities, setFilteredAmenities] =
     useState<AmenityModel[]>(amenities);
 
   useEffect(() => {
     setFilteredAmenities(amenities);
   }, [amenities]);
+  useEffect(() => {
+    SetSelectedCategory(categoryList[0].title);
+  }, [categoryList]);
 
   const getFilteredAmenity = useCallback(
     (key) => {
