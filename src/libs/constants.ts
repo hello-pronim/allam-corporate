@@ -104,6 +104,10 @@ export const bedsList = [
 
 export const sortHomesKeys = [
   {
+    label: "Status",
+    value: "sellingLabel",
+  },
+  {
     label: "Move in date",
     value: "completionDate",
   },
