@@ -1,7 +1,7 @@
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
 import type { HeroModel } from "@models";
+import { useWindowSize } from "@hooks/useWindowSize";
 import { ImageButton, Button, Redactor } from "@components/Common/Common";
 import styles from "./Hero.module.scss";
 
@@ -10,11 +10,16 @@ export interface IHeroProps {
 }
 
 const Hero = ({ data }: IHeroProps) => {
+  const { width } = useWindowSize();
+
   return (
     <div
       className={styles.hero}
       style={{
-        backgroundImage: `linear-gradient(270deg, rgba(0, 0, 0, 0.8) 15.12%, rgba(0, 0, 0, 0) 37.64%), url(${data?.backgroundImage?.[0]?.url})`,
+        backgroundImage:
+          width >= 768
+            ? `linear-gradient(270deg, rgba(0, 0, 0, 0.8) 15.12%, rgba(0, 0, 0, 0) 37.64%), url(${data?.backgroundImage?.[0]?.url})`
+            : `url(${data?.backgroundImage?.[0]?.url})`,
       }}
     >
       <div className={styles.heroWrapper}>

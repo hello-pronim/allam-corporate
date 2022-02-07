@@ -3,16 +3,23 @@
 
 .hero {
   height: 100vh;
+  padding-top: rem(110);
   min-height: rem(700);
   max-height: rem(1280);
   background-size: cover;
   background-position: center;
   background-blend-mode: multiply, normal;
+  @include breakpoint($medium) {
+    padding: 0;
+  }
 
   &Wrapper {
     height: 100%;
     @include grid-container;
     align-items: center;
+    @include breakpoint($medium) {
+      display: grid;
+    }
     @include breakpoint($large) {
       @include grid(1, 12);
     }
