@@ -9,6 +9,7 @@ import ReactMapGL, {
   MapRef,
   Marker,
   FlyToInterpolator,
+  FullscreenControl,
 } from "react-map-gl";
 
 import { useWindowSize } from "@hooks/useWindowSize";
@@ -220,6 +221,7 @@ const MapView = ({
             homesList={homesList}
           />
         )}
+        <FullscreenControl className={styles.mapFullScreenControl} />
       </ReactMapGL>
     </div>
   );

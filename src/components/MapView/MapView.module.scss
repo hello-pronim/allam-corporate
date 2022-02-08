@@ -6,6 +6,15 @@
   @include breakpoint($medium) {
     height: rem(700);
   }
+
+  &FullScreenControl {
+    position: absolute;
+    top: rem(80);
+    right: rem(20);
+    @include breakpoint($large) {
+      right: rem(80);
+    }
+  }
 }
 
 .cluster {
