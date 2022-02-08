@@ -53,14 +53,16 @@ const PropertyCard = ({
                 {homeData.sellingLabel}
               </span>
             )}
-            <div className={styles.propertyCardTopBarCompletion}>
-              <span
-                style={{
-                  height: "100%",
-                  width: `${homeData.percentageComplete}%`,
-                }}
-              />
-            </div>
+            {homeData.percentageComplete && (
+              <div className={styles.propertyCardTopBarCompletion}>
+                <span
+                  style={{
+                    height: "100%",
+                    width: `${homeData.percentageComplete}%`,
+                  }}
+                />
+              </div>
+            )}
           </div>
         )}
         {simple ? (
