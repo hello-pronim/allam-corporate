@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import classnames from "classnames/bind";
 import { AmenityCategoryModel, AmenityModel, NeighborhoodModel } from "@models";
 import NeighborhoodMap from "@components/NeighborhoodMap/NeighborhoodMap";
 import styles from "./Neighborhood.module.scss";
@@ -6,9 +7,16 @@ import styles from "./Neighborhood.module.scss";
 type NeighborhoodProps = {
   data: NeighborhoodModel;
   categoryList: AmenityCategoryModel[];
+  isSinglePage?: boolean;
 };
 
-const Neighborhood = ({ data, categoryList }: NeighborhoodProps) => {
+const cx = classnames.bind(styles);
+
+const Neighborhood = ({
+  data,
+  categoryList,
+  isSinglePage = false,
+}: NeighborhoodProps) => {
   const { title, amenities } = data;
   const [selectedCategory, SetSelectedCategory] = useState("");
   const [filteredAmenities, setFilteredAmenities] =
@@ -39,11 +47,14 @@ const Neighborhood = ({ data, categoryList }: NeighborhoodProps) => {
   }, [amenities, getFilteredAmenity, selectedCategory]);
 
   return (
-    <div className={styles.neighborhood}>
+    <div
+      className={cx("neighborhood", {
+        neighborhoodSingle: isSinglePage,
+      })}
+    >
       <div className={styles.neighborhoodWrapper}>
         <div className={styles.neighborhoodContent}>
-          {/* <h2>Explore your neighbourhood - {title}</h2> */}
-          <h2>Explore your neighborhood</h2>
+          <h2>Explore your neighbourhood{isSinglePage ? ` - ${title}` : ""}</h2>
           <NeighborhoodMap data={filteredAmenities} />
 
           <div className={styles.neighborhoodCategories}>

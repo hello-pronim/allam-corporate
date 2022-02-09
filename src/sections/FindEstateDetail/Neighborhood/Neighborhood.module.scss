@@ -26,6 +26,17 @@
     }
   }
 
+  &Single {
+    padding: rem(120) 0;
+    @include breakpoint($large) {
+      padding: rem(180) 0;
+    }
+
+    &::before {
+      content: none;
+    }
+  }
+
   &Wrapper {
     @include breakpoint($large) {
       @include grid(1, 12);
