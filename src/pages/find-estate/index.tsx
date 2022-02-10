@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import type { NextPage } from "next";
 import { get } from "lodash";
 import { gql } from "@apollo/client";
+import { useRouter } from "next/router";
 import { useSetRecoilState } from "recoil";
 
 import { OverViewPageProps } from "@models";
@@ -31,6 +32,10 @@ const FindEstate: NextPage<OverViewPageProps> = ({
   layoutData,
   homesList,
 }) => {
+  const router = useRouter();
+  const { query } = router;
+
+  console.log(query);
   const [showMap, setShowMap] = useState(false);
   const [suburbList, setSuburbList] = useState<string[]>([]);
   const heading = get(pageData, "entry.heading", "");
@@ -45,6 +50,10 @@ const FindEstate: NextPage<OverViewPageProps> = ({
     setSuburbList(getSuburbs(estateList));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listingData]);
+
+  if (query?.module === "map-estates") {
+    return <Overview homesList={homesList.entries} isFullScreen />;
+  }
 
   return (
     <Layout layoutData={layoutData}>
