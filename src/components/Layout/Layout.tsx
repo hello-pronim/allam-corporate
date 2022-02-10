@@ -20,7 +20,6 @@ const Layout = ({
   children,
 }: ILayoutProps) => {
   const router = useRouter();
-
   const { query } = router;
 
   const navigation: NavItemModel[] = get(

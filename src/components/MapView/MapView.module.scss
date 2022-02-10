@@ -2,9 +2,9 @@
 @import "@styles/variables";
 
 .map {
-  height: rem(400);
+  height: 100%;
   @include breakpoint($medium) {
-    height: rem(700);
+    height: 100%;
   }
 
   &FullScreenControl {
