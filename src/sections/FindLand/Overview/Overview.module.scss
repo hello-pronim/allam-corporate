@@ -6,4 +6,8 @@
   @include breakpoint($medium) {
     height: rem(700);
   }
+
+  &.fullScreen {
+    height: 100vh;
+  }
 }

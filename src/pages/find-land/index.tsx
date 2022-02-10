@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import type { NextPage } from "next";
 import { get } from "lodash";
 import { gql } from "@apollo/client";
+import { useRouter } from "next/router";
 import { useSetRecoilState } from "recoil";
 
 import craftAPI from "@libs/api";
@@ -23,6 +24,9 @@ const FindLand: NextPage<OverViewPageProps> = ({
   listingData,
   layoutData,
 }) => {
+  const router = useRouter();
+  const { query } = router;
+
   const [showMap, setShowMap] = useState(false);
   const heading = get(pageData, "entry.heading", "");
   const introBlurb = get(pageData, "entry.introBlurb", "");
@@ -36,6 +40,10 @@ const FindLand: NextPage<OverViewPageProps> = ({
     setLands(landsList?.filter((el: HomeModel) => el.landOnly === true));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [landsList]);
+
+  if (query?.module === "map-lands") {
+    return <Overview isFullScreen />;
+  }
 
   return (
     <Layout layoutData={layoutData}>

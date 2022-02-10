@@ -35,7 +35,6 @@ const FindEstate: NextPage<OverViewPageProps> = ({
   const router = useRouter();
   const { query } = router;
 
-  console.log(query);
   const [showMap, setShowMap] = useState(false);
   const [suburbList, setSuburbList] = useState<string[]>([]);
   const heading = get(pageData, "entry.heading", "");
