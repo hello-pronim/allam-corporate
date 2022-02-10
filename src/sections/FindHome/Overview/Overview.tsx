@@ -1,17 +1,23 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
+import classnames from "classnames/bind";
+
 import { HomeModel } from "@models";
 import { filteredHomes } from "@states/atoms/homes";
 import MapView from "@components/MapView/MapView";
 import styles from "./Overview.module.scss";
 
-export interface IOverviewProps {}
+const cx = classnames.bind(styles);
 
-const Overview = ({}: IOverviewProps) => {
+export interface IOverviewProps {
+  isFullScreen?: boolean;
+}
+
+const Overview = ({ isFullScreen = false }: IOverviewProps) => {
   const homesList: HomeModel[] = useRecoilValue(filteredHomes);
 
   return (
-    <div className={styles.overview}>
+    <div className={cx("overview", { fullScreen: isFullScreen })}>
       <MapView data={homesList} type="home" />
     </div>
   );
