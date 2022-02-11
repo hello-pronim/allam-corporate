@@ -28,7 +28,7 @@ const InspectionList = ({}: IInspectionListProps) => {
         <div className={styles.homesListingView}>
           <div className={styles.homesListingCards}>
             {visibleHomes?.map((home, id) => (
-              <Link href={`/find-home/${home.slug}`} key={id}>
+              <Link href={`/open-for-inspection/${home.slug}`} key={id}>
                 <a>
                   <PropertyCard key={id} homeData={home} isOpenInspection />
                 </a>
