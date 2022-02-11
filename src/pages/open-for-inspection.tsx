@@ -9,10 +9,10 @@ import { useSetRecoilState } from "recoil";
 import { allInspectionState } from "@states/atoms/inspection";
 import { HomeModel, OverViewPageProps } from "@models";
 import Layout from "@components/Layout/Layout";
+import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
 import Hero from "@sections/OpenInspection/Hero/Hero";
 import InspectionList from "@sections/OpenInspection/InspectionList/InspectionList";
-import Overview from "@sections/FindHome/Overview/Overview";
-import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
+import Overview from "@sections/OpenInspection/Overview/Overview";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
 const OpenInspection: NextPage<OverViewPageProps> = ({

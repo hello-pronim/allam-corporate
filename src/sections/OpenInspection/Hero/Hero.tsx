@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { map, sortBy } from "lodash";
 import { useRecoilValue, useRecoilState } from "recoil";
+
 import {
   allInspectionState,
   filteredInspection,
   inspectionFilterState,
 } from "@states/atoms/inspection";
+import { ChoiceModel } from "@models";
+
 import { Redactor } from "@components/Common/Common";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
 import FilterModal from "@components/FilterModal/FilterModal";
-import HomeFilter from "@sections/OpenInspection/HomeFilter/HomeFilter";
 import FilterByChoiceGroup from "@components/FilterByChoiceGroup/FilterByChoiceGroup";
-import { ChoiceModel } from "@models";
+import HomeFilter from "@sections/OpenInspection/HomeFilter/HomeFilter";
+
+import { getSuburbs } from "@utils/getSuburbs";
 import { transformLocations } from "@utils/transformLocations";
 import styles from "./Hero.module.scss";
 
@@ -37,7 +40,7 @@ const Hero = ({
   const [homesFilter, setHomesFilters] = useRecoilState(inspectionFilterState);
 
   useEffect(() => {
-    setSuburbList(sortBy(map(homesList, "suburb")));
+    setSuburbList(getSuburbs(homesList));
   }, [homesList]);
 
   useEffect(() => {
