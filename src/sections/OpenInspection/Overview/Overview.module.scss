@@ -1,0 +1,13 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.overview {
+  height: rem(400);
+  @include breakpoint($medium) {
+    height: rem(700);
+  }
+
+  &.fullScreen {
+    height: 100vh;
+  }
+}
