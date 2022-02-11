@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { useRecoilValue } from "recoil";
 import { filteredInspection } from "@states/atoms/inspection";
@@ -10,14 +10,24 @@ import styles from "./InspectionList.module.scss";
 export interface IInspectionListProps {}
 
 const InspectionList = ({}: IInspectionListProps) => {
+  const MAX_ESTATE_COUNT = 30;
   const homesList = useRecoilValue(filteredInspection);
+  const [isLoadMore, setIsLoadMore] = useState(false);
+
+  useEffect(() => {
+    setIsLoadMore(homesList.length <= MAX_ESTATE_COUNT);
+  }, [homesList]);
+
+  const visibleHomes = useMemo(() => {
+    return isLoadMore ? homesList : homesList.slice(0, MAX_ESTATE_COUNT);
+  }, [isLoadMore, homesList]);
 
   return (
     <div className={styles.homesListing}>
       <div className={styles.homesListingWrapper}>
         <div className={styles.homesListingView}>
           <div className={styles.homesListingCards}>
-            {homesList?.map((home, id) => (
+            {visibleHomes?.map((home, id) => (
               <Link href={`/find-home/${home.slug}`} key={id}>
                 <a>
                   <PropertyCard key={id} homeData={home} isOpenInspection />
@@ -27,11 +37,13 @@ const InspectionList = ({}: IInspectionListProps) => {
             <EasyBuyPurchase />
           </div>
 
-          <div className={styles.homesListingViewCTA}>
-            <Button size="large" rounded>
-              Load more
-            </Button>
-          </div>
+          {!isLoadMore && (
+            <div className={styles.homesListingViewCTA}>
+              <Button size="large" onClick={() => setIsLoadMore(true)} rounded>
+                Load more
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>

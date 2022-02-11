@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
-import { homesFilterState } from "@states/atoms/homes";
+import { inspectionFilterState } from "@states/atoms/inspection";
 import { ArrowButton, ImageButton } from "@components/Common/Common";
 import FilterDropdownMulti from "@components/FilterDropdownMulti/FilterDropdownMulti";
 import styles from "./HomeFilter.module.scss";
@@ -19,7 +19,7 @@ const HomeFilter = ({
   suburbList,
 }: IHomeFilterProps) => {
   const [openLocationMenu, setOpenLocationMenu] = useState(false);
-  const [homeFilter, setHomeFilters] = useRecoilState(homesFilterState);
+  const [homeFilter, setHomeFilters] = useRecoilState(inspectionFilterState);
 
   return (
     <div className={styles.estateFilter}>
@@ -40,11 +40,13 @@ const HomeFilter = ({
               icon="grid-view"
               label="Grid view"
               onClick={() => setShowMap(false)}
+              selected={!showMap}
             />
             <ImageButton
               icon="map"
               label="Map view"
               onClick={() => setShowMap(true)}
+              selected={showMap}
             />
           </div>
 
