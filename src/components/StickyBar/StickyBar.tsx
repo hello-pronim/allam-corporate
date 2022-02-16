@@ -13,9 +13,9 @@ const StickyBar = ({ title }: IStickyBarProps) => {
         <div className={styles.stickyBarContainer}>
           <h5>{title}</h5>
           <div className={styles.stickyBarCTA}>
-            <Button color="light" rounded>
+            {/* <Button color="light" rounded>
               Download PDF
-            </Button>
+            </Button> */}
             <Button color="dark-secondary" rounded>
               Contact Agent for price
             </Button>
