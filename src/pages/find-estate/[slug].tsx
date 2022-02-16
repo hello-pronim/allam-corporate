@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { get } from "lodash";
 import { gql } from "@apollo/client";
+import { Element } from "react-scroll";
 
 import craftAPI from "@libs/api";
 import {
@@ -100,7 +101,9 @@ const FindEstateDetail: NextPage<any> = ({
           documents={documents}
         />
         {filteredHomes.length !== 0 && (
-          <HomeList title={title} filteredHomes={filteredHomes} />
+          <Element name="estateProperties">
+            <HomeList title={title} filteredHomes={filteredHomes} />
+          </Element>
         )}
         {masterPlan && (
           <MasterPlan
