@@ -97,8 +97,12 @@ export const bedsList = [
     value: "3",
   },
   {
-    label: "4+ Bedroom",
-    value: "4+",
+    label: "4 Bedroom",
+    value: "4",
+  },
+  {
+    label: "5+ Bedroom",
+    value: "5+",
   },
 ];
 
