@@ -5,6 +5,8 @@
 .hero {
   width: 100%;
   height: 100vh;
+  z-index: 1;
+  position: relative;
   @include breakpoint($large) {
     min-height: rem(700);
     max-height: rem(1280);
