@@ -48,9 +48,9 @@ const CardGrid = ({
           className={styles.GridWrapper}
           css={css({
             gridTemplateColumns: [
-              `repeat(${col[0]}, 1fr)`,
-              `repeat(${col[1]}, 1fr)`,
-              `repeat(${col[2]}, 1fr)`,
+              `repeat(${col[0]}, minmax(0, 1fr))`,
+              `repeat(${col[1]}, minmax(0, 1fr))`,
+              `repeat(${col[2]}, minmax(0, 1fr))`,
             ],
             columnGap: rem(colGap),
             rowGap: rem(rowGap),

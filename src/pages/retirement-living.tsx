@@ -6,7 +6,12 @@ import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
 import { OverViewPageProps } from "@models";
 import { propsFind } from "@utils/propsFind";
-import { layoutQuery, simpleNewsQuery, trustQuery } from "@libs/queries";
+import {
+  fullHomeListQuery,
+  layoutQuery,
+  simpleNewsQuery,
+  trustQuery,
+} from "@libs/queries";
 
 import Layout from "@components/Layout/Layout";
 import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
@@ -23,6 +28,7 @@ const RetirementLiving: NextPage<OverViewPageProps> = ({
   trustMakers,
   layoutData,
   newsList,
+  homesList,
 }) => {
   const ESTATE_TITLE = "Monterey";
   const pageLayout = get(pageData, "entry.retirementLayout", []);
@@ -43,17 +49,29 @@ const RetirementLiving: NextPage<OverViewPageProps> = ({
       : [];
   }, [newsList]);
 
+  const filteredHomes: any[] = useMemo(() => {
+    return homesList
+      ? Array.from(homesList?.entries).filter(
+          (home: any) =>
+            home?.estate[0].title === ESTATE_TITLE && home?.landOnly === false
+        )
+      : [];
+  }, [homesList]);
+
   return pageData ? (
     <Layout layoutData={layoutData}>
       <Hero data={propsFind(pageLayout, "retirementLayout_hero_BlockType")} />
-      <LeadingHomes
-        trustFeatures={trustFeatures}
-        titleData={propsFind(
-          globalPromos,
-          "globalPromos_trustMakers_BlockType"
-        )}
-      />
-      <RelatedNews news={filteredNews} />
+      {filteredHomes.length !== 0 && (
+        <LeadingHomes
+          trustFeatures={trustFeatures}
+          titleData={propsFind(
+            globalPromos,
+            "globalPromos_trustMakers_BlockType"
+          )}
+          homes={filteredHomes}
+        />
+      )}
+      {filteredNews.length !== 0 && <RelatedNews news={filteredNews} />}
       <FullWidthImage image={fullImageLayout?.backgroundImage?.[0].url} />
       <MasterPlan
         data={propsFind(pageLayout, "retirementLayout_masterPlan_BlockType")}
@@ -145,6 +163,7 @@ export const getStaticProps = async function () {
   const trustMakers = await craftAPI(trustQuery);
   const layoutData = await craftAPI(layoutQuery);
   const newsList = await craftAPI(simpleNewsQuery);
+  const homesList = await craftAPI(fullHomeListQuery);
 
   return {
     props: {
@@ -152,6 +171,7 @@ export const getStaticProps = async function () {
       trustMakers,
       layoutData,
       newsList,
+      homesList,
     },
     revalidate: 60,
   };
