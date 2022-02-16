@@ -79,7 +79,7 @@ export type HeroModel = {
   description?: string;
   subHeading?: string;
   backgroundImage?: CraftImage[];
-  buttons?: CTAModel[];
+  buttons?: ButtonModel[];
   cta?: CTAModel[];
   icon: CraftImage[];
   bannerHyperlink: {

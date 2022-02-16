@@ -39,6 +39,8 @@ const RetirementLiving: NextPage<OverViewPageProps> = ({
     "retirementLayout_fullImage_BlockType"
   );
 
+  console.log(pageData);
+
   const filteredNews: any[] = useMemo(() => {
     return newsList
       ? Array.from(newsList?.entries).filter((news: any) =>
@@ -106,7 +108,9 @@ const pageQuery = gql`
             }
             cta {
               label
-              link
+              hyperlink {
+                slug
+              }
             }
           }
           ... on retirementLayout_fullImage_BlockType {
