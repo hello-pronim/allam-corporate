@@ -137,16 +137,22 @@ const homeQuery = gql`
           ... on homepageLayout_promotion_BlockType {
             leftHeadingRedactor
             leftSubHeading
+            leftLabel
             leftLink {
-              uri
+              ... on promotions_default_Entry {
+                slug
+              }
             }
             image {
               url
             }
             rightHeading
             rightSubHeading
+            rightLabel
             rightLink {
-              uri
+              ... on promotions_default_Entry {
+                slug
+              }
             }
           }
           ... on homepageLayout_findHomes_BlockType {
@@ -155,6 +161,7 @@ const homeQuery = gql`
             backgroundImage {
               url
             }
+            textcolor
             buttons {
               ... on buttons_BlockType {
                 buttonLabel

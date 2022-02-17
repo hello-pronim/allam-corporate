@@ -105,6 +105,7 @@ export type HomeLayoutModel = {
   heading?: string;
   headingRedactor?: string;
   description?: string;
+  textcolor?: string;
   buttons?: ButtonModel[];
   icon?: CraftImage[];
   backgroundImage?: CraftImage[];
@@ -113,10 +114,16 @@ export type HomeLayoutModel = {
 export type PromotionLayout = {
   leftHeadingRedactor?: string;
   leftSubHeading?: string;
-  leftLink?: CTAModel[];
+  leftLabel?: string;
+  leftLink?: {
+    slug: string;
+  };
   rightHeading?: string;
   rightSubHeading?: string;
-  rightLink?: CTAModel[];
+  rightLabel?: string;
+  rightLink?: {
+    slug: string;
+  };
   image?: CraftImage[];
 };
 
