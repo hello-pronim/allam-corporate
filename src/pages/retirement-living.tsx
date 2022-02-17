@@ -39,8 +39,6 @@ const RetirementLiving: NextPage<OverViewPageProps> = ({
     "retirementLayout_fullImage_BlockType"
   );
 
-  console.log(pageData);
-
   const filteredNews: any[] = useMemo(() => {
     return newsList
       ? Array.from(newsList?.entries).filter((news: any) =>
