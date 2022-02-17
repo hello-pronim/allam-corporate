@@ -6,18 +6,18 @@ import craftAPI from "@libs/api";
 import { layoutQuery } from "@libs/queries";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/GetInTouch/Hero/Hero";
-import TabbedContent from "@sections/GetInTouch/TabbedContent/TabbedContent";
+import LocationsContent from "@sections/GetInTouch/locations/locationsContent";
 
 type PageProps = {
   locationData: any;
   layoutData: any;
 };
 
-const GetInTouch: NextPage<PageProps> = ({ locationData, layoutData }) => {
+const Locations: NextPage<PageProps> = ({ locationData, layoutData }) => {
   return (
     <Layout layoutData={layoutData}>
       <Hero heading="Get in Touch" />
-      <TabbedContent locations={get(locationData, "entries", [])} />
+      <LocationsContent locations={get(locationData, "entries", [])} />
     </Layout>
   );
 };
@@ -64,4 +64,4 @@ export const getStaticProps = async function () {
   };
 };
 
-export default GetInTouch;
+export default Locations;
