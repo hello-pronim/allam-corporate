@@ -86,12 +86,6 @@ const Buying = () => {
           <div>
             <Select
               className={styles.formControl}
-              name="employmentType"
-              placeholder="What type of employment do you do?"
-              options={employmentTypes}
-            />
-            <Select
-              className={styles.formControl}
               name="estate"
               placeholder="What estate are you interested in?"
               options={estates}
