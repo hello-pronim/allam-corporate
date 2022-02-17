@@ -72,7 +72,8 @@ const FindEstateDetail: NextPage<any> = ({
   const filteredHomes: any[] = useMemo(() => {
     return homeList
       ? Array.from(homeList?.entries).filter(
-          (home: any) => home?.estate[0].title === title
+          (home: any) =>
+            home?.estate[0].title === title && home.openForInspection
         )
       : [];
   }, [title, homeList]);
