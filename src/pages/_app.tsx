@@ -7,10 +7,11 @@ import type { AppProps } from "next/app";
 import "@styles/index.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const apolloClient = getClient();
+
   useEffect(() => {
     ReactModal.setAppElement("body");
   }, []);
-  const apolloClient = getClient();
 
   return (
     <ApolloProvider client={apolloClient}>
