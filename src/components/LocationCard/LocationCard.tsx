@@ -13,11 +13,19 @@ const LocationCard = ({
 }: ILocationCardProps) => {
   return (
     <div className={styles.locationCard}>
-      <h5>{location?.linkedEstates?.[0]?.title} Estate</h5>
-      <p>{`${location?.linkedEstates?.[0]?.streetAddress},`}</p>
-      <p>{`${location?.linkedEstates?.[0]?.suburb} ${location?.linkedEstates?.[0]?.estateState} ${location?.linkedEstates?.[0]?.postcode}`}</p>
+      {location?.linkedEstates?.[0]?.title && (
+        <div>
+          <h5>{location?.linkedEstates?.[0]?.title} Estate</h5>
+          <p>{`${
+            location?.linkedEstates?.[0]?.streetAddress
+              ? `${location?.linkedEstates?.[0]?.streetAddress},`
+              : ""
+          }`}</p>
+          <p>{`${location?.linkedEstates?.[0]?.suburb} ${location?.linkedEstates?.[0]?.estateState} ${location?.linkedEstates?.[0]?.postcode}`}</p>
 
-      <div className={styles.divider} />
+          <div className={styles.divider} />
+        </div>
+      )}
 
       <h5>{location.officeName}</h5>
       <p>
