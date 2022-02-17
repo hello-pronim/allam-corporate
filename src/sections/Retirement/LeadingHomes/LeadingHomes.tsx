@@ -37,18 +37,6 @@ const LeadingHomes = ({
               </Link>
             ))}
           </CardGrid>
-          {/* <CardGrid
-            title="Retirement homes available"
-            col={[1, 2, 3]}
-            padding={0}
-          >
-            <PropertyCard />
-            <PropertyCard />
-            <PropertyCard />
-            <PropertyCard />
-            <PropertyCard />
-            <PropertyCard />
-          </CardGrid> */}
 
           <div className={styles.leadingHomesPropertyCTA}>
             <div className={styles.leadingHomesPropertyCTAWrapper}>

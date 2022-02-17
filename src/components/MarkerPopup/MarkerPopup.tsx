@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { Popup } from "react-map-gl";
 import { useRecoilState } from "recoil";
 import { markerPopupState } from "@states/atoms/markerPopup";
@@ -16,12 +17,28 @@ const MarkerPopup = ({ onClose, homesList }: IMarkerPopupProps) => {
 
   const renderCard = () => {
     if (markerPopup.type === "home") {
-      return <PropertyCard homeData={markerPopup.data} simple />;
+      return (
+        <Link href={`/find-home/${markerPopup.data.slug}`}>
+          <a>
+            <PropertyCard homeData={markerPopup.data} simple />;
+          </a>
+        </Link>
+      );
     }
     if (markerPopup.type === "land")
-      return <LandCard landData={markerPopup.data} simple />;
+      return (
+        <Link href={`/find-land/${markerPopup.data.slug}`}>
+          <a>
+            <LandCard landData={markerPopup.data} simple />
+          </a>
+        </Link>
+      );
     return (
-      <EstateCard estate={markerPopup.data} homesList={homesList} simple />
+      <Link href={`/find-land/${markerPopup.data.slug}`}>
+        <a>
+          <EstateCard estate={markerPopup.data} homesList={homesList} simple />
+        </a>
+      </Link>
     );
   };
 
