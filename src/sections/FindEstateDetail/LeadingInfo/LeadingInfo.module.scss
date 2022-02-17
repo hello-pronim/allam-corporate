@@ -66,17 +66,12 @@
       grid-column: 2 / span 5;
     }
 
-    &Content {
-      p {
-        &:not(:last-of-type) {
-          margin-bottom: rem(16);
-          @include breakpoint($large) {
-            margin-bottom: rem(24);
-          }
+    p {
+      &:not(:last-of-type) {
+        margin-bottom: rem(16);
+        @include breakpoint($large) {
+          margin-bottom: rem(24);
         }
-      }
-      &More {
-        margin-top: rem(24);
       }
     }
 

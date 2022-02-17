@@ -20,9 +20,11 @@ const LeadingInfo = ({
       <div className={styles.leadingInfoWrapper}>
         <div className={styles.leadingInfoLeft}>
           <Redactor>{introText ?? ""}</Redactor>
-          <div className={styles.leadingInfoLeftDocuments}>
-            {documents && <Redactor>{documents}</Redactor>}
-          </div>
+          {documents && (
+            <div className={styles.leadingInfoLeftDocuments}>
+              <Redactor>{documents}</Redactor>
+            </div>
+          )}
         </div>
 
         <div className={styles.leadingInfoRight}>

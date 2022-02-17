@@ -105,7 +105,7 @@ const Hero = ({ data }: IHeroProps) => {
                 href="#"
                 icon="download-yellow"
                 label={
-                  data?.openForInspection
+                  data.openForInspection
                     ? "Book an inspection"
                     : "Click for price"
                 }
