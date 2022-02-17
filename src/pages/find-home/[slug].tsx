@@ -78,6 +78,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
           sellingLabel
           completionDate
           percentageComplete
+          openForInspection
           floorPlan {
             url
             title
