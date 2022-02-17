@@ -117,13 +117,13 @@ export type PromotionLayout = {
   leftLabel?: string;
   leftLink?: {
     slug: string;
-  };
+  }[];
   rightHeading?: string;
   rightSubHeading?: string;
   rightLabel?: string;
   rightLink?: {
     slug: string;
-  };
+  }[];
   image?: CraftImage[];
 };
 
