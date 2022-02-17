@@ -13,10 +13,10 @@ const Promotion = ({ data }: IPromotionProps) => {
       <div className={styles.promotionLeft}>
         <Redactor>{data?.leftHeadingRedactor ?? ""}</Redactor>
         <h5>{data?.leftSubHeading}</h5>
-        {data?.leftLink?.slug && (
+        {data?.leftLink?.[0]?.slug && (
           <Button
             color="dark-secondary"
-            href={`/offers/${data?.leftLink?.slug}`}
+            href={`/offers/${data?.rightLink?.[0]?.slug}`}
             rounded
           >
             {data?.leftLabel ?? "View more"}
@@ -32,10 +32,10 @@ const Promotion = ({ data }: IPromotionProps) => {
       <div className={styles.promotionRight}>
         <h2 className="home">{data?.rightHeading}</h2>
         <h5>{data?.rightSubHeading}</h5>
-        {data?.rightLink?.slug && (
+        {data?.rightLink?.[0]?.slug && (
           <Button
             color="dark-secondary"
-            href={`/offers/${data?.rightLink?.slug}`}
+            href={`/offers/${data?.rightLink?.[0]?.slug}`}
             rounded
           >
             {data?.rightLabel ?? "View more"}
