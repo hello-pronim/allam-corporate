@@ -6,7 +6,7 @@ import craftAPI from "@libs/api";
 import { layoutQuery } from "@libs/queries";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/GetInTouch/Hero/Hero";
-import LocationsContent from "@sections/GetInTouch/locations/locationsContent";
+import LocationsContent from "@sections/GetInTouch/Locations/LocationsContent";
 
 type PageProps = {
   locationData: any;
