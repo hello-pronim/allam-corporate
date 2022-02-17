@@ -50,17 +50,11 @@ const PerfectEstate = ({ data, estates = [] }: IPerfectEstateProps) => {
             <Redactor>{data?.description ?? ""}</Redactor>
           </div>
         </div>
-      </div>
 
-      <div className={styles.perfectEstateLogos}>
-        <div className={styles.perfectEstateLogosText}>
+        <div className={styles.perfectEstateLogos}>
           <p>Explore our Estates</p>
-        </div>
 
-        <div
-          className={`${styles.perfectEstateLogosSlider} estate-logo-slider`}
-        >
-          <Slider {...settings}>
+          <div className={styles.perfectEstateLogosSlider}>
             {estates.map((estate: any, id: number) => (
               <div className={styles.perfectEstateSlideImage} key={id}>
                 <Link href={`/find-estate/${estate.slug}`}>
@@ -76,17 +70,17 @@ const PerfectEstate = ({ data, estates = [] }: IPerfectEstateProps) => {
                 </Link>
               </div>
             ))}
-          </Slider>
-        </div>
+          </div>
 
-        <div className={styles.perfectEstateLogosCTA}>
-          <Button
-            color={data?.buttons?.[0]?.buttonType}
-            href={data?.buttons?.[0]?.buttonLink}
-            rounded
-          >
-            {`${data?.buttons?.[0]?.buttonLabel} (${estates?.length})`}
-          </Button>
+          <div className={styles.perfectEstateLogosCTA}>
+            <Button
+              color={data?.buttons?.[0]?.buttonType}
+              href={data?.buttons?.[0]?.buttonLink}
+              rounded
+            >
+              {`${data?.buttons?.[0]?.buttonLabel} (${estates?.length})`}
+            </Button>
+          </div>
         </div>
       </div>
     </div>

@@ -66,23 +66,13 @@
   }
 
   &Logos {
-    margin-top: rem(212);
-    padding-left: rem(16);
+    margin-top: rem(80);
     @include breakpoint($large) {
-      padding-left: rem(24);
-      margin-top: rem(262);
+      margin-top: rem(140);
+      grid-column: 1 / span 12;
     }
     @include breakpoint($xx-large) {
-      padding-left: calc(
-        #{rem(48)} + #{rem(24)} + (100% - #{rem(24 * 11)} - #{rem(48 * 2)}) / 12
-      );
-    }
-    @include breakpoint($webXLarge) {
-      padding-left: calc(
-        #{rem(48)} + #{rem(24)} +
-          (#{rem(1920)} - #{rem(24 * 11)} - #{rem(48 * 2)}) / 12 +
-          (50% - #{rem(math.div(1920, 2))})
-      );
+      grid-column: 2 / span 10;
     }
 
     p {
@@ -98,6 +88,7 @@
 
     &Slider {
       padding-bottom: rem(50);
+      @include grid(2, 3);
       @include breakpoint($large) {
         padding-bottom: rem(24);
       }
