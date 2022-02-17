@@ -23,12 +23,18 @@ const LeadingTrustMakers = ({
 }: ILeadingTrustMakersProps) => {
   const settings = {
     infinite: false,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     speed: 500,
     arrows: false,
     dots: true,
     responsive: [
+      {
+        breakpoint: 1600,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
       {
         breakpoint: 1023,
         settings: {

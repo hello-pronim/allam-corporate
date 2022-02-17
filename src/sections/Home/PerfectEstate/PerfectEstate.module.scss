@@ -88,7 +88,7 @@
 
     &Slider {
       padding-bottom: rem(50);
-      @include grid(2, 3);
+      @include grid(3, 4);
       @include breakpoint($large) {
         padding-bottom: rem(24);
       }
