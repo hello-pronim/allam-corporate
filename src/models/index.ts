@@ -78,6 +78,7 @@ export type HeroModel = {
   heading?: string;
   description?: string;
   subHeading?: string;
+  textColor?: string;
   backgroundImage?: CraftImage[];
   buttons?: ButtonModel[];
   cta?: CTAModel[];

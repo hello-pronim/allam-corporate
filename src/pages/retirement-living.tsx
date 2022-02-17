@@ -96,6 +96,7 @@ const pageQuery = gql`
           ... on retirementLayout_hero_BlockType {
             heading
             description
+            textColor
             backgroundImage {
               url
             }
@@ -111,6 +112,12 @@ const pageQuery = gql`
               hyperlink {
                 slug
               }
+            }
+            icon {
+              url
+              width
+              height
+              title
             }
           }
           ... on retirementLayout_fullImage_BlockType {

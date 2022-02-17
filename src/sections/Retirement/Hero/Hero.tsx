@@ -25,8 +25,12 @@ const Hero = ({ data }: IHeroProps) => {
     >
       <div className={styles.heroWrapper}>
         <div className={styles.heroContent}>
-          <h1 className="home">{data?.heading}</h1>
-          <Redactor>{data?.description ?? ""}</Redactor>
+          <div
+            style={{ color: `${data?.textColor ? data?.textColor : "#fff"}` }}
+          >
+            <h1 className="home">{data?.heading}</h1>
+            <Redactor>{data?.description ?? ""}</Redactor>
+          </div>
 
           <div className={styles.heroButtonWrapper}>
             {data?.buttons?.[0]?.buttonLink && (
@@ -48,14 +52,17 @@ const Hero = ({ data }: IHeroProps) => {
           </div>
         </div>
 
-        <div className={styles.heroLogoWrapper}>
-          <Image
-            alt="monterey-logo"
-            src="/assets/icons/icon-monterey-logo.svg"
-            width="251"
-            height="164"
-          />
-        </div>
+        {data?.icon?.[0]?.url && (
+          <div className={styles.heroLogoWrapper}>
+            <Image
+              src={data?.icon?.[0]?.url}
+              alt={data?.icon?.[0]?.title}
+              width={data?.icon?.[0]?.width}
+              height={data?.icon?.[0]?.height}
+              layout="responsive"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

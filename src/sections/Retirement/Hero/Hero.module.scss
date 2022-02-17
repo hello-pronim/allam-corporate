@@ -26,10 +26,11 @@
   }
 
   &LogoWrapper {
-    grid-column: 11 / span 2;
     display: none;
     @include breakpoint($large) {
       display: block;
+      width: rem(250);
+      grid-column: 11 / span 2;
     }
   }
 
@@ -45,7 +46,6 @@
     }
 
     h1 {
-      color: $white;
       font-size: rem(32);
       line-height: rem(42);
       margin-bottom: rem(32);
@@ -60,7 +60,6 @@
     }
 
     p {
-      color: $white;
       font-weight: normal;
       font-size: rem(16);
       line-height: rem(26);
@@ -76,6 +75,7 @@
     display: none;
     @include breakpoint($medium) {
       margin-top: rem(32);
+      column-gap: rem(16);
       display: flex;
     }
     @include breakpoint($large) {
@@ -84,6 +84,5 @@
     @include breakpoint($xx-large) {
       grid-column: 2 / span 10;
     }
-    column-gap: 16px;
   }
 }
