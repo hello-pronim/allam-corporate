@@ -9,7 +9,7 @@ import styles from "./Hero.module.scss";
 
 type IHeroProps = {
   data: HomeModel;
-  slug: string;
+  slug?: string;
 };
 
 const Hero = ({ data, slug }: IHeroProps) => {
@@ -114,7 +114,10 @@ const Hero = ({ data, slug }: IHeroProps) => {
                 labelSpacingLeft={8}
                 labelSpacingRight={16}
               />
-              <Button href={`/get-in-touch?${"estate" + "=" + slug}`} rounded>
+              <Button
+                href={`/get-in-touch${slug ? "?estate=" + slug : ""}`}
+                rounded
+              >
                 Contact Agent
               </Button>
             </div>

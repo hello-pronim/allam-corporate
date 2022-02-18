@@ -21,7 +21,9 @@ const EstateStickyBar = ({ title, suburb }: IEstateStickyBarProps) => {
           <div className={styles.stickyBarCTA}>
             <Button
               color="dark-secondary"
-              href={`/get-in-touch?${"estate" + "=" + router.query.slug}`}
+              href={`/get-in-touch${
+                router.query.slug ? "?estate=" + router.query.slug : ""
+              }`}
               rounded
             >
               Contact Agent

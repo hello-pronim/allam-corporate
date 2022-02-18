@@ -4,7 +4,7 @@ import styles from "./StickyBar.module.scss";
 
 export interface IStickyBarProps {
   title: string;
-  slug: string;
+  slug?: string;
 }
 
 const StickyBar = ({ title, slug }: IStickyBarProps) => {
@@ -19,7 +19,7 @@ const StickyBar = ({ title, slug }: IStickyBarProps) => {
             </Button> */}
             <Button
               color="dark-secondary"
-              href={`/get-in-touch?${"estate" + "=" + slug}`}
+              href={`/get-in-touch${slug ? "?estate=" + slug : ""}`}
               rounded
             >
               Contact Agent for price
