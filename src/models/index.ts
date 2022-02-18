@@ -11,6 +11,7 @@ export type AllamAdvPageProps = {
   layoutData?: any;
   easyBuy?: any;
   allamAdvantages?: any;
+  pageData: any;
 };
 
 export type NormalPageProps = {
