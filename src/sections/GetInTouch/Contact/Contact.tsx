@@ -8,7 +8,7 @@ import GeneralEnquiry from "../Forms/GeneralEnquiry";
 import styles from "../../GetInTouch/GetInTouch.module.scss";
 import { useRouter } from "next/router";
 
-const Contact = () => {
+const Contact = (estateList: any) => {
   const selector = React.useRef<HTMLSelectElement>(null);
   const [formType, setFormType] = useState("General enquiry");
   const [formTypeIndex, setFormTypeIndex] = useState(0);
@@ -111,7 +111,7 @@ const Contact = () => {
           </div>
           {
             //@ts-ignore
-            <ActiveForm handleOnSubmit={handleOnSubmit} />
+            <ActiveForm estateList={estateList} handleOnSubmit={handleOnSubmit} />
           }
         </div>
       </div>

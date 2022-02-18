@@ -11,7 +11,12 @@ import styles from "./forms.module.scss";
 
 export interface BuyingProps {}
 
-const Buying = () => {
+export interface EstateObj {
+  value: string;
+  text: string;
+}
+
+const Buying = (estateList: any) => {
   const radioButtonsData = [
     {
       value: "1 – 3 mths",
@@ -26,9 +31,16 @@ const Buying = () => {
       text: "not sure",
     },
   ];
-  const employmentTypes: any = [];
+
   const estates: any = [];
   const buyerTypes: any = [];
+
+  estateList.estateList.estateList.entries.map((estate: any) => {
+    let obj = {} as EstateObj
+    obj.value = estate.slug;
+    obj.text = estate.title;
+    estates.push(obj)
+  })
 
   const {
     register,

@@ -24,6 +24,13 @@ const FormSelect = ({
   value,
   onChange,
 }: FormSelectProps) => {
+
+  const optionsUI = (
+    options?.map((option, index) => {
+      return <option key={index} value={option.value}>{option.text}</option>
+    })
+  )
+
   return (
     <select
       name={name}
@@ -33,9 +40,7 @@ const FormSelect = ({
       <option value="" disabled>
         {placeholder}
       </option>
-      {options?.map((option: FormSelectOptionProps) => {
-        <option value={option.value}>{option.text}</option>;
-      })}
+      {optionsUI}
     </select>
   );
 };
