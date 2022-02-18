@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { css } from "@styled-system/css";
-import { ImageButton, Button } from "@components/Common/Common";
+import { ImageButton } from "@components/Common/Common";
 import Buying from "../Forms/Buying";
 import Suppliers from "../Forms/Suppliers";
 import Appointment from "../Forms/Appointment";
@@ -12,11 +12,12 @@ const Contact = (estateList: any) => {
   const selector = React.useRef<HTMLSelectElement>(null);
   const [formType, setFormType] = useState("General enquiry");
   const [formTypeIndex, setFormTypeIndex] = useState(0);
+  const router = useRouter();
+  const [selectedEstate, setSelectedEstate] = useState("");
   const [windowDimensions, setWindowDimensions] = useState({
     width: 0,
     height: 0,
   });
-  const router = useRouter();
 
   let FormKey = new Map([
     ["General enquiry", GeneralEnquiry],
@@ -26,7 +27,6 @@ const Contact = (estateList: any) => {
   ]);
 
   const ActiveForm = FormKey.get(formType);
-
   const getWindowDimensions = () => {
     const { innerWidth: width, innerHeight: height } = window;
     return {
@@ -34,6 +34,13 @@ const Contact = (estateList: any) => {
       height,
     };
   };
+
+  useEffect(() => {
+    setSelectedEstate((router.query.estate as string) || "");
+    setFormType(
+      router.query.estate ? "I'm interested in buying" : "General enquiry"
+    );
+  }, [router.query.estate]);
 
   const setActiveForm = (entry: any) => {
     setFormType(entry.target.value);
@@ -102,7 +109,10 @@ const Contact = (estateList: any) => {
                 <option value="Request an appointment">
                   Request an appointment
                 </option>
-                <option value="I'm interested in buying">
+                <option
+                  value="I'm interested in buying"
+                  selected={formType === "I'm interested in buying"}
+                >
                   I&#39;m interested in buying
                 </option>
                 <option value="Trade and Suppliers">Trade and Suppliers</option>
@@ -111,7 +121,11 @@ const Contact = (estateList: any) => {
           </div>
           {
             //@ts-ignore
-            <ActiveForm estateList={estateList} handleOnSubmit={handleOnSubmit} />
+            <ActiveForm
+              estateList={estateList}
+              selectedEstate={selectedEstate}
+              handleOnSubmit={handleOnSubmit}
+            />
           }
         </div>
       </div>

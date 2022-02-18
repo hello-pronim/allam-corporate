@@ -4,9 +4,10 @@ import styles from "./StickyBar.module.scss";
 
 export interface IStickyBarProps {
   title: string;
+  slug: string;
 }
 
-const StickyBar = ({ title }: IStickyBarProps) => {
+const StickyBar = ({ title, slug }: IStickyBarProps) => {
   return (
     <div className={styles.stickyBar}>
       <div className={styles.stickyBarWrapper}>
@@ -16,7 +17,11 @@ const StickyBar = ({ title }: IStickyBarProps) => {
             {/* <Button color="light" rounded>
               Download PDF
             </Button> */}
-            <Button color="dark-secondary" rounded>
+            <Button
+              color="dark-secondary"
+              href={`/get-in-touch?${"estate" + "=" + slug}`}
+              rounded
+            >
               Contact Agent for price
             </Button>
           </div>

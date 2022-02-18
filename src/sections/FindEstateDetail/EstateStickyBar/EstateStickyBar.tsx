@@ -1,13 +1,15 @@
 import React from "react";
 import { Button } from "@components/Common/Common";
 import styles from "./EstateStickyBar.module.scss";
+import { useRouter } from "next/router";
 
 export interface IEstateStickyBarProps {
   title: string;
   suburb?: string;
 }
-
 const EstateStickyBar = ({ title, suburb }: IEstateStickyBarProps) => {
+  const router = useRouter();
+
   return (
     <div className={styles.stickyBar}>
       <div className={styles.stickyBarWrapper}>
@@ -17,7 +19,11 @@ const EstateStickyBar = ({ title, suburb }: IEstateStickyBarProps) => {
             <h5>{suburb}</h5>
           </div>
           <div className={styles.stickyBarCTA}>
-            <Button color="dark-secondary" rounded>
+            <Button
+              color="dark-secondary"
+              href={`/get-in-touch?${"estate" + "=" + router.query.slug}`}
+              rounded
+            >
               Contact Agent
             </Button>
           </div>

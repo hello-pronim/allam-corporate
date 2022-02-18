@@ -69,7 +69,10 @@ const Hero = ({ title, address, logo, filteredHomes = [] }: IHeroProps) => {
               )}
 
               <div className={styles.heroContentButtonsCondition}>
-                <Button href="/get-in-touch" rounded>
+                <Button
+                  href={`/get-in-touch?${"estate" + "=" + router.query.slug}`}
+                  rounded
+                >
                   Contact Agent
                 </Button>
               </div>

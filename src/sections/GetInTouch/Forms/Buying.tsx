@@ -16,7 +16,15 @@ export interface EstateObj {
   text: string;
 }
 
-const Buying = (estateList: any) => {
+const Buying = ({
+  selectedEstate,
+  estateList,
+  handleOnSubmit,
+}: {
+  estateList: any;
+  selectedEstate: string;
+  handleOnSubmit: () => void;
+}) => {
   const radioButtonsData = [
     {
       value: "1 – 3 mths",
@@ -35,12 +43,12 @@ const Buying = (estateList: any) => {
   const estates: any = [];
   const buyerTypes: any = [];
 
-  estateList.estateList.estateList.entries.map((estate: any) => {
-    let obj = {} as EstateObj
+  estateList.estateList.entries.map((estate: any) => {
+    let obj = {} as EstateObj;
     obj.value = estate.slug;
     obj.text = estate.title;
-    estates.push(obj)
-  })
+    estates.push(obj);
+  });
 
   const {
     register,
@@ -101,6 +109,7 @@ const Buying = (estateList: any) => {
               name="estate"
               placeholder="What estate are you interested in?"
               options={estates}
+              value={selectedEstate}
             />
             <Select
               className={styles.formControl}
@@ -124,14 +133,7 @@ const Buying = (estateList: any) => {
           <Checkbox
             className={styles.formControl}
             name="terms"
-            text="By clicking submit you acknowledge Allam may contact you via
-              email, you also agree to their Terms and Conditions."
-          />
-          <Checkbox
-            className={styles.formControl}
-            name="offers"
-            text="Would you like to receive updates and offers from Allam Property
-              Group?"
+            text="Allam may contact you via email, phone or SMS and you agree to their Terms and Conditions"
           />
           <Button className={styles.formControl} color="dark">
             Submit

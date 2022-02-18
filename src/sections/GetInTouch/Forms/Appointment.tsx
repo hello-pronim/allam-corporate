@@ -106,14 +106,7 @@ const Appointment = ({ handleOnSubmit }: GeneralEnquiryProps) => {
           <Checkbox
             className={styles.formControl}
             name="terms"
-            text="By clicking submit you acknowledge Allam may contact you via
-              email, you also agree to their Terms and Conditions."
-          />
-          <Checkbox
-            className={styles.formControl}
-            name="offers"
-            text="Would you like to receive updates and offers from Allam Property
-              Group?"
+            text="Allam may contact you via email, phone or SMS and you agree to their Terms and Conditions"
           />
           <Button type="submit" className={styles.formControl} color="dark">
             Submit

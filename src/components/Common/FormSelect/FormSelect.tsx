@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import styles from "./FormSelect.module.scss";
 
@@ -24,18 +24,26 @@ const FormSelect = ({
   value,
   onChange,
 }: FormSelectProps) => {
+  const [estateType, setEstateType] = useState("");
 
-  const optionsUI = (
-    options?.map((option, index) => {
-      return <option key={index} value={option.value}>{option.text}</option>
-    })
-  )
+  const setActiveForm = (entry: any) => {
+    setEstateType(entry.target.value);
+  };
+
+  const optionsUI = options?.map((option, index) => {
+    return (
+      <option key={index} value={option.value}>
+        {option.text}
+      </option>
+    );
+  });
 
   return (
     <select
       name={name}
       className={`${styles.dropdown} ${className}`}
-      value={value ?? ""}
+      value={value ? value : estateType}
+      onChange={(e) => setActiveForm(e)}
     >
       <option value="" disabled>
         {placeholder}

@@ -4,7 +4,6 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import { get } from "lodash";
 import { gql } from "@apollo/client";
 import { Element } from "react-scroll";
-
 import craftAPI from "@libs/api";
 import {
   layoutQuery,
@@ -13,10 +12,8 @@ import {
   fullEstatesQuery,
   amenityCategoryQuery,
 } from "@libs/queries";
-
 import { AmenityCategoryModel, NeighborhoodModel } from "@models";
 import Layout from "@components/Layout/Layout";
-
 import Hero from "@sections/FindEstateDetail/Hero/Hero";
 import Deposit from "@sections/FindEstateDetail/Deposit/Deposit";
 import HomeList from "@sections/FindEstateDetail/HomeList/HomeList";
