@@ -12,6 +12,7 @@ import {
   trustQuery,
   simpleHomeListQuery,
   fullEstatesQuery,
+  easyBuyFeatureQuery,
 } from "@libs/queries";
 import { allEstateState } from "@states/atoms/estates";
 
@@ -31,6 +32,7 @@ const FindEstate: NextPage<OverViewPageProps> = ({
   listingData,
   layoutData,
   homesList,
+  easyBuyFeature
 }) => {
   const router = useRouter();
   const { query } = router;
@@ -67,7 +69,7 @@ const FindEstate: NextPage<OverViewPageProps> = ({
         <Overview homesList={homesList.entries} />
       ) : (
         <>
-          <EstateListing homesList={homesList.entries} />
+          <EstateListing easyBuyFeature={easyBuyFeature.globalSet} homesList={homesList.entries} />
           <div style={{ background: "#eef2f5" }}>
             <LeadingTrustMakers
               features={trustFeatures}
@@ -129,6 +131,7 @@ export const getStaticProps = async function () {
   const listingData = await craftAPI(fullEstatesQuery);
   const layoutData = await craftAPI(layoutQuery);
   const homesList = await craftAPI(simpleHomeListQuery);
+  const easyBuyFeature = await craftAPI(easyBuyFeatureQuery);
 
   return {
     props: {
@@ -137,6 +140,7 @@ export const getStaticProps = async function () {
       listingData,
       layoutData,
       homesList,
+      easyBuyFeature
     },
     revalidate: 60,
   };

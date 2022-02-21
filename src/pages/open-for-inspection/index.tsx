@@ -4,7 +4,7 @@ import { gql } from "@apollo/client";
 import { get } from "lodash";
 import craftAPI from "@libs/api";
 import { propsFind } from "@utils/propsFind";
-import { fullHomeListQuery, layoutQuery, trustQuery } from "@libs/queries";
+import { easyBuyFeatureQuery, fullHomeListQuery, layoutQuery, trustQuery } from "@libs/queries";
 import { useSetRecoilState } from "recoil";
 import { allInspectionState } from "@states/atoms/inspection";
 import { HomeModel, OverViewPageProps } from "@models";
@@ -20,6 +20,7 @@ const OpenInspection: NextPage<OverViewPageProps> = ({
   trustMakers,
   listingData,
   layoutData,
+  easyBuyFeature
 }) => {
   const [showMap, setShowMap] = useState(false);
   const heading = get(pageData, "entry.heading", "");
@@ -51,7 +52,7 @@ const OpenInspection: NextPage<OverViewPageProps> = ({
         <Overview />
       ) : (
         <>
-          <InspectionList />
+          <InspectionList easyBuyFeature={easyBuyFeature.globalSet} />
           <div style={{ background: "#eef2f5" }}>
             <LeadingTrustMakers
               features={trustFeatures}
@@ -112,6 +113,7 @@ export const getStaticProps = async function () {
   const trustMakers = await craftAPI(trustQuery);
   const listingData = await craftAPI(fullHomeListQuery);
   const layoutData = await craftAPI(layoutQuery);
+  const easyBuyFeature = await craftAPI(easyBuyFeatureQuery);
 
   return {
     props: {
@@ -119,6 +121,7 @@ export const getStaticProps = async function () {
       trustMakers,
       listingData,
       layoutData,
+      easyBuyFeature
     },
     revalidate: 60,
   };

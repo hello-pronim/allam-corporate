@@ -249,6 +249,27 @@ export const allamAdvQuery = gql`
   }
 `;
 
+export const easyBuyFeatureQuery = gql`
+  query easyBuyFeature {
+    globalSet(handle: "easyBuyFeature") {
+      ... on easyBuyFeature_GlobalSet {
+        easyBuyFeature {
+          ... on easyBuyFeature_easyBuyFeature_BlockType {
+            heading
+            description
+            cta {
+              label
+              hyperlink {
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const easyBuyPurchaseQuery = gql`
   query easybuyPurchase {
     globalSet(handle: "easybuyPurchase") {

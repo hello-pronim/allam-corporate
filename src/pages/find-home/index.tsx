@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useSetRecoilState } from "recoil";
 
 import craftAPI from "@libs/api";
-import { fullHomeListQuery, layoutQuery, trustQuery } from "@libs/queries";
+import { fullHomeListQuery, layoutQuery, trustQuery, easyBuyFeatureQuery } from "@libs/queries";
 import { allHomesState } from "@states/atoms/homes";
 import { HomeModel, OverViewPageProps } from "@models";
 
@@ -24,6 +24,7 @@ const FindHome: NextPage<OverViewPageProps> = ({
   trustMakers,
   listingData,
   layoutData,
+  easyBuyFeature
 }) => {
   const router = useRouter();
   const { query } = router;
@@ -35,6 +36,8 @@ const FindHome: NextPage<OverViewPageProps> = ({
   const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
   const homesList = get(listingData, "entries", []);
   const setHomes = useSetRecoilState(allHomesState);
+
+  console.log(easyBuyFeature)
 
   useEffect(() => {
     setHomes(homesList?.filter((el: HomeModel) => el.landOnly === false));
@@ -53,7 +56,7 @@ const FindHome: NextPage<OverViewPageProps> = ({
         showMap={showMap}
         setShowMap={setShowMap}
       />
-      <HomesListing setShowMap={setShowMap} showMap={showMap} />
+      <HomesListing easyBuyFeature={easyBuyFeature.globalSet} setShowMap={setShowMap} showMap={showMap} />
       {showMap ? (
         <Overview />
       ) : (
@@ -120,6 +123,7 @@ export const getStaticProps = async function () {
   const trustMakers = await craftAPI(trustQuery);
   const listingData = await craftAPI(fullHomeListQuery);
   const layoutData = await craftAPI(layoutQuery);
+  const easyBuyFeature = await craftAPI(easyBuyFeatureQuery);
 
   return {
     props: {
@@ -127,6 +131,7 @@ export const getStaticProps = async function () {
       trustMakers,
       listingData,
       layoutData,
+      easyBuyFeature
     },
     revalidate: 60,
   };

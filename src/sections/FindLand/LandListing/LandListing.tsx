@@ -16,12 +16,14 @@ export interface ILandListingProps {
   noticeText?: string;
   showMap?: boolean;
   setShowMap: (value: boolean) => void;
+  easyBuyFeature?: any;
 }
 
 const LandListing = ({
   noticeText,
   showMap,
   setShowMap,
+  easyBuyFeature
 }: ILandListingProps) => {
   const MAX_ESTATE_COUNT = 30;
   const landsList = useRecoilValue(filteredLands);
@@ -61,7 +63,7 @@ const LandListing = ({
                     </a>
                   </Link>
                 ))}
-                <EasyBuyPurchase />
+                <EasyBuyPurchase data={easyBuyFeature} />
               </div>
 
               {!isLoadMore && (

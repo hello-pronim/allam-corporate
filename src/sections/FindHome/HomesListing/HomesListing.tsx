@@ -15,9 +15,10 @@ import styles from "./HomesListing.module.scss";
 export interface IHomesListingProps {
   showMap?: boolean;
   setShowMap: (value: boolean) => void;
+  easyBuyFeature?: any;
 }
 
-const HomesListing = ({ showMap, setShowMap }: IHomesListingProps) => {
+const HomesListing = ({ showMap, setShowMap, easyBuyFeature }: IHomesListingProps) => {
   const MAX_ESTATE_COUNT = 30;
   const homesList = useRecoilValue(filteredHomes);
 
@@ -53,7 +54,7 @@ const HomesListing = ({ showMap, setShowMap }: IHomesListingProps) => {
                     </a>
                   </Link>
                 ))}
-                <EasyBuyPurchase />
+                <EasyBuyPurchase data={easyBuyFeature} />
               </div>
 
               {!isLoadMore && (

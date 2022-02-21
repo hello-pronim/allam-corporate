@@ -11,9 +11,10 @@ import styles from "./EstateListing.module.scss";
 
 export interface IEstateListingProps {
   homesList: any[];
+  easyBuyFeature?: any;
 }
 
-const EstateListing = ({ homesList }: IEstateListingProps) => {
+const EstateListing = ({ homesList, easyBuyFeature }: IEstateListingProps) => {
   const MAX_ESTATE_COUNT = 12;
   const estatesList = useRecoilValue(filteredEstates);
   const [isLoadMore, setIsLoadMore] = useState(false);
@@ -38,7 +39,7 @@ const EstateListing = ({ homesList }: IEstateListingProps) => {
                 </a>
               </Link>
             ))}
-            <EasyBuyPurchase />
+            <EasyBuyPurchase data={easyBuyFeature} />
           </div>
 
           {!isLoadMore && (

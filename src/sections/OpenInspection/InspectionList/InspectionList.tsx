@@ -7,9 +7,11 @@ import EasyBuyPurchase from "@components/EasyBuyPurchase/EasyBuyPurchase";
 import PropertyCard from "@components/PropertyCard/PropertyCard";
 import styles from "./InspectionList.module.scss";
 
-export interface IInspectionListProps {}
+export interface IInspectionListProps {
+  easyBuyFeature?: any;
+}
 
-const InspectionList = ({}: IInspectionListProps) => {
+const InspectionList = ({easyBuyFeature}: IInspectionListProps) => {
   const MAX_ESTATE_COUNT = 30;
   const homesList = useRecoilValue(filteredInspection);
   const [isLoadMore, setIsLoadMore] = useState(false);
@@ -34,7 +36,7 @@ const InspectionList = ({}: IInspectionListProps) => {
                 </a>
               </Link>
             ))}
-            <EasyBuyPurchase />
+            <EasyBuyPurchase data={easyBuyFeature} />
           </div>
 
           {!isLoadMore && (

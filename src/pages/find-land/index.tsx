@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useSetRecoilState } from "recoil";
 
 import craftAPI from "@libs/api";
-import { layoutQuery, trustQuery } from "@libs/queries";
+import { easyBuyFeatureQuery, layoutQuery, trustQuery } from "@libs/queries";
 import { propsFind } from "@utils/propsFind";
 import { allLandsState } from "@states/atoms/lands";
 import { HomeModel, OverViewPageProps } from "@models";
@@ -23,6 +23,7 @@ const FindLand: NextPage<OverViewPageProps> = ({
   trustMakers,
   listingData,
   layoutData,
+  easyBuyFeature
 }) => {
   const router = useRouter();
   const { query } = router;
@@ -54,6 +55,7 @@ const FindLand: NextPage<OverViewPageProps> = ({
         setShowMap={setShowMap}
       />
       <LandListing
+        easyBuyFeature={easyBuyFeature.globalSet}
         showMap={showMap}
         setShowMap={setShowMap}
         noticeText={noticeText}
@@ -159,6 +161,7 @@ export const getStaticProps = async function () {
   const trustMakers = await craftAPI(trustQuery);
   const listingData = await craftAPI(landsQuery);
   const layoutData = await craftAPI(layoutQuery);
+  const easyBuyFeature = await craftAPI(easyBuyFeatureQuery);
 
   return {
     props: {
@@ -166,6 +169,7 @@ export const getStaticProps = async function () {
       trustMakers,
       listingData,
       layoutData,
+      easyBuyFeature
     },
     revalidate: 60,
   };

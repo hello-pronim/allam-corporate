@@ -5,6 +5,7 @@ export type OverViewPageProps = {
   listingData?: any;
   layoutData?: any;
   homesList?: any;
+  easyBuyFeature?: any;
 };
 
 export type AllamAdvPageProps = {
