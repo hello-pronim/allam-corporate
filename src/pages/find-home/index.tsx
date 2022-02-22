@@ -37,8 +37,6 @@ const FindHome: NextPage<OverViewPageProps> = ({
   const homesList = get(listingData, "entries", []);
   const setHomes = useSetRecoilState(allHomesState);
 
-  console.log(easyBuyFeature)
-
   useEffect(() => {
     setHomes(homesList?.filter((el: HomeModel) => el.landOnly === false));
     // eslint-disable-next-line react-hooks/exhaustive-deps

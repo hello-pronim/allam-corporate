@@ -38,7 +38,7 @@ const Hero = ({ data, slug }: IHeroProps) => {
               </p>
               {data?.completionDate && (
                 <span className={styles.heroContentTextSellingDate}>
-                  : Move In {dayjs(data.completionDate).format("MMM YYYY")}
+                  : Move In {dayjs(data?.completionDate).format("MMM YYYY")}
                 </span>
               )}
             </div>
@@ -49,21 +49,21 @@ const Hero = ({ data, slug }: IHeroProps) => {
               <div className={styles.heroContentTextInfoTop}>
                 <div className={styles.heroContentTextInfoDetail}>
                   <Icon type="bed" />
-                  <span>{data.bedrooms}</span>
+                  <span>{data?.bedrooms}</span>
                 </div>
                 <div className={styles.heroContentTextInfoDetail}>
                   <Icon type="bath" />
-                  <span>{data.bathrooms}</span>
+                  <span>{data?.bathrooms}</span>
                 </div>
                 <div className={styles.heroContentTextInfoDetail}>
                   <Icon type="car" />
-                  <span>{data.car}</span>
+                  <span>{data?.car}</span>
                 </div>
               </div>
               <div className={styles.heroContentTextInfoBottom}>
                 <div className={styles.heroContentTextInfoDetail}>
                   <p>Build size</p>
-                  <span>{data.buildingSize}sq</span>
+                  <span>{data?.buildingSize}sq</span>
                 </div>
                 <div className={styles.heroContentTextInfoDetail}>
                   <p>Land size </p>
@@ -76,15 +76,15 @@ const Hero = ({ data, slug }: IHeroProps) => {
           </div>
 
           <div className={styles.heroContentBar}>
-            {data.percentageComplete && (
+            {data?.percentageComplete && (
               <>
                 <div className={styles.heroContentBarInfo}>
                   <span className={styles.heroContentBarText}>
-                    {data.percentageComplete}% Completed
+                    {data?.percentageComplete}% Completed
                   </span>
-                  {data.completionDate && (
+                  {data?.completionDate && (
                     <span className={styles.heroContentBarText}>
-                      Move In {dayjs(data.completionDate).format("MMM YYYY")}
+                      Move In {dayjs(data?.completionDate).format("MMM YYYY")}
                     </span>
                   )}
                 </div>
@@ -92,7 +92,7 @@ const Hero = ({ data, slug }: IHeroProps) => {
                   <span
                     style={{
                       height: "100%",
-                      width: `${data.percentageComplete}%`,
+                      width: `${data?.percentageComplete}%`,
                     }}
                   />
                 </div>
@@ -106,7 +106,7 @@ const Hero = ({ data, slug }: IHeroProps) => {
                 href="#"
                 icon="download-yellow"
                 label={
-                  data.openForInspection
+                  data?.openForInspection
                     ? "Book an inspection"
                     : "Click for price"
                 }

@@ -4,7 +4,7 @@ import { gql } from "@apollo/client";
 
 import { NormalPageProps, PageProps } from "@models";
 import craftAPI from "@libs/api";
-import { layoutQuery, simpleEstatesQuery, trustQuery } from "@libs/queries";
+import { easyBuyQuery, layoutQuery, simpleEstatesQuery, trustQuery } from "@libs/queries";
 import { propsFind } from "@utils/propsFind";
 
 import Layout from "@components/Layout/Layout";
@@ -21,6 +21,7 @@ const Home: NextPage<NormalPageProps> = ({
   pageData,
   trustMarkers,
   layoutData,
+  easyBuy
 }) => {
   const heroSlider = get(pageData, "entry.heroSlider", []);
   const homeLayouts = get(pageData, "entry.homepageLayout", []);
@@ -48,7 +49,7 @@ const Home: NextPage<NormalPageProps> = ({
         data={propsFind(homeLayouts, "homepageLayout_findHomes_BlockType")}
       />
       <AllBenefits
-        data={propsFind(globalPromos, "globalPromos_easybuy_BlockType")}
+        data={easyBuy.globalSet.easyBuy[0]}
       />
     </Layout>
   );
@@ -188,6 +189,7 @@ export const getStaticProps: GetStaticProps = async function ({
   const layoutData = await craftAPI(layoutQuery, previewToken);
   const trustMarkers = await craftAPI(trustQuery, previewToken);
   const estateList = await craftAPI(simpleEstatesQuery, previewToken);
+  const easyBuy = await craftAPI(easyBuyQuery, previewToken);
 
   return {
     props: {
@@ -195,6 +197,7 @@ export const getStaticProps: GetStaticProps = async function ({
       layoutData,
       trustMarkers,
       estateList,
+      easyBuy,
     },
     revalidate: 60,
   };

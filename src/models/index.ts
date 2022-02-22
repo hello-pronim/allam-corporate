@@ -20,6 +20,7 @@ export type NormalPageProps = {
   pageData?: any;
   trustMarkers?: any;
   estateList?: any;
+  easyBuy?: any;
 };
 
 export type PageProps = NormalPageProps | OverViewPageProps;
