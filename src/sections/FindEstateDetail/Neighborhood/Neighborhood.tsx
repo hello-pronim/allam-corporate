@@ -25,9 +25,10 @@ const Neighborhood = ({
   useEffect(() => {
     setFilteredAmenities(amenities);
   }, [amenities]);
+
   useEffect(() => {
-    SetSelectedCategory(categoryList[0].title);
-  }, [categoryList]);
+    SetSelectedCategory(selectedCategory);
+  }, [selectedCategory]);
 
   const getFilteredAmenity = useCallback(
     (key) => {
@@ -58,45 +59,50 @@ const Neighborhood = ({
           <NeighborhoodMap data={filteredAmenities} />
 
           <div className={styles.neighborhoodCategories}>
-            {categoryList.map((category) => (
+            {amenities.map((category) => (
               <div
-                key={category.title}
+                key={category.amenityCategory[0].title}
                 className={styles.neighborhoodCategoriesItem}
               >
                 <h5
-                  onClick={() => handleCategoryClick(category.title)}
+                  onClick={() =>
+                    handleCategoryClick(category.amenityCategory[0].title)
+                  }
                   className={`${
-                    selectedCategory === category.title ? styles.isActive : ""
+                    selectedCategory === category.amenityCategory[0].title
+                      ? styles.isActive
+                      : ""
                   }`}
                 >
-                  {category.title}
+                  {category.amenityCategory[0].title}
                 </h5>
+                {selectedCategory === category.amenityCategory[0].title && (
+                  <div className={styles.neighborhoodResult}>
+                    <ul>
+                      {getFilteredAmenity(selectedCategory).map((amenity) => (
+                        <li key={amenity.amenityName}>
+                          <span>•</span>
+                          <div>
+                            <h6>{amenity.amenityName}</h6>
+                            <p>{amenity.address}</p>
+                            <p>{amenity.suburb}</p>
+                            {amenity.externalUrl && (
+                              <a
+                                href={amenity.externalUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
+                                View more
+                              </a>
+                            )}
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             ))}
-          </div>
-
-          <div className={styles.neighborhoodResult}>
-            <ul>
-              {getFilteredAmenity(selectedCategory).map((amenity) => (
-                <li key={amenity.amenityName}>
-                  <span>•</span>
-                  <div>
-                    <h6>{amenity.amenityName}</h6>
-                    <p>{amenity.address}</p>
-                    <p>{amenity.suburb}</p>
-                    {amenity.externalUrl && (
-                      <a
-                        href={amenity.externalUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        View more
-                      </a>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>
