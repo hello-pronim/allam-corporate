@@ -12,7 +12,7 @@ import { allLandsState } from "@states/atoms/lands";
 import { HomeModel, OverViewPageProps } from "@models";
 
 import Layout from "@components/Layout/Layout";
-import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
+import LeadingTrustMarkers from "@components/LeadingTrustMarkers/LeadingTrustMarkers";
 import Hero from "@sections/FindLand/Hero/Hero";
 import LandListing from "@sections/FindLand/LandListing/LandListing";
 import Overview from "@sections/FindLand/Overview/Overview";
@@ -20,7 +20,7 @@ import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
 const FindLand: NextPage<OverViewPageProps> = ({
   pageData,
-  trustMakers,
+  trustMarkers,
   listingData,
   layoutData,
   easyBuyFeature
@@ -33,7 +33,7 @@ const FindLand: NextPage<OverViewPageProps> = ({
   const introBlurb = get(pageData, "entry.introBlurb", "");
   const noticeText = get(pageData, "entry.noticeText", "");
   const globalPromos = get(pageData, "entry.globalPromos", []);
-  const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
+  const trustFeatures = get(trustMarkers, "globalSet.trustFeature", []);
   const landsList = get(listingData, "entries", []);
   const setLands = useSetRecoilState(allLandsState);
 
@@ -65,11 +65,11 @@ const FindLand: NextPage<OverViewPageProps> = ({
       ) : (
         <>
           <div style={{ background: "#eef2f5" }}>
-            <LeadingTrustMakers
+            <LeadingTrustMarkers
               features={trustFeatures}
               data={propsFind(
                 globalPromos,
-                "globalPromos_trustMakers_BlockType"
+                "globalPromos_trustMarkers_BlockType"
               )}
             />
           </div>
@@ -90,7 +90,7 @@ const findLandQuery = gql`
         introBlurb
         noticeText
         globalPromos {
-          ... on globalPromos_trustMakers_BlockType {
+          ... on globalPromos_trustMarkers_BlockType {
             heading
             description
             hascta
@@ -158,7 +158,7 @@ const landsQuery = gql`
 
 export const getStaticProps = async function () {
   const pageData = await craftAPI(findLandQuery);
-  const trustMakers = await craftAPI(trustQuery);
+  const trustMarkers = await craftAPI(trustQuery);
   const listingData = await craftAPI(landsQuery);
   const layoutData = await craftAPI(layoutQuery);
   const easyBuyFeature = await craftAPI(easyBuyFeatureQuery);
@@ -166,7 +166,7 @@ export const getStaticProps = async function () {
   return {
     props: {
       pageData,
-      trustMakers,
+      trustMarkers,
       listingData,
       layoutData,
       easyBuyFeature

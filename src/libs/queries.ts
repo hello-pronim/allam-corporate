@@ -196,9 +196,9 @@ export const fullNewsQuery = gql`
 `;
 
 export const trustQuery = gql`
-  query trustMakers {
-    globalSet(handle: "trustMakers") {
-      ... on trustMakers_GlobalSet {
+  query trustMarkers {
+    globalSet(handle: "trustMarkers") {
+      ... on trustMarkers_GlobalSet {
         trustFeature {
           ... on trustFeature_feature_BlockType {
             heading

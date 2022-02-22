@@ -9,7 +9,7 @@ import { useSetRecoilState } from "recoil";
 import { allInspectionState } from "@states/atoms/inspection";
 import { HomeModel, OverViewPageProps } from "@models";
 import Layout from "@components/Layout/Layout";
-import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
+import LeadingTrustMarkers from "@components/LeadingTrustMarkers/LeadingTrustMarkers";
 import Hero from "@sections/OpenInspection/Hero/Hero";
 import InspectionList from "@sections/OpenInspection/InspectionList/InspectionList";
 import Overview from "@sections/OpenInspection/Overview/Overview";
@@ -17,7 +17,7 @@ import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
 const OpenInspection: NextPage<OverViewPageProps> = ({
   pageData,
-  trustMakers,
+  trustMarkers,
   listingData,
   layoutData,
   easyBuyFeature
@@ -26,7 +26,7 @@ const OpenInspection: NextPage<OverViewPageProps> = ({
   const heading = get(pageData, "entry.heading", "");
   const introBlurb = get(pageData, "entry.introBlurb", "");
   const globalPromos = get(pageData, "entry.globalPromos", []);
-  const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
+  const trustFeatures = get(trustMarkers, "globalSet.trustFeature", []);
   const homesList = get(listingData, "entries", []);
   const setHomes = useSetRecoilState(allInspectionState);
 
@@ -54,11 +54,11 @@ const OpenInspection: NextPage<OverViewPageProps> = ({
         <>
           <InspectionList easyBuyFeature={easyBuyFeature.globalSet} />
           <div style={{ background: "#eef2f5" }}>
-            <LeadingTrustMakers
+            <LeadingTrustMarkers
               features={trustFeatures}
               data={propsFind(
                 globalPromos,
-                "globalPromos_trustMakers_BlockType"
+                "globalPromos_trustMarkers_BlockType"
               )}
             />
           </div>
@@ -78,7 +78,7 @@ const pageQuery = gql`
         heading
         introBlurb
         globalPromos {
-          ... on globalPromos_trustMakers_BlockType {
+          ... on globalPromos_trustMarkers_BlockType {
             heading
             description
             hascta
@@ -110,7 +110,7 @@ const pageQuery = gql`
 
 export const getStaticProps = async function () {
   const pageData = await craftAPI(pageQuery);
-  const trustMakers = await craftAPI(trustQuery);
+  const trustMarkers = await craftAPI(trustQuery);
   const listingData = await craftAPI(fullHomeListQuery);
   const layoutData = await craftAPI(layoutQuery);
   const easyBuyFeature = await craftAPI(easyBuyFeatureQuery);
@@ -118,7 +118,7 @@ export const getStaticProps = async function () {
   return {
     props: {
       pageData,
-      trustMakers,
+      trustMarkers,
       listingData,
       layoutData,
       easyBuyFeature

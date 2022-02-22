@@ -9,7 +9,7 @@ import { propsFind } from "@utils/propsFind";
 
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/Home/Hero/Hero";
-import TrustMakers from "@sections/Home/TrustMakers/TrustMakers";
+import TrustMarkers from "@sections/Home/TrustMarkers/TrustMarkers";
 import PerfectEstate from "@sections/Home/PerfectEstate/PerfectEstate";
 import Monterey from "@sections/Home/Monterey/Monterey";
 import Promotion from "@sections/Home/Promotion/Promotion";
@@ -19,20 +19,20 @@ import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 const Home: NextPage<NormalPageProps> = ({
   estateList,
   pageData,
-  trustMakers,
+  trustMarkers,
   layoutData,
 }) => {
   const heroSlider = get(pageData, "entry.heroSlider", []);
   const homeLayouts = get(pageData, "entry.homepageLayout", []);
   const globalPromos = get(pageData, "entry.globalPromos", []);
-  const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
+  const trustFeatures = get(trustMarkers, "globalSet.trustFeature", []);
 
   return (
     <Layout layoutData={layoutData}>
       <Hero data={heroSlider} />
-      <TrustMakers
+      <TrustMarkers
         features={trustFeatures}
-        data={propsFind(globalPromos, "globalPromos_trustMakers_BlockType")}
+        data={propsFind(globalPromos, "globalPromos_trustMarkers_BlockType")}
       />
       <PerfectEstate
         data={propsFind(homeLayouts, "homepageLayout_perfectEstate_BlockType")}
@@ -71,7 +71,7 @@ const homeQuery = gql`
           }
         }
         globalPromos {
-          ... on globalPromos_trustMakers_BlockType {
+          ... on globalPromos_trustMarkers_BlockType {
             heading
             description
             hascta
@@ -186,14 +186,14 @@ export const getStaticProps: GetStaticProps = async function ({
   const previewToken: any = preview ? previewData?.token : undefined;
   const pageData = await craftAPI(homeQuery, previewToken);
   const layoutData = await craftAPI(layoutQuery, previewToken);
-  const trustMakers = await craftAPI(trustQuery, previewToken);
+  const trustMarkers = await craftAPI(trustQuery, previewToken);
   const estateList = await craftAPI(simpleEstatesQuery, previewToken);
 
   return {
     props: {
       pageData,
       layoutData,
-      trustMakers,
+      trustMarkers,
       estateList,
     },
     revalidate: 60,

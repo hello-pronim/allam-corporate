@@ -1,14 +1,14 @@
 import React from "react";
 import Link from "next/link";
-import { TrustMakersModel, TrustFeature } from "@models";
-import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
+import { TrustMarkersModel, TrustFeature } from "@models";
+import LeadingTrustMarkers from "@components/LeadingTrustMarkers/LeadingTrustMarkers";
 import CardGrid from "@components/CardGrid/CardGrid";
 import PropertyCard from "@components/PropertyCard/PropertyCard";
 import { Button } from "@components/Common/Common";
 import styles from "./LeadingHomes.module.scss";
 
 export interface ILeadingHomesProps {
-  titleData?: TrustMakersModel;
+  titleData?: TrustMarkersModel;
   trustFeatures?: TrustFeature[];
   homes: any[];
 }
@@ -21,7 +21,7 @@ const LeadingHomes = ({
   return (
     <div className={styles.leadingHomes}>
       <div className={styles.leadingHomesWrapper}>
-        <LeadingTrustMakers
+        <LeadingTrustMarkers
           features={trustFeatures}
           data={titleData}
           hasBackground={true}

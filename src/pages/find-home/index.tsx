@@ -11,7 +11,7 @@ import { allHomesState } from "@states/atoms/homes";
 import { HomeModel, OverViewPageProps } from "@models";
 
 import Layout from "@components/Layout/Layout";
-import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
+import LeadingTrustMarkers from "@components/LeadingTrustMarkers/LeadingTrustMarkers";
 import Hero from "@sections/FindHome/Hero/Hero";
 import Overview from "@sections/FindHome/Overview/Overview";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
@@ -21,7 +21,7 @@ import { propsFind } from "@utils/propsFind";
 
 const FindHome: NextPage<OverViewPageProps> = ({
   pageData,
-  trustMakers,
+  trustMarkers,
   listingData,
   layoutData,
   easyBuyFeature
@@ -33,7 +33,7 @@ const FindHome: NextPage<OverViewPageProps> = ({
   const heading = get(pageData, "entry.heading", "");
   const introBlurb = get(pageData, "entry.introBlurb", "");
   const globalPromos = get(pageData, "entry.globalPromos", []);
-  const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
+  const trustFeatures = get(trustMarkers, "globalSet.trustFeature", []);
   const homesList = get(listingData, "entries", []);
   const setHomes = useSetRecoilState(allHomesState);
 
@@ -62,11 +62,11 @@ const FindHome: NextPage<OverViewPageProps> = ({
       ) : (
         <>
           <div style={{ background: "#eef2f5" }}>
-            <LeadingTrustMakers
+            <LeadingTrustMarkers
               features={trustFeatures}
               data={propsFind(
                 globalPromos,
-                "globalPromos_trustMakers_BlockType"
+                "globalPromos_trustMarkers_BlockType"
               )}
             />
           </div>
@@ -86,7 +86,7 @@ const findHomesQuery = gql`
         heading
         introBlurb
         globalPromos {
-          ... on globalPromos_trustMakers_BlockType {
+          ... on globalPromos_trustMarkers_BlockType {
             heading
             description
             hascta
@@ -120,7 +120,7 @@ const findHomesQuery = gql`
 
 export const getStaticProps = async function () {
   const pageData = await craftAPI(findHomesQuery);
-  const trustMakers = await craftAPI(trustQuery);
+  const trustMarkers = await craftAPI(trustQuery);
   const listingData = await craftAPI(fullHomeListQuery);
   const layoutData = await craftAPI(layoutQuery);
   const easyBuyFeature = await craftAPI(easyBuyFeatureQuery);
@@ -128,7 +128,7 @@ export const getStaticProps = async function () {
   return {
     props: {
       pageData,
-      trustMakers,
+      trustMarkers,
       listingData,
       layoutData,
       easyBuyFeature

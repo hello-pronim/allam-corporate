@@ -1,7 +1,7 @@
 export type OverViewPageProps = {
   pageData?: any;
   newsList?: any;
-  trustMakers?: any;
+  trustMarkers?: any;
   listingData?: any;
   layoutData?: any;
   homesList?: any;
@@ -18,7 +18,7 @@ export type AllamAdvPageProps = {
 export type NormalPageProps = {
   layoutData?: any;
   pageData?: any;
-  trustMakers?: any;
+  trustMarkers?: any;
   estateList?: any;
 };
 
@@ -96,7 +96,7 @@ export type TrustFeature = {
   icon?: CraftImage[];
 };
 
-export type TrustMakersModel = {
+export type TrustMarkersModel = {
   heading?: string;
   description?: string;
   hascta?: boolean;

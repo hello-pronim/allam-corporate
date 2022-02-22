@@ -25,7 +25,7 @@ import LeadingHomes from "@sections/Retirement/LeadingHomes/LeadingHomes";
 
 const RetirementLiving: NextPage<OverViewPageProps> = ({
   pageData,
-  trustMakers,
+  trustMarkers,
   layoutData,
   newsList,
   homesList,
@@ -33,7 +33,7 @@ const RetirementLiving: NextPage<OverViewPageProps> = ({
   const ESTATE_TITLE = "Monterey";
   const pageLayout = get(pageData, "entry.retirementLayout", []);
   const globalPromos = get(pageData, "entry.globalPromos", []);
-  const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
+  const trustFeatures = get(trustMarkers, "globalSet.trustFeature", []);
   const fullImageLayout = propsFind(
     pageLayout,
     "retirementLayout_fullImage_BlockType"
@@ -66,7 +66,7 @@ const RetirementLiving: NextPage<OverViewPageProps> = ({
           trustFeatures={trustFeatures}
           titleData={propsFind(
             globalPromos,
-            "globalPromos_trustMakers_BlockType"
+            "globalPromos_trustMarkers_BlockType"
           )}
           homes={filteredHomes}
         />
@@ -148,7 +148,7 @@ const pageQuery = gql`
         }
 
         globalPromos {
-          ... on globalPromos_trustMakers_BlockType {
+          ... on globalPromos_trustMarkers_BlockType {
             heading
             description
             hascta
@@ -169,7 +169,7 @@ const pageQuery = gql`
 
 export const getStaticProps = async function () {
   const pageData = await craftAPI(pageQuery);
-  const trustMakers = await craftAPI(trustQuery);
+  const trustMarkers = await craftAPI(trustQuery);
   const layoutData = await craftAPI(layoutQuery);
   const newsList = await craftAPI(simpleNewsQuery);
   const homesList = await craftAPI(fullHomeListQuery);
@@ -177,7 +177,7 @@ export const getStaticProps = async function () {
   return {
     props: {
       pageData,
-      trustMakers,
+      trustMarkers,
       layoutData,
       newsList,
       homesList,

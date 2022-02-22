@@ -5,22 +5,22 @@ import classnames from "classnames/bind";
 import Icon from "@components/Icons/Icons";
 import TrustMark from "@components/TrustMark/TrustMark";
 import { Redactor } from "@components/Common/Common";
-import { TrustMakersModel, TrustFeature } from "@models";
-import styles from "./LeadingTrustMakers.module.scss";
+import { TrustMarkersModel, TrustFeature } from "@models";
+import styles from "./LeadingTrustMarkers.module.scss";
 
-type ILeadingTrustMakersProps = {
+type ILeadingTrustMarkersProps = {
   hasBackground?: boolean;
-  data?: TrustMakersModel;
+  data?: TrustMarkersModel;
   features?: TrustFeature[];
 };
 
 const cx = classnames.bind(styles);
 
-const LeadingTrustMakers = ({
+const LeadingTrustMarkers = ({
   hasBackground = true,
   data,
   features,
-}: ILeadingTrustMakersProps) => {
+}: ILeadingTrustMarkersProps) => {
   const settings = {
     infinite: false,
     slidesToShow: 5,
@@ -55,19 +55,19 @@ const LeadingTrustMakers = ({
 
   return (
     <div
-      className={cx("trustMakers", {
-        trustMakersWithBackground: hasBackground,
+      className={cx("trustMarkers", {
+        trustMarkersWithBackground: hasBackground,
       })}
     >
-      <div className={styles.trustMakersWrapper}>
-        <div className={styles.trustMakersContent}>
+      <div className={styles.trustMarkersWrapper}>
+        <div className={styles.trustMarkersContent}>
           <h2 className="home">{data?.heading}</h2>
-          <div className={styles.trustMakersContentText}>
+          <div className={styles.trustMarkersContentText}>
             <Redactor>{data?.description ?? ""}</Redactor>
           </div>
         </div>
 
-        <div className={`${styles.trustMakersSlider} trustMaker-slider`}>
+        <div className={`${styles.trustMarkersSlider} trustMaker-slider`}>
           <Slider {...settings}>
             {features?.map((feature: TrustFeature, id: number) => (
               <TrustMark
@@ -80,7 +80,7 @@ const LeadingTrustMakers = ({
           </Slider>
 
           {data?.hascta && data?.cta?.[0]?.hyperlink && (
-            <div className={styles.trustMakersCTA}>
+            <div className={styles.trustMarkersCTA}>
               <Link href={`/${data?.cta?.[0]?.hyperlink?.[0]?.slug}`}>
                 <a>
                   <span>{data?.cta?.[0]?.label}</span>
@@ -95,4 +95,4 @@ const LeadingTrustMakers = ({
   );
 };
 
-export default LeadingTrustMakers;
+export default LeadingTrustMarkers;
