@@ -11,6 +11,8 @@ export interface IHomeListProps {
 }
 
 const HomeList = ({ title, filteredHomes }: IHomeListProps) => {
+  console.log(filteredHomes);
+
   return (
     <div className={styles.homeList}>
       <div className={styles.homeListWrapper}>

@@ -24,7 +24,7 @@ const LeadingHomes = ({
         <LeadingTrustMarkers
           features={trustFeatures}
           data={titleData}
-          hasBackground={true}
+          hasBackground={false}
         />
 
         <div className={styles.leadingHomesProperty}>

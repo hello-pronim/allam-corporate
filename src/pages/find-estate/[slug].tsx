@@ -52,6 +52,7 @@ const FindEstateDetail: NextPage<any> = ({
     "entry.neighborhood[0]",
     null
   );
+
   const categoryList: AmenityCategoryModel[] = get(
     categories,
     "categories",
@@ -70,7 +71,7 @@ const FindEstateDetail: NextPage<any> = ({
     return homeList
       ? Array.from(homeList?.entries).filter(
           (home: any) =>
-            home?.estate[0].title === title && home.openForInspection
+            home?.estate[0].title === title && !home.openForInspection
         )
       : [];
   }, [title, homeList]);
