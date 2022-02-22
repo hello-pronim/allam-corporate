@@ -14,7 +14,7 @@ const TrustMakers = ({ data, features }: ITrustMakersProps) => {
       <LeadingTrustMakers
         features={features}
         data={data}
-        hasBackground={false}
+        hasBackground={true}
       />
     </div>
   );
