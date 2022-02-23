@@ -57,6 +57,7 @@ export type VideoModel = {
   title: string;
   description?: string;
   videoLink: string;
+  isvirtualtour: boolean;
   titleImage: CraftImage[];
   dateCreated: string;
 };

@@ -68,6 +68,7 @@ const pageQuery = gql`
             title
             description
             videoLink
+            isvirtualtour
             titleImage {
               url
               title
@@ -89,6 +90,7 @@ const videosQuery = gql`
         title
         description
         videoLink
+        isvirtualtour
         titleImage {
           url
           title

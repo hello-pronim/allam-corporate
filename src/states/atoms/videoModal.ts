@@ -6,5 +6,6 @@ export const videoModalState = atom({
     isOpen: false,
     videoUrl: "",
     coverImageUrl: "",
+    isvirtualtour: false
   },
 });

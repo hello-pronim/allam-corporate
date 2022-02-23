@@ -11,7 +11,7 @@ export type IVideoModalProps = {
 };
 
 const VideoModal = ({ isModalOpen }: IVideoModalProps) => {
-  const { videoUrl } = useRecoilValue(videoModalState);
+  const { videoUrl, isvirtualtour } = useRecoilValue(videoModalState);
   const setVideoModal = useSetRecoilState(videoModalState);
 
   const customStyles = {
@@ -40,6 +40,7 @@ const VideoModal = ({ isModalOpen }: IVideoModalProps) => {
       isOpen: false,
       videoUrl: "",
       coverImageUrl: "",
+      isvirtualtour: false,
     });
   };
 
@@ -56,16 +57,20 @@ const VideoModal = ({ isModalOpen }: IVideoModalProps) => {
           <Icon type="close" />
           <span>Close</span>
         </div>
-
         <div className={styles.videoModalPlayer}>
-          <ReactPlayer
-            controls
-            playing={false}
-            playsInline
-            url={videoUrl}
-            width="100%"
-            height="100%"
-          />
+          {
+            isvirtualtour ?
+              <iframe width='853' height='480' src={videoUrl} frameBorder='0' allowFullScreen allow='xr-spatial-tracking'></iframe>
+              :
+              <ReactPlayer
+                controls
+                playing={false}
+                playsInline
+                url={videoUrl}
+                width="100%"
+                height="100%"
+              />
+          }
         </div>
       </div>
     </Modal>

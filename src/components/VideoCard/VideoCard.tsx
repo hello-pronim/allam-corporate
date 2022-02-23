@@ -32,6 +32,7 @@ const VideoCard = ({ video, variant = "normal" }: IVideoCardProps) => {
           onClick={() =>
             setVideoModal({
               isOpen: true,
+              isvirtualtour: video?.isvirtualtour,
               videoUrl: video?.videoLink,
               coverImageUrl: video?.titleImage?.[0]?.url,
             })
