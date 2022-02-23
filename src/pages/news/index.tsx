@@ -4,7 +4,7 @@ import { get } from "lodash";
 import { gql } from "@apollo/client";
 
 import craftAPI from "@libs/api";
-import { layoutQuery, fullNewsQuery } from "@libs/queries";
+import { layoutQuery, fullNewsQuery, easyBuyQuery } from "@libs/queries";
 import { NewsModel, OverViewPageProps } from "@models";
 
 import Layout from "@components/Layout/Layout";
@@ -19,6 +19,7 @@ const News: NextPage<OverViewPageProps> = ({
   pageData,
   listingData,
   layoutData,
+  easyBuy
 }) => {
   const [news, setNews] = useState<NewsModel[]>([]);
   const [latestNews, setLatestNews] = useState<NewsModel[]>([]);
@@ -26,7 +27,6 @@ const News: NextPage<OverViewPageProps> = ({
 
   const featuredNews = get(pageData, "entry.featuredNews[0]");
   const LATEST_NEWS_COUNT = get(pageData, "entry.latestArticleCount", 4);
-  const easyBuy = get(pageData, "entry.globalPromos[0]");
 
   const sortNews = useCallback(() => {
     setNews(
@@ -58,7 +58,7 @@ const News: NextPage<OverViewPageProps> = ({
           <Divider />
         </div>
         <OldPosts posts={oldNews} />
-        <AllBenefits data={easyBuy} />
+        <AllBenefits data={easyBuy.globalSet.easyBuy[0]} />
       </BackgroundWrapper>
     </Layout>
   );
@@ -93,19 +93,6 @@ const pageQuery = gql`
           }
         }
         latestArticleCount
-        globalPromos {
-          ... on globalPromos_easybuy_BlockType {
-            headingRedactor
-            introBlurb
-            buttons {
-              ... on buttons_BlockType {
-                buttonLabel
-                buttonLink
-                buttonType
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -115,12 +102,14 @@ export const getStaticProps = async function () {
   const layoutData = await craftAPI(layoutQuery);
   const listingData = await craftAPI(fullNewsQuery);
   const pageData = await craftAPI(pageQuery);
+  const easyBuy = await craftAPI(easyBuyQuery);
 
   return {
     props: {
       layoutData,
       listingData,
       pageData,
+      easyBuy,
     },
     revalidate: 60,
   };

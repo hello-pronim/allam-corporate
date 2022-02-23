@@ -83,23 +83,6 @@ const homeQuery = gql`
               }
             }
           }
-          ... on globalPromos_easybuy_BlockType {
-            headingRedactor
-            introBlurb
-            buttons {
-              ... on buttons_BlockType {
-                buttonLabel
-                buttonLink
-                buttonType
-              }
-            }
-            cta {
-              label
-              hyperlink {
-                slug
-              }
-            }
-          }
         }
         homepageLayout {
           ... on homepageLayout_perfectEstate_BlockType {

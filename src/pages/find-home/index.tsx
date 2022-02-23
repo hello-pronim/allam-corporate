@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useSetRecoilState } from "recoil";
 
 import craftAPI from "@libs/api";
-import { fullHomeListQuery, layoutQuery, trustQuery, easyBuyFeatureQuery } from "@libs/queries";
+import { fullHomeListQuery, layoutQuery, trustQuery, easyBuyFeatureQuery, easyBuyQuery } from "@libs/queries";
 import { allHomesState } from "@states/atoms/homes";
 import { HomeModel, OverViewPageProps } from "@models";
 
@@ -24,7 +24,8 @@ const FindHome: NextPage<OverViewPageProps> = ({
   trustMarkers,
   listingData,
   layoutData,
-  easyBuyFeature
+  easyBuyFeature,
+  easyBuy
 }) => {
   const router = useRouter();
   const { query } = router;
@@ -69,7 +70,7 @@ const FindHome: NextPage<OverViewPageProps> = ({
             />
           </div>
           <AllBenefits
-            data={propsFind(globalPromos, "globalPromos_easybuy_BlockType")}
+            data={easyBuy.globalSet.easyBuy[0]}
           />
         </>
       )}
@@ -95,21 +96,6 @@ const findHomesQuery = gql`
               }
             }
           }
-          ... on globalPromos_easybuy_BlockType {
-            headingRedactor
-            introBlurb
-            buttons {
-              ... on buttons_BlockType {
-                buttonLabel
-                buttonLink
-                buttonType
-              }
-            }
-            cta {
-              label
-              link
-            }
-          }
         }
       }
     }
@@ -122,6 +108,7 @@ export const getStaticProps = async function () {
   const listingData = await craftAPI(fullHomeListQuery);
   const layoutData = await craftAPI(layoutQuery);
   const easyBuyFeature = await craftAPI(easyBuyFeatureQuery);
+  const easyBuy = await craftAPI(easyBuyQuery);
 
   return {
     props: {
@@ -129,7 +116,8 @@ export const getStaticProps = async function () {
       trustMarkers,
       listingData,
       layoutData,
-      easyBuyFeature
+      easyBuyFeature,
+      easyBuy
     },
     revalidate: 60,
   };

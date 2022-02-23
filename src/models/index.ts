@@ -3,6 +3,7 @@ export type OverViewPageProps = {
   newsList?: any;
   trustMarkers?: any;
   listingData?: any;
+  easyBuy?: any;
   layoutData?: any;
   homesList?: any;
   easyBuyFeature?: any;
