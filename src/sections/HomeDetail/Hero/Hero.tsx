@@ -76,7 +76,7 @@ const Hero = ({ data, slug }: IHeroProps) => {
           </div>
 
           <div className={styles.heroContentBar}>
-            {data?.percentageComplete && (
+            {data?.percentageComplete ? (
               <>
                 <div className={styles.heroContentBarInfo}>
                   <span className={styles.heroContentBarText}>
@@ -97,6 +97,8 @@ const Hero = ({ data, slug }: IHeroProps) => {
                   />
                 </div>
               </>
+            ) : (
+              ""
             )}
           </div>
 
