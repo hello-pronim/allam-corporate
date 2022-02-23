@@ -123,9 +123,7 @@ export const fullHomeListQuery = gql`
             title
           }
         }
-        homeDesign {
-          title
-        }
+        homeDesign
         sellingLabel
         openForInspection
         buildingSize

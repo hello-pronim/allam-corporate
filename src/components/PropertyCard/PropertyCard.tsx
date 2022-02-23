@@ -138,10 +138,10 @@ const PropertyCard = ({
             </span>
           </div>
         </div>
-        {!isOpenInspection && homeData.homeDesign?.[0] && (
+        {!isOpenInspection && homeData.homeDesign && (
           <p>
             <b>Home Design: </b>
-            <span>{homeData.homeDesign?.[0]?.title}</span>
+            <span>{homeData.homeDesign}</span>
           </p>
         )}
       </div>

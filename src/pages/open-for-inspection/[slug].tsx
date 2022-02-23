@@ -24,7 +24,7 @@ const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
   const gallery3dUrl = get(home, "entry.gallery3dUrl", "");
   const offer = get(home, "entry.associatedOffers[0]", "");
   const videos = get(home, "entry.videos", []);
-  const homeDesign = get(home, "entry.homeDesign[0].title", "");
+  const homeDesign = get(home, "entry.homeDesign", "");
   const brochureUrl = get(home, "entry.downloadableBrochure[0].url", null);
   const floorPlan = get(home, "entry.floorPlan[0]");
   const featuresInclusion: InclusionModel = get(
@@ -85,9 +85,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
             width
             height
           }
-          homeDesign {
-            title
-          }
+          homeDesign
           gallery3dUrl
           estate {
             ... on estates_default_Entry {
