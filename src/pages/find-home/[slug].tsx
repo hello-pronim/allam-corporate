@@ -126,6 +126,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
             ... on promotions_default_Entry {
               title
               shortDescription
+              slug
               introBlurb
             }
           }

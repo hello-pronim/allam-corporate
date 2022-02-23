@@ -45,7 +45,7 @@ const PromoCard = ({
       }}
     >
       <div className={styles.cardHeader}>
-        <Link href={`offers/${offer.slug}`}>
+        <Link href={`/offers/${offer.slug}`}>
           <a>
             <h2>{offer.title}</h2>
           </a>
