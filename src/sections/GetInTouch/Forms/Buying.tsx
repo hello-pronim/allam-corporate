@@ -8,6 +8,7 @@ import RadioButtons from "@components/Common/RadioButtons/RadioButtons";
 import Select from "@components/Common/FormSelect/FormSelect";
 import Textarea from "@components/Common/Textarea/Textarea";
 import styles from "./forms.module.scss";
+import CheckboxButtons from "@components/Common/CheckboxButtons/CheckboxButtons";
 
 export interface BuyingProps {}
 
@@ -38,6 +39,15 @@ const Buying = ({
       value: "not sure",
       text: "not sure",
     },
+  ];
+
+  const checkboxButtonsData1 = [
+    { value: "Week day", text: "Week day" },
+    { value: "Weekend", text: "Weekend" },
+  ];
+  const checkboxButtonsData2 = [
+    { value: "Morning", text: "Morning" },
+    { value: "Afternoon", text: "Afternoon" },
   ];
 
   const estates: any = [];
@@ -116,6 +126,20 @@ const Buying = ({
               name="buyerType"
               placeholder="What type of buyer are you?"
               options={buyerTypes}
+            />
+          </div>
+          <div>
+            <h6>Choose a preferred time</h6>
+            <CheckboxButtons
+              name="time"
+              className={styles.formControl}
+              data={checkboxButtonsData1}
+            />
+            <h6>and</h6>
+            <CheckboxButtons
+              name="time"
+              className={styles.formControl}
+              data={checkboxButtonsData2}
             />
           </div>
           <div>
