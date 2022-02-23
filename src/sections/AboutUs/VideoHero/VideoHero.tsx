@@ -10,6 +10,7 @@ export interface VideoHeroProps {
 
 const VideoHero = ({ data }: VideoHeroProps) => {
   const setVideoModal = useSetRecoilState(videoModalState);
+  console.log(data)
 
   return (
     <div className={styles.hero}>
@@ -26,6 +27,7 @@ const VideoHero = ({ data }: VideoHeroProps) => {
                   isOpen: true,
                   videoUrl: data?.videoLink,
                   coverImageUrl: data?.titleImage?.[0]?.url,
+                  isvirtualtour: false
                 })
               }
             >
