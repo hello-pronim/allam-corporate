@@ -17,11 +17,7 @@
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
-    background: linear-gradient(
-      180.02deg,
-      rgba($white, 0.5) 33.84%,
-      rgba(255, 255, 255, 0) 81.13%
-    );
+    background: linear-gradient(180.02deg, rgba($white, 0.5) 33.84%, rgba(255, 255, 255, 0) 81.13%);
 
     @include breakpoint($medium) {
       display: block;
@@ -66,6 +62,30 @@
       p {
         &:not(:last-of-type) {
           margin-bottom: rem(20);
+        }
+      }
+
+      ul {
+        margin-top: rem(16);
+
+        li {
+          color: $grey;
+          font-size: rem(16);
+          line-height: rem(30);
+          padding-left: rem(4);
+          @include breakpoint($large) {
+            padding-bottom: rem(8);
+            font-size: rem(18);
+          }
+
+          &:last-of-type {
+            padding-bottom: 0;
+          }
+
+          &::before {
+            content: "•";
+            padding-right: rem(8);
+          }
         }
       }
     }
