@@ -53,7 +53,7 @@ const PropertyCard = ({
                 {homeData.sellingLabel}
               </span>
             )}
-            {homeData.percentageComplete && (
+            {homeData.percentageComplete ? (
               <div className={styles.propertyCardTopBarCompletion}>
                 <span
                   style={{
@@ -62,6 +62,8 @@ const PropertyCard = ({
                   }}
                 />
               </div>
+            ) : (
+              ""
             )}
           </div>
         )}
