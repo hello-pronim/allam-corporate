@@ -129,6 +129,7 @@ export const fullHomeListQuery = gql`
         buildingSize
         landSize
         percentageComplete
+        inspectionTimes
         completionDate
         bedrooms
         bathrooms
