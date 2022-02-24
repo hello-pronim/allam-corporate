@@ -36,9 +36,8 @@ const PropertyCard = ({
 
   return (
     <div
-      className={`${styles.propertyCard} ${
-        simple ? styles.propertyCardSimple : ""
-      }`}
+      className={`${styles.propertyCard} ${simple ? styles.propertyCardSimple : ""
+        }`}
     >
       <div className={styles.propertyCardTop}>
         {!simple && !isOpenInspection && (
@@ -131,12 +130,14 @@ const PropertyCard = ({
             <p>Build size</p>
             <span>{homeData.buildingSize}sq</span>
           </div>
-          <div className={styles.propertyCardBottomInfoDetail}>
-            <p>Land size</p>
-            <span className={styles.superComp}>
-              {homeData.landSize}m<sup>2</sup>
-            </span>
-          </div>
+          {!isOpenInspection && (
+            <div className={styles.propertyCardBottomInfoDetail}>
+              <p>Land size</p>
+              <span className={styles.superComp}>
+                {homeData.landSize}m<sup>2</sup>
+              </span>
+            </div>
+          )}
         </div>
         {!isOpenInspection && homeData.homeDesign && (
           <p>
