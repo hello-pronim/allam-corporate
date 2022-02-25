@@ -277,6 +277,9 @@ export const easyBuyQuery = gql`
           ... on easyBuy_easyBuy_BlockType {
             headingRedactor
             introBlurb
+            easyBuyShortFacts {
+              col1
+            }
             buttons {
               ... on buttons_BlockType {
                 buttonLabel
