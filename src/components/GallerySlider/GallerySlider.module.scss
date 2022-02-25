@@ -28,7 +28,7 @@
     position: relative;
     border-radius: rem(4);
     @include breakpoint($large) {
-      height: 70vh;
+      height: 50vh;
       max-height: rem(640);
     }
 
