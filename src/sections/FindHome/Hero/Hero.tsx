@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { map, sortBy } from "lodash";
 import { useRecoilValue, useRecoilState } from "recoil";
 import {
   filteredHomes,
@@ -8,10 +7,11 @@ import {
 } from "@states/atoms/homes";
 import { Redactor } from "@components/Common/Common";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
-import HomeFilter from "@sections/FindHome/HomeFilter/HomeFilter";
 import FilterModal from "@components/FilterModal/FilterModal";
 import FilterByChoiceGroup from "@components/FilterByChoiceGroup/FilterByChoiceGroup";
+import HomeFilter from "@sections/FindHome/HomeFilter/HomeFilter";
 import { ChoiceModel } from "@models";
+import { getSuburbs } from "@utils/getSuburbs";
 import { transformLocations } from "@utils/transformLocations";
 import {
   landBlockSizes,
@@ -42,7 +42,7 @@ const Hero = ({
   const [homeFilter, setHomeFilters] = useRecoilState(homesFilterState);
 
   useEffect(() => {
-    setSuburbList(sortBy(map(homesList, "suburb")));
+    setSuburbList(getSuburbs(homesList));
   }, [homesList]);
 
   useEffect(() => {

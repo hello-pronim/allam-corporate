@@ -27,6 +27,7 @@ const StoryVideo = ({ data }: IStoryVideoProps) => {
                   isOpen: true,
                   videoUrl: data?.videoLink,
                   coverImageUrl: data?.titleImage?.[0]?.url,
+                  isvirtualtour: false
                 })
               }
             >

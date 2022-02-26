@@ -1,38 +1,51 @@
 import React, { useState, useEffect } from "react";
 import type { NextPage } from "next";
-import { gql } from "@apollo/client";
 import { get } from "lodash";
-import craftAPI from "@libs/api";
-import { propsFind } from "@utils/propsFind";
-import { layoutQuery, trustQuery } from "@libs/queries";
+import { gql } from "@apollo/client";
+import { useRouter } from "next/router";
 import { useSetRecoilState } from "recoil";
+
+import craftAPI from "@libs/api";
+import { easyBuyFeatureQuery, easyBuyQuery, layoutQuery, trustQuery } from "@libs/queries";
+import { propsFind } from "@utils/propsFind";
 import { allLandsState } from "@states/atoms/lands";
 import { HomeModel, OverViewPageProps } from "@models";
+
 import Layout from "@components/Layout/Layout";
+import LeadingTrustMarkers from "@components/LeadingTrustMarkers/LeadingTrustMarkers";
 import Hero from "@sections/FindLand/Hero/Hero";
 import LandListing from "@sections/FindLand/LandListing/LandListing";
-import Overview from "@sections/FindHome/Overview/Overview";
-import LeadingTrustMakers from "@components/LeadingTrustMakers/LeadingTrustMakers";
+import Overview from "@sections/FindLand/Overview/Overview";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
 const FindLand: NextPage<OverViewPageProps> = ({
   pageData,
-  trustMakers,
+  trustMarkers,
   listingData,
   layoutData,
+  easyBuyFeature,
+  easyBuy
 }) => {
+  const router = useRouter();
+  const { query } = router;
+
   const [showMap, setShowMap] = useState(false);
   const heading = get(pageData, "entry.heading", "");
   const introBlurb = get(pageData, "entry.introBlurb", "");
+  const noticeText = get(pageData, "entry.noticeText", "");
   const globalPromos = get(pageData, "entry.globalPromos", []);
-  const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
-  const homesList = get(listingData, "entries", []);
+  const trustFeatures = get(trustMarkers, "globalSet.trustFeature", []);
+  const landsList = get(listingData, "entries", []);
   const setLands = useSetRecoilState(allLandsState);
 
   useEffect(() => {
-    setLands(homesList?.filter((el: HomeModel) => el.landOnly === true));
+    setLands(landsList?.filter((el: HomeModel) => el.landOnly === true));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [homesList]);
+  }, [landsList]);
+
+  if (query?.module === "map-lands") {
+    return <Overview isFullScreen />;
+  }
 
   return (
     <Layout layoutData={layoutData}>
@@ -42,22 +55,27 @@ const FindLand: NextPage<OverViewPageProps> = ({
         showMap={showMap}
         setShowMap={setShowMap}
       />
-      <LandListing showMap={showMap} setShowMap={setShowMap} />
+      <LandListing
+        easyBuyFeature={easyBuyFeature.globalSet}
+        showMap={showMap}
+        setShowMap={setShowMap}
+        noticeText={noticeText}
+      />
       {showMap ? (
         <Overview />
       ) : (
         <>
           <div style={{ background: "#eef2f5" }}>
-            <LeadingTrustMakers
+            <LeadingTrustMarkers
               features={trustFeatures}
               data={propsFind(
                 globalPromos,
-                "globalPromos_trustMakers_BlockType"
+                "globalPromos_trustMarkers_BlockType"
               )}
             />
           </div>
           <AllBenefits
-            data={propsFind(globalPromos, "globalPromos_easybuy_BlockType")}
+            data={easyBuy.globalSet.easyBuy[0]}
           />
         </>
       )}
@@ -71,26 +89,12 @@ const findLandQuery = gql`
       ... on findLandPage_findLandPage_Entry {
         heading
         introBlurb
+        noticeText
         globalPromos {
-          ... on globalPromos_trustMakers_BlockType {
+          ... on globalPromos_trustMarkers_BlockType {
             heading
             description
             hascta
-            cta {
-              label
-              link
-            }
-          }
-          ... on globalPromos_easybuy_BlockType {
-            headingRedactor
-            introBlurb
-            buttons {
-              ... on buttons_BlockType {
-                buttonLabel
-                buttonLink
-                buttonType
-              }
-            }
             cta {
               label
               link
@@ -131,6 +135,8 @@ const landsQuery = gql`
           width
           height
         }
+        latitude
+        longitude
       }
     }
   }
@@ -138,16 +144,20 @@ const landsQuery = gql`
 
 export const getStaticProps = async function () {
   const pageData = await craftAPI(findLandQuery);
-  const trustMakers = await craftAPI(trustQuery);
+  const trustMarkers = await craftAPI(trustQuery);
   const listingData = await craftAPI(landsQuery);
   const layoutData = await craftAPI(layoutQuery);
+  const easyBuyFeature = await craftAPI(easyBuyFeatureQuery);
+  const easyBuy = await craftAPI(easyBuyQuery);
 
   return {
     props: {
       pageData,
-      trustMakers,
+      trustMarkers,
       listingData,
       layoutData,
+      easyBuyFeature,
+      easyBuy,
     },
     revalidate: 60,
   };

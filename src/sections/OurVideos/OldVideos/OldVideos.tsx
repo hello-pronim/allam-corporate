@@ -18,11 +18,10 @@ const OldVideos = ({ videos }: IOldVideosProps) => {
         rowGap={30}
         padding={[50, 80]}
         maxItems={9}
-        smallTitle={true}
       >
-        {videos.map((video, index) => {
-          return <VideoCard key={index} video={video} />;
-        })}
+        {videos.map((video, index) => (
+          <VideoCard key={index} video={video} />
+        ))}
       </CardGrid>
     </div>
   );

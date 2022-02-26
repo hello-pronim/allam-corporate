@@ -58,13 +58,13 @@ const RegisterPanel = ({ data }: IRegisterPanelProps) => {
               validation={{ required: true }}
             />
 
-            <div className={styles.terms}>
+            <label className={styles.terms}>
               <input type="checkbox" name="terms" />
               <span>
                 By clicking submit you acknowledge Allam may contact you via
                 email, you also agree to their Terms and Conditions.
               </span>
-            </div>
+            </label>
 
             <Button color="dark" type="submit">
               Submit

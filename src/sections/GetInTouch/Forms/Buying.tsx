@@ -8,10 +8,24 @@ import RadioButtons from "@components/Common/RadioButtons/RadioButtons";
 import Select from "@components/Common/FormSelect/FormSelect";
 import Textarea from "@components/Common/Textarea/Textarea";
 import styles from "./forms.module.scss";
+import CheckboxButtons from "@components/Common/CheckboxButtons/CheckboxButtons";
 
 export interface BuyingProps {}
 
-const Buying = () => {
+export interface EstateObj {
+  value: string;
+  text: string;
+}
+
+const Buying = ({
+  selectedEstate,
+  estateList,
+  handleOnSubmit,
+}: {
+  estateList: any;
+  selectedEstate: string;
+  handleOnSubmit: () => void;
+}) => {
   const radioButtonsData = [
     {
       value: "1 – 3 mths",
@@ -26,9 +40,25 @@ const Buying = () => {
       text: "not sure",
     },
   ];
-  const employmentTypes: any = [];
+
+  const checkboxButtonsData1 = [
+    { value: "Week day", text: "Week day" },
+    { value: "Weekend", text: "Weekend" },
+  ];
+  const checkboxButtonsData2 = [
+    { value: "Morning", text: "Morning" },
+    { value: "Afternoon", text: "Afternoon" },
+  ];
+
   const estates: any = [];
   const buyerTypes: any = [];
+
+  estateList.estateList.entries.map((estate: any) => {
+    let obj = {} as EstateObj;
+    obj.value = estate.slug;
+    obj.text = estate.title;
+    estates.push(obj);
+  });
 
   const {
     register,
@@ -86,21 +116,30 @@ const Buying = () => {
           <div>
             <Select
               className={styles.formControl}
-              name="employmentType"
-              placeholder="What type of employment do you do?"
-              options={employmentTypes}
-            />
-            <Select
-              className={styles.formControl}
               name="estate"
               placeholder="What estate are you interested in?"
               options={estates}
+              value={selectedEstate}
             />
             <Select
               className={styles.formControl}
               name="buyerType"
               placeholder="What type of buyer are you?"
               options={buyerTypes}
+            />
+          </div>
+          <div>
+            <h6>Choose a preferred time</h6>
+            <CheckboxButtons
+              name="time"
+              className={styles.formControl}
+              data={checkboxButtonsData1}
+            />
+            <h6>and</h6>
+            <CheckboxButtons
+              name="time"
+              className={styles.formControl}
+              data={checkboxButtonsData2}
             />
           </div>
           <div>
@@ -118,14 +157,7 @@ const Buying = () => {
           <Checkbox
             className={styles.formControl}
             name="terms"
-            text="By clicking submit you acknowledge Allam may contact you via
-              email, you also agree to their Terms and Conditions."
-          />
-          <Checkbox
-            className={styles.formControl}
-            name="offers"
-            text="Would you like to receive updates and offers from Allam Property
-              Group?"
+            text="Allam may contact you via email, phone or SMS and you agree to their Terms and Conditions"
           />
           <Button className={styles.formControl} color="dark">
             Submit

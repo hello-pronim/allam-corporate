@@ -15,7 +15,7 @@ const ExternalLink = ({
 }: IExternalLinkProps) => {
   return (
     <div className={`${className ? ` ${className}` : ""}`} {...props}>
-      <Link href={href} prefetch={false} passHref={true}>
+      <Link href={href} prefetch={false}>
         <a target="_blank" rel="noreferrer">
           {children}
         </a>

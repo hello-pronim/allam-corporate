@@ -17,7 +17,12 @@ const FindHomes = ({ data }: IFindHomesProps) => {
     >
       <div className={styles.findHomesWrapper}>
         <div className={styles.findHomesContent}>
-          <div className={styles.findHomesContentText}>
+          <div
+            className={styles.findHomesContentText}
+            style={{
+              color: `${data?.textcolor ? data.textcolor : "#fff"}`,
+            }}
+          >
             <h2 className="home">{data?.heading}</h2>
             <div className={styles.findHomesContentTextDescription}>
               <Redactor>{data?.description ?? ""}</Redactor>

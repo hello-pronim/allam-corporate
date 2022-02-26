@@ -9,18 +9,43 @@
   }
 
   &Wrapper {
-    margin: 0 rem(-16);
+    @include breakpoint($medium) {
+      @include grid-container;
+    }
     @include breakpoint($large) {
-      margin: 0;
+      @include grid(1, 12);
     }
 
     h2 {
-      margin-left: rem(16);
-      margin-right: rem(16);
-      @include breakpoint($large) {
-        margin-left: 0;
-        margin-right: 0;
+      margin: 0 rem(16) rem(24);
+      @include breakpoint($medium) {
+        margin: 0;
+        margin-bottom: rem(24);
       }
+      @include breakpoint($large) {
+        margin-bottom: rem(48);
+      }
+    }
+  }
+
+  &Container {
+    margin-top: rem(16);
+    @include breakpoint($large) {
+      grid-column: 1 / span 12;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 2 / span 10;
+    }
+  }
+
+  &List {
+    display: grid;
+    gap: rem(18);
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: 1fr;
+    @include breakpoint($medium) {
+      row-gap: rem(24);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     }
   }
 }

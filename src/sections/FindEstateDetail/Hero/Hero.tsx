@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { Link as ScrollLink } from "react-scroll";
 import { useRouter } from "next/router";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
 import { Button, ActionButton, ImageButton } from "@components/Common/Common";
 import styles from "./Hero.module.scss";
-import { CraftImage } from "@models";
+import { CraftImage, HomeModel } from "@models";
 
 type IHeroProps = {
   title: string;
   address: string;
   logo: CraftImage[];
+  filteredHomes?: HomeModel[];
 };
 
-const Hero = ({ title, address, logo }: IHeroProps) => {
+const Hero = ({ title, address, logo, filteredHomes = [] }: IHeroProps) => {
   const router = useRouter();
+  const [landCount, setLandCount] = useState(0);
+  const [homeCount, setHomeCount] = useState(0);
+
+  useEffect(() => {
+    setHomeCount(filteredHomes.filter((el) => !el.landOnly).length);
+    setLandCount(filteredHomes.filter((el) => el.landOnly).length);
+  }, [filteredHomes]);
 
   return (
     <div className={styles.hero}>
@@ -35,15 +44,37 @@ const Hero = ({ title, address, logo }: IHeroProps) => {
             <h5>{address}</h5>
 
             <div className={styles.heroContentButtons}>
-              <ImageButton
-                icon="home-insurance"
-                label="Homes for Sale"
-                count={12}
-              />
-              <ImageButton icon="land-sale" label="Land for Sale" count={12} />
+              {homeCount > 0 && (
+                <ScrollLink
+                  to="estateProperties"
+                  smooth
+                  offset={-150}
+                  duration={1000}
+                >
+                  <ImageButton
+                    icon="home-insurance"
+                    label="Homes for Sale"
+                    count={homeCount}
+                    labelSpacingLeft={8}
+                  />
+                </ScrollLink>
+              )}
+              {landCount > 0 && (
+                <ImageButton
+                  icon="land-sale"
+                  label="Land for Sale"
+                  count={landCount}
+                  labelSpacingLeft={8}
+                />
+              )}
 
               <div className={styles.heroContentButtonsCondition}>
-                <Button href="/get-in-touch" rounded>
+                <Button
+                  href={`/get-in-touch${
+                    router.query.slug ? "?estate=" + router.query.slug : ""
+                  }`}
+                  rounded
+                >
                   Contact Agent
                 </Button>
               </div>

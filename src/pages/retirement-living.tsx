@@ -1,53 +1,77 @@
+import React, { useMemo } from "react";
 import type { NextPage } from "next";
 import get from "lodash/get";
 import { gql } from "@apollo/client";
+
 import craftAPI from "@libs/api";
-import { PageProps } from "@models";
+import { OverViewPageProps } from "@models";
 import { propsFind } from "@utils/propsFind";
-import { layoutQuery, trustQuery } from "@libs/queries";
+import {
+  fullHomeListQuery,
+  layoutQuery,
+  simpleNewsQuery,
+  trustQuery,
+} from "@libs/queries";
+
 import Layout from "@components/Layout/Layout";
-import CardGrid from "@components/CardGrid/CardGrid";
-import MinimalCard from "@components/MinimalCard/MinimalCard";
-import FullWidthImage from "@components/FullWidthImage/FullWidthImage";
 import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
+import FullWidthImage from "@components/FullWidthImage/FullWidthImage";
+
 import Hero from "@sections/Retirement/Hero/Hero";
-import LeadingHomes from "@sections/Retirement/LeadingHomes/LeadingHomes";
 import CostAndFee from "@sections/Retirement/CostAndFee/CostAndFee";
 import MasterPlan from "@sections/Retirement/MasterPlan/MasterPlan";
+import RelatedNews from "@sections/Retirement/RelatedNews/RelatedNews";
+import LeadingHomes from "@sections/Retirement/LeadingHomes/LeadingHomes";
 
-const RetirementLiving: NextPage<PageProps> = ({
+const RetirementLiving: NextPage<OverViewPageProps> = ({
   pageData,
-  trustMakers,
+  trustMarkers,
   layoutData,
+  newsList,
+  homesList,
 }) => {
+  const ESTATE_TITLE = "Monterey";
   const pageLayout = get(pageData, "entry.retirementLayout", []);
   const globalPromos = get(pageData, "entry.globalPromos", []);
-  const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
+  const trustFeatures = get(trustMarkers, "globalSet.trustFeature", []);
   const fullImageLayout = propsFind(
     pageLayout,
     "retirementLayout_fullImage_BlockType"
   );
 
+  const filteredNews: any[] = useMemo(() => {
+    return newsList
+      ? Array.from(newsList?.entries).filter((news: any) =>
+          news?.linkedEstates.some(
+            (estate: any) => estate.title === ESTATE_TITLE
+          )
+        )
+      : [];
+  }, [newsList]);
+
+  const filteredHomes: any[] = useMemo(() => {
+    return homesList
+      ? Array.from(homesList?.entries).filter(
+          (home: any) =>
+            home?.estate[0].title === ESTATE_TITLE && home?.landOnly === false
+        )
+      : [];
+  }, [homesList]);
+
   return pageData ? (
     <Layout layoutData={layoutData}>
       <Hero data={propsFind(pageLayout, "retirementLayout_hero_BlockType")} />
-      <LeadingHomes
-        trustFeatures={trustFeatures}
-        titleData={propsFind(
-          globalPromos,
-          "globalPromos_trustMakers_BlockType"
-        )}
-      />
-      <CardGrid
-        title="News and Events"
-        col={[1, 2]}
-        button={{ label: "View More", url: "#" }}
-        padding={[80, 160]}
-        background="linear-gradient(180deg, rgba(255,255,255,1) 21%, rgba(237,242,245,1) 91%)"
-      >
-        <MinimalCard />
-        <MinimalCard />
-      </CardGrid>
+      {filteredHomes.length !== 0 && (
+        <LeadingHomes
+          trustFeatures={trustFeatures}
+          titleData={propsFind(
+            globalPromos,
+            "globalPromos_trustMarkers_BlockType"
+          )}
+          homes={filteredHomes}
+        />
+      )}
+      {filteredNews.length !== 0 && <RelatedNews news={filteredNews} />}
       <FullWidthImage image={fullImageLayout?.backgroundImage?.[0].url} />
       <MasterPlan
         data={propsFind(pageLayout, "retirementLayout_masterPlan_BlockType")}
@@ -70,6 +94,7 @@ const pageQuery = gql`
           ... on retirementLayout_hero_BlockType {
             heading
             description
+            textColor
             backgroundImage {
               url
             }
@@ -82,7 +107,15 @@ const pageQuery = gql`
             }
             cta {
               label
-              link
+              hyperlink {
+                slug
+              }
+            }
+            icon {
+              url
+              width
+              height
+              title
             }
           }
           ... on retirementLayout_fullImage_BlockType {
@@ -115,7 +148,7 @@ const pageQuery = gql`
         }
 
         globalPromos {
-          ... on globalPromos_trustMakers_BlockType {
+          ... on globalPromos_trustMarkers_BlockType {
             heading
             description
             hascta
@@ -136,14 +169,18 @@ const pageQuery = gql`
 
 export const getStaticProps = async function () {
   const pageData = await craftAPI(pageQuery);
-  const trustMakers = await craftAPI(trustQuery);
+  const trustMarkers = await craftAPI(trustQuery);
   const layoutData = await craftAPI(layoutQuery);
+  const newsList = await craftAPI(simpleNewsQuery);
+  const homesList = await craftAPI(fullHomeListQuery);
 
   return {
     props: {
       pageData,
-      trustMakers,
+      trustMarkers,
       layoutData,
+      newsList,
+      homesList,
     },
     revalidate: 60,
   };

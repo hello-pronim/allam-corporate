@@ -2,54 +2,138 @@
 @import "@styles/variables.scss";
 
 .FeaturedPost {
-  &Wrapper {
+  position: relative;
+  padding: rem(80) 0 rem(50);
+  @include breakpoint($large) {
     padding-top: rem(136);
     padding-bottom: rem(68);
-    @include grid-container;
+  }
+  &Wrapper {
     @include breakpoint($large) {
-      padding-top: rem(136);
-      padding-bottom: rem(68);
+      @include grid-container;
       @include grid(1, 12);
-      &Breadcrumbs {
-        grid-column: 1 / span 4;
+    }
+  }
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: 40%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: $grey2;
+  }
+
+  &Breadcrumbs {
+    padding: 0 rem(16);
+    margin-bottom: rem(36);
+    font-size: rem(12);
+    line-height: rem(28);
+    letter-spacing: rem(0.25);
+
+    @include breakpoint($large) {
+      padding: 0;
+      grid-column: 1 / span 4;
+    }
+  }
+
+  h1 {
+    padding: 0 rem(16);
+    margin-bottom: rem(30);
+    @include breakpoint($large) {
+      padding: 0;
+      grid-column: 1 / span 6;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 2 / span 10;
+    }
+  }
+
+  &Content {
+    position: relative;
+    @include breakpoint($large) {
+      grid-column: 1 / span 12;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 2 / span 10;
+    }
+
+    &ImageContainer {
+      position: relative;
+      padding-bottom: 66.7%;
+      margin-bottom: rem(18);
+
+      @include breakpoint($large) {
+        padding-bottom: 36.25%;
+      }
+    }
+
+    &Tag {
+      padding: rem(4) rem(14);
+      position: absolute;
+      top: rem(12);
+      left: rem(16);
+      border-radius: rem(2);
+      background-color: $primary;
+
+      @include breakpoint($large) {
+        display: none;
+      }
+
+      span {
+        display: block;
+        font-weight: 600;
         font-size: rem(12);
-        line-height: rem(28);
-        letter-spacing: rem(0.25);
+        line-height: rem(16);
       }
-      h1 {
-        grid-column: 2 / span 6;
+    }
+
+    &Image {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: cover;
+      background-repeat: none;
+      background-position: center;
+
+      @include breakpoint($large) {
+        border-radius: rem(16);
       }
-      h4 {
-        margin-bottom: rem(24);
+    }
+
+    &Details {
+      padding: 0 rem(16);
+      @include breakpoint($large) {
+        padding: 0;
       }
-      &Content {
-        grid-column: 2 / span 10;
-        & > * {
-          flex-grow: 0;
-        }
-        &Image {
-          background-repeat: none;
-          background-size: cover;
-          background-position: center center;
-          // background-image: url(/assets/images/retirement-living/Slide-1.png);
-          height: rem(250);
-          width: 100%;
-          border-radius: rem(16);
-          @include breakpoint($large) {
-            height: rem(560);
-          }
-        }
-        &Details {
-          padding-top: rem(24);
-          display: inline-flex;
-          column-gap: rem(40);
-          &Categories {
-            & > *:not(:last-child) {
-              &::after {
-                content: ", ";
-              }
+
+      &Info {
+        display: inline-grid;
+        grid-template-columns: repeat(3, auto);
+        gap: rem(20);
+        margin-bottom: rem(8);
+
+        span {
+          text-transform: capitalize;
+
+          &:last-of-type {
+            display: none;
+            @include breakpoint($large) {
+              display: block;
             }
           }
+        }
+      }
+
+      h4 {
+        margin-bottom: rem(16);
+        @include below($large) {
+          font-size: rem(22);
         }
       }
     }

@@ -12,6 +12,7 @@
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25), 0px 3px 4px rgba(0, 0, 0, 0.1);
   padding: rem(48) rem(24);
   min-height: rem(460);
+  overflow: hidden;
   @include breakpoint($large) {
     min-height: initial;
     padding: rem(64) rem(32);
@@ -28,6 +29,8 @@
   }
 
   &.cardSide {
+    background-image: url("/assets/icons/icon-panel-type-2-desktop.svg");
+
     .cardHeader {
       h2 {
         @include breakpoint($large) {
@@ -62,6 +65,10 @@
       @include breakpoint($large) {
         font-size: rem(88);
         line-height: 1;
+      }
+
+      &:hover {
+        text-decoration: underline;
       }
     }
     h5 {
@@ -114,6 +121,7 @@
   min-height: rem(460);
   background-position: center;
   flex-direction: column;
+  overflow: hidden;
   @include breakpoint($large) {
     flex-direction: row;
     padding: rem(80);
@@ -145,6 +153,10 @@
           font-size: rem(38);
           line-height: rem(40);
         }
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
       h5 {
         font-size: rem(32);
@@ -159,9 +171,6 @@
 
   .cardHeader {
     flex: 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     @include breakpoint($large) {
       padding: 0;
     }
@@ -207,6 +216,10 @@
       margin-bottom: rem(16);
     }
     .cardActions {
+      @include breakpoint($large) {
+        margin-top: rem(90);
+      }
+
       button {
         @include below($large) {
           width: 100%;

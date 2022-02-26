@@ -1,0 +1,104 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.gallerySlider {
+  &Container {
+    position: relative;
+    overflow: hidden;
+    @include grid-container;
+    @include breakpoint($large) {
+      @include grid(1, 12);
+    }
+  }
+  &Wrapper {
+    position: relative;
+    grid-column: 2 / span infinite;
+    overflow: hidden;
+    @include breakpoint($large) {
+      margin-right: rem(-24);
+    }
+    @include breakpoint($webLarge) {
+      margin-right: rem(-48);
+    }
+  }
+
+  &Single {
+    width: 100%;
+    height: rem(320);
+    position: relative;
+    border-radius: rem(4);
+    @include breakpoint($large) {
+      height: 50vh;
+      max-height: rem(640);
+    }
+
+    &Image {
+      border-radius: rem(4);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+    }
+
+    &Video {
+      height: rem(320);
+      position: relative;
+      border-radius: rem(4);
+      @include breakpoint($large) {
+        height: 70vh;
+        max-height: rem(640);
+      }
+    }
+
+    & > div {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.arrowLeft {
+  left: 0;
+}
+.arrowRight {
+  right: 0;
+}
+.arrowLeft,
+.arrowRight {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  grid-column: 1 / span 12;
+  @include breakpoint($large) {
+    display: block;
+  }
+
+  div {
+    cursor: pointer;
+    &:hover {
+      svg {
+        path {
+          stroke: $primary;
+        }
+      }
+    }
+  }
+}
+
+.SliderArrow {
+  width: rem(70);
+  height: rem(70);
+  border-radius: 100%;
+  background: rgba($grey, 0.75);
+  svg {
+    path {
+      stroke: $white;
+    }
+  }
+}
+.RightArrow {
+  svg {
+    transform: rotate(180deg);
+  }
+}

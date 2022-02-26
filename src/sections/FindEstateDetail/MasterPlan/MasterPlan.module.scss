@@ -63,6 +63,8 @@
     }
 
     &Full {
+      display: flex;
+      align-items: center;
       height: 100%;
       position: relative;
       overflow: hidden;
@@ -89,6 +91,13 @@
       left: 50%;
       bottom: rem(24);
       transform: translateX(-50%);
+      @include breakpoint($large) {
+        top: rem(32);
+        left: auto;
+        right: 0;
+        bottom: auto;
+        transform: initial;
+      }
 
       &Button {
         display: flex;
@@ -109,6 +118,29 @@
           font-size: rem(14);
           line-height: rem(16);
           margin-right: rem(6);
+        }
+      }
+
+      &Expand {
+        display: none;
+        align-items: center;
+        cursor: pointer;
+        @include breakpoint($large) {
+          display: flex;
+          transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+        }
+
+        &:hover {
+          opacity: 0.7;
+        }
+
+        span {
+          color: $grey;
+          font-weight: 700;
+          font-size: rem(16);
+          line-height: rem(16);
+          text-transform: uppercase;
+          margin-left: rem(10);
         }
       }
     }

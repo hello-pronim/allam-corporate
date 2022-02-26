@@ -1,0 +1,190 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.homeInfo {
+  position: relative;
+  background: $grey2;
+  @include breakpoint($medium) {
+  }
+
+  &Wrapper {
+    position: relative;
+    @include grid-container;
+  }
+  &Container {
+    padding: rem(24) 0 rem(40);
+    @include breakpoint($large) {
+      @include grid(1, 12);
+      padding: rem(120) 0;
+    }
+  }
+
+  &Content {
+    padding-bottom: rem(80);
+    @include breakpoint($large) {
+      padding: 0;
+      grid-column: 1 / span 6;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 2 / span 5;
+    }
+
+    &Intro {
+      font-size: rem(16);
+      line-height: 1.5;
+      margin-bottom: rem(40);
+      @include breakpoint($large) {
+        font-size: rem(18);
+      }
+
+      p {
+        &:not(:last-of-type) {
+          margin-bottom: rem(20);
+        }
+      }
+
+      ul {
+        margin-top: rem(16);
+
+        li {
+          color: $grey;
+          font-size: rem(16);
+          line-height: rem(30);
+          padding-left: rem(4);
+          @include breakpoint($large) {
+            padding-bottom: rem(8);
+            font-size: rem(18);
+          }
+
+          &:last-of-type {
+            padding-bottom: 0;
+          }
+
+          &::before {
+            content: "•";
+            padding-right: rem(8);
+          }
+        }
+      }
+    }
+
+    &Inclusions {
+      h5 {
+        font-size: rem(16);
+        line-height: rem(30);
+        @include breakpoint($large) {
+          font-size: rem(18);
+          margin-bottom: rem(24);
+        }
+      }
+
+      ul {
+        margin-top: rem(16);
+
+        li {
+          color: $grey;
+          font-size: rem(16);
+          line-height: rem(30);
+          padding-left: rem(4);
+          @include breakpoint($large) {
+            padding-bottom: rem(8);
+            font-size: rem(18);
+          }
+
+          &:last-of-type {
+            padding-bottom: 0;
+          }
+
+          &::before {
+            content: "•";
+            padding-right: rem(8);
+          }
+        }
+      }
+
+      &Full {
+        margin-bottom: rem(60);
+        & > p {
+          font-weight: bold;
+          margin: rem(24) 0 rem(32);
+          @include breakpoint($large) {
+            margin-bottom: rem(48);
+          }
+          cursor: pointer;
+        }
+
+        &List {
+          @include grid(1, 1, rem(24));
+        }
+      }
+    }
+
+    &FloorPlan {
+      margin-bottom: rem(24);
+      @include breakpoint($large) {
+        margin-bottom: rem(56);
+      }
+    }
+
+    a {
+      display: inline-flex;
+    }
+    .homeInfoContactCard {
+      @include breakpoint($large) {
+        display: none;
+      }
+    }
+  }
+
+  &Contact {
+    @include breakpoint($large) {
+      grid-column: 9 / span 4;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 9 / span 3;
+    }
+
+    &Offer {
+      margin-top: rem(40);
+    }
+
+    .homeInfoContactCard {
+      display: none;
+      @include breakpoint($large) {
+        display: block;
+      }
+    }
+  }
+}
+
+.homeInfoContactCard {
+  padding: rem(24);
+  background: $white;
+  border-radius: rem(8);
+  border: rem(1) solid rgba($grey, 0.5);
+  margin-bottom: rem(40);
+
+  &Row {
+    &:not(:last-of-type) {
+      margin-bottom: rem(16);
+      padding-bottom: rem(16);
+      border-bottom: rem(1) solid $primary;
+    }
+
+    p {
+      color: $light-grey;
+      font-size: rem(18);
+      margin-bottom: rem(8);
+    }
+
+    span {
+      display: block;
+      color: $light-grey;
+      font-size: rem(16);
+
+      &:nth-of-type(2) {
+        margin-top: rem(4);
+      }
+    }
+  }
+}

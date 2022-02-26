@@ -1,0 +1,91 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.postCard {
+  &Content {
+    &ImageContainer {
+      position: relative;
+      padding-bottom: 60%;
+      margin-bottom: rem(12);
+      @include breakpoint($large) {
+        margin-bottom: rem(20);
+      }
+    }
+
+    &Tag {
+      padding: rem(4) rem(14);
+      position: absolute;
+      top: rem(12);
+      left: rem(16);
+      border-radius: rem(2);
+      background-color: $primary;
+      @include breakpoint($large) {
+        display: none;
+      }
+
+      span {
+        display: block;
+        font-weight: 600;
+        font-size: rem(12);
+        line-height: rem(16);
+      }
+    }
+
+    &Image {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: cover;
+      background-repeat: none;
+      background-position: center;
+    }
+
+    &Details {
+      &Info {
+        display: inline-grid;
+        grid-template-columns: repeat(3, auto);
+        gap: rem(20);
+        @include breakpoint($large) {
+          margin-bottom: rem(6);
+        }
+
+        span {
+          font-size: rem(12);
+          line-height: rem(16);
+          text-transform: capitalize;
+          @include breakpoint($large) {
+            font-size: rem(18);
+            line-height: 1;
+          }
+
+          &:last-of-type {
+            display: none;
+            @include breakpoint($large) {
+              display: block;
+            }
+          }
+        }
+      }
+
+      h5 {
+        margin: 0;
+        font-size: rem(18);
+        @include breakpoint($large) {
+          font-size: rem(20);
+        }
+      }
+    }
+  }
+
+  &.postCardLatest {
+    h5 {
+      @include breakpoint($large) {
+        font-size: rem(24);
+      }
+    }
+  }
+}

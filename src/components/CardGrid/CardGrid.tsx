@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styles from "./CardGrid.module.scss";
+import rem from "src/utils/pxRem";
 import css from "@styled-system/css";
 import { Button } from "@components/Common/Common";
-import rem from "src/utils/pxRem";
+import styles from "./CardGrid.module.scss";
 
 export interface CardGridProps {
   title?: string;
@@ -43,15 +43,14 @@ const CardGrid = ({
         className={styles.CardGrid}
         css={css({ py: rem(padding), background: background && background })}
       >
-        {title && !smallTitle && <h2>{title}</h2>}
-        {title && smallTitle && <h4>{title}</h4>}
+        {smallTitle ? <h4>{title}</h4> : <h2>{title}</h2>}
         <div
           className={styles.GridWrapper}
           css={css({
             gridTemplateColumns: [
-              `repeat(${col[0]}, 1fr)`,
-              `repeat(${col[1]}, 1fr)`,
-              `repeat(${col[2]}, 1fr)`,
+              `repeat(${col[0]}, minmax(0, 1fr))`,
+              `repeat(${col[1]}, minmax(0, 1fr))`,
+              `repeat(${col[2]}, minmax(0, 1fr))`,
             ],
             columnGap: rem(colGap),
             rowGap: rem(rowGap),
@@ -74,10 +73,10 @@ const CardGrid = ({
             )}
             {button && (
               <Button
+                href={button.url}
                 color="dark-secondary"
                 size="large"
-                rounded={true}
-                href={button.url}
+                rounded
               >
                 {button.label}
               </Button>

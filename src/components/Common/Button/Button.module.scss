@@ -13,11 +13,17 @@
   border-width: 0;
   cursor: pointer;
 
+  @include below($medium) {
+    font-size: rem(16);
+    line-height: rem(34);
+  }
+
   &.rounded {
     border-radius: rem(6);
   }
 
   &.small {
+    font-size: rem(16);
     padding: rem(6) rem(16);
   }
 

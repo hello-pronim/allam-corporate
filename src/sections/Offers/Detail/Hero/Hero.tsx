@@ -1,29 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
+import { CraftImage } from "@models";
+import { Button } from "@components/Common/Common";
 import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
-import { Button, Redactor } from "@components/Common/Common";
-
 import styles from "./Hero.module.scss";
 
 type IHeroProps = {
-  offer?: any;
-  background?: any;
+  title: string;
+  shortDescription: string;
+  heroBackground?: CraftImage;
 };
 
-const defaultBackground = "/assets/icons/icon-panel-type-2-desktop.svg";
-const Hero = ({ offer, background }: IHeroProps) => {
-  const [heroBackground, setHeroBackground] = useState(defaultBackground);
-  const { title, subTitle } = offer;
-
-  useEffect(() => {
-    if (background) setHeroBackground(background);
-    else setHeroBackground(defaultBackground);
-  }, [background]);
-
+const Hero = ({ title, shortDescription, heroBackground }: IHeroProps) => {
   return (
     <div
-      className={background ? styles.bgHero : styles.defaultHero}
-      style={{ backgroundImage: `url(${heroBackground})` }}
+      className={`${styles.offerHero} ${heroBackground ? styles.bgHero : ""}`}
+      style={{
+        backgroundImage: `url(${
+          heroBackground?.url
+            ? heroBackground?.url
+            : "/assets/icons/icon-panel-type-1.svg"
+        })`,
+      }}
     >
       <div className={styles.heroWrapper}>
         <div className={styles.heroBreadcrumb}>
@@ -31,43 +29,41 @@ const Hero = ({ offer, background }: IHeroProps) => {
         </div>
         <div className={styles.heroContent}>
           <div className={styles.heroContentTop}>
-            <div className={styles.heroContentTopTitle}>
+            <div className={styles.heroContentTopMain}>
               <h1>{title}</h1>
+              {shortDescription && <h3>{shortDescription}</h3>}
+              {heroBackground && (
+                <div className={styles.heroContentTopMainAction}>
+                  <Button color="light" rounded>
+                    Register your interest
+                  </Button>
+                  <Button color="dark" rounded>
+                    Contact an Agent
+                  </Button>
+                </div>
+              )}
             </div>
-            {!background && (
-              <>
-                <div className={styles.heroContentTopImage}>
-                  <Image
-                    src={"/assets/images/img-easyBuy-seal-waxMain.png"}
-                    alt="easy-buy-mark"
-                    width={192}
-                    height={190}
-                    layout="responsive"
-                  />
-                </div>
-                <div className={styles.heroContentTopAction}>
-                  <div className={styles.heroContentTopActionButtons}>
-                    <Button color="dark">Register your interest</Button>
-                    <Button color="light">Contact an Agent</Button>
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
-          <div className={styles.heroContentBottom}>
-            {subTitle && (
-              <div className={styles.heroContentBottomText}>
-                <Redactor>{subTitle}</Redactor>
+            <div className={styles.heroContentTopExtra}>
+              <div className={styles.heroContentTopExtraImage}>
+                <Image
+                  src={"/assets/images/img-easyBuy-seal-waxMain.png"}
+                  alt="easy-buy-mark"
+                  width={192}
+                  height={190}
+                  layout="responsive"
+                />
               </div>
-            )}
-            {background && (
-              <div className={styles.heroContentBottomAction}>
-                <div className={styles.heroContentBottomActionButtons}>
-                  <Button color="light">Register your interest</Button>
-                  <Button color="dark">Contact an Agent</Button>
+              <div className={styles.heroContentTopExtraAction}>
+                <div className={styles.heroContentTopExtraActionButtons}>
+                  <Button color="dark" rounded>
+                    Register your interest
+                  </Button>
+                  <Button color="light" rounded>
+                    Contact an Agent
+                  </Button>
                 </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>

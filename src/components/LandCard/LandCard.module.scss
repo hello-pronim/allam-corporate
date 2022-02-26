@@ -1,7 +1,7 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
-.propertyCard {
+.landCard {
   display: flex;
   align-items: stretch;
   flex-direction: column;
@@ -9,6 +9,15 @@
   max-width: 100%;
   overflow: hidden;
   @include breakpoint($medium) {
+  }
+
+  &.landCardSimple {
+    .landCardTopImage {
+      height: rem(200);
+      @include breakpoint($large) {
+        height: rem(220);
+      }
+    }
   }
 
   &Top {
@@ -38,6 +47,7 @@
     h5 {
       font-size: rem(16);
       font-weight: bold;
+      text-transform: capitalize;
       @include breakpoint($large) {
         font-size: rem(18);
       }

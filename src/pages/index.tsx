@@ -1,36 +1,43 @@
 import type { GetStaticProps, NextPage } from "next";
 import get from "lodash/get";
 import { gql } from "@apollo/client";
+
+import { NormalPageProps, PageProps } from "@models";
 import craftAPI from "@libs/api";
-import { layoutQuery, trustQuery } from "@libs/queries";
+import { easyBuyQuery, layoutQuery, simpleEstatesQuery, trustQuery } from "@libs/queries";
 import { propsFind } from "@utils/propsFind";
-import { PageProps } from "@models";
+
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/Home/Hero/Hero";
-import TrustMakers from "@sections/Home/TrustMakers/TrustMakers";
+import TrustMarkers from "@sections/Home/TrustMarkers/TrustMarkers";
 import PerfectEstate from "@sections/Home/PerfectEstate/PerfectEstate";
 import Monterey from "@sections/Home/Monterey/Monterey";
 import Promotion from "@sections/Home/Promotion/Promotion";
 import FindHomes from "@sections/Home/FindHomes/FindHomes";
 import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
-const Home: NextPage<PageProps> = ({ pageData, trustMakers, layoutData }) => {
+const Home: NextPage<NormalPageProps> = ({
+  estateList,
+  pageData,
+  trustMarkers,
+  layoutData,
+  easyBuy
+}) => {
   const heroSlider = get(pageData, "entry.heroSlider", []);
   const homeLayouts = get(pageData, "entry.homepageLayout", []);
   const globalPromos = get(pageData, "entry.globalPromos", []);
-  const trustFeatures = get(trustMakers, "globalSet.trustFeature", []);
-
-  console.log(layoutData);
+  const trustFeatures = get(trustMarkers, "globalSet.trustFeature", []);
 
   return (
     <Layout layoutData={layoutData}>
       <Hero data={heroSlider} />
-      <TrustMakers
+      <TrustMarkers
         features={trustFeatures}
-        data={propsFind(globalPromos, "globalPromos_trustMakers_BlockType")}
+        data={propsFind(globalPromos, "globalPromos_trustMarkers_BlockType")}
       />
       <PerfectEstate
         data={propsFind(homeLayouts, "homepageLayout_perfectEstate_BlockType")}
+        estates={estateList.entries}
       />
       <Monterey
         data={propsFind(homeLayouts, "homepageLayout_monterey_BlockType")}
@@ -42,7 +49,7 @@ const Home: NextPage<PageProps> = ({ pageData, trustMakers, layoutData }) => {
         data={propsFind(homeLayouts, "homepageLayout_findHomes_BlockType")}
       />
       <AllBenefits
-        data={propsFind(globalPromos, "globalPromos_easybuy_BlockType")}
+        data={easyBuy.globalSet.easyBuy[0]}
       />
     </Layout>
   );
@@ -65,27 +72,10 @@ const homeQuery = gql`
           }
         }
         globalPromos {
-          ... on globalPromos_trustMakers_BlockType {
+          ... on globalPromos_trustMarkers_BlockType {
             heading
             description
             hascta
-            cta {
-              label
-              hyperlink {
-                slug
-              }
-            }
-          }
-          ... on globalPromos_easybuy_BlockType {
-            headingRedactor
-            introBlurb
-            buttons {
-              ... on buttons_BlockType {
-                buttonLabel
-                buttonLink
-                buttonType
-              }
-            }
             cta {
               label
               hyperlink {
@@ -131,16 +121,22 @@ const homeQuery = gql`
           ... on homepageLayout_promotion_BlockType {
             leftHeadingRedactor
             leftSubHeading
+            leftLabel
             leftLink {
-              uri
+              ... on promotions_default_Entry {
+                slug
+              }
             }
             image {
               url
             }
             rightHeading
             rightSubHeading
+            rightLabel
             rightLink {
-              uri
+              ... on promotions_default_Entry {
+                slug
+              }
             }
           }
           ... on homepageLayout_findHomes_BlockType {
@@ -149,6 +145,7 @@ const homeQuery = gql`
             backgroundImage {
               url
             }
+            textcolor
             buttons {
               ... on buttons_BlockType {
                 buttonLabel
@@ -173,13 +170,17 @@ export const getStaticProps: GetStaticProps = async function ({
   const previewToken: any = preview ? previewData?.token : undefined;
   const pageData = await craftAPI(homeQuery, previewToken);
   const layoutData = await craftAPI(layoutQuery, previewToken);
-  const trustMakers = await craftAPI(trustQuery, previewToken);
+  const trustMarkers = await craftAPI(trustQuery, previewToken);
+  const estateList = await craftAPI(simpleEstatesQuery, previewToken);
+  const easyBuy = await craftAPI(easyBuyQuery, previewToken);
 
   return {
     props: {
       pageData,
       layoutData,
-      trustMakers,
+      trustMarkers,
+      estateList,
+      easyBuy,
     },
     revalidate: 60,
   };

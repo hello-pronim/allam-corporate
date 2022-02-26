@@ -2,9 +2,9 @@
 @import "@styles/variables.scss";
 
 .featuredVideo {
+  position: relative;
   padding-top: rem(82);
   padding-bottom: rem(68);
-  position: relative;
   @include breakpoint($large) {
     padding-top: rem(136);
     padding-bottom: rem(68);

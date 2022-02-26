@@ -34,7 +34,10 @@ export const filteredEstates = selector({
         ? filters.locations?.[0] === "All"
           ? filterType
           : filterType?.filter((estate) =>
-              filters?.locations?.some((location) => location === estate.suburb)
+              filters?.locations?.some(
+                (location) =>
+                  location.toLowerCase() === estate.suburb.toLowerCase()
+              )
             )
         : [];
 

@@ -1,0 +1,116 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.pageContent {
+  background-color: $grey2;
+  padding: rem(80) 0 rem(80);
+  @include breakpoint($large) {
+    padding: rem(112) 0 rem(100);
+  }
+
+  &Wrapper {
+    @include grid-container;
+    @include breakpoint($large) {
+      @include grid(1, 12);
+    }
+  }
+
+  &Container {
+    color: $grey;
+    @include breakpoint($large) {
+      grid-column: 2 / span 10;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 3 / span 8;
+    }
+
+    h2,
+    h3,
+    h4,
+    h5 {
+      margin-bottom: rem(24);
+    }
+
+    p {
+      margin-bottom: rem(9);
+      @include breakpoint($large) {
+        margin-bottom: rem(12);
+      }
+    }
+
+    p + h2,
+    p + h3,
+    p + h4,
+    p + h5 {
+      margin-top: rem(24);
+    }
+
+    h2 + p,
+    h3 + p,
+    h4 + p,
+    h5 + p {
+      margin-top: rem(16);
+    }
+
+    ul {
+      margin-top: rem(16);
+
+      li {
+        color: $grey;
+        font-size: rem(16);
+        line-height: rem(30);
+        padding-left: rem(4);
+        @include breakpoint($large) {
+          padding-bottom: rem(8);
+          font-size: rem(18);
+        }
+
+        &::before {
+          content: "•";
+          padding-right: rem(8);
+        }
+      }
+    }
+
+    ol {
+      list-style-position: inside;
+
+      li {
+        color: $grey;
+        font-size: rem(16);
+        line-height: rem(30);
+        padding-left: rem(4);
+        @include breakpoint($large) {
+          padding-bottom: rem(10);
+          font-size: rem(18);
+        }
+
+        &:last-of-type {
+          padding: 0;
+        }
+      }
+    }
+
+    h2 {
+      font-size: rem(22);
+      line-height: 1.2;
+      @include breakpoint($large) {
+        font-size: rem(28);
+      }
+    }
+    h3 {
+      font-size: rem(20);
+      line-height: rem(32);
+      @include breakpoint($large) {
+        font-size: rem(24);
+      }
+    }
+    h4 {
+      font-size: rem(18);
+      line-height: rem(28);
+      @include breakpoint($large) {
+        font-size: rem(20);
+      }
+    }
+  }
+}

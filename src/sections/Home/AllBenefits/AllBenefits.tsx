@@ -19,12 +19,12 @@ const AllBenefits = ({ data }: IAllBenefitsProps) => {
 
               <div className={styles.allBenefitsCardContentLeftDetail}>
                 <Redactor>{data?.introBlurb}</Redactor>
-
                 <ul>
-                  <li>One Price</li>
-                  <li>One Contract</li>
-                  <li>One move in date</li>
-                  <li>All in under 3 months</li>
+                  {data?.easyBuyShortFacts?.map(
+                    (item: { col1: string }, index: number) => (
+                      <li key={index}>{item.col1}</li>
+                    )
+                  )}
                 </ul>
               </div>
             </div>

@@ -41,7 +41,7 @@ const MasterPlan = ({ data }: IMasterPlanProps) => {
         <ImageButton
           href={data?.cta?.[0]?.link}
           icon="download"
-          label={data?.cta?.[0]?.label}
+          label={"Download Masterplan"}
           chevron={true}
           labelSpacingLeft={8}
           labelSpacingRight={16}

@@ -1,20 +1,26 @@
 import React from "react";
-import Image from "next/image";
 import Modal from "react-modal";
-import Slider from "react-slick";
+import { CraftImage, VideoModel } from "@models";
 import Icon from "@components/Icons/Icons";
-import { galleryObj } from "./constant";
+import GallerySlider from "@components/GallerySlider/GallerySlider";
 import styles from "./GalleryModal.module.scss";
 
 export interface IGalleryModalProps {
   isModalOpen: boolean;
   closeModal: () => void;
+  videos: VideoModel[];
+  images: CraftImage[];
 }
 
-const GalleryModal = ({ isModalOpen, closeModal }: IGalleryModalProps) => {
+const GalleryModal = ({
+  isModalOpen,
+  closeModal,
+  videos,
+  images,
+}: IGalleryModalProps) => {
   const customStyles: React.ReactNode = {
     overlay: {
-      backgroundColor: "rgba(0, 0, 0, 0.55)",
+      backgroundColor: "rgb(0, 0, 0)",
       zIndex: "1000",
     },
     content: {
@@ -32,34 +38,6 @@ const GalleryModal = ({ isModalOpen, closeModal }: IGalleryModalProps) => {
     },
   };
 
-  const settings = {
-    className: "gallery-modal-slider",
-    infinite: false,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    speed: 500,
-    arrows: false,
-    dots: true,
-    responsive: [
-      {
-        breakpoint: 1023,
-        settings: {
-          slidesToShow: 1.2,
-          dots: false,
-        },
-      },
-    ],
-  };
-
-  let slider: Slider | null;
-  const onNextSlide = () => {
-    slider?.slickNext();
-  };
-
-  const onPrevSlide = () => {
-    slider?.slickPrev();
-  };
-
   return (
     <Modal
       closeTimeoutMS={1500}
@@ -69,29 +47,14 @@ const GalleryModal = ({ isModalOpen, closeModal }: IGalleryModalProps) => {
       contentLabel="Gallery Modal"
     >
       <div className={styles.galleryModal}>
+        <div className={styles.galleryModalClose} onClick={closeModal}>
+          <Icon type="close" />
+          <span>Close</span>
+        </div>
+
         <div className={styles.galleryModalSlider}>
           <div className={styles.galleryModalSliderWrapper}>
-            <div className={styles.galleryModalSliderArrowLeft}>
-              <Icon type="modal-arrow-left" />
-            </div>
-            <div className={styles.galleryModalSliderArrowRight}>
-              <Icon type="modal-arrow-left" />
-            </div>
-
-            <Slider {...settings} ref={(C) => (slider = C)}>
-              {galleryObj?.map((el, id) => (
-                <Image
-                  key={id}
-                  src={el.image}
-                  alt="gallery-img"
-                  layout="responsive"
-                  width={400}
-                  height={600}
-                  objectFit="cover"
-                  objectPosition="center"
-                />
-              ))}
-            </Slider>
+            <GallerySlider images={images} videos={videos} />
           </div>
         </div>
       </div>

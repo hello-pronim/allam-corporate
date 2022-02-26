@@ -9,13 +9,7 @@
     @include grid(1, 12);
     row-gap: 0 !important;
   }
-  // TODO: Josh please do not use this for global components, you can check the design
-  // background: rgb(255, 255, 255);
-  // background: linear-gradient(
-  //   180deg,
-  //   rgba(255, 255, 255, 1) 0%,
-  //   rgba(237, 242, 245, 1) 100%
-  // );
+
   h2 {
     color: $grey;
     margin-bottom: rem(24);
@@ -40,7 +34,7 @@
 
   &Child {
     max-width: 100%;
-    overflow: hidden;
+    // overflow: hidden;
   }
 }
 

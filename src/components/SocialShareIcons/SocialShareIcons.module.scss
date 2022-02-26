@@ -8,7 +8,6 @@
     grid-auto-flow: column;
     .shareIconsTitle {
       color: $black;
-      font-family: Roboto;
       font-size: rem(16);
       line-height: rem(24);
       @include below($medium) {
@@ -46,7 +45,6 @@
     grid-auto-flow: row;
     .shareIconsTitle {
       color: $black;
-      font-family: Roboto;
       font-size: rem(16);
       line-height: rem(24);
       @include below($medium) {

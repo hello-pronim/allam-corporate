@@ -1,27 +1,34 @@
 import React from "react";
+import Link from "next/link";
+import { HomeModel } from "@models";
 import { Button } from "@components/Common/Common";
 import PropertyCard from "@components/PropertyCard/PropertyCard";
 import styles from "./HomeList.module.scss";
 
-export interface IHomeListProps {}
+export interface IHomeListProps {
+  title: string;
+  filteredHomes?: HomeModel[];
+}
 
-const HomeList = ({}: IHomeListProps) => {
+const HomeList = ({ title, filteredHomes }: IHomeListProps) => {
   return (
     <div className={styles.homeList}>
       <div className={styles.homeListWrapper}>
         <div className={styles.homeListContent}>
-          <h2>Find your perfect home or land in Ardennes</h2>
+          <h2>Find your perfect home or land in {title}</h2>
           <div className={styles.homeListGrid}>
             <div className={styles.homeListGridWrapper}>
-              {/* {Array(6)
-                .fill("")
-                .map((_, id) => (
-                  <PropertyCard key={id} />
-                ))} */}
+              {filteredHomes?.slice(0, 9).map((home, id) => (
+                <Link href={`/find-home/${home.slug}`} key={id}>
+                  <a>
+                    <PropertyCard homeData={home} />
+                  </a>
+                </Link>
+              ))}
             </div>
           </div>
           <div className={styles.homeListContentCTA}>
-            <Button color="dark-secondary" size="large" rounded>
+            <Button href="/find-home" color="dark-secondary" rounded>
               Load more
             </Button>
           </div>

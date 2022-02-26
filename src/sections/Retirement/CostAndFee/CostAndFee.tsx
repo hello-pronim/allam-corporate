@@ -32,7 +32,7 @@ const CostAndFee = ({ data }: ICostAndFeeProps) => {
         <ImageButton
           href={data?.cta?.[0]?.link}
           icon="download"
-          label={data?.cta?.[0]?.label}
+          label={"Download Brochure"}
           chevron={true}
           labelSpacingLeft={8}
           labelSpacingRight={16}

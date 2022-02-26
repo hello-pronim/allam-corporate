@@ -8,9 +8,15 @@ export interface ILandInfoProps {
   introBlurb?: string;
   estateInfo?: any;
   offer?: any;
+  brochureUrl?: string | null;
 }
 
-const LandInfo = ({ introBlurb, estateInfo, offer }: ILandInfoProps) => {
+const LandInfo = ({
+  introBlurb,
+  estateInfo,
+  offer,
+  brochureUrl,
+}: ILandInfoProps) => {
   return (
     <div className={styles.landInfo}>
       <div className={styles.landInfoWrapper}>
@@ -19,15 +25,18 @@ const LandInfo = ({ introBlurb, estateInfo, offer }: ILandInfoProps) => {
             <div className={styles.landInfoContentIntro}>
               <Redactor>{introBlurb ?? ""}</Redactor>
             </div>
-            <ImageButton
-              href="#"
-              variant="primary"
-              icon="download-white"
-              label="Download Brochure"
-              chevron={true}
-              labelSpacingLeft={8}
-              labelSpacingRight={16}
-            />
+            {brochureUrl && (
+              <a download target="_blank" href={brochureUrl} rel="noreferrer">
+                <ImageButton
+                  variant="primary"
+                  icon="download-white"
+                  label="Download Brochure"
+                  chevron={true}
+                  labelSpacingLeft={8}
+                  labelSpacingRight={16}
+                />
+              </a>
+            )}
           </div>
           <div className={styles.landInfoContact}>
             <div className={styles.landInfoContactCard}>

@@ -1,20 +1,27 @@
 export type OverViewPageProps = {
   pageData?: any;
-  trustMakers?: any;
+  newsList?: any;
+  trustMarkers?: any;
   listingData?: any;
+  easyBuy?: any;
   layoutData?: any;
+  homesList?: any;
+  easyBuyFeature?: any;
 };
 
 export type AllamAdvPageProps = {
   layoutData?: any;
   easyBuy?: any;
   allamAdvantages?: any;
+  pageData: any;
 };
 
 export type NormalPageProps = {
   layoutData?: any;
   pageData?: any;
-  trustMakers?: any;
+  trustMarkers?: any;
+  estateList?: any;
+  easyBuy?: any;
 };
 
 export type PageProps = NormalPageProps | OverViewPageProps;
@@ -50,6 +57,7 @@ export type VideoModel = {
   title: string;
   description?: string;
   videoLink: string;
+  isvirtualtour: boolean;
   titleImage: CraftImage[];
   dateCreated: string;
 };
@@ -75,8 +83,9 @@ export type HeroModel = {
   heading?: string;
   description?: string;
   subHeading?: string;
+  textColor?: string;
   backgroundImage?: CraftImage[];
-  buttons?: CTAModel[];
+  buttons?: ButtonModel[];
   cta?: CTAModel[];
   icon: CraftImage[];
   bannerHyperlink: {
@@ -90,7 +99,7 @@ export type TrustFeature = {
   icon?: CraftImage[];
 };
 
-export type TrustMakersModel = {
+export type TrustMarkersModel = {
   heading?: string;
   description?: string;
   hascta?: boolean;
@@ -101,6 +110,7 @@ export type HomeLayoutModel = {
   heading?: string;
   headingRedactor?: string;
   description?: string;
+  textcolor?: string;
   buttons?: ButtonModel[];
   icon?: CraftImage[];
   backgroundImage?: CraftImage[];
@@ -109,16 +119,36 @@ export type HomeLayoutModel = {
 export type PromotionLayout = {
   leftHeadingRedactor?: string;
   leftSubHeading?: string;
-  leftLink?: CTAModel[];
+  leftLabel?: string;
+  leftLink?: {
+    slug: string;
+  }[];
   rightHeading?: string;
   rightSubHeading?: string;
-  rightLink?: CTAModel[];
+  rightLabel?: string;
+  rightLink?: {
+    slug: string;
+  }[];
   image?: CraftImage[];
 };
 
-export type InspectionTimeModel = {
-  days?: string;
-  time?: string;
+export type NeighborhoodModel = {
+  title: string;
+  amenities: AmenityModel[];
+};
+
+export type AmenityModel = {
+  amenityCategory: AmenityCategoryModel[];
+  amenityName: string;
+  address: string;
+  suburb: string;
+  latitude: string;
+  longitude: string;
+  externalUrl: string;
+};
+
+export type AmenityCategoryModel = {
+  title: string;
 };
 
 export type LocationModel = {
@@ -152,7 +182,9 @@ export type EstateModel = {
   galleryImages: CraftImage[];
   offersLink: any[];
   salesCentre: LocationModel[];
+  neighborhood: NeighborhoodModel[];
   masterPlanImage: CraftImage[];
+  masterplanDownload: Asset[];
   downloadableBrochure: Asset[];
 };
 
@@ -163,8 +195,12 @@ export type HomeModel = {
   lotNumber?: string;
   address: string;
   suburb: string;
+  homeDesign?: {
+    title: string;
+  }[];
+  sellingLabel?: string;
   openForInspection?: boolean;
-  inspectionTimes?: InspectionTimeModel[];
+  inspectionTimes?: string;
   buildingSize?: number;
   percentageComplete?: number;
   completionDate?: string;
@@ -172,17 +208,18 @@ export type HomeModel = {
   bathrooms?: number;
   car?: number;
   landSize: number;
-  latitude?: string;
-  longitude?: string;
+  latitude: number;
+  longitude: number;
   introBlurb?: string;
   features?: string;
   gallery3dUrl?: string;
   images?: CraftImage[];
+  featuresInclusion: InclusionModel[];
   downloadableBrochure?: CraftImage[];
 };
 
 export type LandModel = {
-  slug?: string;
+  slug: string;
   title: string;
   landOnly: boolean;
   lotNumber?: string;
@@ -197,6 +234,43 @@ export type LandModel = {
   gallery3dUrl?: string;
   images?: CraftImage[];
   downloadableBrochure?: CraftImage[];
+};
+
+export type OfferModel = {
+  slug: string;
+  title: string;
+  textColor: string;
+  shortDescription: string;
+  description: string;
+  introBlurb: string;
+  titleImage: CraftImage[];
+  filesDownloads: Asset[];
+  linkedEstates: EstateModel[];
+};
+
+export type NewsModel = {
+  slug?: string;
+  title: string;
+  category: string;
+  description: string;
+  shortDescription: string;
+  publishDate: string;
+  linkedEstates: EstateModel[];
+  titleImage: CraftImage[];
+  filesDownloads: Asset[];
+};
+
+export type InclusionModel = {
+  inclusionLevel: string;
+  featuredInclusions: string;
+  fullInclusionTable: InclusionTableModel[];
+};
+
+export type InclusionTableModel = {
+  inclusionCategory: string;
+  inclusionList: {
+    inclusionName: string;
+  }[];
 };
 
 export type ChoiceModel = {
@@ -222,4 +296,10 @@ export type LandFilterModel = {
   locations: string[];
   blockSize: string;
   reset: boolean;
+};
+
+// Marker Popup Model
+export type MarkerPopupModel = {
+  data: any;
+  type: string;
 };

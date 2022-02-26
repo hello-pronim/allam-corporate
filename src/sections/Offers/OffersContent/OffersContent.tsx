@@ -1,73 +1,41 @@
 import React from "react";
+import { OfferModel } from "@models";
 import { Button } from "@components/Common/Common";
 import PromoCard from "@components/PromoCard/PromoCard";
-
 import styles from "./OffersContent.module.scss";
 
-export interface OffersContentProps {}
+export interface OffersContentProps {
+  offers: OfferModel[];
+}
 
-const OffersContent = () => {
-  const defaultOfferIndex = 0;
-  const offers = [
-    {
-      id: 1,
-      title: "4 bed home from $123,450",
-      shortDescription: "Pay the rest when you move in!",
-      introBlurb:
-        "<p>Our history spans 25 years and during that time we’ve helped thousands  of customers find a new home, with homes and estates spread across many of Sydney’s most popular areas.</p>",
-    },
-    {
-      id: 2,
-      title: "10% Deposit is all you need",
-      shortDescription: "Pay the rest when you move in!",
-      introBlurb:
-        "<p>Our history spans 25 years and during that time we’ve helped thousands  of customers find a new home, with homes and estates spread across many of Sydney’s most popular areas.</p>",
-    },
-  ];
-
+const OffersContent = ({ offers }: OffersContentProps) => {
   return (
-    <div className={styles.offersContainer}>
+    <div className={styles.offers}>
       <div className={styles.offersWrapper}>
-        <div className={styles.recommendedOffer}>
-          <PromoCard
-            offer={offers[defaultOfferIndex]}
-            action={
-              <Button color="light" rounded>
-                Contact an Agent today!
-              </Button>
-            }
-            size="large"
-          />
-        </div>
-        <div className={styles.offersList}>
-          {offers.map((offer) => (
-            <PromoCard
-              key={offer.id}
-              offer={offer}
-              action={
-                <Button color="light" rounded>
-                  Contact an Agent today!
-                </Button>
-              }
-            />
+        <div className={styles.offersWrapperInside}>
+          {offers.map((offer, id) => (
+            <div
+              key={id}
+              className={`${styles.offersSingle} ${
+                id % 3 === 0 ? styles.offersSingleLarge : ""
+              } ${id % 3 === 1 ? styles.offersSingleLeft : ""} ${
+                id % 3 === 2 ? styles.offersSingleRight : ""
+              }`}
+            >
+              <PromoCard
+                offer={offer}
+                background={
+                  offer?.titleImage ? offers[0]?.titleImage?.[0].url : ""
+                }
+                action={
+                  <Button color="light" rounded>
+                    Contact an Agent today!
+                  </Button>
+                }
+                size={id % 3 === 0 ? "large" : "normal"}
+              />
+            </div>
           ))}
-        </div>
-        <div className={styles.moreOffer}>
-          <PromoCard
-            offer={{
-              title: "Free Solar with your New Home",
-              shortDescription:
-                "It's Time to Get Smart and Save Big with Free Solar Power. SAVE UP TO $44K*",
-              introBlurb: "",
-            }}
-            background="/assets/temp/img-hero-homepage-2.jpg"
-            action={
-              <Button color="light" rounded>
-                Find out more today!
-              </Button>
-            }
-            size="large"
-          />
         </div>
       </div>
     </div>

@@ -43,11 +43,13 @@ const EstateFilter = ({
               icon="grid-view"
               label="Grid view"
               onClick={() => setShowMap(false)}
+              selected={!showMap}
             />
             <ImageButton
               icon="map"
               label="Map view"
               onClick={() => setShowMap(true)}
+              selected={showMap}
             />
           </div>
 

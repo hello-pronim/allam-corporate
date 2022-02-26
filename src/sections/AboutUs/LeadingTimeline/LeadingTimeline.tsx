@@ -1,7 +1,7 @@
 import React from "react";
-import TextBlock from "@components/TextBlock/TextBlock";
-import { TimelineCards } from "@sections/AboutUs/constants";
 import Timeline from "@components/Timeline/Timeline";
+import TextBlock from "@components/TextBlock/TextBlock";
+import { aboutTimelineCards } from "@libs/constants";
 import styles from "./LeadingTimeline.module.scss";
 
 export interface ILeadingTimelineProps {
@@ -12,7 +12,7 @@ const LeadingTimeline = ({ textContent }: ILeadingTimelineProps) => {
   return (
     <div className={styles.timeLine}>
       <TextBlock data={textContent} />
-      <Timeline cards={TimelineCards} />
+      {/* <Timeline cards={aboutTimelineCards} /> */}
     </div>
   );
 };

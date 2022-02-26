@@ -66,17 +66,26 @@
       grid-column: 2 / span 5;
     }
 
-    &Content {
-      p {
-        &:not(:last-of-type) {
-          margin-bottom: rem(16);
-          @include breakpoint($large) {
-            margin-bottom: rem(24);
-          }
+    p {
+      &:not(:last-of-type) {
+        margin-bottom: rem(16);
+        @include breakpoint($large) {
+          margin-bottom: rem(24);
         }
       }
-      &More {
-        margin-top: rem(24);
+    }
+
+    &Documents {
+      margin-top: rem(24);
+      @include breakpoint($large) {
+        margin-top: rem(40);
+      }
+
+      p {
+        a {
+          font-weight: normal;
+          text-decoration: none;
+        }
       }
     }
   }
@@ -86,49 +95,13 @@
       grid-column: 9 / span 4;
     }
     @include breakpoint($xx-large) {
-      grid-column: 8 / span 3;
-    }
-
-    h3 {
-      font-weight: bold;
-      font-size: rem(18);
-      line-height: rem(26);
-      color: $light-grey;
-      margin-bottom: rem(8);
-    }
-    p {
-      color: $light-grey;
+      grid-column: 8 / span 4;
     }
 
     &Panel {
-      padding: rem(24);
-      border-radius: rem(8);
-      border: rem(1) solid rgba($grey, 0.5);
-      background-color: $white;
-
-      &Location {
-        padding-bottom: rem(16);
-        border-bottom: rem(1) solid $primary;
-        @include breakpoint($large) {
-          padding-bottom: rem(24);
-        }
-
-        a {
-          display: inline-flex;
-          margin-top: rem(24);
-        }
-      }
-
-      &Price {
-        padding: rem(16) 0;
-        border-bottom: rem(1) solid $primary;
-        @include breakpoint($large) {
-          padding: rem(24) 0;
-        }
-      }
-
-      &Sales {
-        padding-top: rem(16);
+      @include breakpoint($xx-large) {
+        margin-left: auto;
+        width: rem(420);
       }
     }
   }

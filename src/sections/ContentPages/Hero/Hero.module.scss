@@ -1,0 +1,51 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.hero {
+  position: relative;
+  padding-top: rem(78);
+  background-color: $white;
+  @include breakpoint($large) {
+    padding-top: rem(135);
+  }
+
+  &Wrapper {
+    padding-bottom: rem(73);
+    @include grid-container;
+
+    @include breakpoint($large) {
+      @include grid(1, 12);
+      row-gap: 0 !important;
+      padding-bottom: rem(132);
+    }
+  }
+
+  &Breadcrumb {
+    @include breakpoint($large) {
+      grid-column: 1 / span 12;
+    }
+  }
+
+  &Content {
+    margin-top: rem(44);
+    position: relative;
+    @include breakpoint($large) {
+      margin-top: rem(62);
+      align-items: center;
+      grid-column: 2 / span 10;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 3 / span 8;
+    }
+
+    h1 {
+      color: $grey;
+      font-size: rem(36);
+      line-height: rem(40);
+      @include breakpoint($large) {
+        font-size: rem(42);
+        line-height: rem(52);
+      }
+    }
+  }
+}

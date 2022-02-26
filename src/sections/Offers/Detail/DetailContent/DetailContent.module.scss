@@ -1,30 +1,74 @@
 @import "@styles/mixins.scss";
 @import "@styles/variables.scss";
 
-.offerDetailPanel {
-  display: grid;
-  padding-top: rem(210);
-  padding-bottom: rem(116);
+.offerDetail {
   background-color: $grey2;
+  padding: rem(80) 0;
   @include breakpoint($large) {
-    @include grid(1, 12);
-  }
-  @include below($medium) {
-    @include grid-container;
+    padding: rem(150) 0 rem(116);
   }
 
-  .offerDetailWrapper {
-    grid-column: 3 / span 8;
+  &Wrapper {
+    @include grid-container;
+    @include breakpoint($large) {
+      @include grid(1, 12);
+    }
+  }
+
+  &Container {
+    @include breakpoint($large) {
+      grid-column: 2 / span 10;
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 3 / span 8;
+    }
 
     h3 {
-      font-size: rem(48);
-      line-height: rem(55);
-      margin-bottom: rem(16);
+      font-size: rem(22);
+      line-height: rem(28.6);
+      @include breakpoint($large) {
+        font-size: rem(48);
+        line-height: rem(55);
+        margin-bottom: rem(16);
+      }
     }
+  }
+
+  &Description {
+    figure {
+      width: 100%;
+      padding: rem(24) 0;
+      @include breakpoint($xx-large) {
+        padding: rem(48) 0;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+
     p {
-      font-size: rem(24);
-      line-height: rem(34);
-      margin-bottom: rem(12);
+      font-size: rem(16);
+      line-height: rem(25.6);
+      @include breakpoint($large) {
+        font-size: rem(24);
+        line-height: rem(34);
+        margin-bottom: rem(12);
+      }
+
+      &:not(:last-of-type) {
+        margin-bottom: rem(16);
+        @include breakpoint($large) {
+          margin-bottom: rem(24);
+        }
+      }
+
+      & + figure {
+        margin-top: rem(-16);
+        @include breakpoint($large) {
+          margin-top: rem(-24);
+        }
+      }
     }
   }
 }

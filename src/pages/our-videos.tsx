@@ -4,12 +4,13 @@ import { gql } from "@apollo/client";
 import { get } from "lodash";
 import craftAPI from "@libs/api";
 import { useRecoilValue } from "recoil";
-import { layoutQuery } from "@libs/queries";
+import { easyBuyQuery, layoutQuery } from "@libs/queries";
 import { videoModalState } from "@states/atoms/videoModal";
 import { OverViewPageProps, VideoModel } from "@models";
 import Layout from "@components/Layout/Layout";
 import Divider from "@components/Common/Divider/Divider";
 import VideoModal from "@components/VideoModal/VideoModal";
+import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 import FeaturedVideo from "@sections/OurVideos/FeaturedVideo/FeaturedVideo";
 import LatestVideos from "@sections/OurVideos/LatestVideos/LatestVideos";
 import OldVideos from "@sections/OurVideos/OldVideos/OldVideos";
@@ -19,6 +20,7 @@ const OurVideos: NextPage<OverViewPageProps> = ({
   pageData,
   layoutData,
   listingData,
+  easyBuy
 }) => {
   const { isOpen } = useRecoilValue(videoModalState);
   const [videos, setVideos] = useState<VideoModel[]>([]);
@@ -50,6 +52,7 @@ const OurVideos: NextPage<OverViewPageProps> = ({
           <Divider />
         </div>
         <OldVideos videos={oldVideos} />
+        <AllBenefits data={easyBuy.globalSet.easyBuy[0]} />
       </BackgroundWrapper>
       <VideoModal isModalOpen={isOpen} />
     </Layout>
@@ -65,6 +68,7 @@ const pageQuery = gql`
             title
             description
             videoLink
+            isvirtualtour
             titleImage {
               url
               title
@@ -86,6 +90,7 @@ const videosQuery = gql`
         title
         description
         videoLink
+        isvirtualtour
         titleImage {
           url
           title
@@ -102,12 +107,14 @@ export const getStaticProps = async function () {
   const pageData = await craftAPI(pageQuery);
   const layoutData = await craftAPI(layoutQuery);
   const listingData = await craftAPI(videosQuery);
+  const easyBuy = await craftAPI(easyBuyQuery);
 
   return {
     props: {
       pageData,
       layoutData,
       listingData,
+      easyBuy,
     },
     revalidate: 60,
   };

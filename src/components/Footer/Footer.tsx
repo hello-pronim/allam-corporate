@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { get } from "lodash";
 import { Button } from "@components/Common/Common";
@@ -6,9 +6,79 @@ import Icon from "@components/Icons/Icons";
 import styles from "./Footer.module.scss";
 import { ButtonModel } from "@models";
 
-export interface IFooterProps {
+interface IFooterProps {
   footerData: any;
 }
+
+declare global {
+  interface Window {
+    Trustpilot: any;
+  }
+}
+
+const TrustBoxDesktop = () => {
+  const ref = useRef(null);
+  useEffect(() => {
+    if (window?.Trustpilot) {
+      window?.Trustpilot?.loadFromElement(ref.current, true);
+    }
+  }, []);
+
+  return (
+    <div
+      ref={ref} // We need a reference to this element to load the TrustBox in the effect.
+      className="trustpilot-widget"
+      data-locale="en-AU"
+      data-template-id="53aa8912dec7e10d38f59f36"
+      data-businessunit-id="605a6fefe31540000196de10"
+      data-style-height="140px"
+      data-style-width="100%"
+      data-theme="light"
+      data-stars="1,2,3,4,5"
+      data-review-languages="en"
+    >
+      <a
+        href="https://au.trustpilot.com/review/allam.com.au"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Trustpilot
+      </a>
+    </div>
+  );
+};
+
+const TrustBoxMobile = () => {
+  const ref = useRef(null);
+  useEffect(() => {
+    if (window?.Trustpilot) {
+      window?.Trustpilot?.loadFromElement(ref.current, true);
+    }
+  }, []);
+
+  return (
+    <div
+      ref={ref} // We need a reference to this element to load the TrustBox in the effect.
+      className="trustpilot-widget"
+      data-locale="en-AU"
+      data-template-id="54ad5defc6454f065c28af8b"
+      data-businessunit-id="605a6fefe31540000196de10"
+      data-style-height="240px"
+      data-style-width="100%"
+      data-theme="light"
+      data-stars="1,2,3,4,5"
+      data-review-languages="en"
+    >
+      <a
+        href="https://au.trustpilot.com/review/allam.com.au"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Trustpilot
+      </a>
+    </div>
+  );
+};
 
 const Footer = ({ footerData }: IFooterProps) => {
   const footerBottom = get(footerData, "footerBottom[0]");
@@ -35,27 +105,11 @@ const Footer = ({ footerData }: IFooterProps) => {
           </div>
 
           <div className={styles.footerInfoTestimonial}>
-            <div className={styles.footerInfoTestimonialReview}>
-              {Array(5)
-                .fill("")
-                .map((_, id: number) => (
-                  <div
-                    className={styles.footerInfoTestimonialReviewIcon}
-                    key={id}
-                  >
-                    <Icon type="star" />
-                  </div>
-                ))}
+            <div className={styles.footerInfoTestimonialDesktop}>
+              <TrustBoxDesktop />
             </div>
-
-            <p>
-              “Allam have been fantastic from the minute we started. We have
-              purchased a ready built home and move in a few weeks.
-            </p>
-            <div className={styles.footerInfoTestimonialReviewClient}>
-              <p>
-                <b>Ally Watts - Penrith (2 weeks ago)</b>
-              </p>
+            <div className={styles.footerInfoTestimonialMobile}>
+              <TrustBoxMobile />
             </div>
           </div>
         </div>
@@ -79,9 +133,9 @@ const Footer = ({ footerData }: IFooterProps) => {
 
             <ul className={styles.footerStatusbarLinks}>
               {footerBottom?.bottomLinks.map((el: any) => (
-                <li key={el.ctaLabel}>
-                  <Link href={el.ctaLink}>
-                    <a>{el.ctaLabel}</a>
+                <li key={el.linkLabel}>
+                  <Link href={`/${el.hyperlink?.[0]?.slug}`}>
+                    <a>{el.linkLabel}</a>
                   </Link>
                 </li>
               ))}

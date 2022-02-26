@@ -1,19 +1,20 @@
 import React from "react";
-import styles from "./MinimalCard.module.scss";
-import { card } from "./constants";
 import { css } from "@styled-system/css";
+import styles from "./MinimalCard.module.scss";
 
-export interface MinimalCardProps {}
+export interface MinimalCardProps {
+  data?: any;
+}
 
-const MinimalCard = ({}: MinimalCardProps) => {
-  return (
+const MinimalCard = ({ data }: MinimalCardProps) => {
+  return data ? (
     <div
       className={styles.MinimalCard}
-      css={css({ backgroundImage: `url(${card.image})` })}
+      css={css({ backgroundImage: `url(${data?.titleImage?.[0].url})` })}
     >
-      <h5>{card.title}</h5>
+      <h5>{data.title}</h5>
     </div>
-  );
+  ) : null;
 };
 
 export default MinimalCard;

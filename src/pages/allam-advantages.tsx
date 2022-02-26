@@ -8,26 +8,25 @@ import {
   easyBuyPurchaseQuery,
   layoutQuery,
 } from "@libs/queries";
-import { AllamAdvPageProps } from "@models";
+import { AllamAdvPageProps, OfferModel } from "@models";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/AllamAdvantage/Hero/Hero";
 import Advantages from "@sections/AllamAdvantage/Advantages/Advantages";
 import EasyBuy from "@sections/AllamAdvantage/EasyBuy/EasyBuy";
-import RegisterPanel from "@components/RegisterPanel/RegisterPanel";
 import { videoModalState } from "@states/atoms/videoModal";
 import VideoModal from "@components/VideoModal/VideoModal";
+import { gql } from "@apollo/client";
+
+import PromotionSection from "@sections/AllamAdvantage/PromotionSection/PromotionSection";
 
 const AllamAdvantages: NextPage<AllamAdvPageProps> = ({
+  pageData,
   easyBuy,
   allamAdvantages,
   layoutData,
 }) => {
   const { isOpen } = useRecoilValue(videoModalState);
-  const globalPromos = get(
-    allamAdvantages,
-    "globalSet.allamAdvantage[0].globalPromos",
-    ""
-  );
+  const offer: OfferModel = get(pageData, "entry.linkedPromotion[0]", null);
 
   return (
     <Layout layoutData={layoutData}>
@@ -65,21 +64,48 @@ const AllamAdvantages: NextPage<AllamAdvPageProps> = ({
         )}
         steps={get(easyBuy, "globalSet.easybuySteps", [])}
       />
-      <RegisterPanel
-        data={propsFind(globalPromos, "globalPromos_estateRegister_BlockType")}
-      />
+      <PromotionSection offer={offer} />
+
       <VideoModal isModalOpen={isOpen} />
     </Layout>
   );
 };
 
+const pageQuery = gql`
+  query allamAdvantagesPage {
+    entry(section: "allamAdvantagesPage") {
+      ... on allamAdvantagesPage_allamAdvantagesPage_Entry {
+        linkedPromotion {
+          ... on promotions_default_Entry {
+            slug
+            title
+            shortDescription
+            introBlurb
+            description
+            homePageBanner {
+              title
+              url
+            }
+            titleImage {
+              title
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const getStaticProps = async function () {
   const allamAdvantages = await craftAPI(allamAdvQuery);
   const easyBuy = await craftAPI(easyBuyPurchaseQuery);
   const layoutData = await craftAPI(layoutQuery);
+  const pageData = await craftAPI(pageQuery);
 
   return {
     props: {
+      pageData,
       allamAdvantages,
       easyBuy,
       layoutData,

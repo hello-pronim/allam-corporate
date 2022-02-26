@@ -10,11 +10,13 @@ import styles from "./PropertyCard.module.scss";
 export interface PropertyCardProps {
   homeData: HomeModel;
   isOpenInspection?: boolean;
+  simple?: boolean;
 }
 
 const PropertyCard = ({
   homeData,
   isOpenInspection = false,
+  simple = false,
 }: PropertyCardProps) => {
   const settings = {
     className: "estate-card-slider",
@@ -29,56 +31,82 @@ const PropertyCard = ({
     slidesToScroll: 1,
   };
 
-  const address = `${homeData.lotNumber}, ${homeData.address}`;
+  // const address = `${homeData.lotNumber}, ${homeData.address}`;
+  const address = `${homeData.title}`;
 
   return (
-    <div className={styles.propertyCard}>
+    <div
+      className={`${styles.propertyCard} ${simple ? styles.propertyCardSimple : ""
+        }`}
+    >
       <div className={styles.propertyCardTop}>
-        {!isOpenInspection && (
+        {!simple && !isOpenInspection && (
           <div className={styles.propertyCardTopBar}>
             <span className={styles.propertyCardTopBarText}>
-              {homeData.percentageComplete}% Completed
+              {homeData.percentageComplete
+                ? `${homeData.percentageComplete}% Completed`
+                : ""}
             </span>
-            {homeData.completionDate && (
+            {homeData.sellingLabel && (
               <span className={styles.propertyCardTopBarText}>
-                Move In {dayjs(homeData.completionDate).format("MMM YYYY")}
+                {homeData.sellingLabel}
               </span>
             )}
-            <div className={styles.propertyCardTopBarCompletion}>
-              <span
-                style={{
-                  height: "100%",
-                  width: `${homeData.percentageComplete}%`,
-                }}
-              />
-            </div>
+            {homeData.percentageComplete ? (
+              <div className={styles.propertyCardTopBarCompletion}>
+                <span
+                  style={{
+                    height: "100%",
+                    width: `${homeData.percentageComplete}%`,
+                  }}
+                />
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         )}
-        <Slider {...settings}>
-          {homeData?.images?.map((image, id) => (
-            <div key={id} className={styles.propertyCardTopImage}>
-              <Image
-                src={image.url}
-                alt={image.title}
-                layout="fill"
-                objectFit="cover"
-                objectPosition="center"
-                blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                  shimmer(700, 475)
-                )}`}
-                placeholder="blur"
-              />
-            </div>
-          ))}
-        </Slider>
+        {simple ? (
+          <div className={styles.propertyCardTopImage}>
+            <Image
+              src={homeData?.images?.[0].url ?? ""}
+              alt={homeData?.images?.[0].title}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center"
+              blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                shimmer(700, 475)
+              )}`}
+              placeholder="blur"
+            />
+          </div>
+        ) : (
+          <Slider {...settings}>
+            {homeData?.images?.map((image, id) => (
+              <div key={id} className={styles.propertyCardTopImage}>
+                <Image
+                  src={image.url}
+                  alt={image.title}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                    shimmer(700, 475)
+                  )}`}
+                  placeholder="blur"
+                />
+              </div>
+            ))}
+          </Slider>
+        )}
       </div>
 
       <div className={styles.propertyCardBottom}>
         {isOpenInspection && (
           <div className={styles.propertyCardBottomInspection}>
             <p>
-              {homeData.inspectionTimes?.[0]?.days
-                ? `Open for Inspection: ${homeData.inspectionTimes?.[0]?.days}`
+              {homeData.inspectionTimes
+                ? `Open for Inspection: ${homeData.inspectionTimes}`
                 : "FOR SALE"}
             </p>
           </div>
@@ -102,17 +130,19 @@ const PropertyCard = ({
             <p>Build size</p>
             <span>{homeData.buildingSize}sq</span>
           </div>
-          <div className={styles.propertyCardBottomInfoDetail}>
-            <p>Land size</p>
-            <span className={styles.superComp}>
-              {homeData.landSize}m<sup>2</sup>
-            </span>
-          </div>
+          {!isOpenInspection && (
+            <div className={styles.propertyCardBottomInfoDetail}>
+              <p>Land size</p>
+              <span className={styles.superComp}>
+                {homeData.landSize}m<sup>2</sup>
+              </span>
+            </div>
+          )}
         </div>
-        {!isOpenInspection && (
+        {!isOpenInspection && homeData.homeDesign && (
           <p>
-            <b>Home Design:</b>
-            {/* <span>{card.homeDesign}</span> */}
+            <b>Home Design: </b>
+            <span>{homeData.homeDesign}</span>
           </p>
         )}
       </div>

@@ -280,6 +280,7 @@
     .slick-list {
       .slick-track {
         display: flex;
+        align-items: center;
       }
 
       .slick-slide {
@@ -383,20 +384,25 @@
 
 // Gallery modal slider
 .gallery-modal-slider {
-  width: 0;
-  min-width: 100%;
+  position: relative;
 
   .slick-list {
-    padding-left: 15vw;
-    .slick-slide {
-      height: auto;
+    margin: 0 rem(-4);
+    @include breakpoint($large) {
+      padding-left: 15vw;
     }
 
     .slick-track {
       display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-items: stretch;
+    }
+
+    .slick-slide {
+      width: 80vw;
+      padding: 0 rem(4);
+      @include breakpoint($large) {
+        padding: 0 rem(10);
+        width: 60vw;
+      }
     }
   }
 }
@@ -445,4 +451,26 @@
 
 .word-accent-color {
   color: #ffca00;
+}
+
+// Map Popup
+.mapboxgl-popup-content {
+  padding: 0;
+  background-color: transparent;
+
+  .mapboxgl-popup-close-button {
+    width: 24px;
+    height: 24px;
+    top: rem(-10);
+    right: rem(-10);
+    color: $white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $grey;
+    box-shadow: 0 0 rem(12) rgba($primary, 0.25);
+    border-radius: 100%;
+    z-index: 20;
+  }
 }

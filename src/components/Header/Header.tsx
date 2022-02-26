@@ -138,14 +138,14 @@ const Header = ({ navItems }: IHeaderProps) => {
           </div>
 
           <div className={styles.navMenuTop}>
-            <div className={styles.navMenuTopSelect}>
+            {/* <div className={styles.navMenuTopSelect}>
               <span>Build in:</span>
 
               <div className="state-select">
                 <Select options={statesAU} defaultValue={statesAU[0]} />
               </div>
               <span>(change)</span>
-            </div>
+            </div> */}
           </div>
           <div className={styles.navMenuList}>
             <ul className={styles.navMenuListItems} id="nav-list">

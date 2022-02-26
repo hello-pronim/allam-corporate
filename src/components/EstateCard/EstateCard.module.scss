@@ -2,10 +2,24 @@
 @import "@styles/variables";
 
 .estateCard {
-  display: block;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  height: 100%;
   max-width: 100%;
   overflow: hidden;
   @include breakpoint($medium) {
+  }
+
+  &.estateCardSimple {
+    .estateCardTopImage {
+      height: rem(200);
+      min-width: rem(300);
+      @include breakpoint($large) {
+        height: rem(220);
+        min-width: rem(400);
+      }
+    }
   }
 
   &Top {
@@ -38,6 +52,7 @@
   }
 
   &Bottom {
+    flex: 1;
     padding: rem(16);
     background: $white;
     border: rem(1) solid $grey3;
@@ -45,8 +60,9 @@
       border-radius: 0 0 rem(6) rem(6);
     }
 
-    p {
+    h5 {
       font-size: rem(16);
+      text-transform: capitalize;
       @include breakpoint($large) {
         font-size: rem(18);
       }

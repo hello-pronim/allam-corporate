@@ -1,0 +1,171 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.storyTimeline {
+  background-color: $grey2;
+  overflow: hidden;
+
+  &Wrapper {
+    @include grid-container;
+    @include breakpoint($large) {
+      @include grid(1, 12);
+    }
+  }
+
+  &Content {
+    @include breakpoint($large) {
+      grid-column: 1 / span 12;
+      padding: 0 rem(60);
+    }
+    @include breakpoint($xx-large) {
+      grid-column: 2 / span 10;
+    }
+  }
+}
+
+.pdf {
+  position: relative;
+}
+
+.pdfThumb {
+  display: none;
+  @include below($medium) {
+    display: block;
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+.document {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.pageTwo {
+  box-shadow: 0px 0px 10px #eee;
+  width: 100%;
+  margin-top: 30px;
+  // @include breakpoint($medium) {
+  //   width: 49%;
+  //   margin-top: 0px;
+  // }
+}
+
+.page {
+  width: 100%;
+  // @include breakpoint($medium) {
+  //   width: 50%;
+  // }
+
+  :global(canvas) {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .previousHover,
+  .nextHover {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    top: 0;
+    z-index: 2;
+  }
+
+  .previousHover {
+    left: 0;
+  }
+
+  .nextHover {
+    right: 0;
+  }
+
+  .fade {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: $white;
+    transition: opacity 0.4s ease-in-out 0.1s;
+    opacity: 1;
+    z-index: 1;
+
+    &.hide {
+      opacity: 0;
+    }
+  }
+
+  :global(.annotationLayer) {
+    display: none !important;
+  }
+}
+
+.heading {
+  padding: 30px 0 0;
+  margin-bottom: 40px;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.07px;
+  line-height: 28px;
+}
+
+.button {
+  position: absolute;
+  width: rem(32);
+  height: rem(32);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  border-radius: 50%;
+  background-color: $light-grey;
+  transition: background-color 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+
+  @include breakpoint($medium) {
+    display: block;
+  }
+
+  svg {
+    width: rem(7);
+    height: rem(11);
+
+    path {
+      fill: $white;
+    }
+  }
+
+  &.prev {
+    left: rem(-12);
+    @include breakpoint($medium) {
+      left: rem(-60);
+    }
+
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &.next {
+    right: rem(-12);
+    @include breakpoint($medium) {
+      right: rem(-60);
+    }
+  }
+  &.first {
+    right: rem(-12);
+    @include breakpoint($medium) {
+      // right: calc(50% - 50px);
+      right: rem(-60);
+    }
+  }
+
+  &:hover {
+    background-color: $grey;
+  }
+}

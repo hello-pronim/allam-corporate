@@ -98,9 +98,15 @@
     &Logo {
       display: none;
       @include breakpoint($large) {
-        display: block;
-        grid-column: 10 / span 3;
+        display: grid;
+        align-items: center;
         max-width: rem(390);
+        grid-column: 10 / span 3;
+      }
+
+      img {
+        border-radius: rem(6);
+        overflow: hidden;
       }
     }
   }

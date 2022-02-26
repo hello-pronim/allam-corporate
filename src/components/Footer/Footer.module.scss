@@ -59,24 +59,17 @@
         grid-column: 8 / span 4;
       }
 
-      &Review {
-        display: flex;
-        align-items: center;
-        &Icon {
-          &:not(:last-of-type) {
-            padding-right: rem(4);
-          }
-        }
-
-        &Client {
-          margin-top: rem(34);
+      &Mobile {
+        @include breakpoint($large) {
+          display: none;
         }
       }
 
-      p {
-        font-size: rem(18);
-        line-height: rem(28);
-        columns: $grey;
+      &Desktop {
+        display: none;
+        @include breakpoint($large) {
+          display: block;
+        }
       }
     }
   }

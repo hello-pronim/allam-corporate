@@ -1,18 +1,23 @@
+import React from "react";
 import type { NextPage } from "next";
 import get from "lodash/get";
 import { gql } from "@apollo/client";
-import craftAPI from "@libs/api";
 import { useRecoilValue } from "recoil";
+
+import craftAPI from "@libs/api";
 import { PageProps } from "@models";
 import { layoutQuery } from "@libs/queries";
 import { videoModalState } from "@states/atoms/videoModal";
+
 import Layout from "@components/Layout/Layout";
 import TextBlock from "@components/TextBlock/TextBlock";
 import VideoModal from "@components/VideoModal/VideoModal";
 import FullWidthImage from "@components/FullWidthImage/FullWidthImage";
+
 import VideoHero from "@sections/AboutUs/VideoHero/VideoHero";
 import LeadingTimeline from "@sections/AboutUs/LeadingTimeline/LeadingTimeline";
 import TimelineGraph from "@sections/AboutUs/TimelineGraph/TimelineGraph";
+import StoryTimeline from "@sections/AboutUs/StoryTimeline/StoryTimeline";
 
 const RetirementLiving: NextPage<PageProps> = ({ pageData, layoutData }) => {
   const pageLayout = get(pageData, "entry.aboutLayout", []);
@@ -26,7 +31,10 @@ const RetirementLiving: NextPage<PageProps> = ({ pageData, layoutData }) => {
             <VideoHero data={block} />
           )}
           {block.__typename === "aboutLayout_leadingContent_BlockType" && (
-            <LeadingTimeline textContent={block} />
+            <>
+              <LeadingTimeline textContent={block} />
+              <StoryTimeline />
+            </>
           )}
           {block.__typename === "aboutLayout_textBlock_BlockType" && (
             <div style={{ background: "#eef2f5" }}>
@@ -36,6 +44,7 @@ const RetirementLiving: NextPage<PageProps> = ({ pageData, layoutData }) => {
           {block.__typename === "aboutLayout_timelineGraph_BlockType" && (
             <TimelineGraph data={block} />
           )}
+
           {block.__typename === "aboutLayout_fullWidthImage_BlockType" && (
             <FullWidthImage image={block?.titleImage?.[0]?.url} />
           )}

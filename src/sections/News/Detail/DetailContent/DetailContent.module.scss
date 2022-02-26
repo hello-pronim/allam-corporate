@@ -2,54 +2,58 @@
 @import "@styles/variables.scss";
 
 .detailPanel {
+  background-color: $white;
   @include breakpoint($large) {
     background-color: $grey2;
   }
-  @include below($medium) {
-    background-color: $white;
-  }
+
   &Wrapper {
-    display: grid;
+    @include grid-container;
+
     @include breakpoint($large) {
       position: relative;
-      padding-top: rem(280);
-      padding-bottom: rem(80);
-      @include grid-container;
+      padding: rem(80) 0;
       @include grid(1, 12);
-    }
-    .detailHeaderWrapper {
-      display: grid;
-      grid-column: 3 / span 8;
-      position: absolute;
-      width: 100%;
-      transform: translate(-50%, -50%);
-      left: 50%;
-      @include breakpoint($large) {
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: rem(4);
-      }
-      @include below($medium) {
-        display: none;
-      }
     }
 
     .detailBodyWrapper {
+      margin-bottom: rem(32);
       grid-column: 3 / span 8;
       @include breakpoint($large) {
         position: relative;
         @include grid(1, 12);
       }
+
       .socialShareWrapper {
         grid-column: 1 / span 1;
-        @include grid-container;
         @include below($medium) {
           margin-bottom: rem(20);
         }
       }
+
       .detailContentWrapper {
         grid-column: 2 / span 10;
-        @include grid-container;
+
+        figure {
+          margin: rem(24) rem(-16);
+          height: rem(250);
+          @include breakpoint($medium) {
+            margin: rem(24) 0;
+            height: rem(400);
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            @include breakpoint($medium) {
+              border-radius: rem(16);
+              overflow: hidden;
+            }
+          }
+        }
       }
+
       h3 {
         font-size: rem(48);
         line-height: rem(55);
@@ -67,27 +71,14 @@
         @include grid(1, 12);
         grid-row-gap: rem(120);
       }
-      @include below($medium) {
-        @include grid-container;
-      }
-      .detailImages {
-        grid-column: 1 / span 12;
-        display: grid;
-        @include breakpoint($large) {
-          grid-template-columns: 1fr 1fr;
-          grid-column-gap: rem(4);
-        }
-        @include below($medium) {
-          grid-template-rows: 1fr 1fr;
-          grid-row-gap: rem(4);
-        }
-      }
+
       .faqPanel {
         grid-column: 2 / span 10;
       }
     }
   }
 }
+
 .divider {
   border-color: $primary;
   border-style: solid;

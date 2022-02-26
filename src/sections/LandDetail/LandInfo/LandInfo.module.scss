@@ -38,7 +38,7 @@
   }
   &Container {
     padding: rem(80) 0 rem(40);
-    @include breakpoint($medium) {
+    @include breakpoint($large) {
       @include grid(1, 12);
       padding: rem(120) 0;
     }
