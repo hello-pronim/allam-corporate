@@ -97,6 +97,7 @@ export const simpleHomeListQuery = gql`
       ... on homesAndLand_default_Entry {
         slug
         title
+        openForInspection
         landOnly
         estate {
           ... on estates_default_Entry {
