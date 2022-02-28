@@ -18,7 +18,11 @@ export interface IHomesListingProps {
   easyBuyFeature?: any;
 }
 
-const HomesListing = ({ showMap, setShowMap, easyBuyFeature }: IHomesListingProps) => {
+const HomesListing = ({
+  showMap,
+  setShowMap,
+  easyBuyFeature,
+}: IHomesListingProps) => {
   const MAX_ESTATE_COUNT = 30;
   const homesList = useRecoilValue(filteredHomes);
 
@@ -29,8 +33,16 @@ const HomesListing = ({ showMap, setShowMap, easyBuyFeature }: IHomesListingProp
     setIsLoadMore(homesList.length <= MAX_ESTATE_COUNT);
   }, [homesList]);
 
+  const filteredHome: any[] = useMemo(() => {
+    return homesList
+      ? Array.from(homesList).filter(
+          (el: any) => el.landOnly === false && !el.openForInspection
+        )
+      : [];
+  }, [homesList]);
+
   const visibleHomes = useMemo(() => {
-    return isLoadMore ? homesList : homesList.slice(0, MAX_ESTATE_COUNT);
+    return isLoadMore ? filteredHome : filteredHome.slice(0, MAX_ESTATE_COUNT);
   }, [isLoadMore, homesList]);
 
   return (
@@ -38,7 +50,7 @@ const HomesListing = ({ showMap, setShowMap, easyBuyFeature }: IHomesListingProp
       <div className={styles.homesListingWrapper}>
         <SortByOptions
           options={sortHomesKeys}
-          resultCount={homesList.length}
+          resultCount={filteredHome.length}
           showMap={showMap}
           setShowMap={setShowMap}
           setSortKey={setSortKey}
