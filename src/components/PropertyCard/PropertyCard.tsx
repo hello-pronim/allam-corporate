@@ -113,33 +113,46 @@ const PropertyCard = ({
         )}
 
         <h5>{address}</h5>
-        <div className={styles.propertyCardBottomInfo}>
-          <div className={styles.propertyCardBottomInfoDetail}>
-            <Icon type="bed" />
-            <span>{homeData.bedrooms}</span>
+        {homeData.landOnly ? (
+          <div className={styles.propertyCardBottomInfo}>
+            {!isOpenInspection && (
+              <div className={styles.propertyCardBottomInfoDetail}>
+                <p>Land size</p>
+                <span className={styles.superComp}>
+                  {homeData.landSize}m<sup>2</sup>
+                </span>
+              </div>
+            )}
           </div>
-          <div className={styles.propertyCardBottomInfoDetail}>
-            <Icon type="bath" />
-            <span>{homeData.bathrooms}</span>
-          </div>
-          <div className={styles.propertyCardBottomInfoDetail}>
-            <Icon type="car" />
-            <span>{homeData.car}</span>
-          </div>
-          <div className={styles.propertyCardBottomInfoDetail}>
-            <p>Build size</p>
-            <span>{homeData.buildingSize}sq</span>
-          </div>
-          {!isOpenInspection && (
+        ) : (
+          <div className={styles.propertyCardBottomInfo}>
             <div className={styles.propertyCardBottomInfoDetail}>
-              <p>Land size</p>
-              <span className={styles.superComp}>
-                {homeData.landSize}m<sup>2</sup>
-              </span>
+              <Icon type="bed" />
+              <span>{homeData.bedrooms}</span>
             </div>
-          )}
-        </div>
-        {!isOpenInspection && homeData.homeDesign && (
+            <div className={styles.propertyCardBottomInfoDetail}>
+              <Icon type="bath" />
+              <span>{homeData.bathrooms}</span>
+            </div>
+            <div className={styles.propertyCardBottomInfoDetail}>
+              <Icon type="car" />
+              <span>{homeData.car}</span>
+            </div>
+            <div className={styles.propertyCardBottomInfoDetail}>
+              <p>Build size</p>
+              <span>{homeData.buildingSize}sq</span>
+            </div>
+            {!isOpenInspection && (
+              <div className={styles.propertyCardBottomInfoDetail}>
+                <p>Land size</p>
+                <span className={styles.superComp}>
+                  {homeData.landSize}m<sup>2</sup>
+                </span>
+              </div>
+            )}
+          </div>
+        )}
+        {!isOpenInspection && !homeData.landOnly && homeData.homeDesign && (
           <p>
             <b>Home Design: </b>
             <span>{homeData.homeDesign}</span>
