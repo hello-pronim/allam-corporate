@@ -135,6 +135,7 @@ export const fullHomeListQuery = gql`
         bedrooms
         bathrooms
         car
+        storeys
         images {
           url
           title

@@ -68,7 +68,7 @@ export const filteredHomes = selector({
       filters.storeys === "All"
         ? filterBlock
         : filterBlock.filter(
-            (home) => home.car === parseInt(filters?.storeys ?? "1")
+            (home) => home.storeys === filters?.storeys ?? "1"
           );
 
     const filterBeds =

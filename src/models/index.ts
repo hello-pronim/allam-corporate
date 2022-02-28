@@ -207,6 +207,7 @@ export type HomeModel = {
   bedrooms?: number;
   bathrooms?: number;
   car?: number;
+  storeys?: string;
   landSize: number;
   latitude: number;
   longitude: number;
