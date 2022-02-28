@@ -55,7 +55,7 @@ const PerfectEstate = ({ data, estates = [] }: IPerfectEstateProps) => {
           <p>Explore our Estates</p>
 
           <div className={styles.perfectEstateLogosSlider}>
-            {estates.map((estate: any, id: number) => (
+            {estates.slice(0, 8).map((estate: any, id: number) => (
               <div className={styles.perfectEstateSlideImage} key={id}>
                 <Link href={`/find-estate/${estate.slug}`}>
                   <a>
