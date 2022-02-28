@@ -34,7 +34,9 @@ const Hero = ({ data }: IHeroProps) => {
 
           <div className={styles.heroButtonWrapper}>
             {data?.buttons?.[0]?.buttonLink && (
-              <ExternalLink href={data?.buttons?.[0]?.buttonLink}>
+              <ExternalLink
+                href={data?.buttons?.[0]?.buttonLink + "?estate=monteray"}
+              >
                 <ImageButton
                   icon="download-yellow"
                   label={data?.buttons?.[0]?.buttonLabel}
