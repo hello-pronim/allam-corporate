@@ -105,7 +105,7 @@ const Hero = ({ data, slug }: IHeroProps) => {
           <div className={styles.heroContentCTA}>
             <div className={styles.heroContentButtons}>
               <ImageButton
-                href="#"
+                href={`/get-in-touch${slug ? "?estate=" + slug : ""}`}
                 icon="download-yellow"
                 label={
                   data?.openForInspection
