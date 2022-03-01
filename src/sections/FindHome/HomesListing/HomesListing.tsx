@@ -41,9 +41,9 @@ const HomesListing = ({
       : [];
   }, [homesList]);
 
-  const visibleHomes = useMemo(() => {
-    return isLoadMore ? filteredHome : filteredHome.slice(0, MAX_ESTATE_COUNT);
-  }, [isLoadMore, homesList]);
+  // const visibleHomes = useMemo(() => {
+  //   return isLoadMore ? filteredHome : filteredHome.slice(0, MAX_ESTATE_COUNT);
+  // }, [isLoadMore, homesList]);
 
   return (
     <div className={styles.homesListing}>
@@ -59,7 +59,7 @@ const HomesListing = ({
           <div className={styles.homesListingContainer}>
             <div className={styles.homesListingView}>
               <div className={styles.homesListingCards}>
-                {orderBy(visibleHomes, [sortKey], ["asc"])?.map((home, id) => (
+                {orderBy(filteredHome, [sortKey], ["asc"])?.map((home, id) => (
                   <Link href={`/find-home/${home.slug}`} key={id}>
                     <a>
                       <PropertyCard key={id} homeData={home} />
@@ -68,7 +68,7 @@ const HomesListing = ({
                 ))}
                 <EasyBuyPurchase data={easyBuyFeature} />
               </div>
-
+              {/* 
               {!isLoadMore && (
                 <div className={styles.homesListingViewCTA}>
                   <Button
@@ -79,7 +79,7 @@ const HomesListing = ({
                     Load more
                   </Button>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         )}
