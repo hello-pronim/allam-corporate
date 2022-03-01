@@ -26,7 +26,7 @@
     display: none;
     @include breakpoint($medium) {
       display: grid;
-      @include grid(2, 3);
+      @include grid(3, 4);
       gap: rem(64);
     }
     @include breakpoint($large) {
