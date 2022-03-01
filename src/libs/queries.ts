@@ -216,6 +216,26 @@ export const trustQuery = gql`
   }
 `;
 
+export const retirementTrustQuery = gql`
+  query retirementTrustMarkers {
+    globalSet(handle: "retirementTrustMarkers") {
+      ... on retirementTrustMarkers_GlobalSet {
+        trustFeature {
+          ... on trustFeature_feature_BlockType {
+            heading
+            subHeading
+            icon {
+              url
+              width
+              height
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const allamAdvQuery = gql`
   query allamAdvantages {
     globalSet(handle: "allamAdvantages") {
