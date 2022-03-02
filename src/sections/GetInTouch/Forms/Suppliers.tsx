@@ -34,50 +34,62 @@ const Suppliers = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  const onSubmit = (data: any) => console.log(data);
   return (
-    <form className={classNames(styles.Form)}>
+    <form className={classNames(styles.Form)} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.formRow}>
         <div className={styles.formCol}>
           <Input
+            className={`${styles.formControl} ${
+              errors["FirstName"] ? styles.hasError : ""
+            }`}
             type="text"
-            name="firstname"
-            className={styles.formControl}
+            name="FirstName"
             placeholder="First Name"
             register={register}
+            validation={{ required: true }}
           />
           <Input
+            className={`${styles.formControl} ${
+              errors["LastName"] ? styles.hasError : ""
+            }`}
             type="text"
-            name="lastname"
-            className={styles.formControl}
+            name="LastName"
             placeholder="Last Name"
             register={register}
+            validation={{ required: true }}
           />
           <Input
+            className={`${styles.formControl} ${
+              errors["Email"] ? styles.hasError : ""
+            }`}
             type="email"
-            name="email"
-            className={styles.formControl}
+            name="Email"
             placeholder="Email"
             register={register}
+            validation={{ required: true }}
           />
           <Input
-            type="text"
-            name="phone"
-            className={styles.formControl}
+            className={`${styles.formControl} ${
+              errors["Phone"] ? styles.hasError : ""
+            }`}
+            type="tel"
+            name="Phone"
             placeholder="Contact Number"
             register={register}
+            validation={{ required: true, minLength: 6, maxLength: 12 }}
           />
           <Input
-            type="text"
-            name="postcode"
             className={styles.formControl}
+            type="text"
+            name="PostCode"
             placeholder="Postcode"
             register={register}
           />
           <Textarea
-            rows={3}
+            rows={4}
             className={styles.formControl}
-            name="comment"
+            name="Comment"
             placeholder="Comment"
             register={register}
           />
@@ -101,10 +113,15 @@ const Suppliers = () => {
           </div>
           <div>
             <h6>How big is your company?</h6>
+
             <RadioButtons
-              className={styles.formControl}
-              name="employees"
+              className={`${styles.formControl} ${
+                errors["pba__BuyingTimeFrame_pb__c"] ? styles.hasError : ""
+              }`}
+              name="pba__BuyingTimeFrame_pb__c"
               data={radioButtonsData}
+              register={register}
+              validation={{ required: true }}
             />
           </div>
         </div>
@@ -115,7 +132,7 @@ const Suppliers = () => {
             Note: By submitting this form you agree to Allam’s Terms and
             Conditions and Allam may contact you via email, phone or SMS.
           </p>
-          <Button className={styles.formControl} color="dark">
+          <Button className={styles.formControl} color="dark" type="submit">
             Submit
           </Button>
         </div>
