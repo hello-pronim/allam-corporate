@@ -89,7 +89,7 @@ const HomeInfo = ({
                   {featuresInclusion.featuredInclusions ?? ""}
                 </Redactor>
 
-                {featuresInclusion.fullInclusionTable.length > 0 && (
+                {featuresInclusion.fullInclusionTable.length ? (
                   <div className={styles.homeInfoContentInclusionsFull}>
                     <p onClick={() => setShowAll(!isShowAll)}>
                       <u>View {isShowAll ? "less" : "more"}</u>
@@ -123,7 +123,7 @@ const HomeInfo = ({
                       </div>
                     )}
                   </div>
-                )}
+                ) : null}
               </div>
             )}
 

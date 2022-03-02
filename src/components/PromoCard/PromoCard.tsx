@@ -41,7 +41,7 @@ const PromoCard = ({
       } ${variant === "side" ? styles.cardSide : ""}`}
       style={{
         backgroundImage: `url(${cardBackground})`,
-        color: `${offer.textColor ? offer.textColor : "#fff"}`,
+        color: `${offer?.textColor ? offer.textColor : "#fff"}`,
       }}
     >
       <div className={styles.cardHeader}>
