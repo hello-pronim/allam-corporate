@@ -6,6 +6,7 @@ export const simpleEstatesQuery = gql`
       ... on estates_default_Entry {
         slug
         title
+        estateId
         logo {
           title
           url

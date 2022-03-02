@@ -87,7 +87,7 @@ const Buying = ({
 
   estateList.estateList.entries.map((estate: any) => {
     let obj = {} as EstateObj;
-    obj.value = estate.slug;
+    obj.value = estate.estateId;
     obj.text = estate.title;
     estates.push(obj);
   });
@@ -98,8 +98,32 @@ const Buying = ({
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data: any) => console.log(data);
-  console.log(errors)
+  const onSubmit = (data: any) => {
+    const formData = {
+      prospect: {
+        token: "2ad3f48ddddb3a6efb36ed7e7cfad6660atrf",
+        contact: {
+            "FirstName": data.FirstName,
+            "LastName": data.LastName,
+            "Email": data.Email,
+            "Phone": data.Phone,
+            "MailingPostalCode": data.PostCode,
+            "LeadSource": "Web - Website"
+        },
+        request: {
+            "Project_of_Interest__c": data.Project_of_Interest__c,
+            "New_Enquiry_Schedule__c": data.New_Enquiry_Schedule__c,
+            "Capture_Point__c": "Website",
+            "Enquiry_Source__c": "Project Website",
+            "Mailing_List__c": "Yes",
+            "pba_ausfields__Enquiry_URL__c": "https://corporatewebsite.vercel.app/get-in-touch",
+            "pba__BuyingTimeFrame_pb__c" : data.pba__BuyingTimeFrame_pb__c,
+            "Buyer_Profile__c": data.Buyer_Profile__c,
+            "pba_ausfields__Web_Comments__c": data.pba_ausfields__Web_Comments__c,
+        }
+      }
+    };
+  }
 
   return (
     <form className={classNames(styles.Form)} onSubmit={handleSubmit(onSubmit)}>
@@ -147,7 +171,7 @@ const Buying = ({
           <Textarea
             rows={4}
             className={styles.formControl}
-            name="Comment"
+            name="pba_ausfields__Web_Comments__c"
             placeholder="Comment"
             register={register}
           />
