@@ -71,7 +71,9 @@ const FindEstateDetail: NextPage<any> = ({
     return homeList
       ? Array.from(homeList?.entries).filter(
           (home: any) =>
-            home?.estate[0].title === title && !home.openForInspection
+            home?.estate[0].title === title &&
+            !home.openForInspection &&
+            home.sellingLabel.toLowerCase() !== "under offer"
         )
       : [];
   }, [title, homeList]);
