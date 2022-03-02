@@ -87,11 +87,10 @@ const Maintenance = ({ handleOnSubmit }: GeneralEnquiryProps) => {
       </div>
       <div className={styles.formRow}>
         <div className={styles.formCol}>
-          <Checkbox
-            className={styles.formControl}
-            name="terms"
-            text="By clicking submit you acknowledge Allam may contact you via email, phone or SMS and you agree to their Terms and Conditions"
-          />
+          <p className={styles.formControl}>
+            Note: By submitting this form you agree to Allam’s Terms and
+            Conditions and Allam may contact you via email, phone or SMS.
+          </p>
           <Button className={styles.formControl} color="dark">
             Submit
           </Button>

@@ -36,7 +36,7 @@ const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
   return (
     <div>
       <Layout layoutData={layoutData}>
-        <Hero data={home?.entry} />
+        <Hero data={home?.entry} slug={estateInfo.slug} />
         <BannerGallery
           images={bannerImages}
           videos={videos}
@@ -90,6 +90,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
           estate {
             ... on estates_default_Entry {
               title
+              slug
               salesCentre {
                 ... on locations_default_Entry {
                   phoneNumber

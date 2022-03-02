@@ -68,16 +68,10 @@ const GeneralEnquiry = () => {
             placeholder="Postcode"
             register={register}
           />
-          <Checkbox
-            className={styles.formControl}
-            name="terms"
-            text="By clicking submit you acknowledge Allam may contact you via email, phone or SMS and you agree to their Terms and Conditions"
-          />
-          <Checkbox
-            className={styles.formControl}
-            name="terms"
-            text="Would you like to receive updates and offers from Allam Property Group?"
-          />
+          <p className={styles.formControl}>
+            Note: By submitting this form you agree to Allam’s Terms and
+            Conditions and Allam may contact you via email, phone or SMS.
+          </p>
           <Button className={styles.formControl} color="dark">
             Submit
           </Button>

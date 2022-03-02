@@ -14,7 +14,6 @@ type IHeroProps = {
 
 const Hero = ({ data, slug }: IHeroProps) => {
   const router = useRouter();
-
   return (
     <div className={styles.hero}>
       <div className={styles.heroWrapper}>
@@ -105,7 +104,9 @@ const Hero = ({ data, slug }: IHeroProps) => {
           <div className={styles.heroContentCTA}>
             <div className={styles.heroContentButtons}>
               <ImageButton
-                href={`/get-in-touch${slug ? "?estate=" + slug : ""}`}
+                href={`/get-in-touch${slug ? "?estate=" + slug : ""}${
+                  data?.openForInspection ? "&inspection=true" : ""
+                }`}
                 icon="download-yellow"
                 label={
                   data?.openForInspection

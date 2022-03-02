@@ -14,6 +14,7 @@ const Contact = (estateList: any) => {
   const [formTypeIndex, setFormTypeIndex] = useState(0);
   const router = useRouter();
   const [selectedEstate, setSelectedEstate] = useState("");
+  const [inspection, setInspection] = useState(false);
 
   const [windowDimensions, setWindowDimensions] = useState({
     width: 0,
@@ -42,6 +43,10 @@ const Contact = (estateList: any) => {
       router.query.estate ? "I'm interested in buying" : "General enquiry"
     );
   }, [router.query.estate]);
+
+  useEffect(() => {
+    setInspection(true);
+  }, [router.query.inspection]);
 
   const setActiveForm = (entry: any) => {
     setFormType(entry.target.value);
@@ -123,6 +128,7 @@ const Contact = (estateList: any) => {
             <ActiveForm
               estateList={estateList}
               selectedEstate={selectedEstate}
+              inspection={inspection}
               handleOnSubmit={handleOnSubmit}
             />
           }
