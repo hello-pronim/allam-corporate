@@ -83,9 +83,9 @@ const RetirementLiving: NextPage<OverViewPageProps> = ({
       <CostAndFee
         data={propsFind(pageLayout, "retirementLayout_feeCovers_BlockType")}
       />
-      <RegisterPanel
+      {/* <RegisterPanel
         data={propsFind(globalPromos, "globalPromos_estateRegister_BlockType")}
-      />
+      /> */}
     </Layout>
   ) : null;
 };
