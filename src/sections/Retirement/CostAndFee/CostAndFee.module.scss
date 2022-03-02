@@ -1,11 +1,14 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
+.costAndFee {
+  @include grid-container;
+}
+
 .ContentWithImage {
   position: relative;
   background: $grey2;
   padding: rem(60) 0;
-  @include grid-container;
   @include breakpoint($large) {
     @include grid(1, 12);
     align-items: center;
