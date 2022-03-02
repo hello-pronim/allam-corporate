@@ -38,6 +38,7 @@ const RetirementLiving: NextPage<OverViewPageProps> = ({
     "globalSet.trustFeature",
     []
   );
+  console.log(pageLayout);
   const fullImageLayout = propsFind(
     pageLayout,
     "retirementLayout_fullImage_BlockType"
@@ -75,17 +76,21 @@ const RetirementLiving: NextPage<OverViewPageProps> = ({
           homes={filteredHomes}
         />
       )}
-      {filteredNews.length !== 0 && <RelatedNews news={filteredNews} />}
+      {filteredNews.length ? <RelatedNews news={filteredNews} /> : null}
       <FullWidthImage image={fullImageLayout?.backgroundImage?.[0].url} />
-      <MasterPlan
-        data={propsFind(pageLayout, "retirementLayout_masterPlan_BlockType")}
-      />
-      <CostAndFee
-        data={propsFind(pageLayout, "retirementLayout_feeCovers_BlockType")}
-      />
-      <RegisterPanel
+      {propsFind(pageLayout, "retirementLayout_masterPlan_BlockType") ? (
+        <MasterPlan
+          data={propsFind(pageLayout, "retirementLayout_masterPlan_BlockType")}
+        />
+      ) : null}
+      {propsFind(pageLayout, "retirementLayout_feeCovers_BlockType") ? (
+        <CostAndFee
+          data={propsFind(pageLayout, "retirementLayout_feeCovers_BlockType")}
+        />
+      ) : null}
+      {/* <RegisterPanel
         data={propsFind(globalPromos, "globalPromos_estateRegister_BlockType")}
-      />
+      /> */}
     </Layout>
   ) : null;
 };

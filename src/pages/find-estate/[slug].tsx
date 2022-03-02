@@ -101,17 +101,17 @@ const FindEstateDetail: NextPage<any> = ({
           salesCentre={salesCentre}
           documents={documents}
         />
-        {filteredHomes.length !== 0 && (
+        {filteredHomes.length ? (
           <Element name="estateProperties">
             <HomeList title={title} filteredHomes={filteredHomes} />
           </Element>
-        )}
-        {masterPlan && (
+        ) : null}
+        {masterPlan ? (
           <MasterPlan
             masterPlanImage={masterPlan}
             masterplanDownload={masterplanDownload}
           />
-        )}
+        ) : null}
         <Deposit />
         {filteredNews.length !== 0 && <NewsList news={filteredNews} />}
         {neighborhood && (
@@ -123,7 +123,7 @@ const FindEstateDetail: NextPage<any> = ({
           latitude={Number(latitude)}
           longitude={Number(longitude)}
         />
-        <SignUpEstate />
+        {/* <SignUpEstate /> */}
       </Layout>
       <EstateStickyBar title={title} suburb={suburb} />
     </div>
