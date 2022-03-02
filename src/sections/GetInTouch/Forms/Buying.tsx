@@ -131,11 +131,11 @@ const Buying = ({
           />
           <Input
             className={`${styles.formControl} ${errors['Phone'] ? styles.hasError : ''}`}
-            type="text"
+            type="tel"
             name="Phone"
             placeholder="Contact Number"
             register={register}
-            validation={{ required: true }}
+            validation={{ required: true, minLength: 6, maxLength: 12 }}
           />
           <Input
             className={styles.formControl}
