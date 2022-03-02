@@ -38,7 +38,6 @@ const RetirementLiving: NextPage<OverViewPageProps> = ({
     "globalSet.trustFeature",
     []
   );
-  console.log(pageLayout);
   const fullImageLayout = propsFind(
     pageLayout,
     "retirementLayout_fullImage_BlockType"

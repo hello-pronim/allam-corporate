@@ -82,6 +82,7 @@ const GeneralEnquiry = () => {
             className={styles.formControl}
             name="comment"
             placeholder="Comment"
+            register={register}
           />
         </div>
       </div>
