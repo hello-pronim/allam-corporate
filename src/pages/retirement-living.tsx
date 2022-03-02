@@ -11,6 +11,7 @@ import {
   layoutQuery,
   simpleNewsQuery,
   retirementTrustQuery,
+  fullEstatesQuery,
 } from "@libs/queries";
 
 import Layout from "@components/Layout/Layout";
@@ -22,6 +23,7 @@ import CostAndFee from "@sections/Retirement/CostAndFee/CostAndFee";
 import MasterPlan from "@sections/Retirement/MasterPlan/MasterPlan";
 import RelatedNews from "@sections/Retirement/RelatedNews/RelatedNews";
 import LeadingHomes from "@sections/Retirement/LeadingHomes/LeadingHomes";
+import RetirementEstates from "@sections/Retirement/Estates/Estates";
 
 const RetirementLiving: NextPage<OverViewPageProps> = ({
   pageData,
@@ -29,6 +31,7 @@ const RetirementLiving: NextPage<OverViewPageProps> = ({
   layoutData,
   newsList,
   homesList,
+  estateList,
 }) => {
   const ESTATE_TITLE = "Monterey";
   const pageLayout = get(pageData, "entry.retirementLayout", []);
@@ -38,11 +41,27 @@ const RetirementLiving: NextPage<OverViewPageProps> = ({
     "globalSet.trustFeature",
     []
   );
-  console.log(pageLayout);
   const fullImageLayout = propsFind(
     pageLayout,
     "retirementLayout_fullImage_BlockType"
   );
+
+  const filteredEstates: any[] = useMemo(() => {
+    return estateList
+      ? Array.from(estateList?.entries).filter(
+          (estate: any) => estate.retirementLiving === "yes"
+        )
+      : [];
+  }, [estateList]);
+
+  const filteredHomes: any[] = useMemo(() => {
+    return homesList
+      ? Array.from(homesList?.entries).filter(
+          (home: any) =>
+            home?.estate[0].title === ESTATE_TITLE && home?.landOnly === false
+        )
+      : [];
+  }, [homesList]);
 
   const filteredNews: any[] = useMemo(() => {
     return newsList
@@ -53,15 +72,6 @@ const RetirementLiving: NextPage<OverViewPageProps> = ({
         )
       : [];
   }, [newsList]);
-
-  const filteredHomes: any[] = useMemo(() => {
-    return homesList
-      ? Array.from(homesList?.entries).filter(
-          (home: any) =>
-            home?.estate[0].title === ESTATE_TITLE && home?.landOnly === false
-        )
-      : [];
-  }, [homesList]);
 
   return pageData ? (
     <Layout layoutData={layoutData}>
@@ -78,6 +88,10 @@ const RetirementLiving: NextPage<OverViewPageProps> = ({
       )}
       {filteredNews.length ? <RelatedNews news={filteredNews} /> : null}
       <FullWidthImage image={fullImageLayout?.backgroundImage?.[0].url} />
+      {filteredEstates.length ? (
+        <RetirementEstates estates={filteredEstates} />
+      ) : null}
+
       {propsFind(pageLayout, "retirementLayout_masterPlan_BlockType") ? (
         <MasterPlan
           data={propsFind(pageLayout, "retirementLayout_masterPlan_BlockType")}
@@ -182,6 +196,7 @@ export const getStaticProps = async function () {
   const layoutData = await craftAPI(layoutQuery);
   const newsList = await craftAPI(simpleNewsQuery);
   const homesList = await craftAPI(fullHomeListQuery);
+  const estateList = await craftAPI(fullEstatesQuery);
 
   return {
     props: {
@@ -190,6 +205,7 @@ export const getStaticProps = async function () {
       layoutData,
       newsList,
       homesList,
+      estateList,
     },
     revalidate: 60,
   };

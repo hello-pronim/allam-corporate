@@ -1,0 +1,44 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.retirementEstates {
+  background-color: $grey2;
+  padding: rem(66) 0;
+  @include breakpoint($large) {
+    padding: rem(90) 0;
+  }
+
+  &Wrapper {
+    position: relative;
+  }
+
+  &Property {
+    &CTA {
+      @include grid-container;
+      margin-top: rem(68);
+      @include breakpoint($medium) {
+        margin-top: rem(52);
+        @include grid(1, 12);
+      }
+
+      button {
+        width: 100%;
+
+        @include breakpoint($medium) {
+          width: auto;
+        }
+      }
+
+      &Wrapper {
+        @include breakpoint($large) {
+          @include breakpoint($large) {
+            grid-column: 1 / span 12;
+          }
+          @include breakpoint($xx-large) {
+            grid-column: 2 / span 10;
+          }
+        }
+      }
+    }
+  }
+}

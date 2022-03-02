@@ -7,6 +7,7 @@ export type OverViewPageProps = {
   easyBuy?: any;
   layoutData?: any;
   homesList?: any;
+  estateList?: any;
   easyBuyFeature?: any;
 };
 
