@@ -26,7 +26,7 @@ const LandDetail: NextPage<any> = ({ land, layoutData }) => {
   return (
     <div>
       <Layout layoutData={layoutData}>
-        <Hero title={title} landSize={landSize} sellingLabel={sellingLabel} />
+        <Hero title={title} landSize={landSize} sellingLabel={sellingLabel} estateId={estateInfo.estateId} />
         <BannerImage image={bannerImage} />
         <LandInfo
           introBlurb={introBlurb}
@@ -36,7 +36,7 @@ const LandDetail: NextPage<any> = ({ land, layoutData }) => {
         />
         <RegisterPanel data={landRegisterData} />
       </Layout>
-      <StickyBar title={title} />
+      <StickyBar title={title} estateId={estateInfo.estateId} />
     </div>
   );
 };
@@ -56,6 +56,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
           estate {
             ... on estates_default_Entry {
               title
+              estateId
               salesCentre {
                 ... on locations_default_Entry {
                   title

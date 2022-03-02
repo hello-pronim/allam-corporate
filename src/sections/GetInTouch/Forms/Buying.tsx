@@ -21,11 +21,13 @@ const Buying = ({
   selectedEstate,
   estateList,
   inspection,
+  crmId,
   handleOnSubmit,
 }: {
   estateList: any;
-  selectedEstate: string;
+  selectedEstate?: string;
   inspection?: boolean;
+  crmId?: string;
   handleOnSubmit: () => void;
 }) => {
   const radioButtonsData = [
@@ -79,11 +81,14 @@ const Buying = ({
   ];
 
   const [appointmentOptionvalue, setAppointmentOptionvalue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [response, setResponse] = useState(false);
+
   useEffect(() => {
     if (inspection) {
-      setAppointmentOptionvalue("Yes");
+      setAppointmentOptionvalue("Yes")
     }
-  }, [inspection]);
+  }, [inspection])
 
   estateList.estateList.entries.map((estate: any) => {
     let obj = {} as EstateObj;
@@ -99,34 +104,57 @@ const Buying = ({
   } = useForm();
 
   const onSubmit = (data: any) => {
+    setIsLoading(true);
     const formData = {
       prospect: {
         token: "2ad3f48ddddb3a6efb36ed7e7cfad6660atrf",
         contact: {
-            "FirstName": data.FirstName,
-            "LastName": data.LastName,
-            "Email": data.Email,
-            "Phone": data.Phone,
-            "MailingPostalCode": data.PostCode,
-            "LeadSource": "Web - Website"
+          "FirstName": data.FirstName,
+          "LastName": data.LastName,
+          "Email": data.Email,
+          "Phone": data.Phone,
+          "MailingPostalCode": data.PostCode,
+          "LeadSource": "Web - Website"
         },
         request: {
-            "Project_of_Interest__c": data.Project_of_Interest__c,
-            "New_Enquiry_Schedule__c": data.New_Enquiry_Schedule__c,
-            "Capture_Point__c": "Website",
-            "Enquiry_Source__c": "Project Website",
-            "Mailing_List__c": "Yes",
-            "pba_ausfields__Enquiry_URL__c": "https://corporatewebsite.vercel.app/get-in-touch",
-            "pba__BuyingTimeFrame_pb__c" : data.pba__BuyingTimeFrame_pb__c,
-            "Buyer_Profile__c": data.Buyer_Profile__c,
-            "pba_ausfields__Web_Comments__c": data.pba_ausfields__Web_Comments__c,
+          "Project_of_Interest__c": data.Project_of_Interest__c,
+          "New_Enquiry_Schedule__c": crmId ? crmId : "",
+          "Capture_Point__c": "Website",
+          "Enquiry_Source__c": "Project Website",
+          "Mailing_List__c": "Yes",
+          "pba_ausfields__Enquiry_URL__c": "https://corporatewebsite.vercel.app/get-in-touch",
+          "pba__BuyingTimeFrame_pb__c": data.pba__BuyingTimeFrame_pb__c,
+          "Buyer_Profile__c": data.Buyer_Profile__c,
+          "pba_ausfields__Web_Comments__c": data.pba_ausfields__Web_Comments__c,
+          "Appointment_Preferred_Day__c": data.Appointment_Preferred_Day__c && data.Appointment_Preferred_Day__c.length ? data.Appointment_Preferred_Day__c.join() : "",
+          "Appointment_Preferred_Time__c": data.Appointment_Preferred_Time__c && data.Appointment_Preferred_Time__c.length ? data.Appointment_Preferred_Time__c.join() : ""
         }
       }
     };
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    }
+    fetch('https://allam.secure.force.com/services/apexrest/pba/webtoprospect/v1/', requestOptions).then(() => {
+      setIsLoading(false);
+      setResponse(true);
+    }).catch((e) => {
+      setIsLoading(false);
+      setResponse(true);
+    })
   }
 
   return (
     <form className={classNames(styles.Form)} onSubmit={handleSubmit(onSubmit)}>
+      {response &&
+        <h5>
+          Thank you for submitting your request. We will aim to get back to you in the next 2 - 3 business days (if not sooner).
+        </h5>
+      }
       <div className={styles.formRow}>
         <div className={styles.formCol}>
           <Input
@@ -189,6 +217,7 @@ const Buying = ({
           </div>
           <div>
             <Select
+              value={selectedEstate}
               className={`${styles.formControl} ${errors['Project_of_Interest__c'] ? styles.hasError : ''}`}
               name="Project_of_Interest__c"
               placeholder="What estate are you interested in?"
@@ -205,25 +234,27 @@ const Buying = ({
               validation={{ required: true }}
             />
             <Select
+              onChange={(e) => setAppointmentOptionvalue(e.target.value)}
+              value={inspection ? "Yes" : ""}
               className={styles.formControl}
               name="Appointment_Request__c"
               placeholder="Do you want to make an appointment"
               options={appointmentOptions}
-              value={appointmentOptionvalue}
               register={register}
-              onChange={(e) => setAppointmentOptionvalue(e.target.value)}
             />
           </div>
           {appointmentOptionvalue === "Yes" ? (
             <div>
               <h6>Choose a preferred time</h6>
               <CheckboxButtons
+                register={register}
                 name="Appointment_Preferred_Day__c"
                 className={styles.formControl}
                 data={checkboxButtonsData1}
               />
               <h6>and</h6>
               <CheckboxButtons
+                register={register}
                 name="Appointment_Preferred_Time__c"
                 className={styles.formControl}
                 data={checkboxButtonsData2}
@@ -241,7 +272,7 @@ const Buying = ({
             Conditions and Allam may contact you via email, phone or SMS.
           </p>
           <Button className={styles.formControl} color="dark" type="submit">
-            Submit
+            {isLoading ? 'Loading...' : 'Submit'}
           </Button>
         </div>
       </div>

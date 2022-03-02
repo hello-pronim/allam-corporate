@@ -11,9 +11,10 @@ type IHeroProps = {
   landSize: number;
   sellingLabel: string;
   logo?: CraftImage[];
+  estateId?: string;
 };
 
-const Hero = ({ title, landSize, sellingLabel }: IHeroProps) => {
+const Hero = ({ title, landSize, sellingLabel, estateId }: IHeroProps) => {
   const router = useRouter();
 
   return (
@@ -54,14 +55,14 @@ const Hero = ({ title, landSize, sellingLabel }: IHeroProps) => {
           <div className={styles.heroContentCTA}>
             <div className={styles.heroContentButtons}>
               <ImageButton
-                href="#"
+                href={`/get-in-touch${estateId ? "?estate=" + estateId : ""}`}
                 icon="download-yellow"
                 label="Click for Price"
                 chevron={true}
                 labelSpacingLeft={8}
                 labelSpacingRight={16}
               />
-              <Button href="/get-in-touch" rounded>
+              <Button href={`/get-in-touch${estateId ? "?estate=" + estateId : ""}`} rounded>
                 Contact Agent
               </Button>
             </div>

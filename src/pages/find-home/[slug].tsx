@@ -18,6 +18,7 @@ import BannerGallery from "@sections/HomeDetail/BannerGallery/BannerGallery";
 
 const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
   const title = get(home, "entry.title", "");
+  const crmId = get(home, "entry.crmId", "");
   const estateInfo = get(home, "entry.estate[0]", "");
   const bannerImages = get(home, "entry.images", []);
   const introBlurb = get(home, "entry.introBlurb", "");
@@ -36,7 +37,7 @@ const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
   return (
     <div>
       <Layout layoutData={layoutData}>
-        <Hero data={home?.entry} slug={estateInfo.slug} />
+        <Hero data={home?.entry} estateId={estateInfo.estateId} crmId={crmId} />
         <BannerGallery
           images={bannerImages}
           videos={videos}
@@ -53,7 +54,7 @@ const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
         />
         <RegisterPanel data={landRegisterData} />
       </Layout>
-      <StickyBar title={title} slug={estateInfo.slug} />
+      <StickyBar title={title} estateId={estateInfo.estateId} crmId={crmId} />
     </div>
   );
 };
@@ -67,6 +68,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
       entry(section: "homesAndLand", slug: $slug) {
         ... on homesAndLand_default_Entry {
           title
+          crmId
           suburb
           lotNumber
           address
@@ -90,7 +92,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
           estate {
             ... on estates_default_Entry {
               title
-              slug
+              estateId
               salesCentre {
                 ... on locations_default_Entry {
                   phoneNumber

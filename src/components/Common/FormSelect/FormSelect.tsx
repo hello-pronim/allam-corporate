@@ -32,7 +32,7 @@ const FormSelect = ({
 
   const optionsUI = options?.map((option, index) => {
     return (
-      <option key={index} value={option.value}>
+      <option key={index} value={option.value} selected={value === option.value ? true : false}>
         {option.text}
       </option>
     );
@@ -40,6 +40,7 @@ const FormSelect = ({
 
   return (
     <select
+      onInput={onChange}
       {...register(name, validation)}
       className={`${styles.dropdown} ${className}`}
     >
