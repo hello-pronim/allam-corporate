@@ -79,6 +79,7 @@ const Suppliers = () => {
             className={styles.formControl}
             name="comment"
             placeholder="Comment"
+            register={register}
           />
         </div>
         <div className={styles.formCol}>
@@ -88,12 +89,14 @@ const Suppliers = () => {
               name="serviceType"
               placeholder="What type of services do you provide?"
               options={serviceTypes}
+              register={register}
             />
             <Select
               className={styles.formControl}
               name="workingArea"
               placeholder="What area are you interested in working from?"
               options={workingAreas}
+              register={register}
             />
           </div>
           <div>

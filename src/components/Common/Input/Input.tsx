@@ -2,7 +2,7 @@ import React from "react";
 import { FieldValues, UseFormRegister } from "react-hook-form";
 import styles from "./Input.module.scss";
 
-type InputProps = {
+export interface InputProps {
   className?: string;
   type: string;
   name?: string;

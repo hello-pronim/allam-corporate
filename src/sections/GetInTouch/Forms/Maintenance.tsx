@@ -81,6 +81,7 @@ const Maintenance = ({ handleOnSubmit }: GeneralEnquiryProps) => {
               className={styles.formControl}
               name="comment"
               placeholder="Comment"
+              register={register}
             />
           </div>
         </div>
