@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import classnames from "classnames/bind";
+
 import { AmenityCategoryModel, AmenityModel, NeighborhoodModel } from "@models";
 import NeighborhoodMap from "@components/NeighborhoodMap/NeighborhoodMap";
+
 import styles from "./Neighborhood.module.scss";
 
 type NeighborhoodProps = {
@@ -27,8 +29,8 @@ const Neighborhood = ({
   }, [amenities]);
 
   useEffect(() => {
-    SetSelectedCategory(selectedCategory);
-  }, [selectedCategory]);
+    SetSelectedCategory(categoryList?.[0].title);
+  }, [categoryList]);
 
   const getFilteredAmenity = useCallback(
     (key) => {
