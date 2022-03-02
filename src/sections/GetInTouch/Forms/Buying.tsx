@@ -149,134 +149,136 @@ const Buying = ({
   }
 
   return (
-    <form className={classNames(styles.Form)} onSubmit={handleSubmit(onSubmit)}>
-      {response &&
-        <h5>
+    <div>
+      {!response ?
+        (<form className={classNames(styles.Form)} onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.formRow}>
+            <div className={styles.formCol}>
+              <Input
+                className={`${styles.formControl} ${errors['FirstName'] ? styles.hasError : ''}`}
+                type="text"
+                name="FirstName"
+                placeholder="First Name"
+                register={register}
+                validation={{ required: true }}
+              />
+              <Input
+                className={`${styles.formControl} ${errors['LastName'] ? styles.hasError : ''}`}
+                type="text"
+                name="LastName"
+                placeholder="Last Name"
+                register={register}
+                validation={{ required: true }}
+              />
+              <Input
+                className={`${styles.formControl} ${errors['Email'] ? styles.hasError : ''}`}
+                type="email"
+                name="Email"
+                placeholder="Email"
+                register={register}
+                validation={{ required: true }}
+              />
+              <Input
+                className={`${styles.formControl} ${errors['Phone'] ? styles.hasError : ''}`}
+                type="tel"
+                name="Phone"
+                placeholder="Contact Number"
+                register={register}
+                validation={{ required: true, minLength: 6, maxLength: 12 }}
+              />
+              <Input
+                className={styles.formControl}
+                type="text"
+                name="PostCode"
+                placeholder="Postcode"
+                register={register}
+              />
+              <Textarea
+                rows={4}
+                className={styles.formControl}
+                name="pba_ausfields__Web_Comments__c"
+                placeholder="Comment"
+                register={register}
+              />
+            </div>
+            <div className={styles.formCol}>
+              <div>
+                <h6>I’m looking to buy in the next?</h6>
+                <RadioButtons
+                  className={`${styles.formControl} ${errors['pba__BuyingTimeFrame_pb__c'] ? styles.hasError : ''}`}
+                  name="pba__BuyingTimeFrame_pb__c"
+                  data={radioButtonsData}
+                  register={register}
+                  validation={{ required: true }}
+                />
+              </div>
+              <div>
+                <Select
+                  value={selectedEstate}
+                  className={`${styles.formControl} ${errors['Project_of_Interest__c'] ? styles.hasError : ''}`}
+                  name="Project_of_Interest__c"
+                  placeholder="What estate are you interested in?"
+                  options={estates}
+                  register={register}
+                  validation={{ required: true }}
+                />
+                <Select
+                  className={`${styles.formControl} ${errors['Buyer_Profile__c'] ? styles.hasError : ''}`}
+                  name="Buyer_Profile__c"
+                  placeholder="What type of buyer are you?"
+                  options={buyerTypes}
+                  register={register}
+                  validation={{ required: true }}
+                />
+                <Select
+                  onChange={(e) => setAppointmentOptionvalue(e.target.value)}
+                  value={inspection ? "Yes" : ""}
+                  className={styles.formControl}
+                  name="Appointment_Request__c"
+                  placeholder="Do you want to make an appointment"
+                  options={appointmentOptions}
+                  register={register}
+                />
+              </div>
+              {appointmentOptionvalue === "Yes" ? (
+                <div>
+                  <h6>Choose a preferred time</h6>
+                  <CheckboxButtons
+                    register={register}
+                    name="Appointment_Preferred_Day__c"
+                    className={styles.formControl}
+                    data={checkboxButtonsData1}
+                  />
+                  <h6>and</h6>
+                  <CheckboxButtons
+                    register={register}
+                    name="Appointment_Preferred_Time__c"
+                    className={styles.formControl}
+                    data={checkboxButtonsData2}
+                  />
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+          <div className={styles.formRow}>
+            <div className={styles.formCol}>
+              <p className={styles.formControl}>
+                Note: By submitting this form you agree to Allam’s Terms and
+                Conditions and Allam may contact you via email, phone or SMS.
+              </p>
+              <Button className={styles.formControl} color="dark" type="submit">
+                {isLoading ? 'Loading...' : 'Submit'}
+              </Button>
+            </div>
+          </div>
+        </form>)
+        : <h5>
           Thank you for submitting your request. We will aim to get back to you in the next 2 - 3 business days (if not sooner).
         </h5>
       }
-      <div className={styles.formRow}>
-        <div className={styles.formCol}>
-          <Input
-            className={`${styles.formControl} ${errors['FirstName'] ? styles.hasError : ''}`}
-            type="text"
-            name="FirstName"
-            placeholder="First Name"
-            register={register}
-            validation={{ required: true }}
-          />
-          <Input
-            className={`${styles.formControl} ${errors['LastName'] ? styles.hasError : ''}`}
-            type="text"
-            name="LastName"
-            placeholder="Last Name"
-            register={register}
-            validation={{ required: true }}
-          />
-          <Input
-            className={`${styles.formControl} ${errors['Email'] ? styles.hasError : ''}`}
-            type="email"
-            name="Email"
-            placeholder="Email"
-            register={register}
-            validation={{ required: true }}
-          />
-          <Input
-            className={`${styles.formControl} ${errors['Phone'] ? styles.hasError : ''}`}
-            type="tel"
-            name="Phone"
-            placeholder="Contact Number"
-            register={register}
-            validation={{ required: true, minLength: 6, maxLength: 12 }}
-          />
-          <Input
-            className={styles.formControl}
-            type="text"
-            name="PostCode"
-            placeholder="Postcode"
-            register={register}
-          />
-          <Textarea
-            rows={4}
-            className={styles.formControl}
-            name="pba_ausfields__Web_Comments__c"
-            placeholder="Comment"
-            register={register}
-          />
-        </div>
-        <div className={styles.formCol}>
-          <div>
-            <h6>I’m looking to buy in the next?</h6>
-            <RadioButtons
-              className={`${styles.formControl} ${errors['pba__BuyingTimeFrame_pb__c'] ? styles.hasError : ''}`}
-              name="pba__BuyingTimeFrame_pb__c"
-              data={radioButtonsData}
-              register={register}
-              validation={{ required: true }}
-            />
-          </div>
-          <div>
-            <Select
-              value={selectedEstate}
-              className={`${styles.formControl} ${errors['Project_of_Interest__c'] ? styles.hasError : ''}`}
-              name="Project_of_Interest__c"
-              placeholder="What estate are you interested in?"
-              options={estates}
-              register={register}
-              validation={{ required: true }}
-            />
-            <Select
-              className={`${styles.formControl} ${errors['Buyer_Profile__c'] ? styles.hasError : ''}`}
-              name="Buyer_Profile__c"
-              placeholder="What type of buyer are you?"
-              options={buyerTypes}
-              register={register}
-              validation={{ required: true }}
-            />
-            <Select
-              onChange={(e) => setAppointmentOptionvalue(e.target.value)}
-              value={inspection ? "Yes" : ""}
-              className={styles.formControl}
-              name="Appointment_Request__c"
-              placeholder="Do you want to make an appointment"
-              options={appointmentOptions}
-              register={register}
-            />
-          </div>
-          {appointmentOptionvalue === "Yes" ? (
-            <div>
-              <h6>Choose a preferred time</h6>
-              <CheckboxButtons
-                register={register}
-                name="Appointment_Preferred_Day__c"
-                className={styles.formControl}
-                data={checkboxButtonsData1}
-              />
-              <h6>and</h6>
-              <CheckboxButtons
-                register={register}
-                name="Appointment_Preferred_Time__c"
-                className={styles.formControl}
-                data={checkboxButtonsData2}
-              />
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
-      </div>
-      <div className={styles.formRow}>
-        <div className={styles.formCol}>
-          <p className={styles.formControl}>
-            Note: By submitting this form you agree to Allam’s Terms and
-            Conditions and Allam may contact you via email, phone or SMS.
-          </p>
-          <Button className={styles.formControl} color="dark" type="submit">
-            {isLoading ? 'Loading...' : 'Submit'}
-          </Button>
-        </div>
-      </div>
-    </form>
+    </div>
   );
 };
 
