@@ -36,8 +36,9 @@ const PropertyCard = ({
 
   return (
     <div
-      className={`${styles.propertyCard} ${simple ? styles.propertyCardSimple : ""
-        }`}
+      className={`${styles.propertyCard} ${
+        simple ? styles.propertyCardSimple : ""
+      }`}
     >
       <div className={styles.propertyCardTop}>
         {!simple && !isOpenInspection && (
