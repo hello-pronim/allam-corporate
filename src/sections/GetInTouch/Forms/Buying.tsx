@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import { useForm } from "react-hook-form";
 import Button from "@components/Common/Button/Button";
@@ -52,6 +52,18 @@ const Buying = ({
 
   const estates: any = [];
   const buyerTypes: any = [];
+  const appointmentOptions: any = [
+    {
+      text: "Yes",
+      value: "Yes",
+    },
+    {
+      text: "No",
+      value: "No",
+    },
+  ];
+
+  const [appointmentOptionvalue, setAppointmentOptionvalue] = useState("");
 
   estateList.estateList.entries.map((estate: any) => {
     let obj = {} as EstateObj;
@@ -65,7 +77,6 @@ const Buying = ({
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   return (
     <form className={classNames(styles.Form)}>
       <div className={styles.formRow}>
@@ -114,6 +125,14 @@ const Buying = ({
         </div>
         <div className={styles.formCol}>
           <div>
+            <h6>I’m looking to buy in the next?</h6>
+            <RadioButtons
+              className={styles.formControl}
+              name="timeFrame"
+              data={radioButtonsData}
+            />
+          </div>
+          <div>
             <Select
               className={styles.formControl}
               name="estate"
@@ -127,29 +146,33 @@ const Buying = ({
               placeholder="What type of buyer are you?"
               options={buyerTypes}
             />
-          </div>
-          <div>
-            <h6>Choose a preferred time</h6>
-            <CheckboxButtons
-              name="time"
+            <Select
               className={styles.formControl}
-              data={checkboxButtonsData1}
-            />
-            <h6>and</h6>
-            <CheckboxButtons
-              name="time"
-              className={styles.formControl}
-              data={checkboxButtonsData2}
+              name="appointment"
+              placeholder="Do you want to make an appointment"
+              options={appointmentOptions}
+              value={appointmentOptionvalue}
+              onChange={(e) => setAppointmentOptionvalue(e.target.value)}
             />
           </div>
-          <div>
-            <h6>I’m looking to buy in the next?</h6>
-            <RadioButtons
-              className={styles.formControl}
-              name="timeFrame"
-              data={radioButtonsData}
-            />
-          </div>
+          {appointmentOptionvalue === "Yes" ? (
+            <div>
+              <h6>Choose a preferred time</h6>
+              <CheckboxButtons
+                name="time"
+                className={styles.formControl}
+                data={checkboxButtonsData1}
+              />
+              <h6>and</h6>
+              <CheckboxButtons
+                name="time"
+                className={styles.formControl}
+                data={checkboxButtonsData2}
+              />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className={styles.formRow}>

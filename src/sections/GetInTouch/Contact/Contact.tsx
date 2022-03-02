@@ -3,7 +3,7 @@ import { css } from "@styled-system/css";
 import { ImageButton } from "@components/Common/Common";
 import Buying from "../Forms/Buying";
 import Suppliers from "../Forms/Suppliers";
-import Appointment from "../Forms/Appointment";
+import Maintenance from "../Forms/Maintenance";
 import GeneralEnquiry from "../Forms/GeneralEnquiry";
 import styles from "../../GetInTouch/GetInTouch.module.scss";
 import { useRouter } from "next/router";
@@ -14,6 +14,7 @@ const Contact = (estateList: any) => {
   const [formTypeIndex, setFormTypeIndex] = useState(0);
   const router = useRouter();
   const [selectedEstate, setSelectedEstate] = useState("");
+
   const [windowDimensions, setWindowDimensions] = useState({
     width: 0,
     height: 0,
@@ -21,7 +22,7 @@ const Contact = (estateList: any) => {
 
   let FormKey = new Map([
     ["General enquiry", GeneralEnquiry],
-    ["Request an appointment", Appointment],
+    ["Maintenance", Maintenance],
     ["I'm interested in buying", Buying],
     ["Trade and Suppliers", Suppliers],
   ]);
@@ -106,9 +107,7 @@ const Contact = (estateList: any) => {
                 ref={selector}
               >
                 <option value="General enquiry">General enquiry</option>
-                <option value="Request an appointment">
-                  Request an appointment
-                </option>
+                <option value="Maintenance">Maintenance</option>
                 <option
                   value="I'm interested in buying"
                   selected={formType === "I'm interested in buying"}

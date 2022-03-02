@@ -13,7 +13,7 @@ export interface FormSelectProps {
   name?: string;
   options: Array<FormSelectOptionProps>;
   value?: string;
-  onChange?: () => void;
+  onChange?: (e: any) => void;
 }
 
 const FormSelect = ({
@@ -43,7 +43,7 @@ const FormSelect = ({
       name={name}
       className={`${styles.dropdown} ${className}`}
       value={value ? value : estateType}
-      onChange={(e) => setActiveForm(e)}
+      onChange={onChange ? onChange : (e) => setActiveForm(e)}
     >
       <option value="" disabled>
         {placeholder}
