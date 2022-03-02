@@ -4,7 +4,6 @@ import type { HeroModel } from "@models";
 import { useWindowSize } from "@hooks/useWindowSize";
 import { ImageButton, Button, Redactor } from "@components/Common/Common";
 import styles from "./Hero.module.scss";
-import ExternalLink from "@components/ExternalLink/ExternalLink";
 
 export interface IHeroProps {
   data?: HeroModel;
@@ -34,17 +33,14 @@ const Hero = ({ data }: IHeroProps) => {
 
           <div className={styles.heroButtonWrapper}>
             {data?.buttons?.[0]?.buttonLink && (
-              <ExternalLink
+              <ImageButton
+                icon="download-yellow"
+                label={data?.buttons?.[0]?.buttonLabel}
+                chevron={true}
+                labelSpacingLeft={8}
+                labelSpacingRight={16}
                 href={data?.buttons?.[0]?.buttonLink + "?estate=monteray"}
-              >
-                <ImageButton
-                  icon="download-yellow"
-                  label={data?.buttons?.[0]?.buttonLabel}
-                  chevron={true}
-                  labelSpacingLeft={8}
-                  labelSpacingRight={16}
-                />
-              </ExternalLink>
+              />
             )}
             {data?.cta?.[0]?.hyperlink && (
               <Button href={`/${data?.cta?.[0]?.hyperlink?.[0]?.slug}`} rounded>
