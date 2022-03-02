@@ -1,0 +1,10 @@
+@import "@styles/mixins.scss";
+@import "@styles/variables.scss";
+
+.redactor {
+  p {
+    &:not(:last-of-type) {
+      margin-bottom: rem(16);
+    }
+  }
+}
