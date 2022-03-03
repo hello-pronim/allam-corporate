@@ -6,6 +6,7 @@ export const simpleEstatesQuery = gql`
       ... on estates_default_Entry {
         slug
         title
+        estateId
         logo {
           title
           url
@@ -97,6 +98,7 @@ export const simpleHomeListQuery = gql`
       ... on homesAndLand_default_Entry {
         slug
         title
+        openForInspection
         landOnly
         estate {
           ... on estates_default_Entry {
@@ -134,6 +136,7 @@ export const fullHomeListQuery = gql`
         bedrooms
         bathrooms
         car
+        storeys
         images {
           url
           title
@@ -198,6 +201,26 @@ export const trustQuery = gql`
   query trustMarkers {
     globalSet(handle: "trustMarkers") {
       ... on trustMarkers_GlobalSet {
+        trustFeature {
+          ... on trustFeature_feature_BlockType {
+            heading
+            subHeading
+            icon {
+              url
+              width
+              height
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const retirementTrustQuery = gql`
+  query retirementTrustMarkers {
+    globalSet(handle: "retirementTrustMarkers") {
+      ... on retirementTrustMarkers_GlobalSet {
         trustFeature {
           ... on trustFeature_feature_BlockType {
             heading

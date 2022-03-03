@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import classnames from "classnames/bind";
+
 import { AmenityCategoryModel, AmenityModel, NeighborhoodModel } from "@models";
 import NeighborhoodMap from "@components/NeighborhoodMap/NeighborhoodMap";
+
 import styles from "./Neighborhood.module.scss";
 
 type NeighborhoodProps = {
@@ -27,8 +29,8 @@ const Neighborhood = ({
   }, [amenities]);
 
   useEffect(() => {
-    SetSelectedCategory(selectedCategory);
-  }, [selectedCategory]);
+    SetSelectedCategory(categoryList?.[0].title);
+  }, [categoryList]);
 
   const getFilteredAmenity = useCallback(
     (key) => {
@@ -59,24 +61,21 @@ const Neighborhood = ({
           <NeighborhoodMap data={filteredAmenities} />
 
           <div className={styles.neighborhoodCategories}>
-            {amenities.map((category) => (
+            {categoryList.map((category) => (
               <div
-                key={category.amenityCategory[0].title}
+                key={category.title}
                 className={styles.neighborhoodCategoriesItem}
               >
                 <h5
-                  onClick={() =>
-                    handleCategoryClick(category.amenityCategory[0].title)
-                  }
+                  onClick={() => handleCategoryClick(category.title)}
                   className={`${
-                    selectedCategory === category.amenityCategory[0].title
-                      ? styles.isActive
-                      : ""
+                    selectedCategory === category.title ? styles.isActive : ""
                   }`}
                 >
-                  {category.amenityCategory[0].title}
+                  {category.title} (
+                  {getFilteredAmenity(selectedCategory).length})
                 </h5>
-                {selectedCategory === category.amenityCategory[0].title && (
+                {selectedCategory === category.title && (
                   <div className={styles.neighborhoodResult}>
                     <ul>
                       {getFilteredAmenity(selectedCategory).map((amenity) => (

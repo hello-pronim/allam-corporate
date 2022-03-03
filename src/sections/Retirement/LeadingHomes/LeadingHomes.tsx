@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { TrustMarkersModel, TrustFeature } from "@models";
 import LeadingTrustMarkers from "@components/LeadingTrustMarkers/LeadingTrustMarkers";
@@ -18,6 +18,13 @@ const LeadingHomes = ({
   trustFeatures,
   homes,
 }: ILeadingHomesProps) => {
+  const [moreHomes, setMoreHomes] = useState(false);
+  const [allHomes, setAllHomes] = useState(homes?.slice(0, 6));
+  const loadMore = () => {
+    setMoreHomes(true);
+    setAllHomes(homes);
+  };
+
   return (
     <div className={styles.leadingHomes}>
       <div className={styles.leadingHomesWrapper}>
@@ -28,8 +35,12 @@ const LeadingHomes = ({
         />
 
         <div className={styles.leadingHomesProperty}>
-          <CardGrid title="Retirement homes available" col={[1, 2, 3]}>
-            {homes.slice(0, 6).map((home) => (
+          <CardGrid
+            title="Retirement homes available"
+            maxItems={homes.length}
+            col={[1, 2, 3]}
+          >
+            {allHomes.map((home) => (
               <Link href={`/find-home/${home.slug}`} key={home.slug}>
                 <a>
                   <PropertyCard homeData={home} />
@@ -37,14 +48,15 @@ const LeadingHomes = ({
               </Link>
             ))}
           </CardGrid>
-
-          <div className={styles.leadingHomesPropertyCTA}>
-            <div className={styles.leadingHomesPropertyCTAWrapper}>
-              <Button color="primary" href="/find-home" rounded>
-                Load more
-              </Button>
+          {!moreHomes && (
+            <div className={styles.leadingHomesPropertyCTA}>
+              <div className={styles.leadingHomesPropertyCTAWrapper}>
+                <Button color="primary" onClick={loadMore} rounded>
+                  Load more
+                </Button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { FieldValues, UseFormRegister } from "react-hook-form";
 import styles from "./FormSelect.module.scss";
 
 export interface FormSelectOptionProps {
@@ -13,26 +13,26 @@ export interface FormSelectProps {
   name?: string;
   options: Array<FormSelectOptionProps>;
   value?: string;
-  onChange?: () => void;
+  validation?: any;
+  register: UseFormRegister<FieldValues>;
+  onChange?: (e: any) => void;
 }
 
 const FormSelect = ({
   className,
   placeholder,
-  name,
+  name = "",
   options,
   value,
   onChange,
+  register,
+  validation
 }: FormSelectProps) => {
-  const [estateType, setEstateType] = useState("");
-
-  const setActiveForm = (entry: any) => {
-    setEstateType(entry.target.value);
-  };
+ 
 
   const optionsUI = options?.map((option, index) => {
     return (
-      <option key={index} value={option.value}>
+      <option key={index} value={option.value} selected={value === option.value ? true : false}>
         {option.text}
       </option>
     );
@@ -40,12 +40,11 @@ const FormSelect = ({
 
   return (
     <select
-      name={name}
+      onInput={onChange}
+      {...register(name, validation)}
       className={`${styles.dropdown} ${className}`}
-      value={value ? value : estateType}
-      onChange={(e) => setActiveForm(e)}
     >
-      <option value="" disabled>
+      <option value="" disabled selected>
         {placeholder}
       </option>
       {optionsUI}

@@ -9,9 +9,12 @@ import Select from "@components/Common/FormSelect/FormSelect";
 import Textarea from "@components/Common/Textarea/Textarea";
 import styles from "./forms.module.scss";
 
-export interface SuppliersProps {}
+export interface EstateObj {
+  value: string;
+  text: string;
+}
 
-const Suppliers = () => {
+const Suppliers = (estateList: any) => {
   const radioButtonsData = [
     {
       value: "1 – 3",
@@ -26,94 +29,142 @@ const Suppliers = () => {
       text: "9 - 12",
     },
   ];
-  const serviceTypes: any = [];
-  const workingAreas: any = [];
+  const serviceTypes: any = [
+    {
+      value: "Painting",
+      text: "Painting"
+    },
+    {
+      value: "Carpentry",
+      text: "Carpentry"
+    },
+    {
+      value: "Brick Laying",
+      text: "Brick Laying"
+    },
+    {
+      value: "Roofing",
+      text: "Roofing"
+    },
+    {
+      value: "Tiling",
+      text: "Tiling"
+    },
+    {
+      value: "Cabinet Making",
+      text: "Cabinet Making"
+    }
+  ];
+  const estates: any = [];
+
+  estateList.estateList.estateList.entries.map((estate: any) => {
+    let obj = {} as EstateObj;
+    obj.value = estate.estateId;
+    obj.text = estate.title;
+    estates.push(obj);
+  });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  const onSubmit = (data: any) => console.log(data);
   return (
-    <form className={classNames(styles.Form)}>
+    <form className={classNames(styles.Form)} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.formRow}>
         <div className={styles.formCol}>
           <Input
+            className={`${styles.formControl} ${errors["FirstName"] ? styles.hasError : ""
+              }`}
             type="text"
-            name="firstname"
-            className={styles.formControl}
+            name="FirstName"
             placeholder="First Name"
             register={register}
+            validation={{ required: true }}
           />
           <Input
+            className={`${styles.formControl} ${errors["LastName"] ? styles.hasError : ""
+              }`}
             type="text"
-            name="lastname"
-            className={styles.formControl}
+            name="LastName"
             placeholder="Last Name"
             register={register}
+            validation={{ required: true }}
           />
           <Input
+            className={`${styles.formControl} ${errors["Email"] ? styles.hasError : ""
+              }`}
             type="email"
-            name="email"
-            className={styles.formControl}
+            name="Email"
             placeholder="Email"
             register={register}
+            validation={{ required: true }}
           />
           <Input
-            type="text"
-            name="phone"
-            className={styles.formControl}
+            className={`${styles.formControl} ${errors["Phone"] ? styles.hasError : ""
+              }`}
+            type="tel"
+            name="Phone"
             placeholder="Contact Number"
             register={register}
+            validation={{ required: true, minLength: 6, maxLength: 12 }}
           />
           <Input
-            type="text"
-            name="postcode"
             className={styles.formControl}
+            type="text"
+            name="PostCode"
             placeholder="Postcode"
             register={register}
           />
           <Textarea
-            rows={3}
+            rows={4}
             className={styles.formControl}
-            name="comment"
+            name="Comment"
             placeholder="Comment"
+            register={register}
           />
         </div>
         <div className={styles.formCol}>
           <div>
             <Select
-              className={styles.formControl}
+              className={`${styles.formControl} ${errors['serviceType'] ? styles.hasError : ''}`}
               name="serviceType"
               placeholder="What type of services do you provide?"
               options={serviceTypes}
+              register={register}
+              validation={{ required: true }}
             />
             <Select
-              className={styles.formControl}
+              className={`${styles.formControl} ${errors['workingArea'] ? styles.hasError : ''}`}
               name="workingArea"
               placeholder="What area are you interested in working from?"
-              options={workingAreas}
+              options={estates}
+              register={register}
+              validation={{ required: true }}
             />
           </div>
           <div>
             <h6>How big is your company?</h6>
+
             <RadioButtons
-              className={styles.formControl}
-              name="employees"
+              className={`${styles.formControl} ${errors["pba__BuyingTimeFrame_pb__c"] ? styles.hasError : ""
+                }`}
+              name="pba__BuyingTimeFrame_pb__c"
               data={radioButtonsData}
+              register={register}
+              validation={{ required: true }}
             />
           </div>
         </div>
       </div>
       <div className={styles.formRow}>
         <div className={styles.formCol}>
-          <Checkbox
-            className={styles.formControl}
-            name="terms"
-            text="Allam may contact you via email, phone or SMS and you agree to their Terms and Conditions"
-          />
-          <Button className={styles.formControl} color="dark">
+          <p className={styles.formControl}>
+            Note: By submitting this form you agree to Allam’s Terms and
+            Conditions and Allam may contact you via email, phone or SMS.
+          </p>
+          <Button className={styles.formControl} color="dark" type="submit">
             Submit
           </Button>
         </div>

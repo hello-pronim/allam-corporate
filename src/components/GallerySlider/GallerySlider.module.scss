@@ -24,11 +24,11 @@
 
   &Single {
     width: 100%;
-    height: rem(320);
+    // height: rem(320);
     position: relative;
     border-radius: rem(4);
     @include breakpoint($large) {
-      height: 50vh;
+      // height: 50vh;
       max-height: rem(640);
     }
 

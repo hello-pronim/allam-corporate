@@ -1,19 +1,21 @@
 @import "@styles/mixins";
 @import "@styles/variables";
 
+.costAndFee {
+  @include grid-container;
+}
+
 .ContentWithImage {
   position: relative;
   background: $grey2;
-  @include grid-container;
-  padding-top: rem(60);
-  padding-bottom: rem(60);
+  padding: rem(60) 0;
   @include breakpoint($large) {
     @include grid(1, 12);
     align-items: center;
-    padding-top: rem(130);
-    padding-bottom: rem(78);
+    padding: rem(90) 0 rem(78);
   }
 }
+
 .ContentLeft {
   grid-column: 1 / span 6;
   @include breakpoint($xx-large) {

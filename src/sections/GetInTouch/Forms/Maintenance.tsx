@@ -4,17 +4,15 @@ import { useForm } from "react-hook-form";
 import Button from "@components/Common/Button/Button";
 import Input from "@components/Common/Input/Input";
 import Textarea from "@components/Common/Textarea/Textarea";
-
 import styles from "./forms.module.scss";
 
-export interface GeneralEnquiryProps {}
-
-const GeneralEnquiry = () => {
+const Maintenance = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data: any) => console.log(data);
 
   return (
@@ -31,8 +29,6 @@ const GeneralEnquiry = () => {
             register={register}
             validation={{ required: true }}
           />
-        </div>
-        <div className={styles.formCol}>
           <Input
             className={`${styles.formControl} ${
               errors["LastName"] ? styles.hasError : ""
@@ -43,10 +39,6 @@ const GeneralEnquiry = () => {
             register={register}
             validation={{ required: true }}
           />
-        </div>
-      </div>
-      <div className={styles.formRow}>
-        <div className={styles.formCol}>
           <Input
             className={`${styles.formControl} ${
               errors["Email"] ? styles.hasError : ""
@@ -57,8 +49,6 @@ const GeneralEnquiry = () => {
             register={register}
             validation={{ required: true }}
           />
-        </div>
-        <div className={styles.formCol}>
           <Input
             className={`${styles.formControl} ${
               errors["Phone"] ? styles.hasError : ""
@@ -70,16 +60,37 @@ const GeneralEnquiry = () => {
             validation={{ required: true, minLength: 6, maxLength: 12 }}
           />
         </div>
-      </div>
-      <div className={`${styles.formRow} ${styles.formRowReverse}`}>
         <div className={styles.formCol}>
-          <Input
-            type="text"
-            name="postcode"
-            className={styles.formControl}
-            placeholder="Postcode"
-            register={register}
-          />
+          <div>
+            <h6>I need maintenance at: </h6>
+            <Input
+              className={styles.formControl}
+              type="text"
+              name="Addres"
+              placeholder="Addres"
+              register={register}
+            />
+          </div>
+          <div>
+            <Input
+              className={styles.formControl}
+              type="text"
+              name="PostCode"
+              placeholder="Postcode"
+              register={register}
+            />
+            <Textarea
+              rows={4}
+              className={styles.formControl}
+              name="comment"
+              placeholder="Comment"
+              register={register}
+            />
+          </div>
+        </div>
+      </div>
+      <div className={styles.formRow}>
+        <div className={styles.formCol}>
           <p className={styles.formControl}>
             Note: By submitting this form you agree to Allam’s Terms and
             Conditions and Allam may contact you via email, phone or SMS.
@@ -88,18 +99,9 @@ const GeneralEnquiry = () => {
             Submit
           </Button>
         </div>
-        <div className={styles.formCol}>
-          <Textarea
-            rows={4}
-            className={styles.formControl}
-            name="comment"
-            placeholder="Comment"
-            register={register}
-          />
-        </div>
       </div>
     </form>
   );
 };
 
-export default GeneralEnquiry;
+export default Maintenance;

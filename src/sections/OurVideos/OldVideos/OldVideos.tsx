@@ -12,7 +12,7 @@ const OldVideos = ({ videos }: IOldVideosProps) => {
   return (
     <div className={styles.oldVideos}>
       <CardGrid
-        title="Older posts"
+        title="Other videos"
         col={[1, 2, 3]}
         colGap={40}
         rowGap={30}

@@ -108,13 +108,14 @@
       h5 {
         display: inline-block;
         position: relative;
-        color: $light-grey;
+        color: #666;
         font-size: rem(18);
         line-height: rem(21);
         cursor: pointer;
 
         &:hover,
         &.isActive {
+          color: $grey;
           &::before {
             content: "";
             width: 100%;

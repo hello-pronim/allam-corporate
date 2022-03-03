@@ -1,0 +1,14 @@
+@import "@styles/mixins";
+@import "@styles/variables";
+
+.retirementEstates {
+  background-color: $grey2;
+  padding: rem(66) 0;
+  @include breakpoint($large) {
+    padding: rem(90) 0;
+  }
+
+  &Wrapper {
+    position: relative;
+  }
+}

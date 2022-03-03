@@ -38,7 +38,7 @@ const EstateCard = ({
 
   const filteredHomes = useMemo(() => {
     return Array.from(homesList).filter(
-      (home) => home.estate[0].title === estate.title
+      (home) => home.estate[0].title === estate.title && !home.openForInspection
     );
   }, [estate.title, homesList]);
 

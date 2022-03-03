@@ -2,10 +2,12 @@ export type OverViewPageProps = {
   pageData?: any;
   newsList?: any;
   trustMarkers?: any;
+  retirementTrustMarkers?: any;
   listingData?: any;
   easyBuy?: any;
   layoutData?: any;
   homesList?: any;
+  estateList?: any;
   easyBuyFeature?: any;
 };
 
@@ -207,6 +209,7 @@ export type HomeModel = {
   bedrooms?: number;
   bathrooms?: number;
   car?: number;
+  storeys?: string;
   landSize: number;
   latitude: number;
   longitude: number;

@@ -1,8 +1,11 @@
 import React from "react";
+import Image from "next/image";
 import Slider from "react-slick";
 import ReactPlayer from "react-player";
-import Icon from "@components/Icons/Icons";
+
 import { CraftImage, VideoModel } from "@models";
+import Icon from "@components/Icons/Icons";
+
 import SliderArrow from "./SliderArrow";
 import styles from "./GallerySlider.module.scss";
 
@@ -75,10 +78,17 @@ const GallerySlider = ({ videos, images }: IGallerySliderProps) => {
             ))}
             {images?.map((image, id) => (
               <div className={styles.gallerySliderSingle} key={id}>
-                <div
+                <Image
+                  src={image.url}
+                  alt={image.title}
+                  width={image.width}
+                  height={image.height}
+                  layout="responsive"
+                />
+                {/* <div
                   className={styles.gallerySliderSingleImage}
                   style={{ backgroundImage: `url(${image.url})` }}
-                />
+                /> */}
               </div>
             ))}
           </Slider>

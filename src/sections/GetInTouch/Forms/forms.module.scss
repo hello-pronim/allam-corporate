@@ -30,13 +30,31 @@
       grid-template-columns: 1fr;
     }
   }
+
   .formControl {
     width: 100%;
     margin-bottom: 1rem;
   }
+
+  .hasError {
+    border-color: #d04423;
+    color: #d04423;
+    span {
+      color: #d04423;
+    }
+    > option:not(:first-child) {
+      color: #212121;
+    }
+    &::placeholder {
+      color: #d04423;
+      opacity: 1; /* Firefox */
+    }
+  }
+
   .radioGroup {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
 }
+

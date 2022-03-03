@@ -64,7 +64,7 @@ const AllamAdvantages: NextPage<AllamAdvPageProps> = ({
         )}
         steps={get(easyBuy, "globalSet.easybuySteps", [])}
       />
-      <PromotionSection offer={offer} />
+      {offer ? <PromotionSection offer={offer} /> : null}
 
       <VideoModal isModalOpen={isOpen} />
     </Layout>
@@ -79,6 +79,7 @@ const pageQuery = gql`
           ... on promotions_default_Entry {
             slug
             title
+            textColor
             shortDescription
             introBlurb
             description

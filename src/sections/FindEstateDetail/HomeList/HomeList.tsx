@@ -18,8 +18,15 @@ const HomeList = ({ title, filteredHomes }: IHomeListProps) => {
           <h2>Find your perfect home or land in {title}</h2>
           <div className={styles.homeListGrid}>
             <div className={styles.homeListGridWrapper}>
-              {filteredHomes?.slice(0, 9).map((home, id) => (
-                <Link href={`/find-home/${home.slug}`} key={id}>
+              {filteredHomes?.map((home, id) => (
+                <Link
+                  href={
+                    home.landOnly
+                      ? `/find-land/${home.slug}`
+                      : `/find-home/${home.slug}`
+                  }
+                  key={id}
+                >
                   <a>
                     <PropertyCard homeData={home} />
                   </a>
@@ -27,11 +34,11 @@ const HomeList = ({ title, filteredHomes }: IHomeListProps) => {
               ))}
             </div>
           </div>
-          <div className={styles.homeListContentCTA}>
+          {/* <div className={styles.homeListContentCTA}>
             <Button href="/find-home" color="dark-secondary" rounded>
               Load more
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -116,6 +116,15 @@
   line-height: rem(24);
   margin-bottom: rem(38);
   color: $grey;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background: url("/assets/icons/icon-select.svg");
+  border: 1.4px solid #212121;
+  background-repeat: no-repeat;
+  background-position-x: 95%;
+  background-position-y: 22px;
+  background-color: #ffffff;
   &::before {
     content: "/";
     position: absolute;

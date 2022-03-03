@@ -35,6 +35,7 @@ const FindEstateDetail: NextPage<any> = ({
   categories,
 }) => {
   const title = get(estate, "entry.title", "");
+  const estateId = get(estate, "entry.estateId", "")
   const logo = get(estate, "entry.logo", []);
   const suburb = get(estate, "entry.suburb", "");
   const estateState = get(estate, "entry.estateState", "");
@@ -71,7 +72,9 @@ const FindEstateDetail: NextPage<any> = ({
     return homeList
       ? Array.from(homeList?.entries).filter(
           (home: any) =>
-            home?.estate[0].title === title && !home.openForInspection
+            home?.estate[0].title === title &&
+            !home.openForInspection &&
+            home.sellingLabel.toLowerCase() !== "under offer"
         )
       : [];
   }, [title, homeList]);
@@ -92,6 +95,7 @@ const FindEstateDetail: NextPage<any> = ({
           address={`${suburb}, ${estateState} ${postcode}`}
           filteredHomes={filteredHomes}
           logo={logo}
+          estateId={estateId}
         />
         <BannerGallery images={bannerImages} videos={videos} logo={logo} />
         <LeadingInfo
@@ -99,17 +103,17 @@ const FindEstateDetail: NextPage<any> = ({
           salesCentre={salesCentre}
           documents={documents}
         />
-        {filteredHomes.length !== 0 && (
+        {filteredHomes.length ? (
           <Element name="estateProperties">
             <HomeList title={title} filteredHomes={filteredHomes} />
           </Element>
-        )}
-        {masterPlan && (
+        ) : null}
+        {masterPlan ? (
           <MasterPlan
             masterPlanImage={masterPlan}
             masterplanDownload={masterplanDownload}
           />
-        )}
+        ) : null}
         <Deposit />
         {filteredNews.length !== 0 && <NewsList news={filteredNews} />}
         {neighborhood && (
@@ -121,7 +125,7 @@ const FindEstateDetail: NextPage<any> = ({
           latitude={Number(latitude)}
           longitude={Number(longitude)}
         />
-        <SignUpEstate />
+        {/* <SignUpEstate /> */}
       </Layout>
       <EstateStickyBar title={title} suburb={suburb} />
     </div>
@@ -138,6 +142,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
         ... on estates_default_Entry {
           title
           introText
+          estateId
           documents
           streetAddress
           estateState(label: true)

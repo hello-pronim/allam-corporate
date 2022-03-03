@@ -84,7 +84,7 @@ const HomeFilter = ({
               setFilterValue={setHomeFilters}
               filterStateValue={homeFilter}
             />
-            <FilterDropdown
+            {/* <FilterDropdown
               options={landBlockSizes}
               isOpen={openBlockMenu}
               placeholderLabel="Block Size"
@@ -92,7 +92,7 @@ const HomeFilter = ({
               toggleDropdown={() => setOpenBlockMenu(!openBlockMenu)}
               setFilterValue={setHomeFilters}
               filterStateValue={homeFilter}
-            />
+            /> */}
           </div>
         </div>
       </div>

@@ -10,7 +10,8 @@ import {
   fullHomeListQuery,
   layoutQuery,
   simpleNewsQuery,
-  trustQuery,
+  retirementTrustQuery,
+  fullEstatesQuery,
 } from "@libs/queries";
 
 import Layout from "@components/Layout/Layout";
@@ -22,22 +23,45 @@ import CostAndFee from "@sections/Retirement/CostAndFee/CostAndFee";
 import MasterPlan from "@sections/Retirement/MasterPlan/MasterPlan";
 import RelatedNews from "@sections/Retirement/RelatedNews/RelatedNews";
 import LeadingHomes from "@sections/Retirement/LeadingHomes/LeadingHomes";
+import RetirementEstates from "@sections/Retirement/Estates/Estates";
 
 const RetirementLiving: NextPage<OverViewPageProps> = ({
   pageData,
-  trustMarkers,
+  retirementTrustMarkers,
   layoutData,
   newsList,
   homesList,
+  estateList,
 }) => {
   const ESTATE_TITLE = "Monterey";
   const pageLayout = get(pageData, "entry.retirementLayout", []);
   const globalPromos = get(pageData, "entry.globalPromos", []);
-  const trustFeatures = get(trustMarkers, "globalSet.trustFeature", []);
+  const trustFeatures = get(
+    retirementTrustMarkers,
+    "globalSet.trustFeature",
+    []
+  );
   const fullImageLayout = propsFind(
     pageLayout,
     "retirementLayout_fullImage_BlockType"
   );
+
+  const filteredEstates: any[] = useMemo(() => {
+    return estateList
+      ? Array.from(estateList?.entries).filter(
+          (estate: any) => estate.retirementLiving === "yes"
+        )
+      : [];
+  }, [estateList]);
+
+  const filteredHomes: any[] = useMemo(() => {
+    return homesList
+      ? Array.from(homesList?.entries).filter(
+          (home: any) =>
+            home?.estate[0].title === ESTATE_TITLE && home?.landOnly === false
+        )
+      : [];
+  }, [homesList]);
 
   const filteredNews: any[] = useMemo(() => {
     return newsList
@@ -48,15 +72,6 @@ const RetirementLiving: NextPage<OverViewPageProps> = ({
         )
       : [];
   }, [newsList]);
-
-  const filteredHomes: any[] = useMemo(() => {
-    return homesList
-      ? Array.from(homesList?.entries).filter(
-          (home: any) =>
-            home?.estate[0].title === ESTATE_TITLE && home?.landOnly === false
-        )
-      : [];
-  }, [homesList]);
 
   return pageData ? (
     <Layout layoutData={layoutData}>
@@ -71,17 +86,25 @@ const RetirementLiving: NextPage<OverViewPageProps> = ({
           homes={filteredHomes}
         />
       )}
-      {filteredNews.length !== 0 && <RelatedNews news={filteredNews} />}
+      {filteredNews.length ? <RelatedNews news={filteredNews} /> : null}
       <FullWidthImage image={fullImageLayout?.backgroundImage?.[0].url} />
-      <MasterPlan
-        data={propsFind(pageLayout, "retirementLayout_masterPlan_BlockType")}
-      />
-      <CostAndFee
-        data={propsFind(pageLayout, "retirementLayout_feeCovers_BlockType")}
-      />
-      <RegisterPanel
+      {filteredEstates.length ? (
+        <RetirementEstates estates={filteredEstates} />
+      ) : null}
+
+      {propsFind(pageLayout, "retirementLayout_masterPlan_BlockType") ? (
+        <MasterPlan
+          data={propsFind(pageLayout, "retirementLayout_masterPlan_BlockType")}
+        />
+      ) : null}
+      {propsFind(pageLayout, "retirementLayout_feeCovers_BlockType") ? (
+        <CostAndFee
+          data={propsFind(pageLayout, "retirementLayout_feeCovers_BlockType")}
+        />
+      ) : null}
+      {/* <RegisterPanel
         data={propsFind(globalPromos, "globalPromos_estateRegister_BlockType")}
-      />
+      /> */}
     </Layout>
   ) : null;
 };
@@ -169,18 +192,20 @@ const pageQuery = gql`
 
 export const getStaticProps = async function () {
   const pageData = await craftAPI(pageQuery);
-  const trustMarkers = await craftAPI(trustQuery);
+  const retirementTrustMarkers = await craftAPI(retirementTrustQuery);
   const layoutData = await craftAPI(layoutQuery);
   const newsList = await craftAPI(simpleNewsQuery);
   const homesList = await craftAPI(fullHomeListQuery);
+  const estateList = await craftAPI(fullEstatesQuery);
 
   return {
     props: {
       pageData,
-      trustMarkers,
+      retirementTrustMarkers,
       layoutData,
       newsList,
       homesList,
+      estateList,
     },
     revalidate: 60,
   };

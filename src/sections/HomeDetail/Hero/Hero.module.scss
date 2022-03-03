@@ -45,7 +45,7 @@
         margin-top: 0;
         grid-column: 2 / span 5;
       }
-      @include breakpoint($xx-large) {
+      @include breakpoint($webLarge) {
         grid-column: 2 / span 4;
       }
 

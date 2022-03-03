@@ -10,26 +10,6 @@
     padding: rem(190) 0 rem(250);
   }
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    background-color: $grey2;
-
-    @include breakpoint($large) {
-      width: 100%;
-      background: linear-gradient(
-        180.04deg,
-        $white -0.04%,
-        rgba($white, 0) 86.59%
-      );
-      clip-path: polygon(45% 0, 100% 0, 100% 100%, 25% 100%);
-    }
-  }
-
   &Wrapper {
     position: relative;
     @include grid-container;
