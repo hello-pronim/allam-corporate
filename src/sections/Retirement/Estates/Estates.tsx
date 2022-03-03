@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 
-import { Button } from "@components/Common/Common";
 import CardGrid from "@components/CardGrid/CardGrid";
 import EstateCard from "@components/EstateCard/EstateCard";
 
@@ -12,13 +11,6 @@ export interface IRetirementEstatesProps {
 }
 
 const RetirementEstates = ({ estates }: IRetirementEstatesProps) => {
-  const [moreEstates, setMoreEstates] = useState(false);
-  const [allEstates, setAllEstates] = useState(estates?.slice(0, 6));
-  const loadMore = () => {
-    setMoreEstates(true);
-    setAllEstates(estates);
-  };
-
   return (
     <div className={styles.retirementEstates}>
       <div className={styles.retirementEstatesWrapper}>
@@ -28,7 +20,7 @@ const RetirementEstates = ({ estates }: IRetirementEstatesProps) => {
             maxItems={estates.length}
             col={[1, 2, 3]}
           >
-            {allEstates.map((estate) => (
+            {estates?.map((estate) => (
               <Link href={`/find-estate/${estate.slug}`} key={estate.slug}>
                 <a>
                   <EstateCard estate={estate} />
@@ -36,15 +28,6 @@ const RetirementEstates = ({ estates }: IRetirementEstatesProps) => {
               </Link>
             ))}
           </CardGrid>
-          {!moreEstates && (
-            <div className={styles.retirementEstatesPropertyCTA}>
-              <div className={styles.retirementEstatesPropertyCTAWrapper}>
-                <Button color="primary" onClick={loadMore} rounded>
-                  Load more
-                </Button>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>
