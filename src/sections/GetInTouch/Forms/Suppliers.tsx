@@ -15,46 +15,6 @@ export interface EstateObj {
 }
 
 const Suppliers = (estateList: any) => {
-  const radioButtonsData = [
-    {
-      value: "1 – 3",
-      text: "1 – 3",
-    },
-    {
-      value: "4 - 8",
-      text: "4 - 8",
-    },
-    {
-      value: "9 - 12",
-      text: "9 - 12",
-    },
-  ];
-  const serviceTypes: any = [
-    {
-      value: "Painting",
-      text: "Painting"
-    },
-    {
-      value: "Carpentry",
-      text: "Carpentry"
-    },
-    {
-      value: "Brick Laying",
-      text: "Brick Laying"
-    },
-    {
-      value: "Roofing",
-      text: "Roofing"
-    },
-    {
-      value: "Tiling",
-      text: "Tiling"
-    },
-    {
-      value: "Cabinet Making",
-      text: "Cabinet Making"
-    }
-  ];
   const estates: any = [];
 
   estateList.estateList.estateList.entries.map((estate: any) => {
@@ -75,91 +35,64 @@ const Suppliers = (estateList: any) => {
       <div className={styles.formRow}>
         <div className={styles.formCol}>
           <Input
-            className={`${styles.formControl} ${errors["FirstName"] ? styles.hasError : ""
-              }`}
+            className={`${styles.formControl} ${
+              errors["FirstName"] ? styles.hasError : ""
+            }`}
             type="text"
             name="FirstName"
             placeholder="First Name"
             register={register}
             validation={{ required: true }}
           />
+        </div>
+        <div className={styles.formCol}>
           <Input
-            className={`${styles.formControl} ${errors["LastName"] ? styles.hasError : ""
-              }`}
+            className={`${styles.formControl} ${
+              errors["LastName"] ? styles.hasError : ""
+            }`}
             type="text"
             name="LastName"
             placeholder="Last Name"
             register={register}
             validation={{ required: true }}
           />
+        </div>
+      </div>
+      <div className={styles.formRow}>
+        <div className={styles.formCol}>
           <Input
-            className={`${styles.formControl} ${errors["Email"] ? styles.hasError : ""
-              }`}
+            className={`${styles.formControl} ${
+              errors["Email"] ? styles.hasError : ""
+            }`}
             type="email"
             name="Email"
             placeholder="Email"
             register={register}
             validation={{ required: true }}
           />
+        </div>
+        <div className={styles.formCol}>
           <Input
-            className={`${styles.formControl} ${errors["Phone"] ? styles.hasError : ""
-              }`}
+            className={`${styles.formControl} ${
+              errors["Phone"] ? styles.hasError : ""
+            }`}
             type="tel"
             name="Phone"
             placeholder="Contact Number"
             register={register}
             validation={{ required: true, minLength: 6, maxLength: 12 }}
           />
+        </div>
+      </div>
+      <div className={`${styles.formRow} ${styles.formRowReverse}`}>
+        <div className={styles.formCol}>
           <Input
-            className={styles.formControl}
             type="text"
-            name="PostCode"
+            name="postcode"
+            className={styles.formControl}
             placeholder="Postcode"
             register={register}
           />
-          <Textarea
-            rows={4}
-            className={styles.formControl}
-            name="Comment"
-            placeholder="Comment"
-            register={register}
-          />
-        </div>
-        <div className={styles.formCol}>
-          <div>
-            <Select
-              className={`${styles.formControl} ${errors['serviceType'] ? styles.hasError : ''}`}
-              name="serviceType"
-              placeholder="What type of services do you provide?"
-              options={serviceTypes}
-              register={register}
-              validation={{ required: true }}
-            />
-            <Select
-              className={`${styles.formControl} ${errors['workingArea'] ? styles.hasError : ''}`}
-              name="workingArea"
-              placeholder="What area are you interested in working from?"
-              options={estates}
-              register={register}
-              validation={{ required: true }}
-            />
-          </div>
-          <div>
-            <h6>How big is your company?</h6>
-
-            <RadioButtons
-              className={`${styles.formControl} ${errors["pba__BuyingTimeFrame_pb__c"] ? styles.hasError : ""
-                }`}
-              name="pba__BuyingTimeFrame_pb__c"
-              data={radioButtonsData}
-              register={register}
-              validation={{ required: true }}
-            />
-          </div>
-        </div>
-      </div>
-      <div className={styles.formRow}>
-        <div className={styles.formCol}>
           <p className={styles.formControl}>
             Note: By submitting this form you agree to Allam’s Terms and
             Conditions and Allam may contact you via email, phone or SMS.
@@ -167,6 +100,15 @@ const Suppliers = (estateList: any) => {
           <Button className={styles.formControl} color="dark" type="submit">
             Submit
           </Button>
+        </div>
+        <div className={styles.formCol}>
+          <Textarea
+            rows={4}
+            className={styles.formControl}
+            name="comment"
+            placeholder="Comment"
+            register={register}
+          />
         </div>
       </div>
     </form>
