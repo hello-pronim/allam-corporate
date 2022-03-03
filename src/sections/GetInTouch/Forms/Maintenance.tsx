@@ -20,9 +20,8 @@ const Maintenance = () => {
       <div className={styles.formRow}>
         <div className={styles.formCol}>
           <Input
-            className={`${styles.formControl} ${
-              errors["FirstName"] ? styles.hasError : ""
-            }`}
+            className={`${styles.formControl} ${errors["FirstName"] ? styles.hasError : ""
+              }`}
             type="text"
             name="FirstName"
             placeholder="First Name"
@@ -30,9 +29,8 @@ const Maintenance = () => {
             validation={{ required: true }}
           />
           <Input
-            className={`${styles.formControl} ${
-              errors["LastName"] ? styles.hasError : ""
-            }`}
+            className={`${styles.formControl} ${errors["LastName"] ? styles.hasError : ""
+              }`}
             type="text"
             name="LastName"
             placeholder="Last Name"
@@ -40,9 +38,8 @@ const Maintenance = () => {
             validation={{ required: true }}
           />
           <Input
-            className={`${styles.formControl} ${
-              errors["Email"] ? styles.hasError : ""
-            }`}
+            className={`${styles.formControl} ${errors["Email"] ? styles.hasError : ""
+              }`}
             type="email"
             name="Email"
             placeholder="Email"
@@ -50,9 +47,8 @@ const Maintenance = () => {
             validation={{ required: true }}
           />
           <Input
-            className={`${styles.formControl} ${
-              errors["Phone"] ? styles.hasError : ""
-            }`}
+            className={`${styles.formControl} ${errors["Phone"] ? styles.hasError : ""
+              }`}
             type="tel"
             name="Phone"
             placeholder="Contact Number"
@@ -66,12 +62,26 @@ const Maintenance = () => {
             <Input
               className={styles.formControl}
               type="text"
-              name="Address"
-              placeholder="Address"
+              name="LotNumber"
+              placeholder="Lot Number"
               register={register}
             />
           </div>
           <div>
+            <Input
+              className={styles.formControl}
+              type="text"
+              name="Street"
+              placeholder="Street"
+              register={register}
+            />
+            <Input
+              className={styles.formControl}
+              type="text"
+              name="Suburb"
+              placeholder="Suburb"
+              register={register}
+            />
             <Input
               className={styles.formControl}
               type="text"
