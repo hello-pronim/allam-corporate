@@ -9,9 +9,12 @@ import Select from "@components/Common/FormSelect/FormSelect";
 import Textarea from "@components/Common/Textarea/Textarea";
 import styles from "./forms.module.scss";
 
-export interface SuppliersProps {}
+export interface EstateObj {
+  value: string;
+  text: string;
+}
 
-const Suppliers = () => {
+const Suppliers = (estateList: any) => {
   const radioButtonsData = [
     {
       value: "1 – 3",
@@ -26,8 +29,40 @@ const Suppliers = () => {
       text: "9 - 12",
     },
   ];
-  const serviceTypes: any = [];
-  const workingAreas: any = [];
+  const serviceTypes: any = [
+    {
+      value: "Painting",
+      text: "Painting"
+    },
+    {
+      value: "Carpentry",
+      text: "Carpentry"
+    },
+    {
+      value: "Brick Laying",
+      text: "Brick Laying"
+    },
+    {
+      value: "Roofing",
+      text: "Roofing"
+    },
+    {
+      value: "Tiling",
+      text: "Tiling"
+    },
+    {
+      value: "Cabinet Making",
+      text: "Cabinet Making"
+    }
+  ];
+  const estates: any = [];
+
+  estateList.estateList.estateList.entries.map((estate: any) => {
+    let obj = {} as EstateObj;
+    obj.value = estate.estateId;
+    obj.text = estate.title;
+    estates.push(obj);
+  });
 
   const {
     register,
@@ -40,9 +75,8 @@ const Suppliers = () => {
       <div className={styles.formRow}>
         <div className={styles.formCol}>
           <Input
-            className={`${styles.formControl} ${
-              errors["FirstName"] ? styles.hasError : ""
-            }`}
+            className={`${styles.formControl} ${errors["FirstName"] ? styles.hasError : ""
+              }`}
             type="text"
             name="FirstName"
             placeholder="First Name"
@@ -50,9 +84,8 @@ const Suppliers = () => {
             validation={{ required: true }}
           />
           <Input
-            className={`${styles.formControl} ${
-              errors["LastName"] ? styles.hasError : ""
-            }`}
+            className={`${styles.formControl} ${errors["LastName"] ? styles.hasError : ""
+              }`}
             type="text"
             name="LastName"
             placeholder="Last Name"
@@ -60,9 +93,8 @@ const Suppliers = () => {
             validation={{ required: true }}
           />
           <Input
-            className={`${styles.formControl} ${
-              errors["Email"] ? styles.hasError : ""
-            }`}
+            className={`${styles.formControl} ${errors["Email"] ? styles.hasError : ""
+              }`}
             type="email"
             name="Email"
             placeholder="Email"
@@ -70,9 +102,8 @@ const Suppliers = () => {
             validation={{ required: true }}
           />
           <Input
-            className={`${styles.formControl} ${
-              errors["Phone"] ? styles.hasError : ""
-            }`}
+            className={`${styles.formControl} ${errors["Phone"] ? styles.hasError : ""
+              }`}
             type="tel"
             name="Phone"
             placeholder="Contact Number"
@@ -97,27 +128,28 @@ const Suppliers = () => {
         <div className={styles.formCol}>
           <div>
             <Select
-              className={styles.formControl}
+              className={`${styles.formControl} ${errors['serviceType'] ? styles.hasError : ''}`}
               name="serviceType"
               placeholder="What type of services do you provide?"
               options={serviceTypes}
               register={register}
+              validation={{ required: true }}
             />
             <Select
-              className={styles.formControl}
+              className={`${styles.formControl} ${errors['workingArea'] ? styles.hasError : ''}`}
               name="workingArea"
               placeholder="What area are you interested in working from?"
-              options={workingAreas}
+              options={estates}
               register={register}
+              validation={{ required: true }}
             />
           </div>
           <div>
             <h6>How big is your company?</h6>
 
             <RadioButtons
-              className={`${styles.formControl} ${
-                errors["pba__BuyingTimeFrame_pb__c"] ? styles.hasError : ""
-              }`}
+              className={`${styles.formControl} ${errors["pba__BuyingTimeFrame_pb__c"] ? styles.hasError : ""
+                }`}
               name="pba__BuyingTimeFrame_pb__c"
               data={radioButtonsData}
               register={register}

@@ -1,18 +1,20 @@
 import React from "react";
-
+import { FieldValues, UseFormRegister } from "react-hook-form";
 import styles from "./CheckboxButtons.module.scss";
 
 export interface CheckboxButtonsProps {
   className?: string;
   name?: string;
   data: Array<{ value: string; text: string }>;
+  register: UseFormRegister<FieldValues>;
   onChange?: () => void;
 }
 
 const CheckboxButtons = ({
   className,
-  name,
+  name = "",
   data,
+  register,
   onChange,
 }: CheckboxButtonsProps) => {
   return (
@@ -22,7 +24,7 @@ const CheckboxButtons = ({
           key={checkboxOption.value}
           className={`${styles.formControl} ${styles.checkboxButton}`}
         >
-          <input type="checkbox" name={name} value={checkboxOption.value} />
+          <input type="checkbox" {...register(name)} value={checkboxOption.value} />
           <span>{checkboxOption.text}</span>
         </label>
       ))}

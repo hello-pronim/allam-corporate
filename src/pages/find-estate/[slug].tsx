@@ -35,6 +35,7 @@ const FindEstateDetail: NextPage<any> = ({
   categories,
 }) => {
   const title = get(estate, "entry.title", "");
+  const estateId = get(estate, "entry.estateId", "")
   const logo = get(estate, "entry.logo", []);
   const suburb = get(estate, "entry.suburb", "");
   const estateState = get(estate, "entry.estateState", "");
@@ -94,6 +95,7 @@ const FindEstateDetail: NextPage<any> = ({
           address={`${suburb}, ${estateState} ${postcode}`}
           filteredHomes={filteredHomes}
           logo={logo}
+          estateId={estateId}
         />
         <BannerGallery images={bannerImages} videos={videos} logo={logo} />
         <LeadingInfo
@@ -140,6 +142,7 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
         ... on estates_default_Entry {
           title
           introText
+          estateId
           documents
           streetAddress
           estateState(label: true)

@@ -9,10 +9,11 @@ import styles from "./Hero.module.scss";
 
 type IHeroProps = {
   data: HomeModel;
-  slug?: string;
+  estateId?: string;
+  crmId?: string;
 };
 
-const Hero = ({ data, slug }: IHeroProps) => {
+const Hero = ({ data, estateId, crmId }: IHeroProps) => {
   const router = useRouter();
   return (
     <div className={styles.hero}>
@@ -104,9 +105,9 @@ const Hero = ({ data, slug }: IHeroProps) => {
           <div className={styles.heroContentCTA}>
             <div className={styles.heroContentButtons}>
               <ImageButton
-                href={`/get-in-touch${slug ? "?estate=" + slug : ""}${
+                href={`/get-in-touch${estateId ? "?estate=" + estateId : ""}${
                   data?.openForInspection ? "&inspection=true" : ""
-                }`}
+                }${crmId ? "&crmId=" + crmId : ""}`}
                 icon="download-yellow"
                 label={
                   data?.openForInspection
@@ -118,7 +119,7 @@ const Hero = ({ data, slug }: IHeroProps) => {
                 labelSpacingRight={16}
               />
               <Button
-                href={`/get-in-touch${slug ? "?estate=" + slug : ""}`}
+                href={`/get-in-touch${estateId ? "?estate=" + estateId : ""}${crmId ? "&crmId=" + crmId : ""}`}
                 rounded
               >
                 Contact Agent

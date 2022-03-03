@@ -11,10 +11,11 @@ type IHeroProps = {
   title: string;
   address: string;
   logo: CraftImage[];
+  estateId?: string;
   filteredHomes?: HomeModel[];
 };
 
-const Hero = ({ title, address, logo, filteredHomes = [] }: IHeroProps) => {
+const Hero = ({ title, address, logo, filteredHomes = [], estateId }: IHeroProps) => {
   const router = useRouter();
   const [landCount, setLandCount] = useState(0);
   const [homeCount, setHomeCount] = useState(0);
@@ -71,7 +72,7 @@ const Hero = ({ title, address, logo, filteredHomes = [] }: IHeroProps) => {
               <div className={styles.heroContentButtonsCondition}>
                 <Button
                   href={`/get-in-touch${
-                    router.query.slug ? "?estate=" + router.query.slug : ""
+                    estateId ? "?estate=" + estateId : ""
                   }`}
                   rounded
                 >
