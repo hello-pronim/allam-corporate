@@ -66,8 +66,8 @@ const Maintenance = () => {
             <Input
               className={styles.formControl}
               type="text"
-              name="Addres"
-              placeholder="Addres"
+              name="Address"
+              placeholder="Address"
               register={register}
             />
           </div>
