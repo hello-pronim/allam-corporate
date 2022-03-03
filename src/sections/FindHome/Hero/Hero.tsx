@@ -128,14 +128,14 @@ const Hero = ({
           resetEstateFilter={resetEstateFilter}
           isMultiChoice
         />
-        <FilterByChoiceGroup
+        {/* <FilterByChoiceGroup
           label="Filter by Block Size:"
           name="block"
           options={landBlockSizes}
           setFilterValue={setHomeFilters}
           filterStateValue={homeFilter}
           resetEstateFilter={resetEstateFilter}
-        />
+        /> */}
       </FilterModal>
     </div>
   );
