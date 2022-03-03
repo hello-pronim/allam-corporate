@@ -36,7 +36,7 @@ const Hero = ({ data }: IHeroProps) => {
         <h4>{el.subHeading}</h4>
       </div>
       <div className={styles.heroFilter}>
-        <p>Find your perfect home without difficulties</p>
+        <p>Find your perfect home or land..</p>
 
         <div className={styles.heroFilterOptions}>
           <ImageButton
