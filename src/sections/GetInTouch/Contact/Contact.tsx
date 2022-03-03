@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 
 const Contact = (estateList: any) => {
   const selector = React.useRef<HTMLSelectElement>(null);
-  const [formType, setFormType] = useState("General enquiry");
+  const [formType, setFormType] = useState("I'm interested in buying");
   const [formTypeIndex, setFormTypeIndex] = useState(0);
   const router = useRouter();
   const [selectedEstate, setSelectedEstate] = useState("");
@@ -23,10 +23,10 @@ const Contact = (estateList: any) => {
   });
 
   let FormKey = new Map([
-    ["General enquiry", GeneralEnquiry],
-    ["Maintenance", Maintenance],
     ["I'm interested in buying", Buying],
+    ["Maintenance", Maintenance],
     ["Trade and Suppliers", Suppliers],
+    ["General enquiry", GeneralEnquiry],
   ]);
 
   const ActiveForm = FormKey.get(formType);
@@ -40,20 +40,17 @@ const Contact = (estateList: any) => {
 
   useEffect(() => {
     setSelectedEstate((router.query.estate as string) || "");
-    setFormType(
-      router.query.estate ? "I'm interested in buying" : "General enquiry"
-    );
   }, [router.query.estate]);
 
   useEffect(() => {
     if (router.query.inspection) {
-      setInspection(true)
+      setInspection(true);
     }
   }, [router.query.inspection]);
 
   useEffect(() => {
     if (router.query.crmId) {
-      setCrmId(router.query.crmId as string)
+      setCrmId(router.query.crmId as string);
     }
   }, [router.query.crmId]);
 
@@ -120,15 +117,15 @@ const Contact = (estateList: any) => {
                 onChange={(e) => setActiveForm(e)}
                 ref={selector}
               >
-                <option value="General enquiry">General enquiry</option>
-                <option value="Maintenance">Maintenance</option>
                 <option
                   value="I'm interested in buying"
                   selected={formType === "I'm interested in buying"}
                 >
                   I&#39;m interested in buying
                 </option>
+                <option value="Maintenance">Maintenance</option>
                 <option value="Trade and Suppliers">Trade and Suppliers</option>
+                <option value="General enquiry">General enquiry</option>
               </select>
             </div>
           </div>
