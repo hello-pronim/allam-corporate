@@ -15,7 +15,7 @@ const HomeList = ({ title, filteredHomes }: IHomeListProps) => {
     <div className={styles.homeList}>
       <div className={styles.homeListWrapper}>
         <div className={styles.homeListContent}>
-          <h2>Find your perfect home or land in {title}</h2>
+          <h2>Find your perfect home in {title}</h2>
           <div className={styles.homeListGrid}>
             <div className={styles.homeListGridWrapper}>
               {filteredHomes?.map((home, id) => (
