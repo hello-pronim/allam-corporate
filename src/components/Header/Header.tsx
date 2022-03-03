@@ -61,38 +61,35 @@ const Header = ({ navItems }: IHeaderProps) => {
   }, [showGreedyMenu]);
 
   useEffect(() => {
-    const navList = document.getElementById("nav-list");
+    const navList = document.getElementById("nav");
+    const visibleList = document.getElementById("visible-list");
     const hiddenList = document.getElementById("hidden-list");
 
     // Get instant state
     let totalSpace = 0;
     let navBreakWidths: any[] = [];
-    if (!navList || !hiddenList) return;
+    if (!navList || !hiddenList || !visibleList) return;
 
-    // console.log(navList.childElementCount);
-    Object.values(navList?.children)?.forEach((child: any) => {
+    Object.values(visibleList?.children)?.forEach((child: any) => {
       totalSpace += child?.offsetWidth;
       navBreakWidths.push(totalSpace);
     });
 
-    // console.log("relead", navBreakWidths);
     const checkNav = () => {
       let availableSpace = navList?.clientWidth - 10;
-      let numOfVisibleItems = navList.childElementCount;
+      let numOfVisibleItems = visibleList.childElementCount;
       let requiredSpace = navBreakWidths[numOfVisibleItems - 1];
       setHiddenListCount(hiddenList?.childElementCount);
 
-      navBreakWidths[numOfVisibleItems - 1];
       // There is not enough space
       if (requiredSpace > availableSpace) {
-        hiddenList.prepend(navList?.lastChild as Node);
+        hiddenList.prepend(visibleList?.lastChild as Node);
         numOfVisibleItems -= 1;
         checkNav();
         // There is more than enough space
       } else if (availableSpace > navBreakWidths[numOfVisibleItems]) {
-        navList.append(hiddenList?.firstChild as Node);
+        visibleList.append(hiddenList?.firstChild as Node);
         numOfVisibleItems += 1;
-        checkNav();
       }
     };
 
@@ -148,15 +145,17 @@ const Header = ({ navItems }: IHeaderProps) => {
             </div> */}
           </div>
           <div className={styles.navMenuList}>
-            <ul className={styles.navMenuListItems} id="nav-list">
-              {navItems?.slice(0, -1).map((el: NavItemModel, id: number) => (
-                <li key={id}>
-                  <Link href={`/${el.hyperlink?.[0]?.slug}`}>
-                    <a>{el.linkName}</a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <div className={styles.navMenuListVisible} id="nav">
+              <ul className={styles.navMenuListItems} id="visible-list">
+                {navItems?.slice(0, -1).map((el: NavItemModel, id: number) => (
+                  <li key={id}>
+                    <Link href={`/${el.hyperlink?.[0]?.slug}`}>
+                      <a>{el.linkName}</a>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             <div
               className={cx("navMenuListGreedyIcon", {
