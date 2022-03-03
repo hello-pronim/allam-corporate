@@ -111,6 +111,9 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
           featuresInclusion {
             ... on inclusions_default_Entry {
               inclusionLevel
+              inclusionsBrochure {
+                url
+              }
               featuredInclusions
               fullInclusionTable {
                 ... on fullInclusionTable_BlockType {

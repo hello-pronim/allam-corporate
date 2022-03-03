@@ -267,6 +267,7 @@ export type InclusionModel = {
   inclusionLevel: string;
   featuredInclusions: string;
   fullInclusionTable: InclusionTableModel[];
+  inclusionsBrochure?: any;
 };
 
 export type InclusionTableModel = {

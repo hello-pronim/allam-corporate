@@ -13,6 +13,7 @@ export interface IHomeInfoProps {
   brochureUrl?: string | null;
   floorPlan?: CraftImage;
   featuresInclusion: InclusionModel;
+  inclusionsBrochure?: InclusionModel;
 }
 
 const HomeInfoCard = ({
@@ -70,7 +71,7 @@ const HomeInfo = ({
   featuresInclusion,
 }: IHomeInfoProps) => {
   const [isShowAll, setShowAll] = useState(false);
-
+  const inclusionsBrochureUrl = featuresInclusion?.inclusionsBrochure[0]?.url;
   return (
     <div className={styles.homeInfo}>
       <div className={styles.homeInfoWrapper}>
@@ -118,6 +119,23 @@ const HomeInfo = ({
                         )}
                       </div>
                     </div>
+                    {inclusionsBrochureUrl && (
+                      <a
+                        target="_blank"
+                        href={inclusionsBrochureUrl}
+                        rel="noreferrer"
+                        download
+                      >
+                        <ImageButton
+                          variant="primary"
+                          icon="download-white"
+                          label="Download Brochure"
+                          chevron={true}
+                          labelSpacingLeft={8}
+                          labelSpacingRight={16}
+                        />
+                      </a>
+                    )}
                   </div>
                 ) : null}
               </div>
