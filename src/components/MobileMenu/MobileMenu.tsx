@@ -70,7 +70,7 @@ const MobileMenu = ({ navItems, closeMenu, ...props }: IMobileMenuProps) => {
             </li>
           ))}
         </ul>
-        <div className={styles.mobileMenuBuildSelect}>
+        {/* <div className={styles.mobileMenuBuildSelect}>
           <span>Build in:</span>
           <ul className={styles.mobileMenuBuildSelectList}>
             {statesAU?.map((el, id) => (
@@ -79,7 +79,7 @@ const MobileMenu = ({ navItems, closeMenu, ...props }: IMobileMenuProps) => {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -42,9 +42,9 @@ const PromotionalOfferDetail: NextPage<PageProps> = ({
           estates={linkedEstates}
         />
       )}
-      <RegisterPanel
+      {/* <RegisterPanel
         data={registerPanel ? registerPanel : offerRegisterPanelData}
-      />
+      /> */}
     </Layout>
   );
 };
