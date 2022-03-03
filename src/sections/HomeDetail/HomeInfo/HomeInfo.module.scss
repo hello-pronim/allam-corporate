@@ -103,7 +103,9 @@
       }
 
       &Full {
+        margin-top: rem(24);
         margin-bottom: rem(60);
+
         & > p {
           font-weight: bold;
           margin: rem(24) 0 rem(32);

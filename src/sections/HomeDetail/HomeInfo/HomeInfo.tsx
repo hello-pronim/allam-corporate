@@ -91,37 +91,33 @@ const HomeInfo = ({
 
                 {featuresInclusion.fullInclusionTable.length ? (
                   <div className={styles.homeInfoContentInclusionsFull}>
-                    <p onClick={() => setShowAll(!isShowAll)}>
+                    {/* <p onClick={() => setShowAll(!isShowAll)}>
                       <u>View {isShowAll ? "less" : "more"}</u>
-                    </p>
+                    </p> */}
 
-                    {isShowAll && (
-                      <div>
-                        <h5>All Inclusions</h5>
+                    <div>
+                      <h5>All Inclusions</h5>
 
-                        <div
-                          className={styles.homeInfoContentInclusionsFullList}
-                        >
-                          {featuresInclusion.fullInclusionTable.map(
-                            (inclusion, index) => (
-                              <div
-                                key={index}
-                                className={
-                                  styles.homeInfoContentInclusionsFullItem
-                                }
-                              >
-                                <h5>{inclusion.inclusionCategory}</h5>
-                                <ul>
-                                  {inclusion.inclusionList.map((el, id) => (
-                                    <li key={id}>{el.inclusionName}</li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )
-                          )}
-                        </div>
+                      <div className={styles.homeInfoContentInclusionsFullList}>
+                        {featuresInclusion.fullInclusionTable.map(
+                          (inclusion, index) => (
+                            <div
+                              key={index}
+                              className={
+                                styles.homeInfoContentInclusionsFullItem
+                              }
+                            >
+                              <h5>{inclusion.inclusionCategory}</h5>
+                              <ul>
+                                {inclusion.inclusionList.map((el, id) => (
+                                  <li key={id}>{el.inclusionName}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )
+                        )}
                       </div>
-                    )}
+                    </div>
                   </div>
                 ) : null}
               </div>
