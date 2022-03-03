@@ -54,6 +54,14 @@
     }
   }
 
+  h3 {
+    color: $grey;
+    margin-bottom: rem(20);
+    @include breakpoint($large) {
+      margin-bottom: rem(32);
+    }
+  }
+
   h4 {
     color: $grey;
     margin-bottom: rem(36);

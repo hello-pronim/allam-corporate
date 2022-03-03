@@ -90,6 +90,19 @@
           align-items: center;
           padding: rem(16) rem(22);
         }
+
+        & > div {
+          @include breakpoint($medium) {
+            flex-direction: row;
+          }
+        }
+
+        span {
+          display: none;
+          @include breakpoint($medium) {
+            display: block;
+          }
+        }
       }
 
       span {
