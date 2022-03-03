@@ -19,7 +19,14 @@ const HomeList = ({ title, filteredHomes }: IHomeListProps) => {
           <div className={styles.homeListGrid}>
             <div className={styles.homeListGridWrapper}>
               {filteredHomes?.map((home, id) => (
-                <Link href={`/find-home/${home.slug}`} key={id}>
+                <Link
+                  href={
+                    home.landOnly
+                      ? `/find-land/${home.slug}`
+                      : `/find-home/${home.slug}`
+                  }
+                  key={id}
+                >
                   <a>
                     <PropertyCard homeData={home} />
                   </a>
