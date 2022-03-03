@@ -4,14 +4,14 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import { get } from "lodash";
 import { gql } from "@apollo/client";
 import craftAPI from "@libs/api";
-import { layoutQuery } from "@libs/queries";
+import { easyBuyQuery, layoutQuery } from "@libs/queries";
 import { PageProps } from "@models";
 import Layout from "@components/Layout/Layout";
 import Hero from "@sections/News/Detail/Hero/Hero";
 import DetailContent from "@sections/News/Detail/DetailContent/DetailContent";
-import KnowMoreAllamHomes from "@sections/News/Detail/KnowMoreAllamHomes/KnowMoreAllamHomes";
+import AllBenefits from "@sections/Home/AllBenefits/AllBenefits";
 
-const NewsDetail: NextPage<PageProps> = ({ pageData, layoutData }) => {
+const NewsDetail: NextPage<PageProps> = ({ pageData, layoutData, easyBuy }) => {
   const title = get(pageData, "entry.title", "");
   const description = get(pageData, "entry.description", "");
   const publishDate = get(pageData, "entry.publishDate", "");
@@ -52,7 +52,7 @@ const NewsDetail: NextPage<PageProps> = ({ pageData, layoutData }) => {
     <Layout layoutData={layoutData}>
       <Hero title={title} date={publishDate} bannerImage={titleImage} />
       <DetailContent content={description} faqs={faqs} />
-      <KnowMoreAllamHomes data={footerPanelData} />
+      <AllBenefits data={easyBuy?.globalSet?.easyBuy[0]} />
     </Layout>
   );
 };
@@ -90,10 +90,11 @@ export const getStaticProps: GetStaticProps = async function ({ params }) {
   `;
 
   const pageData = await craftAPI(newsQuery);
-
+  const easyBuy = await craftAPI(easyBuyQuery);
   return {
     props: {
       pageData,
+      easyBuy,
       layoutData,
     },
     revalidate: 60,
