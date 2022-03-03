@@ -15,7 +15,13 @@ type IHeroProps = {
   filteredHomes?: HomeModel[];
 };
 
-const Hero = ({ title, address, logo, filteredHomes = [], estateId }: IHeroProps) => {
+const Hero = ({
+  title,
+  address,
+  logo,
+  filteredHomes = [],
+  estateId,
+}: IHeroProps) => {
   const router = useRouter();
   const [landCount, setLandCount] = useState(0);
   const [homeCount, setHomeCount] = useState(0);
@@ -61,19 +67,24 @@ const Hero = ({ title, address, logo, filteredHomes = [], estateId }: IHeroProps
                 </ScrollLink>
               )}
               {landCount > 0 && (
-                <ImageButton
-                  icon="land-sale"
-                  label="Land for Sale"
-                  count={landCount}
-                  labelSpacingLeft={8}
-                />
+                <ScrollLink
+                  to="estateProperties"
+                  smooth
+                  offset={-150}
+                  duration={1000}
+                >
+                  <ImageButton
+                    icon="land-sale"
+                    label="Land for Sale"
+                    count={landCount}
+                    labelSpacingLeft={8}
+                  />
+                </ScrollLink>
               )}
 
               <div className={styles.heroContentButtonsCondition}>
                 <Button
-                  href={`/get-in-touch${
-                    estateId ? "?estate=" + estateId : ""
-                  }`}
+                  href={`/get-in-touch${estateId ? "?estate=" + estateId : ""}`}
                   rounded
                 >
                   Contact Agent
