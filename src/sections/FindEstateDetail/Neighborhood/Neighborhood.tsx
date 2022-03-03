@@ -72,7 +72,8 @@ const Neighborhood = ({
                     selectedCategory === category.title ? styles.isActive : ""
                   }`}
                 >
-                  {category.title}
+                  {category.title} (
+                  {getFilteredAmenity(selectedCategory).length})
                 </h5>
                 {selectedCategory === category.title && (
                   <div className={styles.neighborhoodResult}>
