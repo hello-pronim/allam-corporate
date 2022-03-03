@@ -52,7 +52,7 @@ const HomeDetail: NextPage<any> = ({ home, layoutData }) => {
           floorPlan={floorPlan}
           featuresInclusion={featuresInclusion}
         />
-        <RegisterPanel data={landRegisterData} />
+        {/* <RegisterPanel data={landRegisterData} /> */}
       </Layout>
       <StickyBar title={title} estateId={estateInfo.estateId} crmId={crmId} />
     </div>
