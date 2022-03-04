@@ -42,7 +42,7 @@
       @include grid(1, 12);
     }
 
-    h1 {
+    h2 {
       color: $grey;
       margin-bottom: rem(24);
       @include breakpoint($large) {
