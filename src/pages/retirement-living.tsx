@@ -164,8 +164,12 @@ const pageQuery = gql`
               height
             }
             cta {
-              label
-              link
+              ... on cta_BlockType {
+                label
+                hyperlink {
+                  slug
+                }
+              }
             }
           }
         }

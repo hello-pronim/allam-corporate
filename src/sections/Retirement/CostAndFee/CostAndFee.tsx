@@ -30,15 +30,17 @@ const CostAndFee = ({ data }: ICostAndFeeProps) => {
           )}
         </div>
         <div className={styles.BottomBlock}>
-          <ImageButton
-            href={data?.cta?.[0]?.link}
-            icon="download"
-            label={"Download Brochure"}
-            chevron={true}
-            labelSpacingLeft={8}
-            labelSpacingRight={16}
-            css={css({ backgroundColor: "#ffca00" })}
-          />
+          {data?.cta?.[0]?.hyperlink && (
+            <ImageButton
+              href={`/${data?.cta?.[0]?.hyperlink?.[0]?.slug}`}
+              icon="download"
+              label={data?.cta?.[0]?.label}
+              chevron={true}
+              labelSpacingLeft={8}
+              labelSpacingRight={16}
+              css={css({ backgroundColor: "#ffca00" })}
+            />
+          )}
         </div>
       </div>
     </div>
