@@ -34,7 +34,11 @@ const Hero = ({ title, shortDescription, heroBackground }: IHeroProps) => {
               {shortDescription && <h3>{shortDescription}</h3>}
               {heroBackground && (
                 <div className={styles.heroContentTopMainAction}>
-                  <Button color="light" rounded>
+                  <Button
+                    color="light"
+                    rounded
+                    href={`/get-in-touch${"?type=" + "general"}`}
+                  >
                     Register your interest
                   </Button>
                   <Button color="dark" rounded href="/get-in-touch">
@@ -55,7 +59,11 @@ const Hero = ({ title, shortDescription, heroBackground }: IHeroProps) => {
               </div>
               <div className={styles.heroContentTopExtraAction}>
                 <div className={styles.heroContentTopExtraActionButtons}>
-                  <Button color="dark" rounded>
+                  <Button
+                    color="dark"
+                    rounded
+                    href={`/get-in-touch${"?type=" + "general"}`}
+                  >
                     Register your interest
                   </Button>
                   <Button color="light" rounded href="/get-in-touch">

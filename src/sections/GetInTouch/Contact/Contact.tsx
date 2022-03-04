@@ -39,8 +39,11 @@ const Contact = (estateList: any) => {
   };
 
   useEffect(() => {
+    if (router.query.type === "general") {
+      setFormType("General enquiry");
+    }
     setSelectedEstate((router.query.estate as string) || "");
-  }, [router.query.estate]);
+  }, [router.query.estate, router.query.type]);
 
   useEffect(() => {
     if (router.query.inspection) {
@@ -79,7 +82,6 @@ const Contact = (estateList: any) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
   return (
     <div className={styles.TabbedContent}>
       <div
@@ -125,7 +127,12 @@ const Contact = (estateList: any) => {
                 </option>
                 <option value="Maintenance">Maintenance</option>
                 <option value="Trade and Suppliers">Trade and Suppliers</option>
-                <option value="General enquiry">General enquiry</option>
+                <option
+                  value="General enquiry"
+                  selected={formType === "General enquiry"}
+                >
+                  General enquiry
+                </option>
               </select>
             </div>
           </div>
