@@ -5,17 +5,18 @@ import BreadCrumb from "@components/BreadCrumb/BreadCrumb";
 import styles from "./FeaturedVideo.module.scss";
 
 export interface featuredPostProps {
+  title: string;
   video: VideoModel;
 }
 
-const FeaturedVideo = ({ video }: featuredPostProps) => {
+const FeaturedVideo = ({ title, video }: featuredPostProps) => {
   return (
     <div className={styles.featuredVideo}>
       <div className={styles.featuredVideoWrapper}>
         <div className={styles.featuredVideoBreadcrumb}>
           <BreadCrumb />
         </div>
-        <h1>Videos</h1>
+        <h1>{title}</h1>
         <div className={styles.featuredVideoContent}>
           <VideoCard video={video} variant="featured" />
         </div>

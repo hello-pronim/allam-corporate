@@ -20,13 +20,14 @@ const OurVideos: NextPage<OverViewPageProps> = ({
   pageData,
   layoutData,
   listingData,
-  easyBuy
+  easyBuy,
 }) => {
   const { isOpen } = useRecoilValue(videoModalState);
   const [videos, setVideos] = useState<VideoModel[]>([]);
   const [latestVideos, setLatestVideos] = useState<VideoModel[]>([]);
   const [oldVideos, setOldVideos] = useState<VideoModel[]>([]);
 
+  const title = get(pageData, "entry.title", "");
   const featuredVideo = get(pageData, "entry.featuredVideo[0]", []);
   const LATEST_VIDEO_COUNT = get(pageData, "entry.latestVideoCount", 4);
 
@@ -46,7 +47,7 @@ const OurVideos: NextPage<OverViewPageProps> = ({
   return (
     <Layout layoutData={layoutData}>
       <BackgroundWrapper>
-        <FeaturedVideo video={featuredVideo} />
+        <FeaturedVideo title={title} video={featuredVideo} />
         <LatestVideos videos={latestVideos} />
         <div style={{ backgroundColor: "#eef2f5" }}>
           <Divider />
@@ -63,6 +64,7 @@ const pageQuery = gql`
   query videosPage {
     entry(section: "ourVideosPage") {
       ... on ourVideosPage_ourVideosPage_Entry {
+        title
         featuredVideo {
           ... on ourVideos_default_Entry {
             title
