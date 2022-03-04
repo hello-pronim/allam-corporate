@@ -69,6 +69,19 @@
     overflow-x: hidden;
     z-index: 500;
     box-shadow: 0px 0px 1px 0px #00000040;
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #e4e4e4;
+      border-radius: 50px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #ffcb05;
+      border-radius: 50px;
+    }
 
     ul {
       li {
