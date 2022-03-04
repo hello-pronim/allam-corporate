@@ -87,6 +87,13 @@ const Suppliers = (estateList: any) => {
       <div className={`${styles.formRow} ${styles.formRowReverse}`}>
         <div className={styles.formCol}>
           <Input
+            className={`${styles.formControl}`}
+            type="text"
+            name="Business name"
+            placeholder="Business name"
+            register={register}
+          />
+          <Input
             type="text"
             name="postcode"
             className={styles.formControl}
