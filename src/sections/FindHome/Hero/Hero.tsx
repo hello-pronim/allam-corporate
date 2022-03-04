@@ -67,7 +67,7 @@ const Hero = ({
           <BreadCrumb />
         </div>
         <div className={styles.heroContent}>
-          <h1>{heading}</h1>
+          <h2>{heading}</h2>
           <div className={styles.heroContentText}>
             <Redactor>{introBlurb}</Redactor>
           </div>
