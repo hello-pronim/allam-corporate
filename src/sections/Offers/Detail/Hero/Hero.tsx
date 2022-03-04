@@ -37,7 +37,7 @@ const Hero = ({ title, shortDescription, heroBackground }: IHeroProps) => {
                   <Button color="light" rounded>
                     Register your interest
                   </Button>
-                  <Button color="dark" rounded>
+                  <Button color="dark" rounded href="/get-in-touch">
                     Contact an Agent
                   </Button>
                 </div>
@@ -58,7 +58,7 @@ const Hero = ({ title, shortDescription, heroBackground }: IHeroProps) => {
                   <Button color="dark" rounded>
                     Register your interest
                   </Button>
-                  <Button color="light" rounded>
+                  <Button color="light" rounded href="/get-in-touch">
                     Contact an Agent
                   </Button>
                 </div>
