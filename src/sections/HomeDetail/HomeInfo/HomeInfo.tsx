@@ -119,22 +119,24 @@ const HomeInfo = ({
                         )}
                       </div>
                     </div>
-                    {inclusionsBrochureUrl && (
-                      <a
-                        target="_blank"
-                        href={inclusionsBrochureUrl}
-                        rel="noreferrer"
-                        download
-                      >
-                        <ImageButton
-                          variant="primary"
-                          icon="download-white"
-                          label="Download Brochure"
-                          chevron={true}
-                          labelSpacingLeft={8}
-                          labelSpacingRight={16}
-                        />
-                      </a>
+                    {brochureUrl && (
+                      <div className={styles.homeInfoContentBrochure}>
+                        <a
+                          target="_blank"
+                          href={brochureUrl}
+                          rel="noreferrer"
+                          download
+                        >
+                          <ImageButton
+                            variant="primary"
+                            icon="download-white"
+                            label="Download Brochure"
+                            chevron={true}
+                            labelSpacingLeft={8}
+                            labelSpacingRight={16}
+                          />
+                        </a>
+                      </div>
                     )}
                   </div>
                 ) : null}
@@ -153,7 +155,7 @@ const HomeInfo = ({
               )}
             </div>
 
-            {brochureUrl ? (
+            {/* {brochureUrl ? (
               <a target="_blank" href={brochureUrl} rel="noreferrer" download>
                 <ImageButton
                   variant="primary"
@@ -164,7 +166,7 @@ const HomeInfo = ({
                   labelSpacingRight={16}
                 />
               </a>
-            ) : null}
+            ) : null} */}
           </div>
           <div className={styles.homeInfoContact}>
             <HomeInfoCard estateInfo={estateInfo} homeDesign={homeDesign} />

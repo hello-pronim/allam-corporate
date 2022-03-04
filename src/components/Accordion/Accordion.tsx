@@ -8,11 +8,9 @@ export interface IAccordionProps {
   className?: string;
   defaultKey?: any;
   data: Array<{
-    key: number;
+    key: string;
     title: string;
     content: string;
-    subTitle1?: string; // above the main title
-    subTitle2?: string; // below the main title
   }>;
   onClick?: (id: number) => void;
   accordion?: boolean;
@@ -36,13 +34,11 @@ const Accordion = ({
 
   return (
     <div className={`${styles.accordion} ${className ?? ""}`}>
-      {data.map(({ key, title, subTitle1, subTitle2, content }) => (
+      {data.map(({ key, title, content }) => (
         <Collapse
           key={key}
           activeKey={activeKey}
           title={title}
-          subTitle1={subTitle1}
-          subTitle2={subTitle2}
           onClick={onCollapseClicked}
           accordion={accordion}
         >

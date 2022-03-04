@@ -59,13 +59,13 @@ const DetailContent = ({ content, faqs }: DetailContentProps) => {
         </div>
 
         <div className={styles.detailFooterWrapper}>
-          {faqs && (
+          {faqs?.length ? (
             <div className={styles.faqPanel}>
               <div className={styles.faqPanelWrapper}>
-                <FAQ data={faqs} title="Other articles" />
+                <FAQ data={faqs.slice(0, 3)} title="Other articles" />
               </div>
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     </div>

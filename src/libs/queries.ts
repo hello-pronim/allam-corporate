@@ -160,6 +160,7 @@ export const simpleNewsQuery = gql`
           title
           url
         }
+        shortDescription
         linkedEstates {
           ... on estates_default_Entry {
             title
@@ -410,6 +411,34 @@ export const amenityCategoryQuery = gql`
     categories {
       ... on amenityCategories_Category {
         title
+      }
+    }
+  }
+`;
+
+export const offersQuery = gql`
+  query offersQuery {
+    entries(section: "promotions") {
+      ... on promotions_default_Entry {
+        slug
+        title
+        publishDate
+        expiryDate
+        textColor
+        shortDescription
+        introBlurb
+        description
+        homePageBanner {
+          title
+          url
+        }
+        titleImage {
+          title
+          url
+        }
+        filesDownloads {
+          url
+        }
       }
     }
   }

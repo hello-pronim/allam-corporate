@@ -2,17 +2,12 @@ import React from "react";
 import Accordion from "@components/Accordion/Accordion";
 
 import styles from "./FAQ.module.scss";
+import { NewsModel } from "@models";
 
-type FAQItemProps = {
-  id: number;
-  title: string;
-  content: string;
-  date: string;
-};
 export interface IFAQProps {
   className?: string;
   title: string;
-  data: Array<FAQItemProps>;
+  data: NewsModel[];
   accordion?: boolean;
 }
 
@@ -21,11 +16,10 @@ const FAQ = ({ className, title, data, accordion = false }: IFAQProps) => (
     <h4 className={styles.faqTitle}>{title}</h4>
     <div className={styles.faqsWrapper}>
       <Accordion
-        data={data.map((item: FAQItemProps) => ({
-          key: item.id,
+        data={data.map((item: NewsModel) => ({
+          key: item.title,
           title: item.title,
-          subTitle1: item.date,
-          content: item.content,
+          content: item.shortDescription,
         }))}
         accordion={accordion}
       />

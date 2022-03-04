@@ -8,8 +8,6 @@ export interface ICollapseProps {
   key: any;
   activeKey?: any;
   title: string;
-  subTitle1?: string;
-  subTitle2?: string;
   onClick?: (id: number) => void;
   accordion?: boolean;
   children?: React.ReactNode;
@@ -20,8 +18,6 @@ const Collapse = ({
   key,
   activeKey,
   title,
-  subTitle1 = "", // above the main title
-  subTitle2 = "", // below the main title
   onClick,
   accordion = false,
   children,
@@ -47,7 +43,6 @@ const Collapse = ({
       onClick={() => onCollapseClicked(key)}
     >
       <header className={styles.collapseHeader}>
-        <p className={styles.collapseHeaderSubTitle1}>{subTitle1}</p>
         <div className={styles.collapseHeaderMainTitle}>
           <h4 className={styles.collapseTitle}>{title}</h4>
           <div
@@ -58,7 +53,6 @@ const Collapse = ({
             <Icon type="chevron-right" />
           </div>
         </div>
-        <p className={styles.collapseHeaderSubTitle2}>{subTitle2}</p>
       </header>
       {collapseStatus && <div className={styles.collapseBody}>{children}</div>}
     </article>
