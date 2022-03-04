@@ -16,15 +16,16 @@ const LandCard = ({ landData, simple = false }: ILandCardProps) => {
     dots: true,
     arrows: false,
     infinite: true,
-    autoplay: true,
+    autoplay: false,
     speed: 800,
     fade: true,
-    autoplaySpeed: 6000,
+    autoplaySpeed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
 
   const address = `${landData.title}`;
+  const sliderRef = React.useRef<Slider>(null);
 
   return (
     <div
@@ -48,7 +49,12 @@ const LandCard = ({ landData, simple = false }: ILandCardProps) => {
         ) : (
           <Slider {...settings}>
             {landData?.images?.map((image, id) => (
-              <div key={id} className={styles.landCardTopImage}>
+              <div
+                key={id}
+                className={styles.landCardTopImage}
+                onMouseEnter={() => sliderRef.current?.slickPlay()}
+                onMouseLeave={() => sliderRef.current?.slickPause()}
+              >
                 <Image
                   src={image.url}
                   alt={image.title}

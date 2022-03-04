@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import dayjs from "dayjs";
 import Slider from "react-slick";
@@ -18,22 +18,22 @@ const PropertyCard = ({
   isOpenInspection = false,
   simple = false,
 }: PropertyCardProps) => {
+  const sliderRef = React.useRef<Slider>(null);
   const settings = {
     className: "estate-card-slider",
     dots: true,
     arrows: false,
     infinite: true,
-    autoplay: true,
+    autoplay: false,
     speed: 800,
     fade: true,
-    autoplaySpeed: 6000,
+    autoplaySpeed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
 
   // const address = `${homeData.lotNumber}, ${homeData.address}`;
   const address = `${homeData.title}`;
-
   return (
     <div
       className={`${styles.propertyCard} ${
@@ -82,9 +82,14 @@ const PropertyCard = ({
             />
           </div>
         ) : (
-          <Slider {...settings}>
+          <Slider {...settings} ref={sliderRef}>
             {homeData?.images?.map((image, id) => (
-              <div key={id} className={styles.propertyCardTopImage}>
+              <div
+                key={id}
+                className={styles.propertyCardTopImage}
+                onMouseEnter={() => sliderRef.current?.slickPlay()}
+                onMouseLeave={() => sliderRef.current?.slickPause()}
+              >
                 <Image
                   src={image.url}
                   alt={image.title}

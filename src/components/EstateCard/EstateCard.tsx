@@ -24,14 +24,14 @@ const EstateCard = ({
     dots: true,
     arrows: false,
     infinite: true,
-    autoplay: true,
+    autoplay: false,
     speed: 800,
     fade: true,
-    autoplaySpeed: 6000,
+    autoplaySpeed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-
+  const sliderRef = React.useRef<Slider>(null);
   const [landCount, setLandCount] = useState(0);
   const [homeCount, setHomeCount] = useState(0);
   const addr = `${estate.suburb} ${estate.estateState} ${estate.postcode}`;
@@ -69,9 +69,14 @@ const EstateCard = ({
             />
           </div>
         ) : (
-          <Slider {...settings}>
+          <Slider {...settings} ref={sliderRef}>
             {estate?.galleryImages?.map((image, id) => (
-              <div className={styles.estateCardTopImage} key={id}>
+              <div
+                className={styles.estateCardTopImage}
+                key={id}
+                onMouseEnter={() => sliderRef.current?.slickPlay()}
+                onMouseLeave={() => sliderRef.current?.slickPause()}
+              >
                 <Image
                   src={image.url}
                   alt={image.title}

@@ -86,6 +86,7 @@ const Timeline = ({ cards, padding = [] }: TimelineProps) => {
   const [sliderWrapper, setSliderWrapper] = useState<HTMLElement | null>();
   const [current, setCurrent] = useState(0);
   const [slideCount, setSlideCount] = useState(0);
+  const sliderRef = React.useRef<Slider>(null);
 
   const settings = {
     className: "timeline-slider",
@@ -161,7 +162,12 @@ const Timeline = ({ cards, padding = [] }: TimelineProps) => {
   });
   return (
     <div className={styles.TimelineContainer} css={css({ py: rem(padding) })}>
-      <div id="timeline" className={styles.TimelineWrapper}>
+      <div
+        id="timeline"
+        className={styles.TimelineWrapper}
+        onMouseEnter={() => sliderRef.current?.slickPlay()}
+        onMouseLeave={() => sliderRef.current?.slickPause()}
+      >
         <Slider {...settings} ref={slider}>
           {cardEntries?.map((card, id) => {
             return (
