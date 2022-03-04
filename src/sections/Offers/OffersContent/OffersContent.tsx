@@ -28,8 +28,8 @@ const OffersContent = ({ offers }: OffersContentProps) => {
                   offer?.titleImage ? offers[0]?.titleImage?.[0].url : ""
                 }
                 action={
-                  <Button color="light" rounded>
-                    Contact an Agent today!
+                  <Button color="light" href={`/offers/${offer.slug}`} rounded>
+                    View offer details
                   </Button>
                 }
                 size={id % 3 === 0 ? "large" : "normal"}

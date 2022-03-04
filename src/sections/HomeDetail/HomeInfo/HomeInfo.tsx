@@ -153,7 +153,7 @@ const HomeInfo = ({
               )}
             </div>
 
-            {brochureUrl && (
+            {brochureUrl ? (
               <a target="_blank" href={brochureUrl} rel="noreferrer" download>
                 <ImageButton
                   variant="primary"
@@ -164,7 +164,7 @@ const HomeInfo = ({
                   labelSpacingRight={16}
                 />
               </a>
-            )}
+            ) : null}
           </div>
           <div className={styles.homeInfoContact}>
             <HomeInfoCard estateInfo={estateInfo} homeDesign={homeDesign} />
