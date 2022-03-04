@@ -16,7 +16,7 @@ const Hero = ({ data }: IHeroProps) => {
     dots: true,
     arrows: false,
     infinite: true,
-    autoplay: true,
+    autoplay: false,
     speed: 1000,
     fade: true,
     autoplaySpeed: 10000,
@@ -32,7 +32,7 @@ const Hero = ({ data }: IHeroProps) => {
       }}
     >
       <div className={styles.heroContent}>
-        <h1 className="home">{el.heading}</h1>
+        <span className="home">{el.heading}</span>
         <h4>{el.subHeading}</h4>
       </div>
       <div className={styles.heroFilter}>

@@ -32,10 +32,13 @@
       grid-column: 2 / span 5;
     }
 
-    h1 {
+    span {
       color: $white;
       text-shadow: rem(2) rem(2) rem(4) rgba(0, 0, 0, 0.5);
-      margin-bottom: rem(32);
+      font-weight: 700;
+      font-size: 5.625rem;
+      line-height: 5.9375rem;
+
       @include breakpoint($large) {
         margin-bottom: rem(40);
       }
@@ -43,6 +46,7 @@
 
     h4 {
       color: $white;
+      margin-top: rem(40);
     }
   }
 
