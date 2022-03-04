@@ -17,8 +17,8 @@ const PromotionSection = ({ offer }: IPromotionSectionProps) => {
             offer={offer}
             background={offer?.titleImage?.[0].url ?? ""}
             action={
-              <Button color="light" rounded>
-                Contact an Agent today!
+              <Button color="light" href={`/offers/${offer.slug}`} rounded>
+                View offer details
               </Button>
             }
           />
