@@ -8,7 +8,7 @@
     padding-left: 0 !important;
     padding-right: 0 !important;
     background-size: cover;
-    background-position: center center;
+    // background-position: center center;
     background-repeat: no-repeat;
     @include breakpoint($large) {
       @include grid(1, 12);
