@@ -5,6 +5,8 @@ import Button from "@components/Common/Button/Button";
 import Input from "@components/Common/Input/Input";
 import Textarea from "@components/Common/Textarea/Textarea";
 import styles from "./forms.module.scss";
+import { gql } from "@apollo/client";
+import { mutateAPI } from "@libs/api";
 
 const Maintenance = () => {
   const {
@@ -13,7 +15,56 @@ const Maintenance = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data: any) => console.log(data);
+  const MAINTENANCE_MUTATION = gql`
+    mutation saveSubmission(
+      $firstName: String!
+      $lastName: String!
+      $email: String!
+      $contactNumber: String!
+      $lotNumber: String!
+      $street: String!
+      $suburb: String!
+      $postCode: String!
+      $comment: String!
+    ) {
+      save_maintenance_Submission(
+        firstName: $firstName
+        lastName: $lastName
+        email: $email
+        contactNumber: $contactNumber
+        lotNumber: $lotNumber
+        street: $street
+        suburb: $suburb
+        postCode: $postCode
+        comment: $comment
+      ) {
+        firstName
+        lastName
+        email
+        contactNumber
+        lotNumber
+        street
+        suburb
+        postCode
+        comment
+      }
+    }
+  `;
+
+  const onSubmit = async (data: any) => {
+    const variables = {
+      firstName: data?.FirstName,
+      lastName: data?.LastName,
+      email: data?.Email,
+      contactNumber: data?.Phone,
+      lotNumber: data?.LotNumber,
+      street: data?.Street,
+      suburb: data?.Suburb,
+      postCode: data?.PostCode,
+      comment: data?.comment
+    }
+    await mutateAPI(MAINTENANCE_MUTATION, variables)
+  };
 
   return (
     <form className={classNames(styles.Form)} onSubmit={handleSubmit(onSubmit)}>
@@ -49,11 +100,11 @@ const Maintenance = () => {
           <Input
             className={`${styles.formControl} ${errors["Phone"] ? styles.hasError : ""
               }`}
-            type="tel"
+            type="text"
             name="Phone"
             placeholder="Contact Number"
             register={register}
-            validation={{ required: true, minLength: 6, maxLength: 12 }}
+            validation={{ required: true }}
           />
         </div>
         <div className={styles.formCol}>

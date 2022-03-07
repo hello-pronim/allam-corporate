@@ -17,4 +17,14 @@ const craftAPI = async (query: DocumentNode, previewToken: any = undefined) => {
   return data;
 };
 
+export const mutateAPI = async (mutation: DocumentNode, variables: any) => {
+  const apolloClient = getClient();
+  const { data } = await apolloClient.mutate({
+    variables: variables,
+    mutation: mutation
+  });
+
+  return data;
+};
+
 export default craftAPI;
