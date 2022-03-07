@@ -10,7 +10,7 @@ export interface IOldPostsProps {
 }
 
 const OldPosts = ({ posts }: IOldPostsProps) => {
-  return (
+  return posts.length > 0 ? (
     <div className={styles.oldPosts}>
       <CardGrid
         title="Older posts"
@@ -29,6 +29,8 @@ const OldPosts = ({ posts }: IOldPostsProps) => {
         ))}
       </CardGrid>
     </div>
+  ) : (
+    <></>
   );
 };
 
